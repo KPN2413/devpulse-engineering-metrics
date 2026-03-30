@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  user_id       String    @unique
+  email         String?   @unique
+  displayName   String?
+  githubId      String?   @unique
+  repositories  Repository[]
+  teamMembers   TeamMember[]
+  createdAt     DateTime  @default(now())
+}
+
+model Organization {
+  id            String    @id @default(cuid())
+  name          String
+  githubId      String    @unique
+  repositories  Repository[]
+  createdAt     DateTime  @default(now())
+}
+
+model Repository {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [user_id])
+  orgId         String?
+  org           Organization? @relation(fields: [orgId], references: [id])
+  name          String
+  owner         String
+  githubId      String    @unique
+  webhookId     String?
+  pullRequests  PullRequest[]
+  commits       Commit[]
+  metrics       Metric[]
+  createdAt     DateTime  @default(now())
+}
+
+model PullRequest {
+  id            String    @id @default(cuid())
+  userId        String
+  repositoryId  String
+  repository    Repository @relation(fields: [repositoryId], references: [id])
+  number        Int
+  title         String
+  state         String
+  author        String
+  mergedAt      DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+model Commit {
+  id            String    @id @default(cuid())
+  userId        String
+  repositoryId  String
+  repository    Repository @relation(fields: [repositoryId], references: [id])
+  sha           String    @unique
+  author        String
+  message       String?
+  committedAt   DateTime
+}
+
+model WebhookEvent {
+  id            String    @id @default(cuid())
+  userId        String
+  type          String
+  payload       Json
+  processedAt   DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+model Metric {
+  id            String    @id @default(cuid())
+  userId        String
+  repositoryId  String
+  repository    Repository @relation(fields: [repositoryId], references: [id])
+  type          String
+  value         Float
+  date          DateTime
+}
+
+model TeamMember {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [user_id])
+  name          String
+  role          String?
+  avatarUrl     String?
+  createdAt     DateTime  @default(now())
+}
