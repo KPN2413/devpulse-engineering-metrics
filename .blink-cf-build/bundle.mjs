@@ -1,8 +1,6147 @@
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined") return require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+
+// node_modules/@prisma/client/runtime/edge.js
+var require_edge = __commonJS({
+  "node_modules/@prisma/client/runtime/edge.js"(exports, module) {
+    "use strict";
+    var ba = Object.create;
+    var lr = Object.defineProperty;
+    var xa = Object.getOwnPropertyDescriptor;
+    var Pa = Object.getOwnPropertyNames;
+    var va = Object.getPrototypeOf;
+    var Ta = Object.prototype.hasOwnProperty;
+    var fe = (e, t) => () => (e && (t = e(e = 0)), t);
+    var Je = (e, t) => () => (t || e((t = { exports: {} }).exports, t), t.exports);
+    var vt = (e, t) => {
+      for (var r in t) lr(e, r, { get: t[r], enumerable: true });
+    };
+    var ci = (e, t, r, n) => {
+      if (t && typeof t == "object" || typeof t == "function") for (let i of Pa(t)) !Ta.call(e, i) && i !== r && lr(e, i, { get: () => t[i], enumerable: !(n = xa(t, i)) || n.enumerable });
+      return e;
+    };
+    var Qe = (e, t, r) => (r = e != null ? ba(va(e)) : {}, ci(t || !e || !e.__esModule ? lr(r, "default", { value: e, enumerable: true }) : r, e));
+    var Aa = (e) => ci(lr({}, "__esModule", { value: true }), e);
+    var y;
+    var b;
+    var u = fe(() => {
+      "use strict";
+      y = { nextTick: (e, ...t) => {
+        setTimeout(() => {
+          e(...t);
+        }, 0);
+      }, env: {}, version: "", cwd: () => "/", stderr: {}, argv: ["/bin/node"], pid: 1e4 }, { cwd: b } = y;
+    });
+    var x;
+    var c = fe(() => {
+      "use strict";
+      x = globalThis.performance ?? (() => {
+        let e = Date.now();
+        return { now: () => Date.now() - e };
+      })();
+    });
+    var E;
+    var p = fe(() => {
+      "use strict";
+      E = () => {
+      };
+      E.prototype = E;
+    });
+    var m = fe(() => {
+      "use strict";
+    });
+    var Ii = Je((ze) => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      var gi = (e, t) => () => (t || e((t = { exports: {} }).exports, t), t.exports), Ra = gi((e) => {
+        "use strict";
+        e.byteLength = l, e.toByteArray = g, e.fromByteArray = I;
+        var t = [], r = [], n = typeof Uint8Array < "u" ? Uint8Array : Array, i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        for (o = 0, s = i.length; o < s; ++o) t[o] = i[o], r[i.charCodeAt(o)] = o;
+        var o, s;
+        r[45] = 62, r[95] = 63;
+        function a(S) {
+          var C = S.length;
+          if (C % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+          var M = S.indexOf("=");
+          M === -1 && (M = C);
+          var F = M === C ? 0 : 4 - M % 4;
+          return [M, F];
+        }
+        function l(S) {
+          var C = a(S), M = C[0], F = C[1];
+          return (M + F) * 3 / 4 - F;
+        }
+        function d(S, C, M) {
+          return (C + M) * 3 / 4 - M;
+        }
+        function g(S) {
+          var C, M = a(S), F = M[0], B = M[1], O = new n(d(S, F, B)), L = 0, le = B > 0 ? F - 4 : F, J;
+          for (J = 0; J < le; J += 4) C = r[S.charCodeAt(J)] << 18 | r[S.charCodeAt(J + 1)] << 12 | r[S.charCodeAt(J + 2)] << 6 | r[S.charCodeAt(J + 3)], O[L++] = C >> 16 & 255, O[L++] = C >> 8 & 255, O[L++] = C & 255;
+          return B === 2 && (C = r[S.charCodeAt(J)] << 2 | r[S.charCodeAt(J + 1)] >> 4, O[L++] = C & 255), B === 1 && (C = r[S.charCodeAt(J)] << 10 | r[S.charCodeAt(J + 1)] << 4 | r[S.charCodeAt(J + 2)] >> 2, O[L++] = C >> 8 & 255, O[L++] = C & 255), O;
+        }
+        function h(S) {
+          return t[S >> 18 & 63] + t[S >> 12 & 63] + t[S >> 6 & 63] + t[S & 63];
+        }
+        function T(S, C, M) {
+          for (var F, B = [], O = C; O < M; O += 3) F = (S[O] << 16 & 16711680) + (S[O + 1] << 8 & 65280) + (S[O + 2] & 255), B.push(h(F));
+          return B.join("");
+        }
+        function I(S) {
+          for (var C, M = S.length, F = M % 3, B = [], O = 16383, L = 0, le = M - F; L < le; L += O) B.push(T(S, L, L + O > le ? le : L + O));
+          return F === 1 ? (C = S[M - 1], B.push(t[C >> 2] + t[C << 4 & 63] + "==")) : F === 2 && (C = (S[M - 2] << 8) + S[M - 1], B.push(t[C >> 10] + t[C >> 4 & 63] + t[C << 2 & 63] + "=")), B.join("");
+        }
+      }), Ca = gi((e) => {
+        e.read = function(t, r, n, i, o) {
+          var s, a, l = o * 8 - i - 1, d = (1 << l) - 1, g = d >> 1, h = -7, T = n ? o - 1 : 0, I = n ? -1 : 1, S = t[r + T];
+          for (T += I, s = S & (1 << -h) - 1, S >>= -h, h += l; h > 0; s = s * 256 + t[r + T], T += I, h -= 8) ;
+          for (a = s & (1 << -h) - 1, s >>= -h, h += i; h > 0; a = a * 256 + t[r + T], T += I, h -= 8) ;
+          if (s === 0) s = 1 - g;
+          else {
+            if (s === d) return a ? NaN : (S ? -1 : 1) * (1 / 0);
+            a = a + Math.pow(2, i), s = s - g;
+          }
+          return (S ? -1 : 1) * a * Math.pow(2, s - i);
+        }, e.write = function(t, r, n, i, o, s) {
+          var a, l, d, g = s * 8 - o - 1, h = (1 << g) - 1, T = h >> 1, I = o === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0, S = i ? 0 : s - 1, C = i ? 1 : -1, M = r < 0 || r === 0 && 1 / r < 0 ? 1 : 0;
+          for (r = Math.abs(r), isNaN(r) || r === 1 / 0 ? (l = isNaN(r) ? 1 : 0, a = h) : (a = Math.floor(Math.log(r) / Math.LN2), r * (d = Math.pow(2, -a)) < 1 && (a--, d *= 2), a + T >= 1 ? r += I / d : r += I * Math.pow(2, 1 - T), r * d >= 2 && (a++, d /= 2), a + T >= h ? (l = 0, a = h) : a + T >= 1 ? (l = (r * d - 1) * Math.pow(2, o), a = a + T) : (l = r * Math.pow(2, T - 1) * Math.pow(2, o), a = 0)); o >= 8; t[n + S] = l & 255, S += C, l /= 256, o -= 8) ;
+          for (a = a << o | l, g += o; g > 0; t[n + S] = a & 255, S += C, a /= 256, g -= 8) ;
+          t[n + S - C] |= M * 128;
+        };
+      }), un = Ra(), We = Ca(), pi = typeof Symbol == "function" && typeof Symbol.for == "function" ? /* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom") : null;
+      ze.Buffer = A;
+      ze.SlowBuffer = Ma;
+      ze.INSPECT_MAX_BYTES = 50;
+      var ur = 2147483647;
+      ze.kMaxLength = ur;
+      A.TYPED_ARRAY_SUPPORT = Sa();
+      !A.TYPED_ARRAY_SUPPORT && typeof console < "u" && typeof console.error == "function" && console.error("This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support.");
+      function Sa() {
+        try {
+          let e = new Uint8Array(1), t = { foo: function() {
+            return 42;
+          } };
+          return Object.setPrototypeOf(t, Uint8Array.prototype), Object.setPrototypeOf(e, t), e.foo() === 42;
+        } catch {
+          return false;
+        }
+      }
+      Object.defineProperty(A.prototype, "parent", { enumerable: true, get: function() {
+        if (A.isBuffer(this)) return this.buffer;
+      } });
+      Object.defineProperty(A.prototype, "offset", { enumerable: true, get: function() {
+        if (A.isBuffer(this)) return this.byteOffset;
+      } });
+      function xe(e) {
+        if (e > ur) throw new RangeError('The value "' + e + '" is invalid for option "size"');
+        let t = new Uint8Array(e);
+        return Object.setPrototypeOf(t, A.prototype), t;
+      }
+      function A(e, t, r) {
+        if (typeof e == "number") {
+          if (typeof t == "string") throw new TypeError('The "string" argument must be of type string. Received type number');
+          return mn(e);
+        }
+        return hi(e, t, r);
+      }
+      A.poolSize = 8192;
+      function hi(e, t, r) {
+        if (typeof e == "string") return Oa(e, t);
+        if (ArrayBuffer.isView(e)) return ka(e);
+        if (e == null) throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof e);
+        if (de(e, ArrayBuffer) || e && de(e.buffer, ArrayBuffer) || typeof SharedArrayBuffer < "u" && (de(e, SharedArrayBuffer) || e && de(e.buffer, SharedArrayBuffer))) return wi(e, t, r);
+        if (typeof e == "number") throw new TypeError('The "value" argument must not be of type number. Received type number');
+        let n = e.valueOf && e.valueOf();
+        if (n != null && n !== e) return A.from(n, t, r);
+        let i = Da(e);
+        if (i) return i;
+        if (typeof Symbol < "u" && Symbol.toPrimitive != null && typeof e[Symbol.toPrimitive] == "function") return A.from(e[Symbol.toPrimitive]("string"), t, r);
+        throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof e);
+      }
+      A.from = function(e, t, r) {
+        return hi(e, t, r);
+      };
+      Object.setPrototypeOf(A.prototype, Uint8Array.prototype);
+      Object.setPrototypeOf(A, Uint8Array);
+      function yi(e) {
+        if (typeof e != "number") throw new TypeError('"size" argument must be of type number');
+        if (e < 0) throw new RangeError('The value "' + e + '" is invalid for option "size"');
+      }
+      function Ia(e, t, r) {
+        return yi(e), e <= 0 ? xe(e) : t !== void 0 ? typeof r == "string" ? xe(e).fill(t, r) : xe(e).fill(t) : xe(e);
+      }
+      A.alloc = function(e, t, r) {
+        return Ia(e, t, r);
+      };
+      function mn(e) {
+        return yi(e), xe(e < 0 ? 0 : fn(e) | 0);
+      }
+      A.allocUnsafe = function(e) {
+        return mn(e);
+      };
+      A.allocUnsafeSlow = function(e) {
+        return mn(e);
+      };
+      function Oa(e, t) {
+        if ((typeof t != "string" || t === "") && (t = "utf8"), !A.isEncoding(t)) throw new TypeError("Unknown encoding: " + t);
+        let r = Ei(e, t) | 0, n = xe(r), i = n.write(e, t);
+        return i !== r && (n = n.slice(0, i)), n;
+      }
+      function cn(e) {
+        let t = e.length < 0 ? 0 : fn(e.length) | 0, r = xe(t);
+        for (let n = 0; n < t; n += 1) r[n] = e[n] & 255;
+        return r;
+      }
+      function ka(e) {
+        if (de(e, Uint8Array)) {
+          let t = new Uint8Array(e);
+          return wi(t.buffer, t.byteOffset, t.byteLength);
+        }
+        return cn(e);
+      }
+      function wi(e, t, r) {
+        if (t < 0 || e.byteLength < t) throw new RangeError('"offset" is outside of buffer bounds');
+        if (e.byteLength < t + (r || 0)) throw new RangeError('"length" is outside of buffer bounds');
+        let n;
+        return t === void 0 && r === void 0 ? n = new Uint8Array(e) : r === void 0 ? n = new Uint8Array(e, t) : n = new Uint8Array(e, t, r), Object.setPrototypeOf(n, A.prototype), n;
+      }
+      function Da(e) {
+        if (A.isBuffer(e)) {
+          let t = fn(e.length) | 0, r = xe(t);
+          return r.length === 0 || e.copy(r, 0, 0, t), r;
+        }
+        if (e.length !== void 0) return typeof e.length != "number" || gn(e.length) ? xe(0) : cn(e);
+        if (e.type === "Buffer" && Array.isArray(e.data)) return cn(e.data);
+      }
+      function fn(e) {
+        if (e >= ur) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + ur.toString(16) + " bytes");
+        return e | 0;
+      }
+      function Ma(e) {
+        return +e != e && (e = 0), A.alloc(+e);
+      }
+      A.isBuffer = function(e) {
+        return e != null && e._isBuffer === true && e !== A.prototype;
+      };
+      A.compare = function(e, t) {
+        if (de(e, Uint8Array) && (e = A.from(e, e.offset, e.byteLength)), de(t, Uint8Array) && (t = A.from(t, t.offset, t.byteLength)), !A.isBuffer(e) || !A.isBuffer(t)) throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');
+        if (e === t) return 0;
+        let r = e.length, n = t.length;
+        for (let i = 0, o = Math.min(r, n); i < o; ++i) if (e[i] !== t[i]) {
+          r = e[i], n = t[i];
+          break;
+        }
+        return r < n ? -1 : n < r ? 1 : 0;
+      };
+      A.isEncoding = function(e) {
+        switch (String(e).toLowerCase()) {
+          case "hex":
+          case "utf8":
+          case "utf-8":
+          case "ascii":
+          case "latin1":
+          case "binary":
+          case "base64":
+          case "ucs2":
+          case "ucs-2":
+          case "utf16le":
+          case "utf-16le":
+            return true;
+          default:
+            return false;
+        }
+      };
+      A.concat = function(e, t) {
+        if (!Array.isArray(e)) throw new TypeError('"list" argument must be an Array of Buffers');
+        if (e.length === 0) return A.alloc(0);
+        let r;
+        if (t === void 0) for (t = 0, r = 0; r < e.length; ++r) t += e[r].length;
+        let n = A.allocUnsafe(t), i = 0;
+        for (r = 0; r < e.length; ++r) {
+          let o = e[r];
+          if (de(o, Uint8Array)) i + o.length > n.length ? (A.isBuffer(o) || (o = A.from(o)), o.copy(n, i)) : Uint8Array.prototype.set.call(n, o, i);
+          else if (A.isBuffer(o)) o.copy(n, i);
+          else throw new TypeError('"list" argument must be an Array of Buffers');
+          i += o.length;
+        }
+        return n;
+      };
+      function Ei(e, t) {
+        if (A.isBuffer(e)) return e.length;
+        if (ArrayBuffer.isView(e) || de(e, ArrayBuffer)) return e.byteLength;
+        if (typeof e != "string") throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type ' + typeof e);
+        let r = e.length, n = arguments.length > 2 && arguments[2] === true;
+        if (!n && r === 0) return 0;
+        let i = false;
+        for (; ; ) switch (t) {
+          case "ascii":
+          case "latin1":
+          case "binary":
+            return r;
+          case "utf8":
+          case "utf-8":
+            return pn(e).length;
+          case "ucs2":
+          case "ucs-2":
+          case "utf16le":
+          case "utf-16le":
+            return r * 2;
+          case "hex":
+            return r >>> 1;
+          case "base64":
+            return Si(e).length;
+          default:
+            if (i) return n ? -1 : pn(e).length;
+            t = ("" + t).toLowerCase(), i = true;
+        }
+      }
+      A.byteLength = Ei;
+      function _a(e, t, r) {
+        let n = false;
+        if ((t === void 0 || t < 0) && (t = 0), t > this.length || ((r === void 0 || r > this.length) && (r = this.length), r <= 0) || (r >>>= 0, t >>>= 0, r <= t)) return "";
+        for (e || (e = "utf8"); ; ) switch (e) {
+          case "hex":
+            return Ga(this, t, r);
+          case "utf8":
+          case "utf-8":
+            return xi(this, t, r);
+          case "ascii":
+            return $a(this, t, r);
+          case "latin1":
+          case "binary":
+            return ja(this, t, r);
+          case "base64":
+            return qa(this, t, r);
+          case "ucs2":
+          case "ucs-2":
+          case "utf16le":
+          case "utf-16le":
+            return Ja(this, t, r);
+          default:
+            if (n) throw new TypeError("Unknown encoding: " + e);
+            e = (e + "").toLowerCase(), n = true;
+        }
+      }
+      A.prototype._isBuffer = true;
+      function Le(e, t, r) {
+        let n = e[t];
+        e[t] = e[r], e[r] = n;
+      }
+      A.prototype.swap16 = function() {
+        let e = this.length;
+        if (e % 2 !== 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
+        for (let t = 0; t < e; t += 2) Le(this, t, t + 1);
+        return this;
+      };
+      A.prototype.swap32 = function() {
+        let e = this.length;
+        if (e % 4 !== 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
+        for (let t = 0; t < e; t += 4) Le(this, t, t + 3), Le(this, t + 1, t + 2);
+        return this;
+      };
+      A.prototype.swap64 = function() {
+        let e = this.length;
+        if (e % 8 !== 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
+        for (let t = 0; t < e; t += 8) Le(this, t, t + 7), Le(this, t + 1, t + 6), Le(this, t + 2, t + 5), Le(this, t + 3, t + 4);
+        return this;
+      };
+      A.prototype.toString = function() {
+        let e = this.length;
+        return e === 0 ? "" : arguments.length === 0 ? xi(this, 0, e) : _a.apply(this, arguments);
+      };
+      A.prototype.toLocaleString = A.prototype.toString;
+      A.prototype.equals = function(e) {
+        if (!A.isBuffer(e)) throw new TypeError("Argument must be a Buffer");
+        return this === e ? true : A.compare(this, e) === 0;
+      };
+      A.prototype.inspect = function() {
+        let e = "", t = ze.INSPECT_MAX_BYTES;
+        return e = this.toString("hex", 0, t).replace(/(.{2})/g, "$1 ").trim(), this.length > t && (e += " ... "), "<Buffer " + e + ">";
+      };
+      pi && (A.prototype[pi] = A.prototype.inspect);
+      A.prototype.compare = function(e, t, r, n, i) {
+        if (de(e, Uint8Array) && (e = A.from(e, e.offset, e.byteLength)), !A.isBuffer(e)) throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type ' + typeof e);
+        if (t === void 0 && (t = 0), r === void 0 && (r = e ? e.length : 0), n === void 0 && (n = 0), i === void 0 && (i = this.length), t < 0 || r > e.length || n < 0 || i > this.length) throw new RangeError("out of range index");
+        if (n >= i && t >= r) return 0;
+        if (n >= i) return -1;
+        if (t >= r) return 1;
+        if (t >>>= 0, r >>>= 0, n >>>= 0, i >>>= 0, this === e) return 0;
+        let o = i - n, s = r - t, a = Math.min(o, s), l = this.slice(n, i), d = e.slice(t, r);
+        for (let g = 0; g < a; ++g) if (l[g] !== d[g]) {
+          o = l[g], s = d[g];
+          break;
+        }
+        return o < s ? -1 : s < o ? 1 : 0;
+      };
+      function bi(e, t, r, n, i) {
+        if (e.length === 0) return -1;
+        if (typeof r == "string" ? (n = r, r = 0) : r > 2147483647 ? r = 2147483647 : r < -2147483648 && (r = -2147483648), r = +r, gn(r) && (r = i ? 0 : e.length - 1), r < 0 && (r = e.length + r), r >= e.length) {
+          if (i) return -1;
+          r = e.length - 1;
+        } else if (r < 0) if (i) r = 0;
+        else return -1;
+        if (typeof t == "string" && (t = A.from(t, n)), A.isBuffer(t)) return t.length === 0 ? -1 : mi(e, t, r, n, i);
+        if (typeof t == "number") return t = t & 255, typeof Uint8Array.prototype.indexOf == "function" ? i ? Uint8Array.prototype.indexOf.call(e, t, r) : Uint8Array.prototype.lastIndexOf.call(e, t, r) : mi(e, [t], r, n, i);
+        throw new TypeError("val must be string, number or Buffer");
+      }
+      function mi(e, t, r, n, i) {
+        let o = 1, s = e.length, a = t.length;
+        if (n !== void 0 && (n = String(n).toLowerCase(), n === "ucs2" || n === "ucs-2" || n === "utf16le" || n === "utf-16le")) {
+          if (e.length < 2 || t.length < 2) return -1;
+          o = 2, s /= 2, a /= 2, r /= 2;
+        }
+        function l(g, h) {
+          return o === 1 ? g[h] : g.readUInt16BE(h * o);
+        }
+        let d;
+        if (i) {
+          let g = -1;
+          for (d = r; d < s; d++) if (l(e, d) === l(t, g === -1 ? 0 : d - g)) {
+            if (g === -1 && (g = d), d - g + 1 === a) return g * o;
+          } else g !== -1 && (d -= d - g), g = -1;
+        } else for (r + a > s && (r = s - a), d = r; d >= 0; d--) {
+          let g = true;
+          for (let h = 0; h < a; h++) if (l(e, d + h) !== l(t, h)) {
+            g = false;
+            break;
+          }
+          if (g) return d;
+        }
+        return -1;
+      }
+      A.prototype.includes = function(e, t, r) {
+        return this.indexOf(e, t, r) !== -1;
+      };
+      A.prototype.indexOf = function(e, t, r) {
+        return bi(this, e, t, r, true);
+      };
+      A.prototype.lastIndexOf = function(e, t, r) {
+        return bi(this, e, t, r, false);
+      };
+      function Na(e, t, r, n) {
+        r = Number(r) || 0;
+        let i = e.length - r;
+        n ? (n = Number(n), n > i && (n = i)) : n = i;
+        let o = t.length;
+        n > o / 2 && (n = o / 2);
+        let s;
+        for (s = 0; s < n; ++s) {
+          let a = parseInt(t.substr(s * 2, 2), 16);
+          if (gn(a)) return s;
+          e[r + s] = a;
+        }
+        return s;
+      }
+      function Fa(e, t, r, n) {
+        return cr(pn(t, e.length - r), e, r, n);
+      }
+      function La(e, t, r, n) {
+        return cr(Ha(t), e, r, n);
+      }
+      function Ua(e, t, r, n) {
+        return cr(Si(t), e, r, n);
+      }
+      function Ba(e, t, r, n) {
+        return cr(za(t, e.length - r), e, r, n);
+      }
+      A.prototype.write = function(e, t, r, n) {
+        if (t === void 0) n = "utf8", r = this.length, t = 0;
+        else if (r === void 0 && typeof t == "string") n = t, r = this.length, t = 0;
+        else if (isFinite(t)) t = t >>> 0, isFinite(r) ? (r = r >>> 0, n === void 0 && (n = "utf8")) : (n = r, r = void 0);
+        else throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+        let i = this.length - t;
+        if ((r === void 0 || r > i) && (r = i), e.length > 0 && (r < 0 || t < 0) || t > this.length) throw new RangeError("Attempt to write outside buffer bounds");
+        n || (n = "utf8");
+        let o = false;
+        for (; ; ) switch (n) {
+          case "hex":
+            return Na(this, e, t, r);
+          case "utf8":
+          case "utf-8":
+            return Fa(this, e, t, r);
+          case "ascii":
+          case "latin1":
+          case "binary":
+            return La(this, e, t, r);
+          case "base64":
+            return Ua(this, e, t, r);
+          case "ucs2":
+          case "ucs-2":
+          case "utf16le":
+          case "utf-16le":
+            return Ba(this, e, t, r);
+          default:
+            if (o) throw new TypeError("Unknown encoding: " + n);
+            n = ("" + n).toLowerCase(), o = true;
+        }
+      };
+      A.prototype.toJSON = function() {
+        return { type: "Buffer", data: Array.prototype.slice.call(this._arr || this, 0) };
+      };
+      function qa(e, t, r) {
+        return t === 0 && r === e.length ? un.fromByteArray(e) : un.fromByteArray(e.slice(t, r));
+      }
+      function xi(e, t, r) {
+        r = Math.min(e.length, r);
+        let n = [], i = t;
+        for (; i < r; ) {
+          let o = e[i], s = null, a = o > 239 ? 4 : o > 223 ? 3 : o > 191 ? 2 : 1;
+          if (i + a <= r) {
+            let l, d, g, h;
+            switch (a) {
+              case 1:
+                o < 128 && (s = o);
+                break;
+              case 2:
+                l = e[i + 1], (l & 192) === 128 && (h = (o & 31) << 6 | l & 63, h > 127 && (s = h));
+                break;
+              case 3:
+                l = e[i + 1], d = e[i + 2], (l & 192) === 128 && (d & 192) === 128 && (h = (o & 15) << 12 | (l & 63) << 6 | d & 63, h > 2047 && (h < 55296 || h > 57343) && (s = h));
+                break;
+              case 4:
+                l = e[i + 1], d = e[i + 2], g = e[i + 3], (l & 192) === 128 && (d & 192) === 128 && (g & 192) === 128 && (h = (o & 15) << 18 | (l & 63) << 12 | (d & 63) << 6 | g & 63, h > 65535 && h < 1114112 && (s = h));
+            }
+          }
+          s === null ? (s = 65533, a = 1) : s > 65535 && (s -= 65536, n.push(s >>> 10 & 1023 | 55296), s = 56320 | s & 1023), n.push(s), i += a;
+        }
+        return Va(n);
+      }
+      var fi = 4096;
+      function Va(e) {
+        let t = e.length;
+        if (t <= fi) return String.fromCharCode.apply(String, e);
+        let r = "", n = 0;
+        for (; n < t; ) r += String.fromCharCode.apply(String, e.slice(n, n += fi));
+        return r;
+      }
+      function $a(e, t, r) {
+        let n = "";
+        r = Math.min(e.length, r);
+        for (let i = t; i < r; ++i) n += String.fromCharCode(e[i] & 127);
+        return n;
+      }
+      function ja(e, t, r) {
+        let n = "";
+        r = Math.min(e.length, r);
+        for (let i = t; i < r; ++i) n += String.fromCharCode(e[i]);
+        return n;
+      }
+      function Ga(e, t, r) {
+        let n = e.length;
+        (!t || t < 0) && (t = 0), (!r || r < 0 || r > n) && (r = n);
+        let i = "";
+        for (let o = t; o < r; ++o) i += Ya[e[o]];
+        return i;
+      }
+      function Ja(e, t, r) {
+        let n = e.slice(t, r), i = "";
+        for (let o = 0; o < n.length - 1; o += 2) i += String.fromCharCode(n[o] + n[o + 1] * 256);
+        return i;
+      }
+      A.prototype.slice = function(e, t) {
+        let r = this.length;
+        e = ~~e, t = t === void 0 ? r : ~~t, e < 0 ? (e += r, e < 0 && (e = 0)) : e > r && (e = r), t < 0 ? (t += r, t < 0 && (t = 0)) : t > r && (t = r), t < e && (t = e);
+        let n = this.subarray(e, t);
+        return Object.setPrototypeOf(n, A.prototype), n;
+      };
+      function W(e, t, r) {
+        if (e % 1 !== 0 || e < 0) throw new RangeError("offset is not uint");
+        if (e + t > r) throw new RangeError("Trying to access beyond buffer length");
+      }
+      A.prototype.readUintLE = A.prototype.readUIntLE = function(e, t, r) {
+        e = e >>> 0, t = t >>> 0, r || W(e, t, this.length);
+        let n = this[e], i = 1, o = 0;
+        for (; ++o < t && (i *= 256); ) n += this[e + o] * i;
+        return n;
+      };
+      A.prototype.readUintBE = A.prototype.readUIntBE = function(e, t, r) {
+        e = e >>> 0, t = t >>> 0, r || W(e, t, this.length);
+        let n = this[e + --t], i = 1;
+        for (; t > 0 && (i *= 256); ) n += this[e + --t] * i;
+        return n;
+      };
+      A.prototype.readUint8 = A.prototype.readUInt8 = function(e, t) {
+        return e = e >>> 0, t || W(e, 1, this.length), this[e];
+      };
+      A.prototype.readUint16LE = A.prototype.readUInt16LE = function(e, t) {
+        return e = e >>> 0, t || W(e, 2, this.length), this[e] | this[e + 1] << 8;
+      };
+      A.prototype.readUint16BE = A.prototype.readUInt16BE = function(e, t) {
+        return e = e >>> 0, t || W(e, 2, this.length), this[e] << 8 | this[e + 1];
+      };
+      A.prototype.readUint32LE = A.prototype.readUInt32LE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), (this[e] | this[e + 1] << 8 | this[e + 2] << 16) + this[e + 3] * 16777216;
+      };
+      A.prototype.readUint32BE = A.prototype.readUInt32BE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), this[e] * 16777216 + (this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3]);
+      };
+      A.prototype.readBigUInt64LE = Se(function(e) {
+        e = e >>> 0, He(e, "offset");
+        let t = this[e], r = this[e + 7];
+        (t === void 0 || r === void 0) && Tt(e, this.length - 8);
+        let n = t + this[++e] * 2 ** 8 + this[++e] * 2 ** 16 + this[++e] * 2 ** 24, i = this[++e] + this[++e] * 2 ** 8 + this[++e] * 2 ** 16 + r * 2 ** 24;
+        return BigInt(n) + (BigInt(i) << BigInt(32));
+      });
+      A.prototype.readBigUInt64BE = Se(function(e) {
+        e = e >>> 0, He(e, "offset");
+        let t = this[e], r = this[e + 7];
+        (t === void 0 || r === void 0) && Tt(e, this.length - 8);
+        let n = t * 2 ** 24 + this[++e] * 2 ** 16 + this[++e] * 2 ** 8 + this[++e], i = this[++e] * 2 ** 24 + this[++e] * 2 ** 16 + this[++e] * 2 ** 8 + r;
+        return (BigInt(n) << BigInt(32)) + BigInt(i);
+      });
+      A.prototype.readIntLE = function(e, t, r) {
+        e = e >>> 0, t = t >>> 0, r || W(e, t, this.length);
+        let n = this[e], i = 1, o = 0;
+        for (; ++o < t && (i *= 256); ) n += this[e + o] * i;
+        return i *= 128, n >= i && (n -= Math.pow(2, 8 * t)), n;
+      };
+      A.prototype.readIntBE = function(e, t, r) {
+        e = e >>> 0, t = t >>> 0, r || W(e, t, this.length);
+        let n = t, i = 1, o = this[e + --n];
+        for (; n > 0 && (i *= 256); ) o += this[e + --n] * i;
+        return i *= 128, o >= i && (o -= Math.pow(2, 8 * t)), o;
+      };
+      A.prototype.readInt8 = function(e, t) {
+        return e = e >>> 0, t || W(e, 1, this.length), this[e] & 128 ? (255 - this[e] + 1) * -1 : this[e];
+      };
+      A.prototype.readInt16LE = function(e, t) {
+        e = e >>> 0, t || W(e, 2, this.length);
+        let r = this[e] | this[e + 1] << 8;
+        return r & 32768 ? r | 4294901760 : r;
+      };
+      A.prototype.readInt16BE = function(e, t) {
+        e = e >>> 0, t || W(e, 2, this.length);
+        let r = this[e + 1] | this[e] << 8;
+        return r & 32768 ? r | 4294901760 : r;
+      };
+      A.prototype.readInt32LE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), this[e] | this[e + 1] << 8 | this[e + 2] << 16 | this[e + 3] << 24;
+      };
+      A.prototype.readInt32BE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), this[e] << 24 | this[e + 1] << 16 | this[e + 2] << 8 | this[e + 3];
+      };
+      A.prototype.readBigInt64LE = Se(function(e) {
+        e = e >>> 0, He(e, "offset");
+        let t = this[e], r = this[e + 7];
+        (t === void 0 || r === void 0) && Tt(e, this.length - 8);
+        let n = this[e + 4] + this[e + 5] * 2 ** 8 + this[e + 6] * 2 ** 16 + (r << 24);
+        return (BigInt(n) << BigInt(32)) + BigInt(t + this[++e] * 2 ** 8 + this[++e] * 2 ** 16 + this[++e] * 2 ** 24);
+      });
+      A.prototype.readBigInt64BE = Se(function(e) {
+        e = e >>> 0, He(e, "offset");
+        let t = this[e], r = this[e + 7];
+        (t === void 0 || r === void 0) && Tt(e, this.length - 8);
+        let n = (t << 24) + this[++e] * 2 ** 16 + this[++e] * 2 ** 8 + this[++e];
+        return (BigInt(n) << BigInt(32)) + BigInt(this[++e] * 2 ** 24 + this[++e] * 2 ** 16 + this[++e] * 2 ** 8 + r);
+      });
+      A.prototype.readFloatLE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), We.read(this, e, true, 23, 4);
+      };
+      A.prototype.readFloatBE = function(e, t) {
+        return e = e >>> 0, t || W(e, 4, this.length), We.read(this, e, false, 23, 4);
+      };
+      A.prototype.readDoubleLE = function(e, t) {
+        return e = e >>> 0, t || W(e, 8, this.length), We.read(this, e, true, 52, 8);
+      };
+      A.prototype.readDoubleBE = function(e, t) {
+        return e = e >>> 0, t || W(e, 8, this.length), We.read(this, e, false, 52, 8);
+      };
+      function re(e, t, r, n, i, o) {
+        if (!A.isBuffer(e)) throw new TypeError('"buffer" argument must be a Buffer instance');
+        if (t > i || t < o) throw new RangeError('"value" argument is out of bounds');
+        if (r + n > e.length) throw new RangeError("Index out of range");
+      }
+      A.prototype.writeUintLE = A.prototype.writeUIntLE = function(e, t, r, n) {
+        if (e = +e, t = t >>> 0, r = r >>> 0, !n) {
+          let s = Math.pow(2, 8 * r) - 1;
+          re(this, e, t, r, s, 0);
+        }
+        let i = 1, o = 0;
+        for (this[t] = e & 255; ++o < r && (i *= 256); ) this[t + o] = e / i & 255;
+        return t + r;
+      };
+      A.prototype.writeUintBE = A.prototype.writeUIntBE = function(e, t, r, n) {
+        if (e = +e, t = t >>> 0, r = r >>> 0, !n) {
+          let s = Math.pow(2, 8 * r) - 1;
+          re(this, e, t, r, s, 0);
+        }
+        let i = r - 1, o = 1;
+        for (this[t + i] = e & 255; --i >= 0 && (o *= 256); ) this[t + i] = e / o & 255;
+        return t + r;
+      };
+      A.prototype.writeUint8 = A.prototype.writeUInt8 = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 1, 255, 0), this[t] = e & 255, t + 1;
+      };
+      A.prototype.writeUint16LE = A.prototype.writeUInt16LE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 2, 65535, 0), this[t] = e & 255, this[t + 1] = e >>> 8, t + 2;
+      };
+      A.prototype.writeUint16BE = A.prototype.writeUInt16BE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 2, 65535, 0), this[t] = e >>> 8, this[t + 1] = e & 255, t + 2;
+      };
+      A.prototype.writeUint32LE = A.prototype.writeUInt32LE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 4, 4294967295, 0), this[t + 3] = e >>> 24, this[t + 2] = e >>> 16, this[t + 1] = e >>> 8, this[t] = e & 255, t + 4;
+      };
+      A.prototype.writeUint32BE = A.prototype.writeUInt32BE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 4, 4294967295, 0), this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = e & 255, t + 4;
+      };
+      function Pi(e, t, r, n, i) {
+        Ci(t, n, i, e, r, 7);
+        let o = Number(t & BigInt(4294967295));
+        e[r++] = o, o = o >> 8, e[r++] = o, o = o >> 8, e[r++] = o, o = o >> 8, e[r++] = o;
+        let s = Number(t >> BigInt(32) & BigInt(4294967295));
+        return e[r++] = s, s = s >> 8, e[r++] = s, s = s >> 8, e[r++] = s, s = s >> 8, e[r++] = s, r;
+      }
+      function vi(e, t, r, n, i) {
+        Ci(t, n, i, e, r, 7);
+        let o = Number(t & BigInt(4294967295));
+        e[r + 7] = o, o = o >> 8, e[r + 6] = o, o = o >> 8, e[r + 5] = o, o = o >> 8, e[r + 4] = o;
+        let s = Number(t >> BigInt(32) & BigInt(4294967295));
+        return e[r + 3] = s, s = s >> 8, e[r + 2] = s, s = s >> 8, e[r + 1] = s, s = s >> 8, e[r] = s, r + 8;
+      }
+      A.prototype.writeBigUInt64LE = Se(function(e, t = 0) {
+        return Pi(this, e, t, BigInt(0), BigInt("0xffffffffffffffff"));
+      });
+      A.prototype.writeBigUInt64BE = Se(function(e, t = 0) {
+        return vi(this, e, t, BigInt(0), BigInt("0xffffffffffffffff"));
+      });
+      A.prototype.writeIntLE = function(e, t, r, n) {
+        if (e = +e, t = t >>> 0, !n) {
+          let a = Math.pow(2, 8 * r - 1);
+          re(this, e, t, r, a - 1, -a);
+        }
+        let i = 0, o = 1, s = 0;
+        for (this[t] = e & 255; ++i < r && (o *= 256); ) e < 0 && s === 0 && this[t + i - 1] !== 0 && (s = 1), this[t + i] = (e / o >> 0) - s & 255;
+        return t + r;
+      };
+      A.prototype.writeIntBE = function(e, t, r, n) {
+        if (e = +e, t = t >>> 0, !n) {
+          let a = Math.pow(2, 8 * r - 1);
+          re(this, e, t, r, a - 1, -a);
+        }
+        let i = r - 1, o = 1, s = 0;
+        for (this[t + i] = e & 255; --i >= 0 && (o *= 256); ) e < 0 && s === 0 && this[t + i + 1] !== 0 && (s = 1), this[t + i] = (e / o >> 0) - s & 255;
+        return t + r;
+      };
+      A.prototype.writeInt8 = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 1, 127, -128), e < 0 && (e = 255 + e + 1), this[t] = e & 255, t + 1;
+      };
+      A.prototype.writeInt16LE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 2, 32767, -32768), this[t] = e & 255, this[t + 1] = e >>> 8, t + 2;
+      };
+      A.prototype.writeInt16BE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 2, 32767, -32768), this[t] = e >>> 8, this[t + 1] = e & 255, t + 2;
+      };
+      A.prototype.writeInt32LE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 4, 2147483647, -2147483648), this[t] = e & 255, this[t + 1] = e >>> 8, this[t + 2] = e >>> 16, this[t + 3] = e >>> 24, t + 4;
+      };
+      A.prototype.writeInt32BE = function(e, t, r) {
+        return e = +e, t = t >>> 0, r || re(this, e, t, 4, 2147483647, -2147483648), e < 0 && (e = 4294967295 + e + 1), this[t] = e >>> 24, this[t + 1] = e >>> 16, this[t + 2] = e >>> 8, this[t + 3] = e & 255, t + 4;
+      };
+      A.prototype.writeBigInt64LE = Se(function(e, t = 0) {
+        return Pi(this, e, t, -BigInt("0x8000000000000000"), BigInt("0x7fffffffffffffff"));
+      });
+      A.prototype.writeBigInt64BE = Se(function(e, t = 0) {
+        return vi(this, e, t, -BigInt("0x8000000000000000"), BigInt("0x7fffffffffffffff"));
+      });
+      function Ti(e, t, r, n, i, o) {
+        if (r + n > e.length) throw new RangeError("Index out of range");
+        if (r < 0) throw new RangeError("Index out of range");
+      }
+      function Ai(e, t, r, n, i) {
+        return t = +t, r = r >>> 0, i || Ti(e, t, r, 4, 34028234663852886e22, -34028234663852886e22), We.write(e, t, r, n, 23, 4), r + 4;
+      }
+      A.prototype.writeFloatLE = function(e, t, r) {
+        return Ai(this, e, t, true, r);
+      };
+      A.prototype.writeFloatBE = function(e, t, r) {
+        return Ai(this, e, t, false, r);
+      };
+      function Ri(e, t, r, n, i) {
+        return t = +t, r = r >>> 0, i || Ti(e, t, r, 8, 17976931348623157e292, -17976931348623157e292), We.write(e, t, r, n, 52, 8), r + 8;
+      }
+      A.prototype.writeDoubleLE = function(e, t, r) {
+        return Ri(this, e, t, true, r);
+      };
+      A.prototype.writeDoubleBE = function(e, t, r) {
+        return Ri(this, e, t, false, r);
+      };
+      A.prototype.copy = function(e, t, r, n) {
+        if (!A.isBuffer(e)) throw new TypeError("argument should be a Buffer");
+        if (r || (r = 0), !n && n !== 0 && (n = this.length), t >= e.length && (t = e.length), t || (t = 0), n > 0 && n < r && (n = r), n === r || e.length === 0 || this.length === 0) return 0;
+        if (t < 0) throw new RangeError("targetStart out of bounds");
+        if (r < 0 || r >= this.length) throw new RangeError("Index out of range");
+        if (n < 0) throw new RangeError("sourceEnd out of bounds");
+        n > this.length && (n = this.length), e.length - t < n - r && (n = e.length - t + r);
+        let i = n - r;
+        return this === e && typeof Uint8Array.prototype.copyWithin == "function" ? this.copyWithin(t, r, n) : Uint8Array.prototype.set.call(e, this.subarray(r, n), t), i;
+      };
+      A.prototype.fill = function(e, t, r, n) {
+        if (typeof e == "string") {
+          if (typeof t == "string" ? (n = t, t = 0, r = this.length) : typeof r == "string" && (n = r, r = this.length), n !== void 0 && typeof n != "string") throw new TypeError("encoding must be a string");
+          if (typeof n == "string" && !A.isEncoding(n)) throw new TypeError("Unknown encoding: " + n);
+          if (e.length === 1) {
+            let o = e.charCodeAt(0);
+            (n === "utf8" && o < 128 || n === "latin1") && (e = o);
+          }
+        } else typeof e == "number" ? e = e & 255 : typeof e == "boolean" && (e = Number(e));
+        if (t < 0 || this.length < t || this.length < r) throw new RangeError("Out of range index");
+        if (r <= t) return this;
+        t = t >>> 0, r = r === void 0 ? this.length : r >>> 0, e || (e = 0);
+        let i;
+        if (typeof e == "number") for (i = t; i < r; ++i) this[i] = e;
+        else {
+          let o = A.isBuffer(e) ? e : A.from(e, n), s = o.length;
+          if (s === 0) throw new TypeError('The value "' + e + '" is invalid for argument "value"');
+          for (i = 0; i < r - t; ++i) this[i + t] = o[i % s];
+        }
+        return this;
+      };
+      var Ke = {};
+      function dn(e, t, r) {
+        Ke[e] = class extends r {
+          constructor() {
+            super(), Object.defineProperty(this, "message", { value: t.apply(this, arguments), writable: true, configurable: true }), this.name = `${this.name} [${e}]`, this.stack, delete this.name;
+          }
+          get code() {
+            return e;
+          }
+          set code(n) {
+            Object.defineProperty(this, "code", { configurable: true, enumerable: true, value: n, writable: true });
+          }
+          toString() {
+            return `${this.name} [${e}]: ${this.message}`;
+          }
+        };
+      }
+      dn("ERR_BUFFER_OUT_OF_BOUNDS", function(e) {
+        return e ? `${e} is outside of buffer bounds` : "Attempt to access memory outside buffer bounds";
+      }, RangeError);
+      dn("ERR_INVALID_ARG_TYPE", function(e, t) {
+        return `The "${e}" argument must be of type number. Received type ${typeof t}`;
+      }, TypeError);
+      dn("ERR_OUT_OF_RANGE", function(e, t, r) {
+        let n = `The value of "${e}" is out of range.`, i = r;
+        return Number.isInteger(r) && Math.abs(r) > 2 ** 32 ? i = di(String(r)) : typeof r == "bigint" && (i = String(r), (r > BigInt(2) ** BigInt(32) || r < -(BigInt(2) ** BigInt(32))) && (i = di(i)), i += "n"), n += ` It must be ${t}. Received ${i}`, n;
+      }, RangeError);
+      function di(e) {
+        let t = "", r = e.length, n = e[0] === "-" ? 1 : 0;
+        for (; r >= n + 4; r -= 3) t = `_${e.slice(r - 3, r)}${t}`;
+        return `${e.slice(0, r)}${t}`;
+      }
+      function Qa(e, t, r) {
+        He(t, "offset"), (e[t] === void 0 || e[t + r] === void 0) && Tt(t, e.length - (r + 1));
+      }
+      function Ci(e, t, r, n, i, o) {
+        if (e > r || e < t) {
+          let s = typeof t == "bigint" ? "n" : "", a;
+          throw o > 3 ? t === 0 || t === BigInt(0) ? a = `>= 0${s} and < 2${s} ** ${(o + 1) * 8}${s}` : a = `>= -(2${s} ** ${(o + 1) * 8 - 1}${s}) and < 2 ** ${(o + 1) * 8 - 1}${s}` : a = `>= ${t}${s} and <= ${r}${s}`, new Ke.ERR_OUT_OF_RANGE("value", a, e);
+        }
+        Qa(n, i, o);
+      }
+      function He(e, t) {
+        if (typeof e != "number") throw new Ke.ERR_INVALID_ARG_TYPE(t, "number", e);
+      }
+      function Tt(e, t, r) {
+        throw Math.floor(e) !== e ? (He(e, r), new Ke.ERR_OUT_OF_RANGE(r || "offset", "an integer", e)) : t < 0 ? new Ke.ERR_BUFFER_OUT_OF_BOUNDS() : new Ke.ERR_OUT_OF_RANGE(r || "offset", `>= ${r ? 1 : 0} and <= ${t}`, e);
+      }
+      var Ka = /[^+/0-9A-Za-z-_]/g;
+      function Wa(e) {
+        if (e = e.split("=")[0], e = e.trim().replace(Ka, ""), e.length < 2) return "";
+        for (; e.length % 4 !== 0; ) e = e + "=";
+        return e;
+      }
+      function pn(e, t) {
+        t = t || 1 / 0;
+        let r, n = e.length, i = null, o = [];
+        for (let s = 0; s < n; ++s) {
+          if (r = e.charCodeAt(s), r > 55295 && r < 57344) {
+            if (!i) {
+              if (r > 56319) {
+                (t -= 3) > -1 && o.push(239, 191, 189);
+                continue;
+              } else if (s + 1 === n) {
+                (t -= 3) > -1 && o.push(239, 191, 189);
+                continue;
+              }
+              i = r;
+              continue;
+            }
+            if (r < 56320) {
+              (t -= 3) > -1 && o.push(239, 191, 189), i = r;
+              continue;
+            }
+            r = (i - 55296 << 10 | r - 56320) + 65536;
+          } else i && (t -= 3) > -1 && o.push(239, 191, 189);
+          if (i = null, r < 128) {
+            if ((t -= 1) < 0) break;
+            o.push(r);
+          } else if (r < 2048) {
+            if ((t -= 2) < 0) break;
+            o.push(r >> 6 | 192, r & 63 | 128);
+          } else if (r < 65536) {
+            if ((t -= 3) < 0) break;
+            o.push(r >> 12 | 224, r >> 6 & 63 | 128, r & 63 | 128);
+          } else if (r < 1114112) {
+            if ((t -= 4) < 0) break;
+            o.push(r >> 18 | 240, r >> 12 & 63 | 128, r >> 6 & 63 | 128, r & 63 | 128);
+          } else throw new Error("Invalid code point");
+        }
+        return o;
+      }
+      function Ha(e) {
+        let t = [];
+        for (let r = 0; r < e.length; ++r) t.push(e.charCodeAt(r) & 255);
+        return t;
+      }
+      function za(e, t) {
+        let r, n, i, o = [];
+        for (let s = 0; s < e.length && !((t -= 2) < 0); ++s) r = e.charCodeAt(s), n = r >> 8, i = r % 256, o.push(i), o.push(n);
+        return o;
+      }
+      function Si(e) {
+        return un.toByteArray(Wa(e));
+      }
+      function cr(e, t, r, n) {
+        let i;
+        for (i = 0; i < n && !(i + r >= t.length || i >= e.length); ++i) t[i + r] = e[i];
+        return i;
+      }
+      function de(e, t) {
+        return e instanceof t || e != null && e.constructor != null && e.constructor.name != null && e.constructor.name === t.name;
+      }
+      function gn(e) {
+        return e !== e;
+      }
+      var Ya = (function() {
+        let e = "0123456789abcdef", t = new Array(256);
+        for (let r = 0; r < 16; ++r) {
+          let n = r * 16;
+          for (let i = 0; i < 16; ++i) t[n + i] = e[r] + e[i];
+        }
+        return t;
+      })();
+      function Se(e) {
+        return typeof BigInt > "u" ? Za : e;
+      }
+      function Za() {
+        throw new Error("BigInt not supported");
+      }
+    });
+    var w;
+    var f = fe(() => {
+      "use strict";
+      w = Qe(Ii());
+    });
+    function il() {
+      return false;
+    }
+    function bn() {
+      return { dev: 0, ino: 0, mode: 0, nlink: 0, uid: 0, gid: 0, rdev: 0, size: 0, blksize: 0, blocks: 0, atimeMs: 0, mtimeMs: 0, ctimeMs: 0, birthtimeMs: 0, atime: /* @__PURE__ */ new Date(), mtime: /* @__PURE__ */ new Date(), ctime: /* @__PURE__ */ new Date(), birthtime: /* @__PURE__ */ new Date() };
+    }
+    function ol() {
+      return bn();
+    }
+    function sl() {
+      return [];
+    }
+    function al(e) {
+      e(null, []);
+    }
+    function ll() {
+      return "";
+    }
+    function ul() {
+      return "";
+    }
+    function cl() {
+    }
+    function pl() {
+    }
+    function ml() {
+    }
+    function fl() {
+    }
+    function dl() {
+    }
+    function gl() {
+    }
+    function hl() {
+    }
+    function yl() {
+    }
+    function wl() {
+      return { close: () => {
+      }, on: () => {
+      }, removeAllListeners: () => {
+      } };
+    }
+    function El(e, t) {
+      t(null, bn());
+    }
+    var bl;
+    var xl;
+    var Qi;
+    var Ki = fe(() => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      bl = {}, xl = { existsSync: il, lstatSync: bn, stat: El, statSync: ol, readdirSync: sl, readdir: al, readlinkSync: ll, realpathSync: ul, chmodSync: cl, renameSync: pl, mkdirSync: ml, rmdirSync: fl, rmSync: dl, unlinkSync: gl, watchFile: hl, unwatchFile: yl, watch: wl, promises: bl }, Qi = xl;
+    });
+    var Wi = Je((df, Pl) => {
+      Pl.exports = { name: "@prisma/internals", version: "6.19.2", description: "This package is intended for Prisma's internal use", main: "dist/index.js", types: "dist/index.d.ts", repository: { type: "git", url: "https://github.com/prisma/prisma.git", directory: "packages/internals" }, homepage: "https://www.prisma.io", author: "Tim Suchanek <suchanek@prisma.io>", bugs: "https://github.com/prisma/prisma/issues", license: "Apache-2.0", scripts: { dev: "DEV=true tsx helpers/build.ts", build: "tsx helpers/build.ts", test: "dotenv -e ../../.db.env -- jest --silent", prepublishOnly: "pnpm run build" }, files: ["README.md", "dist", "!**/libquery_engine*", "!dist/get-generators/engines/*", "scripts"], devDependencies: { "@babel/helper-validator-identifier": "7.25.9", "@opentelemetry/api": "1.9.0", "@swc/core": "1.11.5", "@swc/jest": "0.2.37", "@types/babel__helper-validator-identifier": "7.15.2", "@types/jest": "29.5.14", "@types/node": "18.19.76", "@types/resolve": "1.20.6", archiver: "6.0.2", "checkpoint-client": "1.1.33", "cli-truncate": "4.0.0", dotenv: "16.5.0", empathic: "2.0.0", "escape-string-regexp": "5.0.0", execa: "8.0.1", "fast-glob": "3.3.3", "find-up": "7.0.0", "fp-ts": "2.16.9", "fs-extra": "11.3.0", "global-directory": "4.0.0", globby: "11.1.0", "identifier-regex": "1.0.0", "indent-string": "4.0.0", "is-windows": "1.0.2", "is-wsl": "3.1.0", jest: "29.7.0", "jest-junit": "16.0.0", kleur: "4.1.5", "mock-stdin": "1.0.0", "new-github-issue-url": "0.2.1", "node-fetch": "3.3.2", "npm-packlist": "5.1.3", open: "7.4.2", "p-map": "4.0.0", resolve: "1.22.10", "string-width": "7.2.0", "strip-indent": "4.0.0", "temp-dir": "2.0.0", tempy: "1.0.1", "terminal-link": "4.0.0", tmp: "0.2.3", "ts-pattern": "5.6.2", "ts-toolbelt": "9.6.0", typescript: "5.4.5", yarn: "1.22.22" }, dependencies: { "@prisma/config": "workspace:*", "@prisma/debug": "workspace:*", "@prisma/dmmf": "workspace:*", "@prisma/driver-adapter-utils": "workspace:*", "@prisma/engines": "workspace:*", "@prisma/fetch-engine": "workspace:*", "@prisma/generator": "workspace:*", "@prisma/generator-helper": "workspace:*", "@prisma/get-platform": "workspace:*", "@prisma/prisma-schema-wasm": "7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7", "@prisma/schema-engine-wasm": "7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7", "@prisma/schema-files-loader": "workspace:*", arg: "5.0.2", prompts: "2.4.2" }, peerDependencies: { typescript: ">=5.1.0" }, peerDependenciesMeta: { typescript: { optional: true } }, sideEffects: false };
+    });
+    function Tl(...e) {
+      return e.join("/");
+    }
+    function Al(...e) {
+      return e.join("/");
+    }
+    function Rl(e) {
+      let t = Hi(e), r = zi(e), [n, i] = t.split(".");
+      return { root: "/", dir: r, base: t, ext: i, name: n };
+    }
+    function Hi(e) {
+      let t = e.split("/");
+      return t[t.length - 1];
+    }
+    function zi(e) {
+      return e.split("/").slice(0, -1).join("/");
+    }
+    function Sl(e) {
+      let t = e.split("/").filter((i) => i !== "" && i !== "."), r = [];
+      for (let i of t) i === ".." ? r.pop() : r.push(i);
+      let n = r.join("/");
+      return e.startsWith("/") ? "/" + n : n;
+    }
+    var Yi;
+    var Cl;
+    var Il;
+    var Ol;
+    var dr;
+    var Zi = fe(() => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      Yi = "/", Cl = ":";
+      Il = { sep: Yi }, Ol = { basename: Hi, delimiter: Cl, dirname: zi, join: Al, normalize: Sl, parse: Rl, posix: Il, resolve: Tl, sep: Yi }, dr = Ol;
+    });
+    var Pn = Je((Mf, Ml) => {
+      Ml.exports = { name: "@prisma/engines-version", version: "7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7", main: "index.js", types: "index.d.ts", license: "Apache-2.0", author: "Tim Suchanek <suchanek@prisma.io>", prisma: { enginesVersion: "c2990dca591cba766e3b7ef5d9e8a84796e47ab7" }, repository: { type: "git", url: "https://github.com/prisma/engines-wrapper.git", directory: "packages/engines-version" }, devDependencies: { "@types/node": "18.19.76", typescript: "4.9.5" }, files: ["index.js", "index.d.ts"], scripts: { build: "tsc -d" } };
+    });
+    var Xi = Je((gr) => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      Object.defineProperty(gr, "__esModule", { value: true });
+      gr.enginesVersion = void 0;
+      gr.enginesVersion = Pn().prisma.enginesVersion;
+    });
+    var ro = Je((Qf, to) => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      to.exports = (e, t = 1, r) => {
+        if (r = { indent: " ", includeEmptyLines: false, ...r }, typeof e != "string") throw new TypeError(`Expected \`input\` to be a \`string\`, got \`${typeof e}\``);
+        if (typeof t != "number") throw new TypeError(`Expected \`count\` to be a \`number\`, got \`${typeof t}\``);
+        if (typeof r.indent != "string") throw new TypeError(`Expected \`options.indent\` to be a \`string\`, got \`${typeof r.indent}\``);
+        if (t === 0) return e;
+        let n = r.includeEmptyLines ? /^/gm : /^(?!\s*$)/gm;
+        return e.replace(n, r.indent.repeat(t));
+      };
+    });
+    var Nn = Je((Jy, vo) => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      vo.exports = /* @__PURE__ */ (function() {
+        function e(t, r, n, i, o) {
+          return t < r || n < r ? t > n ? n + 1 : t + 1 : i === o ? r : r + 1;
+        }
+        return function(t, r) {
+          if (t === r) return 0;
+          if (t.length > r.length) {
+            var n = t;
+            t = r, r = n;
+          }
+          for (var i = t.length, o = r.length; i > 0 && t.charCodeAt(i - 1) === r.charCodeAt(o - 1); ) i--, o--;
+          for (var s = 0; s < i && t.charCodeAt(s) === r.charCodeAt(s); ) s++;
+          if (i -= s, o -= s, i === 0 || o < 3) return o;
+          var a = 0, l, d, g, h, T, I, S, C, M, F, B, O, L = [];
+          for (l = 0; l < i; l++) L.push(l + 1), L.push(t.charCodeAt(s + l));
+          for (var le = L.length - 1; a < o - 3; ) for (M = r.charCodeAt(s + (d = a)), F = r.charCodeAt(s + (g = a + 1)), B = r.charCodeAt(s + (h = a + 2)), O = r.charCodeAt(s + (T = a + 3)), I = a += 4, l = 0; l < le; l += 2) S = L[l], C = L[l + 1], d = e(S, d, g, M, C), g = e(d, g, h, F, C), h = e(g, h, T, B, C), I = e(h, T, I, O, C), L[l] = I, T = h, h = g, g = d, d = S;
+          for (; a < o; ) for (M = r.charCodeAt(s + (d = a)), I = ++a, l = 0; l < le; l += 2) S = L[l], L[l] = I = e(S, d, I, M, L[l + 1]), d = S;
+          return I;
+        };
+      })();
+    });
+    var So = fe(() => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+    });
+    var Io = fe(() => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+    });
+    var Jr;
+    var Xo = fe(() => {
+      "use strict";
+      f();
+      u();
+      c();
+      p();
+      m();
+      Jr = class {
+        events = {};
+        on(t, r) {
+          return this.events[t] || (this.events[t] = []), this.events[t].push(r), this;
+        }
+        emit(t, ...r) {
+          return this.events[t] ? (this.events[t].forEach((n) => {
+            n(...r);
+          }), true) : false;
+        }
+      };
+    });
+    var kp = {};
+    vt(kp, { DMMF: () => Dt, Debug: () => z, Decimal: () => Ae, Extensions: () => hn, MetricsClient: () => pt, PrismaClientInitializationError: () => Q, PrismaClientKnownRequestError: () => ne, PrismaClientRustPanicError: () => Pe, PrismaClientUnknownRequestError: () => ie, PrismaClientValidationError: () => X, Public: () => yn, Sql: () => se, createParam: () => Jo, defineDmmfProperty: () => Yo, deserializeJsonResponse: () => dt, deserializeRawResult: () => nn, dmmfToRuntimeDataModel: () => ao, empty: () => ts, getPrismaClient: () => ya, getRuntime: () => Zr, join: () => es, makeStrictEnum: () => wa, makeTypedQueryFactory: () => Zo, objectEnumValues: () => Nr, raw: () => Gn, serializeJsonQuery: () => $r, skip: () => Vr, sqltag: () => Jn, warnEnvConflicts: () => void 0, warnOnce: () => St });
+    module.exports = Aa(kp);
+    f();
+    u();
+    c();
+    p();
+    m();
+    var hn = {};
+    vt(hn, { defineExtension: () => Oi, getExtensionContext: () => ki });
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Oi(e) {
+      return typeof e == "function" ? e : (t) => t.$extends(e);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ki(e) {
+      return e;
+    }
+    var yn = {};
+    vt(yn, { validator: () => Di });
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Di(...e) {
+      return (t) => t;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var wn;
+    var Mi;
+    var _i;
+    var Ni;
+    var Fi = true;
+    typeof y < "u" && ({ FORCE_COLOR: wn, NODE_DISABLE_COLORS: Mi, NO_COLOR: _i, TERM: Ni } = y.env || {}, Fi = y.stdout && y.stdout.isTTY);
+    var Xa = { enabled: !Mi && _i == null && Ni !== "dumb" && (wn != null && wn !== "0" || Fi) };
+    function j(e, t) {
+      let r = new RegExp(`\\x1b\\[${t}m`, "g"), n = `\x1B[${e}m`, i = `\x1B[${t}m`;
+      return function(o) {
+        return !Xa.enabled || o == null ? o : n + (~("" + o).indexOf(i) ? o.replace(r, i + n) : o) + i;
+      };
+    }
+    var Pm = j(0, 0);
+    var pr = j(1, 22);
+    var mr = j(2, 22);
+    var vm = j(3, 23);
+    var Li = j(4, 24);
+    var Tm = j(7, 27);
+    var Am = j(8, 28);
+    var Rm = j(9, 29);
+    var Cm = j(30, 39);
+    var Ye = j(31, 39);
+    var Ui = j(32, 39);
+    var Bi = j(33, 39);
+    var qi = j(34, 39);
+    var Sm = j(35, 39);
+    var Vi = j(36, 39);
+    var Im = j(37, 39);
+    var $i = j(90, 39);
+    var Om = j(90, 39);
+    var km = j(40, 49);
+    var Dm = j(41, 49);
+    var Mm = j(42, 49);
+    var _m = j(43, 49);
+    var Nm = j(44, 49);
+    var Fm = j(45, 49);
+    var Lm = j(46, 49);
+    var Um = j(47, 49);
+    f();
+    u();
+    c();
+    p();
+    m();
+    var el = 100;
+    var ji = ["green", "yellow", "blue", "magenta", "cyan", "red"];
+    var fr = [];
+    var Gi = Date.now();
+    var tl = 0;
+    var En = typeof y < "u" ? y.env : {};
+    globalThis.DEBUG ??= En.DEBUG ?? "";
+    globalThis.DEBUG_COLORS ??= En.DEBUG_COLORS ? En.DEBUG_COLORS === "true" : true;
+    var At = { enable(e) {
+      typeof e == "string" && (globalThis.DEBUG = e);
+    }, disable() {
+      let e = globalThis.DEBUG;
+      return globalThis.DEBUG = "", e;
+    }, enabled(e) {
+      let t = globalThis.DEBUG.split(",").map((i) => i.replace(/[.+?^${}()|[\]\\]/g, "\\$&")), r = t.some((i) => i === "" || i[0] === "-" ? false : e.match(RegExp(i.split("*").join(".*") + "$"))), n = t.some((i) => i === "" || i[0] !== "-" ? false : e.match(RegExp(i.slice(1).split("*").join(".*") + "$")));
+      return r && !n;
+    }, log: (...e) => {
+      let [t, r, ...n] = e;
+      (console.warn ?? console.log)(`${t} ${r}`, ...n);
+    }, formatters: {} };
+    function rl(e) {
+      let t = { color: ji[tl++ % ji.length], enabled: At.enabled(e), namespace: e, log: At.log, extend: () => {
+      } }, r = (...n) => {
+        let { enabled: i, namespace: o, color: s, log: a } = t;
+        if (n.length !== 0 && fr.push([o, ...n]), fr.length > el && fr.shift(), At.enabled(o) || i) {
+          let l = n.map((g) => typeof g == "string" ? g : nl(g)), d = `+${Date.now() - Gi}ms`;
+          Gi = Date.now(), a(o, ...l, d);
+        }
+      };
+      return new Proxy(r, { get: (n, i) => t[i], set: (n, i, o) => t[i] = o });
+    }
+    var z = new Proxy(rl, { get: (e, t) => At[t], set: (e, t, r) => At[t] = r });
+    function nl(e, t = 2) {
+      let r = /* @__PURE__ */ new Set();
+      return JSON.stringify(e, (n, i) => {
+        if (typeof i == "object" && i !== null) {
+          if (r.has(i)) return "[Circular *]";
+          r.add(i);
+        } else if (typeof i == "bigint") return i.toString();
+        return i;
+      }, t);
+    }
+    function Ji() {
+      fr.length = 0;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var vl = Wi();
+    var xn = vl.version;
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ze(e) {
+      let t = kl();
+      return t || (e?.config.engineType === "library" ? "library" : e?.config.engineType === "binary" ? "binary" : e?.config.engineType === "client" ? "client" : Dl());
+    }
+    function kl() {
+      let e = y.env.PRISMA_CLIENT_ENGINE_TYPE;
+      return e === "library" ? "library" : e === "binary" ? "binary" : e === "client" ? "client" : void 0;
+    }
+    function Dl() {
+      return "library";
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var eo = "prisma+postgres";
+    var hr = `${eo}:`;
+    function yr(e) {
+      return e?.toString().startsWith(`${hr}//`) ?? false;
+    }
+    function vn(e) {
+      if (!yr(e)) return false;
+      let { host: t } = new URL(e);
+      return t.includes("localhost") || t.includes("127.0.0.1") || t.includes("[::1]");
+    }
+    var Ct = {};
+    vt(Ct, { error: () => Fl, info: () => Nl, log: () => _l, query: () => Ll, should: () => no, tags: () => Rt, warn: () => Tn });
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Rt = { error: Ye("prisma:error"), warn: Bi("prisma:warn"), info: Vi("prisma:info"), query: qi("prisma:query") };
+    var no = { warn: () => !y.env.PRISMA_DISABLE_WARNINGS };
+    function _l(...e) {
+      console.log(...e);
+    }
+    function Tn(e, ...t) {
+      no.warn() && console.warn(`${Rt.warn} ${e}`, ...t);
+    }
+    function Nl(e, ...t) {
+      console.info(`${Rt.info} ${e}`, ...t);
+    }
+    function Fl(e, ...t) {
+      console.error(`${Rt.error} ${e}`, ...t);
+    }
+    function Ll(e, ...t) {
+      console.log(`${Rt.query} ${e}`, ...t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ue(e, t) {
+      throw new Error(t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function An({ onlyFirst: e = false } = {}) {
+      let r = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?(?:\\u0007|\\u001B\\u005C|\\u009C))", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"].join("|");
+      return new RegExp(r, e ? void 0 : "g");
+    }
+    var Ul = An();
+    function Rn(e) {
+      if (typeof e != "string") throw new TypeError(`Expected a \`string\`, got \`${typeof e}\``);
+      return e.replace(Ul, "");
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Cn(e, t) {
+      return Object.prototype.hasOwnProperty.call(e, t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function wr(e, t) {
+      let r = {};
+      for (let n of Object.keys(e)) r[n] = t(e[n], n);
+      return r;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Sn(e, t) {
+      if (e.length === 0) return;
+      let r = e[0];
+      for (let n = 1; n < e.length; n++) t(r, e[n]) < 0 && (r = e[n]);
+      return r;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function N(e, t) {
+      Object.defineProperty(e, "name", { value: t, configurable: true });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var io = /* @__PURE__ */ new Set();
+    var St = (e, t, ...r) => {
+      io.has(e) || (io.add(e), Tn(t, ...r));
+    };
+    var Q = class e extends Error {
+      clientVersion;
+      errorCode;
+      retryable;
+      constructor(t, r, n) {
+        super(t), this.name = "PrismaClientInitializationError", this.clientVersion = r, this.errorCode = n, Error.captureStackTrace(e);
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientInitializationError";
+      }
+    };
+    N(Q, "PrismaClientInitializationError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ne = class extends Error {
+      code;
+      meta;
+      clientVersion;
+      batchRequestIdx;
+      constructor(t, { code: r, clientVersion: n, meta: i, batchRequestIdx: o }) {
+        super(t), this.name = "PrismaClientKnownRequestError", this.code = r, this.clientVersion = n, this.meta = i, Object.defineProperty(this, "batchRequestIdx", { value: o, enumerable: false, writable: true });
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientKnownRequestError";
+      }
+    };
+    N(ne, "PrismaClientKnownRequestError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Pe = class extends Error {
+      clientVersion;
+      constructor(t, r) {
+        super(t), this.name = "PrismaClientRustPanicError", this.clientVersion = r;
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientRustPanicError";
+      }
+    };
+    N(Pe, "PrismaClientRustPanicError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ie = class extends Error {
+      clientVersion;
+      batchRequestIdx;
+      constructor(t, { clientVersion: r, batchRequestIdx: n }) {
+        super(t), this.name = "PrismaClientUnknownRequestError", this.clientVersion = r, Object.defineProperty(this, "batchRequestIdx", { value: n, writable: true, enumerable: false });
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientUnknownRequestError";
+      }
+    };
+    N(ie, "PrismaClientUnknownRequestError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var X = class extends Error {
+      name = "PrismaClientValidationError";
+      clientVersion;
+      constructor(t, { clientVersion: r }) {
+        super(t), this.clientVersion = r;
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientValidationError";
+      }
+    };
+    N(X, "PrismaClientValidationError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ge = class {
+      _map = /* @__PURE__ */ new Map();
+      get(t) {
+        return this._map.get(t)?.value;
+      }
+      set(t, r) {
+        this._map.set(t, { value: r });
+      }
+      getOrCreate(t, r) {
+        let n = this._map.get(t);
+        if (n) return n.value;
+        let i = r();
+        return this.set(t, i), i;
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ie(e) {
+      return e.substring(0, 1).toLowerCase() + e.substring(1);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function so(e, t) {
+      let r = {};
+      for (let n of e) {
+        let i = n[t];
+        r[i] = n;
+      }
+      return r;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function It(e) {
+      let t;
+      return { get() {
+        return t || (t = { value: e() }), t.value;
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ao(e) {
+      return { models: In(e.models), enums: In(e.enums), types: In(e.types) };
+    }
+    function In(e) {
+      let t = {};
+      for (let { name: r, ...n } of e) t[r] = n;
+      return t;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Xe(e) {
+      return e instanceof Date || Object.prototype.toString.call(e) === "[object Date]";
+    }
+    function Er(e) {
+      return e.toString() !== "Invalid Date";
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var et = 9e15;
+    var Me = 1e9;
+    var On = "0123456789abcdef";
+    var Pr = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058";
+    var vr = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789";
+    var kn = { precision: 20, rounding: 4, modulo: 1, toExpNeg: -7, toExpPos: 21, minE: -et, maxE: et, crypto: false };
+    var po;
+    var ve;
+    var _ = true;
+    var Ar = "[DecimalError] ";
+    var De = Ar + "Invalid argument: ";
+    var mo = Ar + "Precision limit exceeded";
+    var fo = Ar + "crypto unavailable";
+    var go = "[object Decimal]";
+    var ee = Math.floor;
+    var K = Math.pow;
+    var Bl = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i;
+    var ql = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i;
+    var Vl = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i;
+    var ho = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
+    var pe = 1e7;
+    var D = 7;
+    var $l = 9007199254740991;
+    var jl = Pr.length - 1;
+    var Dn = vr.length - 1;
+    var R = { toStringTag: go };
+    R.absoluteValue = R.abs = function() {
+      var e = new this.constructor(this);
+      return e.s < 0 && (e.s = 1), k(e);
+    };
+    R.ceil = function() {
+      return k(new this.constructor(this), this.e + 1, 2);
+    };
+    R.clampedTo = R.clamp = function(e, t) {
+      var r, n = this, i = n.constructor;
+      if (e = new i(e), t = new i(t), !e.s || !t.s) return new i(NaN);
+      if (e.gt(t)) throw Error(De + t);
+      return r = n.cmp(e), r < 0 ? e : n.cmp(t) > 0 ? t : new i(n);
+    };
+    R.comparedTo = R.cmp = function(e) {
+      var t, r, n, i, o = this, s = o.d, a = (e = new o.constructor(e)).d, l = o.s, d = e.s;
+      if (!s || !a) return !l || !d ? NaN : l !== d ? l : s === a ? 0 : !s ^ l < 0 ? 1 : -1;
+      if (!s[0] || !a[0]) return s[0] ? l : a[0] ? -d : 0;
+      if (l !== d) return l;
+      if (o.e !== e.e) return o.e > e.e ^ l < 0 ? 1 : -1;
+      for (n = s.length, i = a.length, t = 0, r = n < i ? n : i; t < r; ++t) if (s[t] !== a[t]) return s[t] > a[t] ^ l < 0 ? 1 : -1;
+      return n === i ? 0 : n > i ^ l < 0 ? 1 : -1;
+    };
+    R.cosine = R.cos = function() {
+      var e, t, r = this, n = r.constructor;
+      return r.d ? r.d[0] ? (e = n.precision, t = n.rounding, n.precision = e + Math.max(r.e, r.sd()) + D, n.rounding = 1, r = Gl(n, xo(n, r)), n.precision = e, n.rounding = t, k(ve == 2 || ve == 3 ? r.neg() : r, e, t, true)) : new n(1) : new n(NaN);
+    };
+    R.cubeRoot = R.cbrt = function() {
+      var e, t, r, n, i, o, s, a, l, d, g = this, h = g.constructor;
+      if (!g.isFinite() || g.isZero()) return new h(g);
+      for (_ = false, o = g.s * K(g.s * g, 1 / 3), !o || Math.abs(o) == 1 / 0 ? (r = Y(g.d), e = g.e, (o = (e - r.length + 1) % 3) && (r += o == 1 || o == -2 ? "0" : "00"), o = K(r, 1 / 3), e = ee((e + 1) / 3) - (e % 3 == (e < 0 ? -1 : 2)), o == 1 / 0 ? r = "5e" + e : (r = o.toExponential(), r = r.slice(0, r.indexOf("e") + 1) + e), n = new h(r), n.s = g.s) : n = new h(o.toString()), s = (e = h.precision) + 3; ; ) if (a = n, l = a.times(a).times(a), d = l.plus(g), n = V(d.plus(g).times(a), d.plus(l), s + 2, 1), Y(a.d).slice(0, s) === (r = Y(n.d)).slice(0, s)) if (r = r.slice(s - 3, s + 1), r == "9999" || !i && r == "4999") {
+        if (!i && (k(a, e + 1, 0), a.times(a).times(a).eq(g))) {
+          n = a;
+          break;
+        }
+        s += 4, i = 1;
+      } else {
+        (!+r || !+r.slice(1) && r.charAt(0) == "5") && (k(n, e + 1, 1), t = !n.times(n).times(n).eq(g));
+        break;
+      }
+      return _ = true, k(n, e, h.rounding, t);
+    };
+    R.decimalPlaces = R.dp = function() {
+      var e, t = this.d, r = NaN;
+      if (t) {
+        if (e = t.length - 1, r = (e - ee(this.e / D)) * D, e = t[e], e) for (; e % 10 == 0; e /= 10) r--;
+        r < 0 && (r = 0);
+      }
+      return r;
+    };
+    R.dividedBy = R.div = function(e) {
+      return V(this, new this.constructor(e));
+    };
+    R.dividedToIntegerBy = R.divToInt = function(e) {
+      var t = this, r = t.constructor;
+      return k(V(t, new r(e), 0, 1, 1), r.precision, r.rounding);
+    };
+    R.equals = R.eq = function(e) {
+      return this.cmp(e) === 0;
+    };
+    R.floor = function() {
+      return k(new this.constructor(this), this.e + 1, 3);
+    };
+    R.greaterThan = R.gt = function(e) {
+      return this.cmp(e) > 0;
+    };
+    R.greaterThanOrEqualTo = R.gte = function(e) {
+      var t = this.cmp(e);
+      return t == 1 || t === 0;
+    };
+    R.hyperbolicCosine = R.cosh = function() {
+      var e, t, r, n, i, o = this, s = o.constructor, a = new s(1);
+      if (!o.isFinite()) return new s(o.s ? 1 / 0 : NaN);
+      if (o.isZero()) return a;
+      r = s.precision, n = s.rounding, s.precision = r + Math.max(o.e, o.sd()) + 4, s.rounding = 1, i = o.d.length, i < 32 ? (e = Math.ceil(i / 3), t = (1 / Cr(4, e)).toString()) : (e = 16, t = "2.3283064365386962890625e-10"), o = tt(s, 1, o.times(t), new s(1), true);
+      for (var l, d = e, g = new s(8); d--; ) l = o.times(o), o = a.minus(l.times(g.minus(l.times(g))));
+      return k(o, s.precision = r, s.rounding = n, true);
+    };
+    R.hyperbolicSine = R.sinh = function() {
+      var e, t, r, n, i = this, o = i.constructor;
+      if (!i.isFinite() || i.isZero()) return new o(i);
+      if (t = o.precision, r = o.rounding, o.precision = t + Math.max(i.e, i.sd()) + 4, o.rounding = 1, n = i.d.length, n < 3) i = tt(o, 2, i, i, true);
+      else {
+        e = 1.4 * Math.sqrt(n), e = e > 16 ? 16 : e | 0, i = i.times(1 / Cr(5, e)), i = tt(o, 2, i, i, true);
+        for (var s, a = new o(5), l = new o(16), d = new o(20); e--; ) s = i.times(i), i = i.times(a.plus(s.times(l.times(s).plus(d))));
+      }
+      return o.precision = t, o.rounding = r, k(i, t, r, true);
+    };
+    R.hyperbolicTangent = R.tanh = function() {
+      var e, t, r = this, n = r.constructor;
+      return r.isFinite() ? r.isZero() ? new n(r) : (e = n.precision, t = n.rounding, n.precision = e + 7, n.rounding = 1, V(r.sinh(), r.cosh(), n.precision = e, n.rounding = t)) : new n(r.s);
+    };
+    R.inverseCosine = R.acos = function() {
+      var e = this, t = e.constructor, r = e.abs().cmp(1), n = t.precision, i = t.rounding;
+      return r !== -1 ? r === 0 ? e.isNeg() ? he(t, n, i) : new t(0) : new t(NaN) : e.isZero() ? he(t, n + 4, i).times(0.5) : (t.precision = n + 6, t.rounding = 1, e = new t(1).minus(e).div(e.plus(1)).sqrt().atan(), t.precision = n, t.rounding = i, e.times(2));
+    };
+    R.inverseHyperbolicCosine = R.acosh = function() {
+      var e, t, r = this, n = r.constructor;
+      return r.lte(1) ? new n(r.eq(1) ? 0 : NaN) : r.isFinite() ? (e = n.precision, t = n.rounding, n.precision = e + Math.max(Math.abs(r.e), r.sd()) + 4, n.rounding = 1, _ = false, r = r.times(r).minus(1).sqrt().plus(r), _ = true, n.precision = e, n.rounding = t, r.ln()) : new n(r);
+    };
+    R.inverseHyperbolicSine = R.asinh = function() {
+      var e, t, r = this, n = r.constructor;
+      return !r.isFinite() || r.isZero() ? new n(r) : (e = n.precision, t = n.rounding, n.precision = e + 2 * Math.max(Math.abs(r.e), r.sd()) + 6, n.rounding = 1, _ = false, r = r.times(r).plus(1).sqrt().plus(r), _ = true, n.precision = e, n.rounding = t, r.ln());
+    };
+    R.inverseHyperbolicTangent = R.atanh = function() {
+      var e, t, r, n, i = this, o = i.constructor;
+      return i.isFinite() ? i.e >= 0 ? new o(i.abs().eq(1) ? i.s / 0 : i.isZero() ? i : NaN) : (e = o.precision, t = o.rounding, n = i.sd(), Math.max(n, e) < 2 * -i.e - 1 ? k(new o(i), e, t, true) : (o.precision = r = n - i.e, i = V(i.plus(1), new o(1).minus(i), r + e, 1), o.precision = e + 4, o.rounding = 1, i = i.ln(), o.precision = e, o.rounding = t, i.times(0.5))) : new o(NaN);
+    };
+    R.inverseSine = R.asin = function() {
+      var e, t, r, n, i = this, o = i.constructor;
+      return i.isZero() ? new o(i) : (t = i.abs().cmp(1), r = o.precision, n = o.rounding, t !== -1 ? t === 0 ? (e = he(o, r + 4, n).times(0.5), e.s = i.s, e) : new o(NaN) : (o.precision = r + 6, o.rounding = 1, i = i.div(new o(1).minus(i.times(i)).sqrt().plus(1)).atan(), o.precision = r, o.rounding = n, i.times(2)));
+    };
+    R.inverseTangent = R.atan = function() {
+      var e, t, r, n, i, o, s, a, l, d = this, g = d.constructor, h = g.precision, T = g.rounding;
+      if (d.isFinite()) {
+        if (d.isZero()) return new g(d);
+        if (d.abs().eq(1) && h + 4 <= Dn) return s = he(g, h + 4, T).times(0.25), s.s = d.s, s;
+      } else {
+        if (!d.s) return new g(NaN);
+        if (h + 4 <= Dn) return s = he(g, h + 4, T).times(0.5), s.s = d.s, s;
+      }
+      for (g.precision = a = h + 10, g.rounding = 1, r = Math.min(28, a / D + 2 | 0), e = r; e; --e) d = d.div(d.times(d).plus(1).sqrt().plus(1));
+      for (_ = false, t = Math.ceil(a / D), n = 1, l = d.times(d), s = new g(d), i = d; e !== -1; ) if (i = i.times(l), o = s.minus(i.div(n += 2)), i = i.times(l), s = o.plus(i.div(n += 2)), s.d[t] !== void 0) for (e = t; s.d[e] === o.d[e] && e--; ) ;
+      return r && (s = s.times(2 << r - 1)), _ = true, k(s, g.precision = h, g.rounding = T, true);
+    };
+    R.isFinite = function() {
+      return !!this.d;
+    };
+    R.isInteger = R.isInt = function() {
+      return !!this.d && ee(this.e / D) > this.d.length - 2;
+    };
+    R.isNaN = function() {
+      return !this.s;
+    };
+    R.isNegative = R.isNeg = function() {
+      return this.s < 0;
+    };
+    R.isPositive = R.isPos = function() {
+      return this.s > 0;
+    };
+    R.isZero = function() {
+      return !!this.d && this.d[0] === 0;
+    };
+    R.lessThan = R.lt = function(e) {
+      return this.cmp(e) < 0;
+    };
+    R.lessThanOrEqualTo = R.lte = function(e) {
+      return this.cmp(e) < 1;
+    };
+    R.logarithm = R.log = function(e) {
+      var t, r, n, i, o, s, a, l, d = this, g = d.constructor, h = g.precision, T = g.rounding, I = 5;
+      if (e == null) e = new g(10), t = true;
+      else {
+        if (e = new g(e), r = e.d, e.s < 0 || !r || !r[0] || e.eq(1)) return new g(NaN);
+        t = e.eq(10);
+      }
+      if (r = d.d, d.s < 0 || !r || !r[0] || d.eq(1)) return new g(r && !r[0] ? -1 / 0 : d.s != 1 ? NaN : r ? 0 : 1 / 0);
+      if (t) if (r.length > 1) o = true;
+      else {
+        for (i = r[0]; i % 10 === 0; ) i /= 10;
+        o = i !== 1;
+      }
+      if (_ = false, a = h + I, s = ke(d, a), n = t ? Tr(g, a + 10) : ke(e, a), l = V(s, n, a, 1), Ot(l.d, i = h, T)) do
+        if (a += 10, s = ke(d, a), n = t ? Tr(g, a + 10) : ke(e, a), l = V(s, n, a, 1), !o) {
+          +Y(l.d).slice(i + 1, i + 15) + 1 == 1e14 && (l = k(l, h + 1, 0));
+          break;
+        }
+      while (Ot(l.d, i += 10, T));
+      return _ = true, k(l, h, T);
+    };
+    R.minus = R.sub = function(e) {
+      var t, r, n, i, o, s, a, l, d, g, h, T, I = this, S = I.constructor;
+      if (e = new S(e), !I.d || !e.d) return !I.s || !e.s ? e = new S(NaN) : I.d ? e.s = -e.s : e = new S(e.d || I.s !== e.s ? I : NaN), e;
+      if (I.s != e.s) return e.s = -e.s, I.plus(e);
+      if (d = I.d, T = e.d, a = S.precision, l = S.rounding, !d[0] || !T[0]) {
+        if (T[0]) e.s = -e.s;
+        else if (d[0]) e = new S(I);
+        else return new S(l === 3 ? -0 : 0);
+        return _ ? k(e, a, l) : e;
+      }
+      if (r = ee(e.e / D), g = ee(I.e / D), d = d.slice(), o = g - r, o) {
+        for (h = o < 0, h ? (t = d, o = -o, s = T.length) : (t = T, r = g, s = d.length), n = Math.max(Math.ceil(a / D), s) + 2, o > n && (o = n, t.length = 1), t.reverse(), n = o; n--; ) t.push(0);
+        t.reverse();
+      } else {
+        for (n = d.length, s = T.length, h = n < s, h && (s = n), n = 0; n < s; n++) if (d[n] != T[n]) {
+          h = d[n] < T[n];
+          break;
+        }
+        o = 0;
+      }
+      for (h && (t = d, d = T, T = t, e.s = -e.s), s = d.length, n = T.length - s; n > 0; --n) d[s++] = 0;
+      for (n = T.length; n > o; ) {
+        if (d[--n] < T[n]) {
+          for (i = n; i && d[--i] === 0; ) d[i] = pe - 1;
+          --d[i], d[n] += pe;
+        }
+        d[n] -= T[n];
+      }
+      for (; d[--s] === 0; ) d.pop();
+      for (; d[0] === 0; d.shift()) --r;
+      return d[0] ? (e.d = d, e.e = Rr(d, r), _ ? k(e, a, l) : e) : new S(l === 3 ? -0 : 0);
+    };
+    R.modulo = R.mod = function(e) {
+      var t, r = this, n = r.constructor;
+      return e = new n(e), !r.d || !e.s || e.d && !e.d[0] ? new n(NaN) : !e.d || r.d && !r.d[0] ? k(new n(r), n.precision, n.rounding) : (_ = false, n.modulo == 9 ? (t = V(r, e.abs(), 0, 3, 1), t.s *= e.s) : t = V(r, e, 0, n.modulo, 1), t = t.times(e), _ = true, r.minus(t));
+    };
+    R.naturalExponential = R.exp = function() {
+      return Mn(this);
+    };
+    R.naturalLogarithm = R.ln = function() {
+      return ke(this);
+    };
+    R.negated = R.neg = function() {
+      var e = new this.constructor(this);
+      return e.s = -e.s, k(e);
+    };
+    R.plus = R.add = function(e) {
+      var t, r, n, i, o, s, a, l, d, g, h = this, T = h.constructor;
+      if (e = new T(e), !h.d || !e.d) return !h.s || !e.s ? e = new T(NaN) : h.d || (e = new T(e.d || h.s === e.s ? h : NaN)), e;
+      if (h.s != e.s) return e.s = -e.s, h.minus(e);
+      if (d = h.d, g = e.d, a = T.precision, l = T.rounding, !d[0] || !g[0]) return g[0] || (e = new T(h)), _ ? k(e, a, l) : e;
+      if (o = ee(h.e / D), n = ee(e.e / D), d = d.slice(), i = o - n, i) {
+        for (i < 0 ? (r = d, i = -i, s = g.length) : (r = g, n = o, s = d.length), o = Math.ceil(a / D), s = o > s ? o + 1 : s + 1, i > s && (i = s, r.length = 1), r.reverse(); i--; ) r.push(0);
+        r.reverse();
+      }
+      for (s = d.length, i = g.length, s - i < 0 && (i = s, r = g, g = d, d = r), t = 0; i; ) t = (d[--i] = d[i] + g[i] + t) / pe | 0, d[i] %= pe;
+      for (t && (d.unshift(t), ++n), s = d.length; d[--s] == 0; ) d.pop();
+      return e.d = d, e.e = Rr(d, n), _ ? k(e, a, l) : e;
+    };
+    R.precision = R.sd = function(e) {
+      var t, r = this;
+      if (e !== void 0 && e !== !!e && e !== 1 && e !== 0) throw Error(De + e);
+      return r.d ? (t = yo(r.d), e && r.e + 1 > t && (t = r.e + 1)) : t = NaN, t;
+    };
+    R.round = function() {
+      var e = this, t = e.constructor;
+      return k(new t(e), e.e + 1, t.rounding);
+    };
+    R.sine = R.sin = function() {
+      var e, t, r = this, n = r.constructor;
+      return r.isFinite() ? r.isZero() ? new n(r) : (e = n.precision, t = n.rounding, n.precision = e + Math.max(r.e, r.sd()) + D, n.rounding = 1, r = Ql(n, xo(n, r)), n.precision = e, n.rounding = t, k(ve > 2 ? r.neg() : r, e, t, true)) : new n(NaN);
+    };
+    R.squareRoot = R.sqrt = function() {
+      var e, t, r, n, i, o, s = this, a = s.d, l = s.e, d = s.s, g = s.constructor;
+      if (d !== 1 || !a || !a[0]) return new g(!d || d < 0 && (!a || a[0]) ? NaN : a ? s : 1 / 0);
+      for (_ = false, d = Math.sqrt(+s), d == 0 || d == 1 / 0 ? (t = Y(a), (t.length + l) % 2 == 0 && (t += "0"), d = Math.sqrt(t), l = ee((l + 1) / 2) - (l < 0 || l % 2), d == 1 / 0 ? t = "5e" + l : (t = d.toExponential(), t = t.slice(0, t.indexOf("e") + 1) + l), n = new g(t)) : n = new g(d.toString()), r = (l = g.precision) + 3; ; ) if (o = n, n = o.plus(V(s, o, r + 2, 1)).times(0.5), Y(o.d).slice(0, r) === (t = Y(n.d)).slice(0, r)) if (t = t.slice(r - 3, r + 1), t == "9999" || !i && t == "4999") {
+        if (!i && (k(o, l + 1, 0), o.times(o).eq(s))) {
+          n = o;
+          break;
+        }
+        r += 4, i = 1;
+      } else {
+        (!+t || !+t.slice(1) && t.charAt(0) == "5") && (k(n, l + 1, 1), e = !n.times(n).eq(s));
+        break;
+      }
+      return _ = true, k(n, l, g.rounding, e);
+    };
+    R.tangent = R.tan = function() {
+      var e, t, r = this, n = r.constructor;
+      return r.isFinite() ? r.isZero() ? new n(r) : (e = n.precision, t = n.rounding, n.precision = e + 10, n.rounding = 1, r = r.sin(), r.s = 1, r = V(r, new n(1).minus(r.times(r)).sqrt(), e + 10, 0), n.precision = e, n.rounding = t, k(ve == 2 || ve == 4 ? r.neg() : r, e, t, true)) : new n(NaN);
+    };
+    R.times = R.mul = function(e) {
+      var t, r, n, i, o, s, a, l, d, g = this, h = g.constructor, T = g.d, I = (e = new h(e)).d;
+      if (e.s *= g.s, !T || !T[0] || !I || !I[0]) return new h(!e.s || T && !T[0] && !I || I && !I[0] && !T ? NaN : !T || !I ? e.s / 0 : e.s * 0);
+      for (r = ee(g.e / D) + ee(e.e / D), l = T.length, d = I.length, l < d && (o = T, T = I, I = o, s = l, l = d, d = s), o = [], s = l + d, n = s; n--; ) o.push(0);
+      for (n = d; --n >= 0; ) {
+        for (t = 0, i = l + n; i > n; ) a = o[i] + I[n] * T[i - n - 1] + t, o[i--] = a % pe | 0, t = a / pe | 0;
+        o[i] = (o[i] + t) % pe | 0;
+      }
+      for (; !o[--s]; ) o.pop();
+      return t ? ++r : o.shift(), e.d = o, e.e = Rr(o, r), _ ? k(e, h.precision, h.rounding) : e;
+    };
+    R.toBinary = function(e, t) {
+      return _n(this, 2, e, t);
+    };
+    R.toDecimalPlaces = R.toDP = function(e, t) {
+      var r = this, n = r.constructor;
+      return r = new n(r), e === void 0 ? r : (oe(e, 0, Me), t === void 0 ? t = n.rounding : oe(t, 0, 8), k(r, e + r.e + 1, t));
+    };
+    R.toExponential = function(e, t) {
+      var r, n = this, i = n.constructor;
+      return e === void 0 ? r = ye(n, true) : (oe(e, 0, Me), t === void 0 ? t = i.rounding : oe(t, 0, 8), n = k(new i(n), e + 1, t), r = ye(n, true, e + 1)), n.isNeg() && !n.isZero() ? "-" + r : r;
+    };
+    R.toFixed = function(e, t) {
+      var r, n, i = this, o = i.constructor;
+      return e === void 0 ? r = ye(i) : (oe(e, 0, Me), t === void 0 ? t = o.rounding : oe(t, 0, 8), n = k(new o(i), e + i.e + 1, t), r = ye(n, false, e + n.e + 1)), i.isNeg() && !i.isZero() ? "-" + r : r;
+    };
+    R.toFraction = function(e) {
+      var t, r, n, i, o, s, a, l, d, g, h, T, I = this, S = I.d, C = I.constructor;
+      if (!S) return new C(I);
+      if (d = r = new C(1), n = l = new C(0), t = new C(n), o = t.e = yo(S) - I.e - 1, s = o % D, t.d[0] = K(10, s < 0 ? D + s : s), e == null) e = o > 0 ? t : d;
+      else {
+        if (a = new C(e), !a.isInt() || a.lt(d)) throw Error(De + a);
+        e = a.gt(t) ? o > 0 ? t : d : a;
+      }
+      for (_ = false, a = new C(Y(S)), g = C.precision, C.precision = o = S.length * D * 2; h = V(a, t, 0, 1, 1), i = r.plus(h.times(n)), i.cmp(e) != 1; ) r = n, n = i, i = d, d = l.plus(h.times(i)), l = i, i = t, t = a.minus(h.times(i)), a = i;
+      return i = V(e.minus(r), n, 0, 1, 1), l = l.plus(i.times(d)), r = r.plus(i.times(n)), l.s = d.s = I.s, T = V(d, n, o, 1).minus(I).abs().cmp(V(l, r, o, 1).minus(I).abs()) < 1 ? [d, n] : [l, r], C.precision = g, _ = true, T;
+    };
+    R.toHexadecimal = R.toHex = function(e, t) {
+      return _n(this, 16, e, t);
+    };
+    R.toNearest = function(e, t) {
+      var r = this, n = r.constructor;
+      if (r = new n(r), e == null) {
+        if (!r.d) return r;
+        e = new n(1), t = n.rounding;
+      } else {
+        if (e = new n(e), t === void 0 ? t = n.rounding : oe(t, 0, 8), !r.d) return e.s ? r : e;
+        if (!e.d) return e.s && (e.s = r.s), e;
+      }
+      return e.d[0] ? (_ = false, r = V(r, e, 0, t, 1).times(e), _ = true, k(r)) : (e.s = r.s, r = e), r;
+    };
+    R.toNumber = function() {
+      return +this;
+    };
+    R.toOctal = function(e, t) {
+      return _n(this, 8, e, t);
+    };
+    R.toPower = R.pow = function(e) {
+      var t, r, n, i, o, s, a = this, l = a.constructor, d = +(e = new l(e));
+      if (!a.d || !e.d || !a.d[0] || !e.d[0]) return new l(K(+a, d));
+      if (a = new l(a), a.eq(1)) return a;
+      if (n = l.precision, o = l.rounding, e.eq(1)) return k(a, n, o);
+      if (t = ee(e.e / D), t >= e.d.length - 1 && (r = d < 0 ? -d : d) <= $l) return i = wo(l, a, r, n), e.s < 0 ? new l(1).div(i) : k(i, n, o);
+      if (s = a.s, s < 0) {
+        if (t < e.d.length - 1) return new l(NaN);
+        if ((e.d[t] & 1) == 0 && (s = 1), a.e == 0 && a.d[0] == 1 && a.d.length == 1) return a.s = s, a;
+      }
+      return r = K(+a, d), t = r == 0 || !isFinite(r) ? ee(d * (Math.log("0." + Y(a.d)) / Math.LN10 + a.e + 1)) : new l(r + "").e, t > l.maxE + 1 || t < l.minE - 1 ? new l(t > 0 ? s / 0 : 0) : (_ = false, l.rounding = a.s = 1, r = Math.min(12, (t + "").length), i = Mn(e.times(ke(a, n + r)), n), i.d && (i = k(i, n + 5, 1), Ot(i.d, n, o) && (t = n + 10, i = k(Mn(e.times(ke(a, t + r)), t), t + 5, 1), +Y(i.d).slice(n + 1, n + 15) + 1 == 1e14 && (i = k(i, n + 1, 0)))), i.s = s, _ = true, l.rounding = o, k(i, n, o));
+    };
+    R.toPrecision = function(e, t) {
+      var r, n = this, i = n.constructor;
+      return e === void 0 ? r = ye(n, n.e <= i.toExpNeg || n.e >= i.toExpPos) : (oe(e, 1, Me), t === void 0 ? t = i.rounding : oe(t, 0, 8), n = k(new i(n), e, t), r = ye(n, e <= n.e || n.e <= i.toExpNeg, e)), n.isNeg() && !n.isZero() ? "-" + r : r;
+    };
+    R.toSignificantDigits = R.toSD = function(e, t) {
+      var r = this, n = r.constructor;
+      return e === void 0 ? (e = n.precision, t = n.rounding) : (oe(e, 1, Me), t === void 0 ? t = n.rounding : oe(t, 0, 8)), k(new n(r), e, t);
+    };
+    R.toString = function() {
+      var e = this, t = e.constructor, r = ye(e, e.e <= t.toExpNeg || e.e >= t.toExpPos);
+      return e.isNeg() && !e.isZero() ? "-" + r : r;
+    };
+    R.truncated = R.trunc = function() {
+      return k(new this.constructor(this), this.e + 1, 1);
+    };
+    R.valueOf = R.toJSON = function() {
+      var e = this, t = e.constructor, r = ye(e, e.e <= t.toExpNeg || e.e >= t.toExpPos);
+      return e.isNeg() ? "-" + r : r;
+    };
+    function Y(e) {
+      var t, r, n, i = e.length - 1, o = "", s = e[0];
+      if (i > 0) {
+        for (o += s, t = 1; t < i; t++) n = e[t] + "", r = D - n.length, r && (o += Oe(r)), o += n;
+        s = e[t], n = s + "", r = D - n.length, r && (o += Oe(r));
+      } else if (s === 0) return "0";
+      for (; s % 10 === 0; ) s /= 10;
+      return o + s;
+    }
+    function oe(e, t, r) {
+      if (e !== ~~e || e < t || e > r) throw Error(De + e);
+    }
+    function Ot(e, t, r, n) {
+      var i, o, s, a;
+      for (o = e[0]; o >= 10; o /= 10) --t;
+      return --t < 0 ? (t += D, i = 0) : (i = Math.ceil((t + 1) / D), t %= D), o = K(10, D - t), a = e[i] % o | 0, n == null ? t < 3 ? (t == 0 ? a = a / 100 | 0 : t == 1 && (a = a / 10 | 0), s = r < 4 && a == 99999 || r > 3 && a == 49999 || a == 5e4 || a == 0) : s = (r < 4 && a + 1 == o || r > 3 && a + 1 == o / 2) && (e[i + 1] / o / 100 | 0) == K(10, t - 2) - 1 || (a == o / 2 || a == 0) && (e[i + 1] / o / 100 | 0) == 0 : t < 4 ? (t == 0 ? a = a / 1e3 | 0 : t == 1 ? a = a / 100 | 0 : t == 2 && (a = a / 10 | 0), s = (n || r < 4) && a == 9999 || !n && r > 3 && a == 4999) : s = ((n || r < 4) && a + 1 == o || !n && r > 3 && a + 1 == o / 2) && (e[i + 1] / o / 1e3 | 0) == K(10, t - 3) - 1, s;
+    }
+    function br(e, t, r) {
+      for (var n, i = [0], o, s = 0, a = e.length; s < a; ) {
+        for (o = i.length; o--; ) i[o] *= t;
+        for (i[0] += On.indexOf(e.charAt(s++)), n = 0; n < i.length; n++) i[n] > r - 1 && (i[n + 1] === void 0 && (i[n + 1] = 0), i[n + 1] += i[n] / r | 0, i[n] %= r);
+      }
+      return i.reverse();
+    }
+    function Gl(e, t) {
+      var r, n, i;
+      if (t.isZero()) return t;
+      n = t.d.length, n < 32 ? (r = Math.ceil(n / 3), i = (1 / Cr(4, r)).toString()) : (r = 16, i = "2.3283064365386962890625e-10"), e.precision += r, t = tt(e, 1, t.times(i), new e(1));
+      for (var o = r; o--; ) {
+        var s = t.times(t);
+        t = s.times(s).minus(s).times(8).plus(1);
+      }
+      return e.precision -= r, t;
+    }
+    var V = /* @__PURE__ */ (function() {
+      function e(n, i, o) {
+        var s, a = 0, l = n.length;
+        for (n = n.slice(); l--; ) s = n[l] * i + a, n[l] = s % o | 0, a = s / o | 0;
+        return a && n.unshift(a), n;
+      }
+      function t(n, i, o, s) {
+        var a, l;
+        if (o != s) l = o > s ? 1 : -1;
+        else for (a = l = 0; a < o; a++) if (n[a] != i[a]) {
+          l = n[a] > i[a] ? 1 : -1;
+          break;
+        }
+        return l;
+      }
+      function r(n, i, o, s) {
+        for (var a = 0; o--; ) n[o] -= a, a = n[o] < i[o] ? 1 : 0, n[o] = a * s + n[o] - i[o];
+        for (; !n[0] && n.length > 1; ) n.shift();
+      }
+      return function(n, i, o, s, a, l) {
+        var d, g, h, T, I, S, C, M, F, B, O, L, le, J, sn, or, Pt, an, ce, sr, ar = n.constructor, ln = n.s == i.s ? 1 : -1, Z = n.d, $ = i.d;
+        if (!Z || !Z[0] || !$ || !$[0]) return new ar(!n.s || !i.s || (Z ? $ && Z[0] == $[0] : !$) ? NaN : Z && Z[0] == 0 || !$ ? ln * 0 : ln / 0);
+        for (l ? (I = 1, g = n.e - i.e) : (l = pe, I = D, g = ee(n.e / I) - ee(i.e / I)), ce = $.length, Pt = Z.length, F = new ar(ln), B = F.d = [], h = 0; $[h] == (Z[h] || 0); h++) ;
+        if ($[h] > (Z[h] || 0) && g--, o == null ? (J = o = ar.precision, s = ar.rounding) : a ? J = o + (n.e - i.e) + 1 : J = o, J < 0) B.push(1), S = true;
+        else {
+          if (J = J / I + 2 | 0, h = 0, ce == 1) {
+            for (T = 0, $ = $[0], J++; (h < Pt || T) && J--; h++) sn = T * l + (Z[h] || 0), B[h] = sn / $ | 0, T = sn % $ | 0;
+            S = T || h < Pt;
+          } else {
+            for (T = l / ($[0] + 1) | 0, T > 1 && ($ = e($, T, l), Z = e(Z, T, l), ce = $.length, Pt = Z.length), or = ce, O = Z.slice(0, ce), L = O.length; L < ce; ) O[L++] = 0;
+            sr = $.slice(), sr.unshift(0), an = $[0], $[1] >= l / 2 && ++an;
+            do
+              T = 0, d = t($, O, ce, L), d < 0 ? (le = O[0], ce != L && (le = le * l + (O[1] || 0)), T = le / an | 0, T > 1 ? (T >= l && (T = l - 1), C = e($, T, l), M = C.length, L = O.length, d = t(C, O, M, L), d == 1 && (T--, r(C, ce < M ? sr : $, M, l))) : (T == 0 && (d = T = 1), C = $.slice()), M = C.length, M < L && C.unshift(0), r(O, C, L, l), d == -1 && (L = O.length, d = t($, O, ce, L), d < 1 && (T++, r(O, ce < L ? sr : $, L, l))), L = O.length) : d === 0 && (T++, O = [0]), B[h++] = T, d && O[0] ? O[L++] = Z[or] || 0 : (O = [Z[or]], L = 1);
+            while ((or++ < Pt || O[0] !== void 0) && J--);
+            S = O[0] !== void 0;
+          }
+          B[0] || B.shift();
+        }
+        if (I == 1) F.e = g, po = S;
+        else {
+          for (h = 1, T = B[0]; T >= 10; T /= 10) h++;
+          F.e = h + g * I - 1, k(F, a ? o + F.e + 1 : o, s, S);
+        }
+        return F;
+      };
+    })();
+    function k(e, t, r, n) {
+      var i, o, s, a, l, d, g, h, T, I = e.constructor;
+      e: if (t != null) {
+        if (h = e.d, !h) return e;
+        for (i = 1, a = h[0]; a >= 10; a /= 10) i++;
+        if (o = t - i, o < 0) o += D, s = t, g = h[T = 0], l = g / K(10, i - s - 1) % 10 | 0;
+        else if (T = Math.ceil((o + 1) / D), a = h.length, T >= a) if (n) {
+          for (; a++ <= T; ) h.push(0);
+          g = l = 0, i = 1, o %= D, s = o - D + 1;
+        } else break e;
+        else {
+          for (g = a = h[T], i = 1; a >= 10; a /= 10) i++;
+          o %= D, s = o - D + i, l = s < 0 ? 0 : g / K(10, i - s - 1) % 10 | 0;
+        }
+        if (n = n || t < 0 || h[T + 1] !== void 0 || (s < 0 ? g : g % K(10, i - s - 1)), d = r < 4 ? (l || n) && (r == 0 || r == (e.s < 0 ? 3 : 2)) : l > 5 || l == 5 && (r == 4 || n || r == 6 && (o > 0 ? s > 0 ? g / K(10, i - s) : 0 : h[T - 1]) % 10 & 1 || r == (e.s < 0 ? 8 : 7)), t < 1 || !h[0]) return h.length = 0, d ? (t -= e.e + 1, h[0] = K(10, (D - t % D) % D), e.e = -t || 0) : h[0] = e.e = 0, e;
+        if (o == 0 ? (h.length = T, a = 1, T--) : (h.length = T + 1, a = K(10, D - o), h[T] = s > 0 ? (g / K(10, i - s) % K(10, s) | 0) * a : 0), d) for (; ; ) if (T == 0) {
+          for (o = 1, s = h[0]; s >= 10; s /= 10) o++;
+          for (s = h[0] += a, a = 1; s >= 10; s /= 10) a++;
+          o != a && (e.e++, h[0] == pe && (h[0] = 1));
+          break;
+        } else {
+          if (h[T] += a, h[T] != pe) break;
+          h[T--] = 0, a = 1;
+        }
+        for (o = h.length; h[--o] === 0; ) h.pop();
+      }
+      return _ && (e.e > I.maxE ? (e.d = null, e.e = NaN) : e.e < I.minE && (e.e = 0, e.d = [0])), e;
+    }
+    function ye(e, t, r) {
+      if (!e.isFinite()) return bo(e);
+      var n, i = e.e, o = Y(e.d), s = o.length;
+      return t ? (r && (n = r - s) > 0 ? o = o.charAt(0) + "." + o.slice(1) + Oe(n) : s > 1 && (o = o.charAt(0) + "." + o.slice(1)), o = o + (e.e < 0 ? "e" : "e+") + e.e) : i < 0 ? (o = "0." + Oe(-i - 1) + o, r && (n = r - s) > 0 && (o += Oe(n))) : i >= s ? (o += Oe(i + 1 - s), r && (n = r - i - 1) > 0 && (o = o + "." + Oe(n))) : ((n = i + 1) < s && (o = o.slice(0, n) + "." + o.slice(n)), r && (n = r - s) > 0 && (i + 1 === s && (o += "."), o += Oe(n))), o;
+    }
+    function Rr(e, t) {
+      var r = e[0];
+      for (t *= D; r >= 10; r /= 10) t++;
+      return t;
+    }
+    function Tr(e, t, r) {
+      if (t > jl) throw _ = true, r && (e.precision = r), Error(mo);
+      return k(new e(Pr), t, 1, true);
+    }
+    function he(e, t, r) {
+      if (t > Dn) throw Error(mo);
+      return k(new e(vr), t, r, true);
+    }
+    function yo(e) {
+      var t = e.length - 1, r = t * D + 1;
+      if (t = e[t], t) {
+        for (; t % 10 == 0; t /= 10) r--;
+        for (t = e[0]; t >= 10; t /= 10) r++;
+      }
+      return r;
+    }
+    function Oe(e) {
+      for (var t = ""; e--; ) t += "0";
+      return t;
+    }
+    function wo(e, t, r, n) {
+      var i, o = new e(1), s = Math.ceil(n / D + 4);
+      for (_ = false; ; ) {
+        if (r % 2 && (o = o.times(t), uo(o.d, s) && (i = true)), r = ee(r / 2), r === 0) {
+          r = o.d.length - 1, i && o.d[r] === 0 && ++o.d[r];
+          break;
+        }
+        t = t.times(t), uo(t.d, s);
+      }
+      return _ = true, o;
+    }
+    function lo(e) {
+      return e.d[e.d.length - 1] & 1;
+    }
+    function Eo(e, t, r) {
+      for (var n, i, o = new e(t[0]), s = 0; ++s < t.length; ) {
+        if (i = new e(t[s]), !i.s) {
+          o = i;
+          break;
+        }
+        n = o.cmp(i), (n === r || n === 0 && o.s === r) && (o = i);
+      }
+      return o;
+    }
+    function Mn(e, t) {
+      var r, n, i, o, s, a, l, d = 0, g = 0, h = 0, T = e.constructor, I = T.rounding, S = T.precision;
+      if (!e.d || !e.d[0] || e.e > 17) return new T(e.d ? e.d[0] ? e.s < 0 ? 0 : 1 / 0 : 1 : e.s ? e.s < 0 ? 0 : e : NaN);
+      for (t == null ? (_ = false, l = S) : l = t, a = new T(0.03125); e.e > -2; ) e = e.times(a), h += 5;
+      for (n = Math.log(K(2, h)) / Math.LN10 * 2 + 5 | 0, l += n, r = o = s = new T(1), T.precision = l; ; ) {
+        if (o = k(o.times(e), l, 1), r = r.times(++g), a = s.plus(V(o, r, l, 1)), Y(a.d).slice(0, l) === Y(s.d).slice(0, l)) {
+          for (i = h; i--; ) s = k(s.times(s), l, 1);
+          if (t == null) if (d < 3 && Ot(s.d, l - n, I, d)) T.precision = l += 10, r = o = a = new T(1), g = 0, d++;
+          else return k(s, T.precision = S, I, _ = true);
+          else return T.precision = S, s;
+        }
+        s = a;
+      }
+    }
+    function ke(e, t) {
+      var r, n, i, o, s, a, l, d, g, h, T, I = 1, S = 10, C = e, M = C.d, F = C.constructor, B = F.rounding, O = F.precision;
+      if (C.s < 0 || !M || !M[0] || !C.e && M[0] == 1 && M.length == 1) return new F(M && !M[0] ? -1 / 0 : C.s != 1 ? NaN : M ? 0 : C);
+      if (t == null ? (_ = false, g = O) : g = t, F.precision = g += S, r = Y(M), n = r.charAt(0), Math.abs(o = C.e) < 15e14) {
+        for (; n < 7 && n != 1 || n == 1 && r.charAt(1) > 3; ) C = C.times(e), r = Y(C.d), n = r.charAt(0), I++;
+        o = C.e, n > 1 ? (C = new F("0." + r), o++) : C = new F(n + "." + r.slice(1));
+      } else return d = Tr(F, g + 2, O).times(o + ""), C = ke(new F(n + "." + r.slice(1)), g - S).plus(d), F.precision = O, t == null ? k(C, O, B, _ = true) : C;
+      for (h = C, l = s = C = V(C.minus(1), C.plus(1), g, 1), T = k(C.times(C), g, 1), i = 3; ; ) {
+        if (s = k(s.times(T), g, 1), d = l.plus(V(s, new F(i), g, 1)), Y(d.d).slice(0, g) === Y(l.d).slice(0, g)) if (l = l.times(2), o !== 0 && (l = l.plus(Tr(F, g + 2, O).times(o + ""))), l = V(l, new F(I), g, 1), t == null) if (Ot(l.d, g - S, B, a)) F.precision = g += S, d = s = C = V(h.minus(1), h.plus(1), g, 1), T = k(C.times(C), g, 1), i = a = 1;
+        else return k(l, F.precision = O, B, _ = true);
+        else return F.precision = O, l;
+        l = d, i += 2;
+      }
+    }
+    function bo(e) {
+      return String(e.s * e.s / 0);
+    }
+    function xr(e, t) {
+      var r, n, i;
+      for ((r = t.indexOf(".")) > -1 && (t = t.replace(".", "")), (n = t.search(/e/i)) > 0 ? (r < 0 && (r = n), r += +t.slice(n + 1), t = t.substring(0, n)) : r < 0 && (r = t.length), n = 0; t.charCodeAt(n) === 48; n++) ;
+      for (i = t.length; t.charCodeAt(i - 1) === 48; --i) ;
+      if (t = t.slice(n, i), t) {
+        if (i -= n, e.e = r = r - n - 1, e.d = [], n = (r + 1) % D, r < 0 && (n += D), n < i) {
+          for (n && e.d.push(+t.slice(0, n)), i -= D; n < i; ) e.d.push(+t.slice(n, n += D));
+          t = t.slice(n), n = D - t.length;
+        } else n -= i;
+        for (; n--; ) t += "0";
+        e.d.push(+t), _ && (e.e > e.constructor.maxE ? (e.d = null, e.e = NaN) : e.e < e.constructor.minE && (e.e = 0, e.d = [0]));
+      } else e.e = 0, e.d = [0];
+      return e;
+    }
+    function Jl(e, t) {
+      var r, n, i, o, s, a, l, d, g;
+      if (t.indexOf("_") > -1) {
+        if (t = t.replace(/(\d)_(?=\d)/g, "$1"), ho.test(t)) return xr(e, t);
+      } else if (t === "Infinity" || t === "NaN") return +t || (e.s = NaN), e.e = NaN, e.d = null, e;
+      if (ql.test(t)) r = 16, t = t.toLowerCase();
+      else if (Bl.test(t)) r = 2;
+      else if (Vl.test(t)) r = 8;
+      else throw Error(De + t);
+      for (o = t.search(/p/i), o > 0 ? (l = +t.slice(o + 1), t = t.substring(2, o)) : t = t.slice(2), o = t.indexOf("."), s = o >= 0, n = e.constructor, s && (t = t.replace(".", ""), a = t.length, o = a - o, i = wo(n, new n(r), o, o * 2)), d = br(t, r, pe), g = d.length - 1, o = g; d[o] === 0; --o) d.pop();
+      return o < 0 ? new n(e.s * 0) : (e.e = Rr(d, g), e.d = d, _ = false, s && (e = V(e, i, a * 4)), l && (e = e.times(Math.abs(l) < 54 ? K(2, l) : Te.pow(2, l))), _ = true, e);
+    }
+    function Ql(e, t) {
+      var r, n = t.d.length;
+      if (n < 3) return t.isZero() ? t : tt(e, 2, t, t);
+      r = 1.4 * Math.sqrt(n), r = r > 16 ? 16 : r | 0, t = t.times(1 / Cr(5, r)), t = tt(e, 2, t, t);
+      for (var i, o = new e(5), s = new e(16), a = new e(20); r--; ) i = t.times(t), t = t.times(o.plus(i.times(s.times(i).minus(a))));
+      return t;
+    }
+    function tt(e, t, r, n, i) {
+      var o, s, a, l, d = 1, g = e.precision, h = Math.ceil(g / D);
+      for (_ = false, l = r.times(r), a = new e(n); ; ) {
+        if (s = V(a.times(l), new e(t++ * t++), g, 1), a = i ? n.plus(s) : n.minus(s), n = V(s.times(l), new e(t++ * t++), g, 1), s = a.plus(n), s.d[h] !== void 0) {
+          for (o = h; s.d[o] === a.d[o] && o--; ) ;
+          if (o == -1) break;
+        }
+        o = a, a = n, n = s, s = o, d++;
+      }
+      return _ = true, s.d.length = h + 1, s;
+    }
+    function Cr(e, t) {
+      for (var r = e; --t; ) r *= e;
+      return r;
+    }
+    function xo(e, t) {
+      var r, n = t.s < 0, i = he(e, e.precision, 1), o = i.times(0.5);
+      if (t = t.abs(), t.lte(o)) return ve = n ? 4 : 1, t;
+      if (r = t.divToInt(i), r.isZero()) ve = n ? 3 : 2;
+      else {
+        if (t = t.minus(r.times(i)), t.lte(o)) return ve = lo(r) ? n ? 2 : 3 : n ? 4 : 1, t;
+        ve = lo(r) ? n ? 1 : 4 : n ? 3 : 2;
+      }
+      return t.minus(i).abs();
+    }
+    function _n(e, t, r, n) {
+      var i, o, s, a, l, d, g, h, T, I = e.constructor, S = r !== void 0;
+      if (S ? (oe(r, 1, Me), n === void 0 ? n = I.rounding : oe(n, 0, 8)) : (r = I.precision, n = I.rounding), !e.isFinite()) g = bo(e);
+      else {
+        for (g = ye(e), s = g.indexOf("."), S ? (i = 2, t == 16 ? r = r * 4 - 3 : t == 8 && (r = r * 3 - 2)) : i = t, s >= 0 && (g = g.replace(".", ""), T = new I(1), T.e = g.length - s, T.d = br(ye(T), 10, i), T.e = T.d.length), h = br(g, 10, i), o = l = h.length; h[--l] == 0; ) h.pop();
+        if (!h[0]) g = S ? "0p+0" : "0";
+        else {
+          if (s < 0 ? o-- : (e = new I(e), e.d = h, e.e = o, e = V(e, T, r, n, 0, i), h = e.d, o = e.e, d = po), s = h[r], a = i / 2, d = d || h[r + 1] !== void 0, d = n < 4 ? (s !== void 0 || d) && (n === 0 || n === (e.s < 0 ? 3 : 2)) : s > a || s === a && (n === 4 || d || n === 6 && h[r - 1] & 1 || n === (e.s < 0 ? 8 : 7)), h.length = r, d) for (; ++h[--r] > i - 1; ) h[r] = 0, r || (++o, h.unshift(1));
+          for (l = h.length; !h[l - 1]; --l) ;
+          for (s = 0, g = ""; s < l; s++) g += On.charAt(h[s]);
+          if (S) {
+            if (l > 1) if (t == 16 || t == 8) {
+              for (s = t == 16 ? 4 : 3, --l; l % s; l++) g += "0";
+              for (h = br(g, i, t), l = h.length; !h[l - 1]; --l) ;
+              for (s = 1, g = "1."; s < l; s++) g += On.charAt(h[s]);
+            } else g = g.charAt(0) + "." + g.slice(1);
+            g = g + (o < 0 ? "p" : "p+") + o;
+          } else if (o < 0) {
+            for (; ++o; ) g = "0" + g;
+            g = "0." + g;
+          } else if (++o > l) for (o -= l; o--; ) g += "0";
+          else o < l && (g = g.slice(0, o) + "." + g.slice(o));
+        }
+        g = (t == 16 ? "0x" : t == 2 ? "0b" : t == 8 ? "0o" : "") + g;
+      }
+      return e.s < 0 ? "-" + g : g;
+    }
+    function uo(e, t) {
+      if (e.length > t) return e.length = t, true;
+    }
+    function Kl(e) {
+      return new this(e).abs();
+    }
+    function Wl(e) {
+      return new this(e).acos();
+    }
+    function Hl(e) {
+      return new this(e).acosh();
+    }
+    function zl(e, t) {
+      return new this(e).plus(t);
+    }
+    function Yl(e) {
+      return new this(e).asin();
+    }
+    function Zl(e) {
+      return new this(e).asinh();
+    }
+    function Xl(e) {
+      return new this(e).atan();
+    }
+    function eu(e) {
+      return new this(e).atanh();
+    }
+    function tu(e, t) {
+      e = new this(e), t = new this(t);
+      var r, n = this.precision, i = this.rounding, o = n + 4;
+      return !e.s || !t.s ? r = new this(NaN) : !e.d && !t.d ? (r = he(this, o, 1).times(t.s > 0 ? 0.25 : 0.75), r.s = e.s) : !t.d || e.isZero() ? (r = t.s < 0 ? he(this, n, i) : new this(0), r.s = e.s) : !e.d || t.isZero() ? (r = he(this, o, 1).times(0.5), r.s = e.s) : t.s < 0 ? (this.precision = o, this.rounding = 1, r = this.atan(V(e, t, o, 1)), t = he(this, o, 1), this.precision = n, this.rounding = i, r = e.s < 0 ? r.minus(t) : r.plus(t)) : r = this.atan(V(e, t, o, 1)), r;
+    }
+    function ru(e) {
+      return new this(e).cbrt();
+    }
+    function nu(e) {
+      return k(e = new this(e), e.e + 1, 2);
+    }
+    function iu(e, t, r) {
+      return new this(e).clamp(t, r);
+    }
+    function ou(e) {
+      if (!e || typeof e != "object") throw Error(Ar + "Object expected");
+      var t, r, n, i = e.defaults === true, o = ["precision", 1, Me, "rounding", 0, 8, "toExpNeg", -et, 0, "toExpPos", 0, et, "maxE", 0, et, "minE", -et, 0, "modulo", 0, 9];
+      for (t = 0; t < o.length; t += 3) if (r = o[t], i && (this[r] = kn[r]), (n = e[r]) !== void 0) if (ee(n) === n && n >= o[t + 1] && n <= o[t + 2]) this[r] = n;
+      else throw Error(De + r + ": " + n);
+      if (r = "crypto", i && (this[r] = kn[r]), (n = e[r]) !== void 0) if (n === true || n === false || n === 0 || n === 1) if (n) if (typeof crypto < "u" && crypto && (crypto.getRandomValues || crypto.randomBytes)) this[r] = true;
+      else throw Error(fo);
+      else this[r] = false;
+      else throw Error(De + r + ": " + n);
+      return this;
+    }
+    function su(e) {
+      return new this(e).cos();
+    }
+    function au(e) {
+      return new this(e).cosh();
+    }
+    function Po(e) {
+      var t, r, n;
+      function i(o) {
+        var s, a, l, d = this;
+        if (!(d instanceof i)) return new i(o);
+        if (d.constructor = i, co(o)) {
+          d.s = o.s, _ ? !o.d || o.e > i.maxE ? (d.e = NaN, d.d = null) : o.e < i.minE ? (d.e = 0, d.d = [0]) : (d.e = o.e, d.d = o.d.slice()) : (d.e = o.e, d.d = o.d ? o.d.slice() : o.d);
+          return;
+        }
+        if (l = typeof o, l === "number") {
+          if (o === 0) {
+            d.s = 1 / o < 0 ? -1 : 1, d.e = 0, d.d = [0];
+            return;
+          }
+          if (o < 0 ? (o = -o, d.s = -1) : d.s = 1, o === ~~o && o < 1e7) {
+            for (s = 0, a = o; a >= 10; a /= 10) s++;
+            _ ? s > i.maxE ? (d.e = NaN, d.d = null) : s < i.minE ? (d.e = 0, d.d = [0]) : (d.e = s, d.d = [o]) : (d.e = s, d.d = [o]);
+            return;
+          }
+          if (o * 0 !== 0) {
+            o || (d.s = NaN), d.e = NaN, d.d = null;
+            return;
+          }
+          return xr(d, o.toString());
+        }
+        if (l === "string") return (a = o.charCodeAt(0)) === 45 ? (o = o.slice(1), d.s = -1) : (a === 43 && (o = o.slice(1)), d.s = 1), ho.test(o) ? xr(d, o) : Jl(d, o);
+        if (l === "bigint") return o < 0 ? (o = -o, d.s = -1) : d.s = 1, xr(d, o.toString());
+        throw Error(De + o);
+      }
+      if (i.prototype = R, i.ROUND_UP = 0, i.ROUND_DOWN = 1, i.ROUND_CEIL = 2, i.ROUND_FLOOR = 3, i.ROUND_HALF_UP = 4, i.ROUND_HALF_DOWN = 5, i.ROUND_HALF_EVEN = 6, i.ROUND_HALF_CEIL = 7, i.ROUND_HALF_FLOOR = 8, i.EUCLID = 9, i.config = i.set = ou, i.clone = Po, i.isDecimal = co, i.abs = Kl, i.acos = Wl, i.acosh = Hl, i.add = zl, i.asin = Yl, i.asinh = Zl, i.atan = Xl, i.atanh = eu, i.atan2 = tu, i.cbrt = ru, i.ceil = nu, i.clamp = iu, i.cos = su, i.cosh = au, i.div = lu, i.exp = uu, i.floor = cu, i.hypot = pu, i.ln = mu, i.log = fu, i.log10 = gu, i.log2 = du, i.max = hu, i.min = yu, i.mod = wu, i.mul = Eu, i.pow = bu, i.random = xu, i.round = Pu, i.sign = vu, i.sin = Tu, i.sinh = Au, i.sqrt = Ru, i.sub = Cu, i.sum = Su, i.tan = Iu, i.tanh = Ou, i.trunc = ku, e === void 0 && (e = {}), e && e.defaults !== true) for (n = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"], t = 0; t < n.length; ) e.hasOwnProperty(r = n[t++]) || (e[r] = this[r]);
+      return i.config(e), i;
+    }
+    function lu(e, t) {
+      return new this(e).div(t);
+    }
+    function uu(e) {
+      return new this(e).exp();
+    }
+    function cu(e) {
+      return k(e = new this(e), e.e + 1, 3);
+    }
+    function pu() {
+      var e, t, r = new this(0);
+      for (_ = false, e = 0; e < arguments.length; ) if (t = new this(arguments[e++]), t.d) r.d && (r = r.plus(t.times(t)));
+      else {
+        if (t.s) return _ = true, new this(1 / 0);
+        r = t;
+      }
+      return _ = true, r.sqrt();
+    }
+    function co(e) {
+      return e instanceof Te || e && e.toStringTag === go || false;
+    }
+    function mu(e) {
+      return new this(e).ln();
+    }
+    function fu(e, t) {
+      return new this(e).log(t);
+    }
+    function du(e) {
+      return new this(e).log(2);
+    }
+    function gu(e) {
+      return new this(e).log(10);
+    }
+    function hu() {
+      return Eo(this, arguments, -1);
+    }
+    function yu() {
+      return Eo(this, arguments, 1);
+    }
+    function wu(e, t) {
+      return new this(e).mod(t);
+    }
+    function Eu(e, t) {
+      return new this(e).mul(t);
+    }
+    function bu(e, t) {
+      return new this(e).pow(t);
+    }
+    function xu(e) {
+      var t, r, n, i, o = 0, s = new this(1), a = [];
+      if (e === void 0 ? e = this.precision : oe(e, 1, Me), n = Math.ceil(e / D), this.crypto) if (crypto.getRandomValues) for (t = crypto.getRandomValues(new Uint32Array(n)); o < n; ) i = t[o], i >= 429e7 ? t[o] = crypto.getRandomValues(new Uint32Array(1))[0] : a[o++] = i % 1e7;
+      else if (crypto.randomBytes) {
+        for (t = crypto.randomBytes(n *= 4); o < n; ) i = t[o] + (t[o + 1] << 8) + (t[o + 2] << 16) + ((t[o + 3] & 127) << 24), i >= 214e7 ? crypto.randomBytes(4).copy(t, o) : (a.push(i % 1e7), o += 4);
+        o = n / 4;
+      } else throw Error(fo);
+      else for (; o < n; ) a[o++] = Math.random() * 1e7 | 0;
+      for (n = a[--o], e %= D, n && e && (i = K(10, D - e), a[o] = (n / i | 0) * i); a[o] === 0; o--) a.pop();
+      if (o < 0) r = 0, a = [0];
+      else {
+        for (r = -1; a[0] === 0; r -= D) a.shift();
+        for (n = 1, i = a[0]; i >= 10; i /= 10) n++;
+        n < D && (r -= D - n);
+      }
+      return s.e = r, s.d = a, s;
+    }
+    function Pu(e) {
+      return k(e = new this(e), e.e + 1, this.rounding);
+    }
+    function vu(e) {
+      return e = new this(e), e.d ? e.d[0] ? e.s : 0 * e.s : e.s || NaN;
+    }
+    function Tu(e) {
+      return new this(e).sin();
+    }
+    function Au(e) {
+      return new this(e).sinh();
+    }
+    function Ru(e) {
+      return new this(e).sqrt();
+    }
+    function Cu(e, t) {
+      return new this(e).sub(t);
+    }
+    function Su() {
+      var e = 0, t = arguments, r = new this(t[e]);
+      for (_ = false; r.s && ++e < t.length; ) r = r.plus(t[e]);
+      return _ = true, k(r, this.precision, this.rounding);
+    }
+    function Iu(e) {
+      return new this(e).tan();
+    }
+    function Ou(e) {
+      return new this(e).tanh();
+    }
+    function ku(e) {
+      return k(e = new this(e), e.e + 1, 1);
+    }
+    R[/* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom")] = R.toString;
+    R[Symbol.toStringTag] = "Decimal";
+    var Te = R.constructor = Po(kn);
+    Pr = new Te(Pr);
+    vr = new Te(vr);
+    var Ae = Te;
+    function rt(e) {
+      return Te.isDecimal(e) ? true : e !== null && typeof e == "object" && typeof e.s == "number" && typeof e.e == "number" && typeof e.toFixed == "function" && Array.isArray(e.d);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Dt = {};
+    vt(Dt, { ModelAction: () => kt, datamodelEnumToSchemaEnum: () => Du });
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Du(e) {
+      return { name: e.name, values: e.values.map((t) => t.name) };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var kt = ((O) => (O.findUnique = "findUnique", O.findUniqueOrThrow = "findUniqueOrThrow", O.findFirst = "findFirst", O.findFirstOrThrow = "findFirstOrThrow", O.findMany = "findMany", O.create = "create", O.createMany = "createMany", O.createManyAndReturn = "createManyAndReturn", O.update = "update", O.updateMany = "updateMany", O.updateManyAndReturn = "updateManyAndReturn", O.upsert = "upsert", O.delete = "delete", O.deleteMany = "deleteMany", O.groupBy = "groupBy", O.count = "count", O.aggregate = "aggregate", O.findRaw = "findRaw", O.aggregateRaw = "aggregateRaw", O))(kt || {});
+    var Mu = Qe(ro());
+    var _u = { red: Ye, gray: $i, dim: mr, bold: pr, underline: Li, highlightSource: (e) => e.highlight() };
+    var Nu = { red: (e) => e, gray: (e) => e, dim: (e) => e, bold: (e) => e, underline: (e) => e, highlightSource: (e) => e };
+    function Fu({ message: e, originalMethod: t, isPanic: r, callArguments: n }) {
+      return { functionName: `prisma.${t}()`, message: e, isPanic: r ?? false, callArguments: n };
+    }
+    function Lu({ functionName: e, location: t, message: r, isPanic: n, contextLines: i, callArguments: o }, s) {
+      let a = [""], l = t ? " in" : ":";
+      if (n ? (a.push(s.red(`Oops, an unknown error occurred! This is ${s.bold("on us")}, you did nothing wrong.`)), a.push(s.red(`It occurred in the ${s.bold(`\`${e}\``)} invocation${l}`))) : a.push(s.red(`Invalid ${s.bold(`\`${e}\``)} invocation${l}`)), t && a.push(s.underline(Uu(t))), i) {
+        a.push("");
+        let d = [i.toString()];
+        o && (d.push(o), d.push(s.dim(")"))), a.push(d.join("")), o && a.push("");
+      } else a.push(""), o && a.push(o), a.push("");
+      return a.push(r), a.join(`
+`);
+    }
+    function Uu(e) {
+      let t = [e.fileName];
+      return e.lineNumber && t.push(String(e.lineNumber)), e.columnNumber && t.push(String(e.columnNumber)), t.join(":");
+    }
+    function Sr(e) {
+      let t = e.showColors ? _u : Nu, r;
+      return typeof $getTemplateParameters < "u" ? r = $getTemplateParameters(e, t) : r = Fu(e), Lu(r, t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ko = Qe(Nn());
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ro(e, t, r) {
+      let n = Co(e), i = Bu(n), o = Vu(i);
+      o ? Ir(o, t, r) : t.addErrorMessage(() => "Unknown error");
+    }
+    function Co(e) {
+      return e.errors.flatMap((t) => t.kind === "Union" ? Co(t) : [t]);
+    }
+    function Bu(e) {
+      let t = /* @__PURE__ */ new Map(), r = [];
+      for (let n of e) {
+        if (n.kind !== "InvalidArgumentType") {
+          r.push(n);
+          continue;
+        }
+        let i = `${n.selectionPath.join(".")}:${n.argumentPath.join(".")}`, o = t.get(i);
+        o ? t.set(i, { ...n, argument: { ...n.argument, typeNames: qu(o.argument.typeNames, n.argument.typeNames) } }) : t.set(i, n);
+      }
+      return r.push(...t.values()), r;
+    }
+    function qu(e, t) {
+      return [...new Set(e.concat(t))];
+    }
+    function Vu(e) {
+      return Sn(e, (t, r) => {
+        let n = To(t), i = To(r);
+        return n !== i ? n - i : Ao(t) - Ao(r);
+      });
+    }
+    function To(e) {
+      let t = 0;
+      return Array.isArray(e.selectionPath) && (t += e.selectionPath.length), Array.isArray(e.argumentPath) && (t += e.argumentPath.length), t;
+    }
+    function Ao(e) {
+      switch (e.kind) {
+        case "InvalidArgumentValue":
+        case "ValueTooLarge":
+          return 20;
+        case "InvalidArgumentType":
+          return 10;
+        case "RequiredArgumentMissing":
+          return -10;
+        default:
+          return 0;
+      }
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ue = class {
+      constructor(t, r) {
+        this.name = t;
+        this.value = r;
+      }
+      isRequired = false;
+      makeRequired() {
+        return this.isRequired = true, this;
+      }
+      write(t) {
+        let { colors: { green: r } } = t.context;
+        t.addMarginSymbol(r(this.isRequired ? "+" : "?")), t.write(r(this.name)), this.isRequired || t.write(r("?")), t.write(r(": ")), typeof this.value == "string" ? t.write(r(this.value)) : t.write(this.value);
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    Io();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var nt = class {
+      constructor(t = 0, r) {
+        this.context = r;
+        this.currentIndent = t;
+      }
+      lines = [];
+      currentLine = "";
+      currentIndent = 0;
+      marginSymbol;
+      afterNextNewLineCallback;
+      write(t) {
+        return typeof t == "string" ? this.currentLine += t : t.write(this), this;
+      }
+      writeJoined(t, r, n = (i, o) => o.write(i)) {
+        let i = r.length - 1;
+        for (let o = 0; o < r.length; o++) n(r[o], this), o !== i && this.write(t);
+        return this;
+      }
+      writeLine(t) {
+        return this.write(t).newLine();
+      }
+      newLine() {
+        this.lines.push(this.indentedCurrentLine()), this.currentLine = "", this.marginSymbol = void 0;
+        let t = this.afterNextNewLineCallback;
+        return this.afterNextNewLineCallback = void 0, t?.(), this;
+      }
+      withIndent(t) {
+        return this.indent(), t(this), this.unindent(), this;
+      }
+      afterNextNewline(t) {
+        return this.afterNextNewLineCallback = t, this;
+      }
+      indent() {
+        return this.currentIndent++, this;
+      }
+      unindent() {
+        return this.currentIndent > 0 && this.currentIndent--, this;
+      }
+      addMarginSymbol(t) {
+        return this.marginSymbol = t, this;
+      }
+      toString() {
+        return this.lines.concat(this.indentedCurrentLine()).join(`
+`);
+      }
+      getCurrentLineLength() {
+        return this.currentLine.length;
+      }
+      indentedCurrentLine() {
+        let t = this.currentLine.padStart(this.currentLine.length + 2 * this.currentIndent);
+        return this.marginSymbol ? this.marginSymbol + t.slice(1) : t;
+      }
+    };
+    So();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Or = class {
+      constructor(t) {
+        this.value = t;
+      }
+      write(t) {
+        t.write(this.value);
+      }
+      markAsError() {
+        this.value.markAsError();
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var kr = (e) => e;
+    var Dr = { bold: kr, red: kr, green: kr, dim: kr, enabled: false };
+    var Oo = { bold: pr, red: Ye, green: Ui, dim: mr, enabled: true };
+    var it = { write(e) {
+      e.writeLine(",");
+    } };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var we = class {
+      constructor(t) {
+        this.contents = t;
+      }
+      isUnderlined = false;
+      color = (t) => t;
+      underline() {
+        return this.isUnderlined = true, this;
+      }
+      setColor(t) {
+        return this.color = t, this;
+      }
+      write(t) {
+        let r = t.getCurrentLineLength();
+        t.write(this.color(this.contents)), this.isUnderlined && t.afterNextNewline(() => {
+          t.write(" ".repeat(r)).writeLine(this.color("~".repeat(this.contents.length)));
+        });
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var _e = class {
+      hasError = false;
+      markAsError() {
+        return this.hasError = true, this;
+      }
+    };
+    var ot = class extends _e {
+      items = [];
+      addItem(t) {
+        return this.items.push(new Or(t)), this;
+      }
+      getField(t) {
+        return this.items[t];
+      }
+      getPrintWidth() {
+        return this.items.length === 0 ? 2 : Math.max(...this.items.map((r) => r.value.getPrintWidth())) + 2;
+      }
+      write(t) {
+        if (this.items.length === 0) {
+          this.writeEmpty(t);
+          return;
+        }
+        this.writeWithItems(t);
+      }
+      writeEmpty(t) {
+        let r = new we("[]");
+        this.hasError && r.setColor(t.context.colors.red).underline(), t.write(r);
+      }
+      writeWithItems(t) {
+        let { colors: r } = t.context;
+        t.writeLine("[").withIndent(() => t.writeJoined(it, this.items).newLine()).write("]"), this.hasError && t.afterNextNewline(() => {
+          t.writeLine(r.red("~".repeat(this.getPrintWidth())));
+        });
+      }
+      asObject() {
+      }
+    };
+    var st = class e extends _e {
+      fields = {};
+      suggestions = [];
+      addField(t) {
+        this.fields[t.name] = t;
+      }
+      addSuggestion(t) {
+        this.suggestions.push(t);
+      }
+      getField(t) {
+        return this.fields[t];
+      }
+      getDeepField(t) {
+        let [r, ...n] = t, i = this.getField(r);
+        if (!i) return;
+        let o = i;
+        for (let s of n) {
+          let a;
+          if (o.value instanceof e ? a = o.value.getField(s) : o.value instanceof ot && (a = o.value.getField(Number(s))), !a) return;
+          o = a;
+        }
+        return o;
+      }
+      getDeepFieldValue(t) {
+        return t.length === 0 ? this : this.getDeepField(t)?.value;
+      }
+      hasField(t) {
+        return !!this.getField(t);
+      }
+      removeAllFields() {
+        this.fields = {};
+      }
+      removeField(t) {
+        delete this.fields[t];
+      }
+      getFields() {
+        return this.fields;
+      }
+      isEmpty() {
+        return Object.keys(this.fields).length === 0;
+      }
+      getFieldValue(t) {
+        return this.getField(t)?.value;
+      }
+      getDeepSubSelectionValue(t) {
+        let r = this;
+        for (let n of t) {
+          if (!(r instanceof e)) return;
+          let i = r.getSubSelectionValue(n);
+          if (!i) return;
+          r = i;
+        }
+        return r;
+      }
+      getDeepSelectionParent(t) {
+        let r = this.getSelectionParent();
+        if (!r) return;
+        let n = r;
+        for (let i of t) {
+          let o = n.value.getFieldValue(i);
+          if (!o || !(o instanceof e)) return;
+          let s = o.getSelectionParent();
+          if (!s) return;
+          n = s;
+        }
+        return n;
+      }
+      getSelectionParent() {
+        let t = this.getField("select")?.value.asObject();
+        if (t) return { kind: "select", value: t };
+        let r = this.getField("include")?.value.asObject();
+        if (r) return { kind: "include", value: r };
+      }
+      getSubSelectionValue(t) {
+        return this.getSelectionParent()?.value.fields[t].value;
+      }
+      getPrintWidth() {
+        let t = Object.values(this.fields);
+        return t.length == 0 ? 2 : Math.max(...t.map((n) => n.getPrintWidth())) + 2;
+      }
+      write(t) {
+        let r = Object.values(this.fields);
+        if (r.length === 0 && this.suggestions.length === 0) {
+          this.writeEmpty(t);
+          return;
+        }
+        this.writeWithContents(t, r);
+      }
+      asObject() {
+        return this;
+      }
+      writeEmpty(t) {
+        let r = new we("{}");
+        this.hasError && r.setColor(t.context.colors.red).underline(), t.write(r);
+      }
+      writeWithContents(t, r) {
+        t.writeLine("{").withIndent(() => {
+          t.writeJoined(it, [...r, ...this.suggestions]).newLine();
+        }), t.write("}"), this.hasError && t.afterNextNewline(() => {
+          t.writeLine(t.context.colors.red("~".repeat(this.getPrintWidth())));
+        });
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var H = class extends _e {
+      constructor(r) {
+        super();
+        this.text = r;
+      }
+      getPrintWidth() {
+        return this.text.length;
+      }
+      write(r) {
+        let n = new we(this.text);
+        this.hasError && n.underline().setColor(r.context.colors.red), r.write(n);
+      }
+      asObject() {
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Mt = class {
+      fields = [];
+      addField(t, r) {
+        return this.fields.push({ write(n) {
+          let { green: i, dim: o } = n.context.colors;
+          n.write(i(o(`${t}: ${r}`))).addMarginSymbol(i(o("+")));
+        } }), this;
+      }
+      write(t) {
+        let { colors: { green: r } } = t.context;
+        t.writeLine(r("{")).withIndent(() => {
+          t.writeJoined(it, this.fields).newLine();
+        }).write(r("}")).addMarginSymbol(r("+"));
+      }
+    };
+    function Ir(e, t, r) {
+      switch (e.kind) {
+        case "MutuallyExclusiveFields":
+          $u(e, t);
+          break;
+        case "IncludeOnScalar":
+          ju(e, t);
+          break;
+        case "EmptySelection":
+          Gu(e, t, r);
+          break;
+        case "UnknownSelectionField":
+          Wu(e, t);
+          break;
+        case "InvalidSelectionValue":
+          Hu(e, t);
+          break;
+        case "UnknownArgument":
+          zu(e, t);
+          break;
+        case "UnknownInputField":
+          Yu(e, t);
+          break;
+        case "RequiredArgumentMissing":
+          Zu(e, t);
+          break;
+        case "InvalidArgumentType":
+          Xu(e, t);
+          break;
+        case "InvalidArgumentValue":
+          ec(e, t);
+          break;
+        case "ValueTooLarge":
+          tc(e, t);
+          break;
+        case "SomeFieldsMissing":
+          rc(e, t);
+          break;
+        case "TooManyFieldsGiven":
+          nc(e, t);
+          break;
+        case "Union":
+          Ro(e, t, r);
+          break;
+        default:
+          throw new Error("not implemented: " + e.kind);
+      }
+    }
+    function $u(e, t) {
+      let r = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      r && (r.getField(e.firstField)?.markAsError(), r.getField(e.secondField)?.markAsError()), t.addErrorMessage((n) => `Please ${n.bold("either")} use ${n.green(`\`${e.firstField}\``)} or ${n.green(`\`${e.secondField}\``)}, but ${n.red("not both")} at the same time.`);
+    }
+    function ju(e, t) {
+      let [r, n] = at(e.selectionPath), i = e.outputType, o = t.arguments.getDeepSelectionParent(r)?.value;
+      if (o && (o.getField(n)?.markAsError(), i)) for (let s of i.fields) s.isRelation && o.addSuggestion(new ue(s.name, "true"));
+      t.addErrorMessage((s) => {
+        let a = `Invalid scalar field ${s.red(`\`${n}\``)} for ${s.bold("include")} statement`;
+        return i ? a += ` on model ${s.bold(i.name)}. ${_t(s)}` : a += ".", a += `
+Note that ${s.bold("include")} statements only accept relation fields.`, a;
+      });
+    }
+    function Gu(e, t, r) {
+      let n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      if (n) {
+        let i = n.getField("omit")?.value.asObject();
+        if (i) {
+          Ju(e, t, i);
+          return;
+        }
+        if (n.hasField("select")) {
+          Qu(e, t);
+          return;
+        }
+      }
+      if (r?.[Ie(e.outputType.name)]) {
+        Ku(e, t);
+        return;
+      }
+      t.addErrorMessage(() => `Unknown field at "${e.selectionPath.join(".")} selection"`);
+    }
+    function Ju(e, t, r) {
+      r.removeAllFields();
+      for (let n of e.outputType.fields) r.addSuggestion(new ue(n.name, "false"));
+      t.addErrorMessage((n) => `The ${n.red("omit")} statement includes every field of the model ${n.bold(e.outputType.name)}. At least one field must be included in the result`);
+    }
+    function Qu(e, t) {
+      let r = e.outputType, n = t.arguments.getDeepSelectionParent(e.selectionPath)?.value, i = n?.isEmpty() ?? false;
+      n && (n.removeAllFields(), _o(n, r)), t.addErrorMessage((o) => i ? `The ${o.red("`select`")} statement for type ${o.bold(r.name)} must not be empty. ${_t(o)}` : `The ${o.red("`select`")} statement for type ${o.bold(r.name)} needs ${o.bold("at least one truthy value")}.`);
+    }
+    function Ku(e, t) {
+      let r = new Mt();
+      for (let i of e.outputType.fields) i.isRelation || r.addField(i.name, "false");
+      let n = new ue("omit", r).makeRequired();
+      if (e.selectionPath.length === 0) t.arguments.addSuggestion(n);
+      else {
+        let [i, o] = at(e.selectionPath), a = t.arguments.getDeepSelectionParent(i)?.value.asObject()?.getField(o);
+        if (a) {
+          let l = a?.value.asObject() ?? new st();
+          l.addSuggestion(n), a.value = l;
+        }
+      }
+      t.addErrorMessage((i) => `The global ${i.red("omit")} configuration excludes every field of the model ${i.bold(e.outputType.name)}. At least one field must be included in the result`);
+    }
+    function Wu(e, t) {
+      let r = No(e.selectionPath, t);
+      if (r.parentKind !== "unknown") {
+        r.field.markAsError();
+        let n = r.parent;
+        switch (r.parentKind) {
+          case "select":
+            _o(n, e.outputType);
+            break;
+          case "include":
+            ic(n, e.outputType);
+            break;
+          case "omit":
+            oc(n, e.outputType);
+            break;
+        }
+      }
+      t.addErrorMessage((n) => {
+        let i = [`Unknown field ${n.red(`\`${r.fieldName}\``)}`];
+        return r.parentKind !== "unknown" && i.push(`for ${n.bold(r.parentKind)} statement`), i.push(`on model ${n.bold(`\`${e.outputType.name}\``)}.`), i.push(_t(n)), i.join(" ");
+      });
+    }
+    function Hu(e, t) {
+      let r = No(e.selectionPath, t);
+      r.parentKind !== "unknown" && r.field.value.markAsError(), t.addErrorMessage((n) => `Invalid value for selection field \`${n.red(r.fieldName)}\`: ${e.underlyingError}`);
+    }
+    function zu(e, t) {
+      let r = e.argumentPath[0], n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      n && (n.getField(r)?.markAsError(), sc(n, e.arguments)), t.addErrorMessage((i) => Do(i, r, e.arguments.map((o) => o.name)));
+    }
+    function Yu(e, t) {
+      let [r, n] = at(e.argumentPath), i = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      if (i) {
+        i.getDeepField(e.argumentPath)?.markAsError();
+        let o = i.getDeepFieldValue(r)?.asObject();
+        o && Fo(o, e.inputType);
+      }
+      t.addErrorMessage((o) => Do(o, n, e.inputType.fields.map((s) => s.name)));
+    }
+    function Do(e, t, r) {
+      let n = [`Unknown argument \`${e.red(t)}\`.`], i = lc(t, r);
+      return i && n.push(`Did you mean \`${e.green(i)}\`?`), r.length > 0 && n.push(_t(e)), n.join(" ");
+    }
+    function Zu(e, t) {
+      let r;
+      t.addErrorMessage((l) => r?.value instanceof H && r.value.text === "null" ? `Argument \`${l.green(o)}\` must not be ${l.red("null")}.` : `Argument \`${l.green(o)}\` is missing.`);
+      let n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      if (!n) return;
+      let [i, o] = at(e.argumentPath), s = new Mt(), a = n.getDeepFieldValue(i)?.asObject();
+      if (a) {
+        if (r = a.getField(o), r && a.removeField(o), e.inputTypes.length === 1 && e.inputTypes[0].kind === "object") {
+          for (let l of e.inputTypes[0].fields) s.addField(l.name, l.typeNames.join(" | "));
+          a.addSuggestion(new ue(o, s).makeRequired());
+        } else {
+          let l = e.inputTypes.map(Mo).join(" | ");
+          a.addSuggestion(new ue(o, l).makeRequired());
+        }
+        if (e.dependentArgumentPath) {
+          n.getDeepField(e.dependentArgumentPath)?.markAsError();
+          let [, l] = at(e.dependentArgumentPath);
+          t.addErrorMessage((d) => `Argument \`${d.green(o)}\` is required because argument \`${d.green(l)}\` was provided.`);
+        }
+      }
+    }
+    function Mo(e) {
+      return e.kind === "list" ? `${Mo(e.elementType)}[]` : e.name;
+    }
+    function Xu(e, t) {
+      let r = e.argument.name, n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      n && n.getDeepFieldValue(e.argumentPath)?.markAsError(), t.addErrorMessage((i) => {
+        let o = Mr("or", e.argument.typeNames.map((s) => i.green(s)));
+        return `Argument \`${i.bold(r)}\`: Invalid value provided. Expected ${o}, provided ${i.red(e.inferredType)}.`;
+      });
+    }
+    function ec(e, t) {
+      let r = e.argument.name, n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      n && n.getDeepFieldValue(e.argumentPath)?.markAsError(), t.addErrorMessage((i) => {
+        let o = [`Invalid value for argument \`${i.bold(r)}\``];
+        if (e.underlyingError && o.push(`: ${e.underlyingError}`), o.push("."), e.argument.typeNames.length > 0) {
+          let s = Mr("or", e.argument.typeNames.map((a) => i.green(a)));
+          o.push(` Expected ${s}.`);
+        }
+        return o.join("");
+      });
+    }
+    function tc(e, t) {
+      let r = e.argument.name, n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject(), i;
+      if (n) {
+        let s = n.getDeepField(e.argumentPath)?.value;
+        s?.markAsError(), s instanceof H && (i = s.text);
+      }
+      t.addErrorMessage((o) => {
+        let s = ["Unable to fit value"];
+        return i && s.push(o.red(i)), s.push(`into a 64-bit signed integer for field \`${o.bold(r)}\``), s.join(" ");
+      });
+    }
+    function rc(e, t) {
+      let r = e.argumentPath[e.argumentPath.length - 1], n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject();
+      if (n) {
+        let i = n.getDeepFieldValue(e.argumentPath)?.asObject();
+        i && Fo(i, e.inputType);
+      }
+      t.addErrorMessage((i) => {
+        let o = [`Argument \`${i.bold(r)}\` of type ${i.bold(e.inputType.name)} needs`];
+        return e.constraints.minFieldCount === 1 ? e.constraints.requiredFields ? o.push(`${i.green("at least one of")} ${Mr("or", e.constraints.requiredFields.map((s) => `\`${i.bold(s)}\``))} arguments.`) : o.push(`${i.green("at least one")} argument.`) : o.push(`${i.green(`at least ${e.constraints.minFieldCount}`)} arguments.`), o.push(_t(i)), o.join(" ");
+      });
+    }
+    function nc(e, t) {
+      let r = e.argumentPath[e.argumentPath.length - 1], n = t.arguments.getDeepSubSelectionValue(e.selectionPath)?.asObject(), i = [];
+      if (n) {
+        let o = n.getDeepFieldValue(e.argumentPath)?.asObject();
+        o && (o.markAsError(), i = Object.keys(o.getFields()));
+      }
+      t.addErrorMessage((o) => {
+        let s = [`Argument \`${o.bold(r)}\` of type ${o.bold(e.inputType.name)} needs`];
+        return e.constraints.minFieldCount === 1 && e.constraints.maxFieldCount == 1 ? s.push(`${o.green("exactly one")} argument,`) : e.constraints.maxFieldCount == 1 ? s.push(`${o.green("at most one")} argument,`) : s.push(`${o.green(`at most ${e.constraints.maxFieldCount}`)} arguments,`), s.push(`but you provided ${Mr("and", i.map((a) => o.red(a)))}. Please choose`), e.constraints.maxFieldCount === 1 ? s.push("one.") : s.push(`${e.constraints.maxFieldCount}.`), s.join(" ");
+      });
+    }
+    function _o(e, t) {
+      for (let r of t.fields) e.hasField(r.name) || e.addSuggestion(new ue(r.name, "true"));
+    }
+    function ic(e, t) {
+      for (let r of t.fields) r.isRelation && !e.hasField(r.name) && e.addSuggestion(new ue(r.name, "true"));
+    }
+    function oc(e, t) {
+      for (let r of t.fields) !e.hasField(r.name) && !r.isRelation && e.addSuggestion(new ue(r.name, "true"));
+    }
+    function sc(e, t) {
+      for (let r of t) e.hasField(r.name) || e.addSuggestion(new ue(r.name, r.typeNames.join(" | ")));
+    }
+    function No(e, t) {
+      let [r, n] = at(e), i = t.arguments.getDeepSubSelectionValue(r)?.asObject();
+      if (!i) return { parentKind: "unknown", fieldName: n };
+      let o = i.getFieldValue("select")?.asObject(), s = i.getFieldValue("include")?.asObject(), a = i.getFieldValue("omit")?.asObject(), l = o?.getField(n);
+      return o && l ? { parentKind: "select", parent: o, field: l, fieldName: n } : (l = s?.getField(n), s && l ? { parentKind: "include", field: l, parent: s, fieldName: n } : (l = a?.getField(n), a && l ? { parentKind: "omit", field: l, parent: a, fieldName: n } : { parentKind: "unknown", fieldName: n }));
+    }
+    function Fo(e, t) {
+      if (t.kind === "object") for (let r of t.fields) e.hasField(r.name) || e.addSuggestion(new ue(r.name, r.typeNames.join(" | ")));
+    }
+    function at(e) {
+      let t = [...e], r = t.pop();
+      if (!r) throw new Error("unexpected empty path");
+      return [t, r];
+    }
+    function _t({ green: e, enabled: t }) {
+      return "Available options are " + (t ? `listed in ${e("green")}` : "marked with ?") + ".";
+    }
+    function Mr(e, t) {
+      if (t.length === 1) return t[0];
+      let r = [...t], n = r.pop();
+      return `${r.join(", ")} ${e} ${n}`;
+    }
+    var ac = 3;
+    function lc(e, t) {
+      let r = 1 / 0, n;
+      for (let i of t) {
+        let o = (0, ko.default)(e, i);
+        o > ac || o < r && (r = o, n = i);
+      }
+      return n;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Nt = class {
+      modelName;
+      name;
+      typeName;
+      isList;
+      isEnum;
+      constructor(t, r, n, i, o) {
+        this.modelName = t, this.name = r, this.typeName = n, this.isList = i, this.isEnum = o;
+      }
+      _toGraphQLInputType() {
+        let t = this.isList ? "List" : "", r = this.isEnum ? "Enum" : "";
+        return `${t}${r}${this.typeName}FieldRefInput<${this.modelName}>`;
+      }
+    };
+    function lt(e) {
+      return e instanceof Nt;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var _r = /* @__PURE__ */ Symbol();
+    var Ln = /* @__PURE__ */ new WeakMap();
+    var Re = class {
+      constructor(t) {
+        t === _r ? Ln.set(this, `Prisma.${this._getName()}`) : Ln.set(this, `new Prisma.${this._getNamespace()}.${this._getName()}()`);
+      }
+      _getName() {
+        return this.constructor.name;
+      }
+      toString() {
+        return Ln.get(this);
+      }
+    };
+    var Ft = class extends Re {
+      _getNamespace() {
+        return "NullTypes";
+      }
+    };
+    var Lt = class extends Ft {
+      #e;
+    };
+    Un(Lt, "DbNull");
+    var Ut = class extends Ft {
+      #e;
+    };
+    Un(Ut, "JsonNull");
+    var Bt = class extends Ft {
+      #e;
+    };
+    Un(Bt, "AnyNull");
+    var Nr = { classes: { DbNull: Lt, JsonNull: Ut, AnyNull: Bt }, instances: { DbNull: new Lt(_r), JsonNull: new Ut(_r), AnyNull: new Bt(_r) } };
+    function Un(e, t) {
+      Object.defineProperty(e, "name", { value: t, configurable: true });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Lo = ": ";
+    var Fr = class {
+      constructor(t, r) {
+        this.name = t;
+        this.value = r;
+      }
+      hasError = false;
+      markAsError() {
+        this.hasError = true;
+      }
+      getPrintWidth() {
+        return this.name.length + this.value.getPrintWidth() + Lo.length;
+      }
+      write(t) {
+        let r = new we(this.name);
+        this.hasError && r.underline().setColor(t.context.colors.red), t.write(r).write(Lo).write(this.value);
+      }
+    };
+    var Bn = class {
+      arguments;
+      errorMessages = [];
+      constructor(t) {
+        this.arguments = t;
+      }
+      write(t) {
+        t.write(this.arguments);
+      }
+      addErrorMessage(t) {
+        this.errorMessages.push(t);
+      }
+      renderAllMessages(t) {
+        return this.errorMessages.map((r) => r(t)).join(`
+`);
+      }
+    };
+    function ut(e) {
+      return new Bn(Uo(e));
+    }
+    function Uo(e) {
+      let t = new st();
+      for (let [r, n] of Object.entries(e)) {
+        let i = new Fr(r, Bo(n));
+        t.addField(i);
+      }
+      return t;
+    }
+    function Bo(e) {
+      if (typeof e == "string") return new H(JSON.stringify(e));
+      if (typeof e == "number" || typeof e == "boolean") return new H(String(e));
+      if (typeof e == "bigint") return new H(`${e}n`);
+      if (e === null) return new H("null");
+      if (e === void 0) return new H("undefined");
+      if (rt(e)) return new H(`new Prisma.Decimal("${e.toFixed()}")`);
+      if (e instanceof Uint8Array) return w.Buffer.isBuffer(e) ? new H(`Buffer.alloc(${e.byteLength})`) : new H(`new Uint8Array(${e.byteLength})`);
+      if (e instanceof Date) {
+        let t = Er(e) ? e.toISOString() : "Invalid Date";
+        return new H(`new Date("${t}")`);
+      }
+      return e instanceof Re ? new H(`Prisma.${e._getName()}`) : lt(e) ? new H(`prisma.${Ie(e.modelName)}.$fields.${e.name}`) : Array.isArray(e) ? uc(e) : typeof e == "object" ? Uo(e) : new H(Object.prototype.toString.call(e));
+    }
+    function uc(e) {
+      let t = new ot();
+      for (let r of e) t.addItem(Bo(r));
+      return t;
+    }
+    function Lr(e, t) {
+      let r = t === "pretty" ? Oo : Dr, n = e.renderAllMessages(r), i = new nt(0, { colors: r }).write(e).toString();
+      return { message: n, args: i };
+    }
+    function Ur({ args: e, errors: t, errorFormat: r, callsite: n, originalMethod: i, clientVersion: o, globalOmit: s }) {
+      let a = ut(e);
+      for (let h of t) Ir(h, a, s);
+      let { message: l, args: d } = Lr(a, r), g = Sr({ message: l, callsite: n, originalMethod: i, showColors: r === "pretty", callArguments: d });
+      throw new X(g, { clientVersion: o });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ee(e) {
+      return e.replace(/^./, (t) => t.toLowerCase());
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Vo(e, t, r) {
+      let n = Ee(r);
+      return !t.result || !(t.result.$allModels || t.result[n]) ? e : cc({ ...e, ...qo(t.name, e, t.result.$allModels), ...qo(t.name, e, t.result[n]) });
+    }
+    function cc(e) {
+      let t = new ge(), r = (n, i) => t.getOrCreate(n, () => i.has(n) ? [n] : (i.add(n), e[n] ? e[n].needs.flatMap((o) => r(o, i)) : [n]));
+      return wr(e, (n) => ({ ...n, needs: r(n.name, /* @__PURE__ */ new Set()) }));
+    }
+    function qo(e, t, r) {
+      return r ? wr(r, ({ needs: n, compute: i }, o) => ({ name: o, needs: n ? Object.keys(n).filter((s) => n[s]) : [], compute: pc(t, o, i) })) : {};
+    }
+    function pc(e, t, r) {
+      let n = e?.[t]?.compute;
+      return n ? (i) => r({ ...i, [t]: n(i) }) : r;
+    }
+    function $o(e, t) {
+      if (!t) return e;
+      let r = { ...e };
+      for (let n of Object.values(t)) if (e[n.name]) for (let i of n.needs) r[i] = true;
+      return r;
+    }
+    function jo(e, t) {
+      if (!t) return e;
+      let r = { ...e };
+      for (let n of Object.values(t)) if (!e[n.name]) for (let i of n.needs) delete r[i];
+      return r;
+    }
+    var Br = class {
+      constructor(t, r) {
+        this.extension = t;
+        this.previous = r;
+      }
+      computedFieldsCache = new ge();
+      modelExtensionsCache = new ge();
+      queryCallbacksCache = new ge();
+      clientExtensions = It(() => this.extension.client ? { ...this.previous?.getAllClientExtensions(), ...this.extension.client } : this.previous?.getAllClientExtensions());
+      batchCallbacks = It(() => {
+        let t = this.previous?.getAllBatchQueryCallbacks() ?? [], r = this.extension.query?.$__internalBatch;
+        return r ? t.concat(r) : t;
+      });
+      getAllComputedFields(t) {
+        return this.computedFieldsCache.getOrCreate(t, () => Vo(this.previous?.getAllComputedFields(t), this.extension, t));
+      }
+      getAllClientExtensions() {
+        return this.clientExtensions.get();
+      }
+      getAllModelExtensions(t) {
+        return this.modelExtensionsCache.getOrCreate(t, () => {
+          let r = Ee(t);
+          return !this.extension.model || !(this.extension.model[r] || this.extension.model.$allModels) ? this.previous?.getAllModelExtensions(t) : { ...this.previous?.getAllModelExtensions(t), ...this.extension.model.$allModels, ...this.extension.model[r] };
+        });
+      }
+      getAllQueryCallbacks(t, r) {
+        return this.queryCallbacksCache.getOrCreate(`${t}:${r}`, () => {
+          let n = this.previous?.getAllQueryCallbacks(t, r) ?? [], i = [], o = this.extension.query;
+          return !o || !(o[t] || o.$allModels || o[r] || o.$allOperations) ? n : (o[t] !== void 0 && (o[t][r] !== void 0 && i.push(o[t][r]), o[t].$allOperations !== void 0 && i.push(o[t].$allOperations)), t !== "$none" && o.$allModels !== void 0 && (o.$allModels[r] !== void 0 && i.push(o.$allModels[r]), o.$allModels.$allOperations !== void 0 && i.push(o.$allModels.$allOperations)), o[r] !== void 0 && i.push(o[r]), o.$allOperations !== void 0 && i.push(o.$allOperations), n.concat(i));
+        });
+      }
+      getAllBatchQueryCallbacks() {
+        return this.batchCallbacks.get();
+      }
+    };
+    var ct = class e {
+      constructor(t) {
+        this.head = t;
+      }
+      static empty() {
+        return new e();
+      }
+      static single(t) {
+        return new e(new Br(t));
+      }
+      isEmpty() {
+        return this.head === void 0;
+      }
+      append(t) {
+        return new e(new Br(t, this.head));
+      }
+      getAllComputedFields(t) {
+        return this.head?.getAllComputedFields(t);
+      }
+      getAllClientExtensions() {
+        return this.head?.getAllClientExtensions();
+      }
+      getAllModelExtensions(t) {
+        return this.head?.getAllModelExtensions(t);
+      }
+      getAllQueryCallbacks(t, r) {
+        return this.head?.getAllQueryCallbacks(t, r) ?? [];
+      }
+      getAllBatchQueryCallbacks() {
+        return this.head?.getAllBatchQueryCallbacks() ?? [];
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    var qr = class {
+      constructor(t) {
+        this.name = t;
+      }
+    };
+    function Go(e) {
+      return e instanceof qr;
+    }
+    function Jo(e) {
+      return new qr(e);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Qo = /* @__PURE__ */ Symbol();
+    var qt = class {
+      constructor(t) {
+        if (t !== Qo) throw new Error("Skip instance can not be constructed directly");
+      }
+      ifUndefined(t) {
+        return t === void 0 ? Vr : t;
+      }
+    };
+    var Vr = new qt(Qo);
+    function be(e) {
+      return e instanceof qt;
+    }
+    var mc = { findUnique: "findUnique", findUniqueOrThrow: "findUniqueOrThrow", findFirst: "findFirst", findFirstOrThrow: "findFirstOrThrow", findMany: "findMany", count: "aggregate", create: "createOne", createMany: "createMany", createManyAndReturn: "createManyAndReturn", update: "updateOne", updateMany: "updateMany", updateManyAndReturn: "updateManyAndReturn", upsert: "upsertOne", delete: "deleteOne", deleteMany: "deleteMany", executeRaw: "executeRaw", queryRaw: "queryRaw", aggregate: "aggregate", groupBy: "groupBy", runCommandRaw: "runCommandRaw", findRaw: "findRaw", aggregateRaw: "aggregateRaw" };
+    var Ko = "explicitly `undefined` values are not allowed";
+    function $r({ modelName: e, action: t, args: r, runtimeDataModel: n, extensions: i = ct.empty(), callsite: o, clientMethod: s, errorFormat: a, clientVersion: l, previewFeatures: d, globalOmit: g }) {
+      let h = new qn({ runtimeDataModel: n, modelName: e, action: t, rootArgs: r, callsite: o, extensions: i, selectionPath: [], argumentPath: [], originalMethod: s, errorFormat: a, clientVersion: l, previewFeatures: d, globalOmit: g });
+      return { modelName: e, action: mc[t], query: Vt(r, h) };
+    }
+    function Vt({ select: e, include: t, ...r } = {}, n) {
+      let i = r.omit;
+      return delete r.omit, { arguments: Ho(r, n), selection: fc(e, t, i, n) };
+    }
+    function fc(e, t, r, n) {
+      return e ? (t ? n.throwValidationError({ kind: "MutuallyExclusiveFields", firstField: "include", secondField: "select", selectionPath: n.getSelectionPath() }) : r && n.throwValidationError({ kind: "MutuallyExclusiveFields", firstField: "omit", secondField: "select", selectionPath: n.getSelectionPath() }), yc(e, n)) : dc(n, t, r);
+    }
+    function dc(e, t, r) {
+      let n = {};
+      return e.modelOrType && !e.isRawAction() && (n.$composites = true, n.$scalars = true), t && gc(n, t, e), hc(n, r, e), n;
+    }
+    function gc(e, t, r) {
+      for (let [n, i] of Object.entries(t)) {
+        if (be(i)) continue;
+        let o = r.nestSelection(n);
+        if (Vn(i, o), i === false || i === void 0) {
+          e[n] = false;
+          continue;
+        }
+        let s = r.findField(n);
+        if (s && s.kind !== "object" && r.throwValidationError({ kind: "IncludeOnScalar", selectionPath: r.getSelectionPath().concat(n), outputType: r.getOutputTypeDescription() }), s) {
+          e[n] = Vt(i === true ? {} : i, o);
+          continue;
+        }
+        if (i === true) {
+          e[n] = true;
+          continue;
+        }
+        e[n] = Vt(i, o);
+      }
+    }
+    function hc(e, t, r) {
+      let n = r.getComputedFields(), i = { ...r.getGlobalOmit(), ...t }, o = jo(i, n);
+      for (let [s, a] of Object.entries(o)) {
+        if (be(a)) continue;
+        Vn(a, r.nestSelection(s));
+        let l = r.findField(s);
+        n?.[s] && !l || (e[s] = !a);
+      }
+    }
+    function yc(e, t) {
+      let r = {}, n = t.getComputedFields(), i = $o(e, n);
+      for (let [o, s] of Object.entries(i)) {
+        if (be(s)) continue;
+        let a = t.nestSelection(o);
+        Vn(s, a);
+        let l = t.findField(o);
+        if (!(n?.[o] && !l)) {
+          if (s === false || s === void 0 || be(s)) {
+            r[o] = false;
+            continue;
+          }
+          if (s === true) {
+            l?.kind === "object" ? r[o] = Vt({}, a) : r[o] = true;
+            continue;
+          }
+          r[o] = Vt(s, a);
+        }
+      }
+      return r;
+    }
+    function Wo(e, t) {
+      if (e === null) return null;
+      if (typeof e == "string" || typeof e == "number" || typeof e == "boolean") return e;
+      if (typeof e == "bigint") return { $type: "BigInt", value: String(e) };
+      if (Xe(e)) {
+        if (Er(e)) return { $type: "DateTime", value: e.toISOString() };
+        t.throwValidationError({ kind: "InvalidArgumentValue", selectionPath: t.getSelectionPath(), argumentPath: t.getArgumentPath(), argument: { name: t.getArgumentName(), typeNames: ["Date"] }, underlyingError: "Provided Date object is invalid" });
+      }
+      if (Go(e)) return { $type: "Param", value: e.name };
+      if (lt(e)) return { $type: "FieldRef", value: { _ref: e.name, _container: e.modelName } };
+      if (Array.isArray(e)) return wc(e, t);
+      if (ArrayBuffer.isView(e)) {
+        let { buffer: r, byteOffset: n, byteLength: i } = e;
+        return { $type: "Bytes", value: w.Buffer.from(r, n, i).toString("base64") };
+      }
+      if (Ec(e)) return e.values;
+      if (rt(e)) return { $type: "Decimal", value: e.toFixed() };
+      if (e instanceof Re) {
+        if (e !== Nr.instances[e._getName()]) throw new Error("Invalid ObjectEnumValue");
+        return { $type: "Enum", value: e._getName() };
+      }
+      if (bc(e)) return e.toJSON();
+      if (typeof e == "object") return Ho(e, t);
+      t.throwValidationError({ kind: "InvalidArgumentValue", selectionPath: t.getSelectionPath(), argumentPath: t.getArgumentPath(), argument: { name: t.getArgumentName(), typeNames: [] }, underlyingError: `We could not serialize ${Object.prototype.toString.call(e)} value. Serialize the object to JSON or implement a ".toJSON()" method on it` });
+    }
+    function Ho(e, t) {
+      if (e.$type) return { $type: "Raw", value: e };
+      let r = {};
+      for (let n in e) {
+        let i = e[n], o = t.nestArgument(n);
+        be(i) || (i !== void 0 ? r[n] = Wo(i, o) : t.isPreviewFeatureOn("strictUndefinedChecks") && t.throwValidationError({ kind: "InvalidArgumentValue", argumentPath: o.getArgumentPath(), selectionPath: t.getSelectionPath(), argument: { name: t.getArgumentName(), typeNames: [] }, underlyingError: Ko }));
+      }
+      return r;
+    }
+    function wc(e, t) {
+      let r = [];
+      for (let n = 0; n < e.length; n++) {
+        let i = t.nestArgument(String(n)), o = e[n];
+        if (o === void 0 || be(o)) {
+          let s = o === void 0 ? "undefined" : "Prisma.skip";
+          t.throwValidationError({ kind: "InvalidArgumentValue", selectionPath: i.getSelectionPath(), argumentPath: i.getArgumentPath(), argument: { name: `${t.getArgumentName()}[${n}]`, typeNames: [] }, underlyingError: `Can not use \`${s}\` value within array. Use \`null\` or filter out \`${s}\` values` });
+        }
+        r.push(Wo(o, i));
+      }
+      return r;
+    }
+    function Ec(e) {
+      return typeof e == "object" && e !== null && e.__prismaRawParameters__ === true;
+    }
+    function bc(e) {
+      return typeof e == "object" && e !== null && typeof e.toJSON == "function";
+    }
+    function Vn(e, t) {
+      e === void 0 && t.isPreviewFeatureOn("strictUndefinedChecks") && t.throwValidationError({ kind: "InvalidSelectionValue", selectionPath: t.getSelectionPath(), underlyingError: Ko });
+    }
+    var qn = class e {
+      constructor(t) {
+        this.params = t;
+        this.params.modelName && (this.modelOrType = this.params.runtimeDataModel.models[this.params.modelName] ?? this.params.runtimeDataModel.types[this.params.modelName]);
+      }
+      modelOrType;
+      throwValidationError(t) {
+        Ur({ errors: [t], originalMethod: this.params.originalMethod, args: this.params.rootArgs ?? {}, callsite: this.params.callsite, errorFormat: this.params.errorFormat, clientVersion: this.params.clientVersion, globalOmit: this.params.globalOmit });
+      }
+      getSelectionPath() {
+        return this.params.selectionPath;
+      }
+      getArgumentPath() {
+        return this.params.argumentPath;
+      }
+      getArgumentName() {
+        return this.params.argumentPath[this.params.argumentPath.length - 1];
+      }
+      getOutputTypeDescription() {
+        if (!(!this.params.modelName || !this.modelOrType)) return { name: this.params.modelName, fields: this.modelOrType.fields.map((t) => ({ name: t.name, typeName: "boolean", isRelation: t.kind === "object" })) };
+      }
+      isRawAction() {
+        return ["executeRaw", "queryRaw", "runCommandRaw", "findRaw", "aggregateRaw"].includes(this.params.action);
+      }
+      isPreviewFeatureOn(t) {
+        return this.params.previewFeatures.includes(t);
+      }
+      getComputedFields() {
+        if (this.params.modelName) return this.params.extensions.getAllComputedFields(this.params.modelName);
+      }
+      findField(t) {
+        return this.modelOrType?.fields.find((r) => r.name === t);
+      }
+      nestSelection(t) {
+        let r = this.findField(t), n = r?.kind === "object" ? r.type : void 0;
+        return new e({ ...this.params, modelName: n, selectionPath: this.params.selectionPath.concat(t) });
+      }
+      getGlobalOmit() {
+        return this.params.modelName && this.shouldApplyGlobalOmit() ? this.params.globalOmit?.[Ie(this.params.modelName)] ?? {} : {};
+      }
+      shouldApplyGlobalOmit() {
+        switch (this.params.action) {
+          case "findFirst":
+          case "findFirstOrThrow":
+          case "findUniqueOrThrow":
+          case "findMany":
+          case "upsert":
+          case "findUnique":
+          case "createManyAndReturn":
+          case "create":
+          case "update":
+          case "updateManyAndReturn":
+          case "delete":
+            return true;
+          case "executeRaw":
+          case "aggregateRaw":
+          case "runCommandRaw":
+          case "findRaw":
+          case "createMany":
+          case "deleteMany":
+          case "groupBy":
+          case "updateMany":
+          case "count":
+          case "aggregate":
+          case "queryRaw":
+            return false;
+          default:
+            Ue(this.params.action, "Unknown action");
+        }
+      }
+      nestArgument(t) {
+        return new e({ ...this.params, argumentPath: this.params.argumentPath.concat(t) });
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function zo(e) {
+      if (!e._hasPreviewFlag("metrics")) throw new X("`metrics` preview feature must be enabled in order to access metrics API", { clientVersion: e._clientVersion });
+    }
+    var pt = class {
+      _client;
+      constructor(t) {
+        this._client = t;
+      }
+      prometheus(t) {
+        return zo(this._client), this._client._engine.metrics({ format: "prometheus", ...t });
+      }
+      json(t) {
+        return zo(this._client), this._client._engine.metrics({ format: "json", ...t });
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Yo(e, t) {
+      let r = It(() => xc(t));
+      Object.defineProperty(e, "dmmf", { get: () => r.get() });
+    }
+    function xc(e) {
+      return { datamodel: { models: $n(e.models), enums: $n(e.enums), types: $n(e.types) } };
+    }
+    function $n(e) {
+      return Object.entries(e).map(([t, r]) => ({ name: t, ...r }));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var jn = /* @__PURE__ */ new WeakMap();
+    var jr = "$$PrismaTypedSql";
+    var $t = class {
+      constructor(t, r) {
+        jn.set(this, { sql: t, values: r }), Object.defineProperty(this, jr, { value: jr });
+      }
+      get sql() {
+        return jn.get(this).sql;
+      }
+      get values() {
+        return jn.get(this).values;
+      }
+    };
+    function Zo(e) {
+      return (...t) => new $t(e, t);
+    }
+    function Gr(e) {
+      return e != null && e[jr] === jr;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ha = Qe(Pn());
+    f();
+    u();
+    c();
+    p();
+    m();
+    Xo();
+    Ki();
+    Zi();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var se = class e {
+      constructor(t, r) {
+        if (t.length - 1 !== r.length) throw t.length === 0 ? new TypeError("Expected at least 1 string") : new TypeError(`Expected ${t.length} strings to have ${t.length - 1} values`);
+        let n = r.reduce((s, a) => s + (a instanceof e ? a.values.length : 1), 0);
+        this.values = new Array(n), this.strings = new Array(n + 1), this.strings[0] = t[0];
+        let i = 0, o = 0;
+        for (; i < r.length; ) {
+          let s = r[i++], a = t[i];
+          if (s instanceof e) {
+            this.strings[o] += s.strings[0];
+            let l = 0;
+            for (; l < s.values.length; ) this.values[o++] = s.values[l++], this.strings[o] = s.strings[l];
+            this.strings[o] += a;
+          } else this.values[o++] = s, this.strings[o] = a;
+        }
+      }
+      get sql() {
+        let t = this.strings.length, r = 1, n = this.strings[0];
+        for (; r < t; ) n += `?${this.strings[r++]}`;
+        return n;
+      }
+      get statement() {
+        let t = this.strings.length, r = 1, n = this.strings[0];
+        for (; r < t; ) n += `:${r}${this.strings[r++]}`;
+        return n;
+      }
+      get text() {
+        let t = this.strings.length, r = 1, n = this.strings[0];
+        for (; r < t; ) n += `$${r}${this.strings[r++]}`;
+        return n;
+      }
+      inspect() {
+        return { sql: this.sql, statement: this.statement, text: this.text, values: this.values };
+      }
+    };
+    function es(e, t = ",", r = "", n = "") {
+      if (e.length === 0) throw new TypeError("Expected `join([])` to be called with an array of multiple elements, but got an empty array");
+      return new se([r, ...Array(e.length - 1).fill(t), n], e);
+    }
+    function Gn(e) {
+      return new se([e], []);
+    }
+    var ts = Gn("");
+    function Jn(e, ...t) {
+      return new se(e, t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function jt(e) {
+      return { getKeys() {
+        return Object.keys(e);
+      }, getPropertyValue(t) {
+        return e[t];
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function te(e, t) {
+      return { getKeys() {
+        return [e];
+      }, getPropertyValue() {
+        return t();
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Be(e) {
+      let t = new ge();
+      return { getKeys() {
+        return e.getKeys();
+      }, getPropertyValue(r) {
+        return t.getOrCreate(r, () => e.getPropertyValue(r));
+      }, getPropertyDescriptor(r) {
+        return e.getPropertyDescriptor?.(r);
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Qr = { enumerable: true, configurable: true, writable: true };
+    function Kr(e) {
+      let t = new Set(e);
+      return { getPrototypeOf: () => Object.prototype, getOwnPropertyDescriptor: () => Qr, has: (r, n) => t.has(n), set: (r, n, i) => t.add(n) && Reflect.set(r, n, i), ownKeys: () => [...t] };
+    }
+    var rs = /* @__PURE__ */ Symbol.for("nodejs.util.inspect.custom");
+    function me(e, t) {
+      let r = Pc(t), n = /* @__PURE__ */ new Set(), i = new Proxy(e, { get(o, s) {
+        if (n.has(s)) return o[s];
+        let a = r.get(s);
+        return a ? a.getPropertyValue(s) : o[s];
+      }, has(o, s) {
+        if (n.has(s)) return true;
+        let a = r.get(s);
+        return a ? a.has?.(s) ?? true : Reflect.has(o, s);
+      }, ownKeys(o) {
+        let s = ns(Reflect.ownKeys(o), r), a = ns(Array.from(r.keys()), r);
+        return [.../* @__PURE__ */ new Set([...s, ...a, ...n])];
+      }, set(o, s, a) {
+        return r.get(s)?.getPropertyDescriptor?.(s)?.writable === false ? false : (n.add(s), Reflect.set(o, s, a));
+      }, getOwnPropertyDescriptor(o, s) {
+        let a = Reflect.getOwnPropertyDescriptor(o, s);
+        if (a && !a.configurable) return a;
+        let l = r.get(s);
+        return l ? l.getPropertyDescriptor ? { ...Qr, ...l?.getPropertyDescriptor(s) } : Qr : a;
+      }, defineProperty(o, s, a) {
+        return n.add(s), Reflect.defineProperty(o, s, a);
+      }, getPrototypeOf: () => Object.prototype });
+      return i[rs] = function() {
+        let o = { ...this };
+        return delete o[rs], o;
+      }, i;
+    }
+    function Pc(e) {
+      let t = /* @__PURE__ */ new Map();
+      for (let r of e) {
+        let n = r.getKeys();
+        for (let i of n) t.set(i, r);
+      }
+      return t;
+    }
+    function ns(e, t) {
+      return e.filter((r) => t.get(r)?.has?.(r) ?? true);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function mt(e) {
+      return { getKeys() {
+        return e;
+      }, has() {
+        return false;
+      }, getPropertyValue() {
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Wr(e, t) {
+      return { batch: e, transaction: t?.kind === "batch" ? { isolationLevel: t.options.isolationLevel } : void 0 };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function is(e) {
+      if (e === void 0) return "";
+      let t = ut(e);
+      return new nt(0, { colors: Dr }).write(t).toString();
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var vc = "P2037";
+    function Hr({ error: e, user_facing_error: t }, r, n) {
+      return t.error_code ? new ne(Tc(t, n), { code: t.error_code, clientVersion: r, meta: t.meta, batchRequestIdx: t.batch_request_idx }) : new ie(e, { clientVersion: r, batchRequestIdx: t.batch_request_idx });
+    }
+    function Tc(e, t) {
+      let r = e.message;
+      return (t === "postgresql" || t === "postgres" || t === "mysql") && e.error_code === vc && (r += `
+Prisma Accelerate has built-in connection pooling to prevent such errors: https://pris.ly/client/error-accelerate`), r;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Qn = class {
+      getLocation() {
+        return null;
+      }
+    };
+    function Ne(e) {
+      return typeof $EnabledCallSite == "function" && e !== "minimal" ? new $EnabledCallSite() : new Qn();
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var os = { _avg: true, _count: true, _sum: true, _min: true, _max: true };
+    function ft(e = {}) {
+      let t = Rc(e);
+      return Object.entries(t).reduce((n, [i, o]) => (os[i] !== void 0 ? n.select[i] = { select: o } : n[i] = o, n), { select: {} });
+    }
+    function Rc(e = {}) {
+      return typeof e._count == "boolean" ? { ...e, _count: { _all: e._count } } : e;
+    }
+    function zr(e = {}) {
+      return (t) => (typeof e._count == "boolean" && (t._count = t._count._all), t);
+    }
+    function ss(e, t) {
+      let r = zr(e);
+      return t({ action: "aggregate", unpacker: r, argsMapper: ft })(e);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Cc(e = {}) {
+      let { select: t, ...r } = e;
+      return typeof t == "object" ? ft({ ...r, _count: t }) : ft({ ...r, _count: { _all: true } });
+    }
+    function Sc(e = {}) {
+      return typeof e.select == "object" ? (t) => zr(e)(t)._count : (t) => zr(e)(t)._count._all;
+    }
+    function as(e, t) {
+      return t({ action: "count", unpacker: Sc(e), argsMapper: Cc })(e);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ic(e = {}) {
+      let t = ft(e);
+      if (Array.isArray(t.by)) for (let r of t.by) typeof r == "string" && (t.select[r] = true);
+      else typeof t.by == "string" && (t.select[t.by] = true);
+      return t;
+    }
+    function Oc(e = {}) {
+      return (t) => (typeof e?._count == "boolean" && t.forEach((r) => {
+        r._count = r._count._all;
+      }), t);
+    }
+    function ls(e, t) {
+      return t({ action: "groupBy", unpacker: Oc(e), argsMapper: Ic })(e);
+    }
+    function us(e, t, r) {
+      if (t === "aggregate") return (n) => ss(n, r);
+      if (t === "count") return (n) => as(n, r);
+      if (t === "groupBy") return (n) => ls(n, r);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function cs(e, t) {
+      let r = t.fields.filter((i) => !i.relationName), n = so(r, "name");
+      return new Proxy({}, { get(i, o) {
+        if (o in i || typeof o == "symbol") return i[o];
+        let s = n[o];
+        if (s) return new Nt(e, o, s.type, s.isList, s.kind === "enum");
+      }, ...Kr(Object.keys(n)) });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ps = (e) => Array.isArray(e) ? e : e.split(".");
+    var Kn = (e, t) => ps(t).reduce((r, n) => r && r[n], e);
+    var ms = (e, t, r) => ps(t).reduceRight((n, i, o, s) => Object.assign({}, Kn(e, s.slice(0, o)), { [i]: n }), r);
+    function kc(e, t) {
+      return e === void 0 || t === void 0 ? [] : [...t, "select", e];
+    }
+    function Dc(e, t, r) {
+      return t === void 0 ? e ?? {} : ms(t, r, e || true);
+    }
+    function Wn(e, t, r, n, i, o) {
+      let a = e._runtimeDataModel.models[t].fields.reduce((l, d) => ({ ...l, [d.name]: d }), {});
+      return (l) => {
+        let d = Ne(e._errorFormat), g = kc(n, i), h = Dc(l, o, g), T = r({ dataPath: g, callsite: d })(h), I = Mc(e, t);
+        return new Proxy(T, { get(S, C) {
+          if (!I.includes(C)) return S[C];
+          let F = [a[C].type, r, C], B = [g, h];
+          return Wn(e, ...F, ...B);
+        }, ...Kr([...I, ...Object.getOwnPropertyNames(T)]) });
+      };
+    }
+    function Mc(e, t) {
+      return e._runtimeDataModel.models[t].fields.filter((r) => r.kind === "object").map((r) => r.name);
+    }
+    var _c = ["findUnique", "findUniqueOrThrow", "findFirst", "findFirstOrThrow", "create", "update", "upsert", "delete"];
+    var Nc = ["aggregate", "count", "groupBy"];
+    function Hn(e, t) {
+      let r = e._extensions.getAllModelExtensions(t) ?? {}, n = [Fc(e, t), Uc(e, t), jt(r), te("name", () => t), te("$name", () => t), te("$parent", () => e._appliedParent)];
+      return me({}, n);
+    }
+    function Fc(e, t) {
+      let r = Ee(t), n = Object.keys(kt).concat("count");
+      return { getKeys() {
+        return n;
+      }, getPropertyValue(i) {
+        let o = i, s = (a) => (l) => {
+          let d = Ne(e._errorFormat);
+          return e._createPrismaPromise((g) => {
+            let h = { args: l, dataPath: [], action: o, model: t, clientMethod: `${r}.${i}`, jsModelName: r, transaction: g, callsite: d };
+            return e._request({ ...h, ...a });
+          }, { action: o, args: l, model: t });
+        };
+        return _c.includes(o) ? Wn(e, t, s) : Lc(i) ? us(e, i, s) : s({});
+      } };
+    }
+    function Lc(e) {
+      return Nc.includes(e);
+    }
+    function Uc(e, t) {
+      return Be(te("fields", () => {
+        let r = e._runtimeDataModel.models[t];
+        return cs(t, r);
+      }));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function fs(e) {
+      return e.replace(/^./, (t) => t.toUpperCase());
+    }
+    var zn = /* @__PURE__ */ Symbol();
+    function Gt(e) {
+      let t = [Bc(e), qc(e), te(zn, () => e), te("$parent", () => e._appliedParent)], r = e._extensions.getAllClientExtensions();
+      return r && t.push(jt(r)), me(e, t);
+    }
+    function Bc(e) {
+      let t = Object.getPrototypeOf(e._originalClient), r = [...new Set(Object.getOwnPropertyNames(t))];
+      return { getKeys() {
+        return r;
+      }, getPropertyValue(n) {
+        return e[n];
+      } };
+    }
+    function qc(e) {
+      let t = Object.keys(e._runtimeDataModel.models), r = t.map(Ee), n = [...new Set(t.concat(r))];
+      return Be({ getKeys() {
+        return n;
+      }, getPropertyValue(i) {
+        let o = fs(i);
+        if (e._runtimeDataModel.models[o] !== void 0) return Hn(e, o);
+        if (e._runtimeDataModel.models[i] !== void 0) return Hn(e, i);
+      }, getPropertyDescriptor(i) {
+        if (!r.includes(i)) return { enumerable: false };
+      } });
+    }
+    function ds(e) {
+      return e[zn] ? e[zn] : e;
+    }
+    function gs(e) {
+      if (typeof e == "function") return e(this);
+      if (e.client?.__AccelerateEngine) {
+        let r = e.client.__AccelerateEngine;
+        this._originalClient._engine = new r(this._originalClient._accelerateEngineConfig);
+      }
+      let t = Object.create(this._originalClient, { _extensions: { value: this._extensions.append(e) }, _appliedParent: { value: this, configurable: true }, $on: { value: void 0 } });
+      return Gt(t);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function hs({ result: e, modelName: t, select: r, omit: n, extensions: i }) {
+      let o = i.getAllComputedFields(t);
+      if (!o) return e;
+      let s = [], a = [];
+      for (let l of Object.values(o)) {
+        if (n) {
+          if (n[l.name]) continue;
+          let d = l.needs.filter((g) => n[g]);
+          d.length > 0 && a.push(mt(d));
+        } else if (r) {
+          if (!r[l.name]) continue;
+          let d = l.needs.filter((g) => !r[g]);
+          d.length > 0 && a.push(mt(d));
+        }
+        Vc(e, l.needs) && s.push($c(l, me(e, s)));
+      }
+      return s.length > 0 || a.length > 0 ? me(e, [...s, ...a]) : e;
+    }
+    function Vc(e, t) {
+      return t.every((r) => Cn(e, r));
+    }
+    function $c(e, t) {
+      return Be(te(e.name, () => e.compute(t)));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Yr({ visitor: e, result: t, args: r, runtimeDataModel: n, modelName: i }) {
+      if (Array.isArray(t)) {
+        for (let s = 0; s < t.length; s++) t[s] = Yr({ result: t[s], args: r, modelName: i, runtimeDataModel: n, visitor: e });
+        return t;
+      }
+      let o = e(t, i, r) ?? t;
+      return r.include && ys({ includeOrSelect: r.include, result: o, parentModelName: i, runtimeDataModel: n, visitor: e }), r.select && ys({ includeOrSelect: r.select, result: o, parentModelName: i, runtimeDataModel: n, visitor: e }), o;
+    }
+    function ys({ includeOrSelect: e, result: t, parentModelName: r, runtimeDataModel: n, visitor: i }) {
+      for (let [o, s] of Object.entries(e)) {
+        if (!s || t[o] == null || be(s)) continue;
+        let l = n.models[r].fields.find((g) => g.name === o);
+        if (!l || l.kind !== "object" || !l.relationName) continue;
+        let d = typeof s == "object" ? s : {};
+        t[o] = Yr({ visitor: i, result: t[o], args: d, modelName: l.type, runtimeDataModel: n });
+      }
+    }
+    function ws({ result: e, modelName: t, args: r, extensions: n, runtimeDataModel: i, globalOmit: o }) {
+      return n.isEmpty() || e == null || typeof e != "object" || !i.models[t] ? e : Yr({ result: e, args: r ?? {}, modelName: t, runtimeDataModel: i, visitor: (a, l, d) => {
+        let g = Ee(l);
+        return hs({ result: a, modelName: g, select: d.select, omit: d.select ? void 0 : { ...o?.[g], ...d.omit }, extensions: n });
+      } });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var jc = ["$connect", "$disconnect", "$on", "$transaction", "$extends"];
+    var Es = jc;
+    function bs(e) {
+      if (e instanceof se) return Gc(e);
+      if (Gr(e)) return Jc(e);
+      if (Array.isArray(e)) {
+        let r = [e[0]];
+        for (let n = 1; n < e.length; n++) r[n] = Jt(e[n]);
+        return r;
+      }
+      let t = {};
+      for (let r in e) t[r] = Jt(e[r]);
+      return t;
+    }
+    function Gc(e) {
+      return new se(e.strings, e.values);
+    }
+    function Jc(e) {
+      return new $t(e.sql, e.values);
+    }
+    function Jt(e) {
+      if (typeof e != "object" || e == null || e instanceof Re || lt(e)) return e;
+      if (rt(e)) return new Ae(e.toFixed());
+      if (Xe(e)) return /* @__PURE__ */ new Date(+e);
+      if (ArrayBuffer.isView(e)) return e.slice(0);
+      if (Array.isArray(e)) {
+        let t = e.length, r;
+        for (r = Array(t); t--; ) r[t] = Jt(e[t]);
+        return r;
+      }
+      if (typeof e == "object") {
+        let t = {};
+        for (let r in e) r === "__proto__" ? Object.defineProperty(t, r, { value: Jt(e[r]), configurable: true, enumerable: true, writable: true }) : t[r] = Jt(e[r]);
+        return t;
+      }
+      Ue(e, "Unknown value");
+    }
+    function Ps(e, t, r, n = 0) {
+      return e._createPrismaPromise((i) => {
+        let o = t.customDataProxyFetch;
+        return "transaction" in t && i !== void 0 && (t.transaction?.kind === "batch" && t.transaction.lock.then(), t.transaction = i), n === r.length ? e._executeRequest(t) : r[n]({ model: t.model, operation: t.model ? t.action : t.clientMethod, args: bs(t.args ?? {}), __internalParams: t, query: (s, a = t) => {
+          let l = a.customDataProxyFetch;
+          return a.customDataProxyFetch = Rs(o, l), a.args = s, Ps(e, a, r, n + 1);
+        } });
+      });
+    }
+    function vs(e, t) {
+      let { jsModelName: r, action: n, clientMethod: i } = t, o = r ? n : i;
+      if (e._extensions.isEmpty()) return e._executeRequest(t);
+      let s = e._extensions.getAllQueryCallbacks(r ?? "$none", o);
+      return Ps(e, t, s);
+    }
+    function Ts(e) {
+      return (t) => {
+        let r = { requests: t }, n = t[0].extensions.getAllBatchQueryCallbacks();
+        return n.length ? As(r, n, 0, e) : e(r);
+      };
+    }
+    function As(e, t, r, n) {
+      if (r === t.length) return n(e);
+      let i = e.customDataProxyFetch, o = e.requests[0].transaction;
+      return t[r]({ args: { queries: e.requests.map((s) => ({ model: s.modelName, operation: s.action, args: s.args })), transaction: o ? { isolationLevel: o.kind === "batch" ? o.isolationLevel : void 0 } : void 0 }, __internalParams: e, query(s, a = e) {
+        let l = a.customDataProxyFetch;
+        return a.customDataProxyFetch = Rs(i, l), As(a, t, r + 1, n);
+      } });
+    }
+    var xs = (e) => e;
+    function Rs(e = xs, t = xs) {
+      return (r) => e(t(r));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Cs = z("prisma:client");
+    var Ss = { Vercel: "vercel", "Netlify CI": "netlify" };
+    function Is({ postinstall: e, ciName: t, clientVersion: r, generator: n }) {
+      if (Cs("checkPlatformCaching:postinstall", e), Cs("checkPlatformCaching:ciName", t), e === true && !(n?.output && typeof (n.output.fromEnvVar ?? n.output.value) == "string") && t && t in Ss) {
+        let i = `Prisma has detected that this project was built on ${t}, which caches dependencies. This leads to an outdated Prisma Client because Prisma's auto-generation isn't triggered. To fix this, make sure to run the \`prisma generate\` command during the build process.
+
+Learn how: https://pris.ly/d/${Ss[t]}-build`;
+        throw console.error(i), new Q(i, r);
+      }
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Os(e, t) {
+      return e ? e.datasources ? e.datasources : e.datasourceUrl ? { [t[0]]: { url: e.datasourceUrl } } : {} : {};
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ks(e, t) {
+      throw new Error(t);
+    }
+    function Qc(e) {
+      return e !== null && typeof e == "object" && typeof e.$type == "string";
+    }
+    function Kc(e, t) {
+      let r = {};
+      for (let n of Object.keys(e)) r[n] = t(e[n], n);
+      return r;
+    }
+    function dt(e) {
+      return e === null ? e : Array.isArray(e) ? e.map(dt) : typeof e == "object" ? Qc(e) ? Wc(e) : e.constructor !== null && e.constructor.name !== "Object" ? e : Kc(e, dt) : e;
+    }
+    function Wc({ $type: e, value: t }) {
+      switch (e) {
+        case "BigInt":
+          return BigInt(t);
+        case "Bytes": {
+          let { buffer: r, byteOffset: n, byteLength: i } = w.Buffer.from(t, "base64");
+          return new Uint8Array(r, n, i);
+        }
+        case "DateTime":
+          return new Date(t);
+        case "Decimal":
+          return new Te(t);
+        case "Json":
+          return JSON.parse(t);
+        default:
+          ks(t, "Unknown tagged value");
+      }
+    }
+    var Ds = "6.19.2";
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var zc = () => globalThis.process?.release?.name === "node";
+    var Yc = () => !!globalThis.Bun || !!globalThis.process?.versions?.bun;
+    var Zc = () => !!globalThis.Deno;
+    var Xc = () => typeof globalThis.Netlify == "object";
+    var ep = () => typeof globalThis.EdgeRuntime == "object";
+    var tp = () => globalThis.navigator?.userAgent === "Cloudflare-Workers";
+    function rp() {
+      return [[Xc, "netlify"], [ep, "edge-light"], [tp, "workerd"], [Zc, "deno"], [Yc, "bun"], [zc, "node"]].flatMap((r) => r[0]() ? [r[1]] : []).at(0) ?? "";
+    }
+    var np = { node: "Node.js", workerd: "Cloudflare Workers", deno: "Deno and Deno Deploy", netlify: "Netlify Edge Functions", "edge-light": "Edge Runtime (Vercel Edge Functions, Vercel Edge Middleware, Next.js (Pages Router) Edge API Routes, Next.js (App Router) Edge Route Handlers or Next.js Middleware)" };
+    function Zr() {
+      let e = rp();
+      return { id: e, prettyName: np[e] || e, isEdge: ["workerd", "deno", "netlify", "edge-light"].includes(e) };
+    }
+    function gt({ inlineDatasources: e, overrideDatasources: t, env: r, clientVersion: n }) {
+      let i, o = Object.keys(e)[0], s = e[o]?.url, a = t[o]?.url;
+      if (o === void 0 ? i = void 0 : a ? i = a : s?.value ? i = s.value : s?.fromEnvVar && (i = r[s.fromEnvVar]), s?.fromEnvVar !== void 0 && i === void 0) throw Zr().id === "workerd" ? new Q(`error: Environment variable not found: ${s.fromEnvVar}.
+
+In Cloudflare module Workers, environment variables are available only in the Worker's \`env\` parameter of \`fetch\`.
+To solve this, provide the connection string directly: https://pris.ly/d/cloudflare-datasource-url`, n) : new Q(`error: Environment variable not found: ${s.fromEnvVar}.`, n);
+      if (i === void 0) throw new Q("error: Missing URL environment variable, value, or override.", n);
+      return i;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Xr = class extends Error {
+      clientVersion;
+      cause;
+      constructor(t, r) {
+        super(t), this.clientVersion = r.clientVersion, this.cause = r.cause;
+      }
+      get [Symbol.toStringTag]() {
+        return this.name;
+      }
+    };
+    var ae = class extends Xr {
+      isRetryable;
+      constructor(t, r) {
+        super(t, r), this.isRetryable = r.isRetryable ?? true;
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function U(e, t) {
+      return { ...e, isRetryable: t };
+    }
+    var qe = class extends ae {
+      name = "InvalidDatasourceError";
+      code = "P6001";
+      constructor(t, r) {
+        super(t, U(r, false));
+      }
+    };
+    N(qe, "InvalidDatasourceError");
+    function Ms(e) {
+      let t = { clientVersion: e.clientVersion }, r = Object.keys(e.inlineDatasources)[0], n = gt({ inlineDatasources: e.inlineDatasources, overrideDatasources: e.overrideDatasources, clientVersion: e.clientVersion, env: { ...e.env, ...typeof y < "u" ? y.env : {} } }), i;
+      try {
+        i = new URL(n);
+      } catch {
+        throw new qe(`Error validating datasource \`${r}\`: the URL must start with the protocol \`prisma://\``, t);
+      }
+      let { protocol: o, searchParams: s } = i;
+      if (o !== "prisma:" && o !== hr) throw new qe(`Error validating datasource \`${r}\`: the URL must start with the protocol \`prisma://\` or \`prisma+postgres://\``, t);
+      let a = s.get("api_key");
+      if (a === null || a.length < 1) throw new qe(`Error validating datasource \`${r}\`: the URL must contain a valid API key`, t);
+      let l = vn(i) ? "http:" : "https:";
+      y.env.TEST_CLIENT_ENGINE_REMOTE_EXECUTOR && i.searchParams.has("use_http") && (l = "http:");
+      let d = new URL(i.href.replace(o, l));
+      return { apiKey: a, url: d };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var _s = Qe(Xi());
+    var en = class {
+      apiKey;
+      tracingHelper;
+      logLevel;
+      logQueries;
+      engineHash;
+      constructor({ apiKey: t, tracingHelper: r, logLevel: n, logQueries: i, engineHash: o }) {
+        this.apiKey = t, this.tracingHelper = r, this.logLevel = n, this.logQueries = i, this.engineHash = o;
+      }
+      build({ traceparent: t, transactionId: r } = {}) {
+        let n = { Accept: "application/json", Authorization: `Bearer ${this.apiKey}`, "Content-Type": "application/json", "Prisma-Engine-Hash": this.engineHash, "Prisma-Engine-Version": _s.enginesVersion };
+        this.tracingHelper.isEnabled() && (n.traceparent = t ?? this.tracingHelper.getTraceParent()), r && (n["X-Transaction-Id"] = r);
+        let i = this.#e();
+        return i.length > 0 && (n["X-Capture-Telemetry"] = i.join(", ")), n;
+      }
+      #e() {
+        let t = [];
+        return this.tracingHelper.isEnabled() && t.push("tracing"), this.logLevel && t.push(this.logLevel), this.logQueries && t.push("query"), t;
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ip(e) {
+      return e[0] * 1e3 + e[1] / 1e6;
+    }
+    function Yn(e) {
+      return new Date(ip(e));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ht = class extends ae {
+      name = "ForcedRetryError";
+      code = "P5001";
+      constructor(t) {
+        super("This request must be retried", U(t, true));
+      }
+    };
+    N(ht, "ForcedRetryError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Ve = class extends ae {
+      name = "NotImplementedYetError";
+      code = "P5004";
+      constructor(t, r) {
+        super(t, U(r, false));
+      }
+    };
+    N(Ve, "NotImplementedYetError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var G = class extends ae {
+      response;
+      constructor(t, r) {
+        super(t, r), this.response = r.response;
+        let n = this.response.headers.get("prisma-request-id");
+        if (n) {
+          let i = `(The request id was: ${n})`;
+          this.message = this.message + " " + i;
+        }
+      }
+    };
+    var $e = class extends G {
+      name = "SchemaMissingError";
+      code = "P5005";
+      constructor(t) {
+        super("Schema needs to be uploaded", U(t, true));
+      }
+    };
+    N($e, "SchemaMissingError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Zn = "This request could not be understood by the server";
+    var Qt = class extends G {
+      name = "BadRequestError";
+      code = "P5000";
+      constructor(t, r, n) {
+        super(r || Zn, U(t, false)), n && (this.code = n);
+      }
+    };
+    N(Qt, "BadRequestError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Kt = class extends G {
+      name = "HealthcheckTimeoutError";
+      code = "P5013";
+      logs;
+      constructor(t, r) {
+        super("Engine not started: healthcheck timeout", U(t, true)), this.logs = r;
+      }
+    };
+    N(Kt, "HealthcheckTimeoutError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Wt = class extends G {
+      name = "EngineStartupError";
+      code = "P5014";
+      logs;
+      constructor(t, r, n) {
+        super(r, U(t, true)), this.logs = n;
+      }
+    };
+    N(Wt, "EngineStartupError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Ht = class extends G {
+      name = "EngineVersionNotSupportedError";
+      code = "P5012";
+      constructor(t) {
+        super("Engine version is not supported", U(t, false));
+      }
+    };
+    N(Ht, "EngineVersionNotSupportedError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Xn = "Request timed out";
+    var zt = class extends G {
+      name = "GatewayTimeoutError";
+      code = "P5009";
+      constructor(t, r = Xn) {
+        super(r, U(t, false));
+      }
+    };
+    N(zt, "GatewayTimeoutError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var op = "Interactive transaction error";
+    var Yt = class extends G {
+      name = "InteractiveTransactionError";
+      code = "P5015";
+      constructor(t, r = op) {
+        super(r, U(t, false));
+      }
+    };
+    N(Yt, "InteractiveTransactionError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var sp = "Request parameters are invalid";
+    var Zt = class extends G {
+      name = "InvalidRequestError";
+      code = "P5011";
+      constructor(t, r = sp) {
+        super(r, U(t, false));
+      }
+    };
+    N(Zt, "InvalidRequestError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ei = "Requested resource does not exist";
+    var Xt = class extends G {
+      name = "NotFoundError";
+      code = "P5003";
+      constructor(t, r = ei) {
+        super(r, U(t, false));
+      }
+    };
+    N(Xt, "NotFoundError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ti = "Unknown server error";
+    var yt = class extends G {
+      name = "ServerError";
+      code = "P5006";
+      logs;
+      constructor(t, r, n) {
+        super(r || ti, U(t, true)), this.logs = n;
+      }
+    };
+    N(yt, "ServerError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ri = "Unauthorized, check your connection string";
+    var er = class extends G {
+      name = "UnauthorizedError";
+      code = "P5007";
+      constructor(t, r = ri) {
+        super(r, U(t, false));
+      }
+    };
+    N(er, "UnauthorizedError");
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ni = "Usage exceeded, retry again later";
+    var tr = class extends G {
+      name = "UsageExceededError";
+      code = "P5008";
+      constructor(t, r = ni) {
+        super(r, U(t, true));
+      }
+    };
+    N(tr, "UsageExceededError");
+    async function ap(e) {
+      let t;
+      try {
+        t = await e.text();
+      } catch {
+        return { type: "EmptyError" };
+      }
+      try {
+        let r = JSON.parse(t);
+        if (typeof r == "string") switch (r) {
+          case "InternalDataProxyError":
+            return { type: "DataProxyError", body: r };
+          default:
+            return { type: "UnknownTextError", body: r };
+        }
+        if (typeof r == "object" && r !== null) {
+          if ("is_panic" in r && "message" in r && "error_code" in r) return { type: "QueryEngineError", body: r };
+          if ("EngineNotStarted" in r || "InteractiveTransactionMisrouted" in r || "InvalidRequestError" in r) {
+            let n = Object.values(r)[0].reason;
+            return typeof n == "string" && !["SchemaMissing", "EngineVersionNotSupported"].includes(n) ? { type: "UnknownJsonError", body: r } : { type: "DataProxyError", body: r };
+          }
+        }
+        return { type: "UnknownJsonError", body: r };
+      } catch {
+        return t === "" ? { type: "EmptyError" } : { type: "UnknownTextError", body: t };
+      }
+    }
+    async function rr(e, t) {
+      if (e.ok) return;
+      let r = { clientVersion: t, response: e }, n = await ap(e);
+      if (n.type === "QueryEngineError") throw new ne(n.body.message, { code: n.body.error_code, clientVersion: t });
+      if (n.type === "DataProxyError") {
+        if (n.body === "InternalDataProxyError") throw new yt(r, "Internal Data Proxy error");
+        if ("EngineNotStarted" in n.body) {
+          if (n.body.EngineNotStarted.reason === "SchemaMissing") return new $e(r);
+          if (n.body.EngineNotStarted.reason === "EngineVersionNotSupported") throw new Ht(r);
+          if ("EngineStartupError" in n.body.EngineNotStarted.reason) {
+            let { msg: i, logs: o } = n.body.EngineNotStarted.reason.EngineStartupError;
+            throw new Wt(r, i, o);
+          }
+          if ("KnownEngineStartupError" in n.body.EngineNotStarted.reason) {
+            let { msg: i, error_code: o } = n.body.EngineNotStarted.reason.KnownEngineStartupError;
+            throw new Q(i, t, o);
+          }
+          if ("HealthcheckTimeout" in n.body.EngineNotStarted.reason) {
+            let { logs: i } = n.body.EngineNotStarted.reason.HealthcheckTimeout;
+            throw new Kt(r, i);
+          }
+        }
+        if ("InteractiveTransactionMisrouted" in n.body) {
+          let i = { IDParseError: "Could not parse interactive transaction ID", NoQueryEngineFoundError: "Could not find Query Engine for the specified host and transaction ID", TransactionStartError: "Could not start interactive transaction" };
+          throw new Yt(r, i[n.body.InteractiveTransactionMisrouted.reason]);
+        }
+        if ("InvalidRequestError" in n.body) throw new Zt(r, n.body.InvalidRequestError.reason);
+      }
+      if (e.status === 401 || e.status === 403) throw new er(r, wt(ri, n));
+      if (e.status === 404) return new Xt(r, wt(ei, n));
+      if (e.status === 429) throw new tr(r, wt(ni, n));
+      if (e.status === 504) throw new zt(r, wt(Xn, n));
+      if (e.status >= 500) throw new yt(r, wt(ti, n));
+      if (e.status >= 400) throw new Qt(r, wt(Zn, n));
+    }
+    function wt(e, t) {
+      return t.type === "EmptyError" ? e : `${e}: ${JSON.stringify(t)}`;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ns(e) {
+      let t = Math.pow(2, e) * 50, r = Math.ceil(Math.random() * t) - Math.ceil(t / 2), n = t + r;
+      return new Promise((i) => setTimeout(() => i(n), n));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Ce = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    function Fs(e) {
+      let t = new TextEncoder().encode(e), r = "", n = t.byteLength, i = n % 3, o = n - i, s, a, l, d, g;
+      for (let h = 0; h < o; h = h + 3) g = t[h] << 16 | t[h + 1] << 8 | t[h + 2], s = (g & 16515072) >> 18, a = (g & 258048) >> 12, l = (g & 4032) >> 6, d = g & 63, r += Ce[s] + Ce[a] + Ce[l] + Ce[d];
+      return i == 1 ? (g = t[o], s = (g & 252) >> 2, a = (g & 3) << 4, r += Ce[s] + Ce[a] + "==") : i == 2 && (g = t[o] << 8 | t[o + 1], s = (g & 64512) >> 10, a = (g & 1008) >> 4, l = (g & 15) << 2, r += Ce[s] + Ce[a] + Ce[l] + "="), r;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ls(e) {
+      if (!!e.generator?.previewFeatures.some((r) => r.toLowerCase().includes("metrics"))) throw new Q("The `metrics` preview feature is not yet available with Accelerate.\nPlease remove `metrics` from the `previewFeatures` in your schema.\n\nMore information about Accelerate: https://pris.ly/d/accelerate", e.clientVersion);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Us = { "@prisma/debug": "workspace:*", "@prisma/engines-version": "7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7", "@prisma/fetch-engine": "workspace:*", "@prisma/get-platform": "workspace:*" };
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var nr = class extends ae {
+      name = "RequestError";
+      code = "P5010";
+      constructor(t, r) {
+        super(`Cannot fetch data from service:
+${t}`, U(r, true));
+      }
+    };
+    N(nr, "RequestError");
+    async function je(e, t, r = (n) => n) {
+      let { clientVersion: n, ...i } = t, o = r(fetch);
+      try {
+        return await o(e, i);
+      } catch (s) {
+        let a = s.message ?? "Unknown error";
+        throw new nr(a, { clientVersion: n, cause: s });
+      }
+    }
+    var up = /^[1-9][0-9]*\.[0-9]+\.[0-9]+$/;
+    var Bs = z("prisma:client:dataproxyEngine");
+    async function cp(e, t) {
+      let r = Us["@prisma/engines-version"], n = t.clientVersion ?? "unknown";
+      if (y.env.PRISMA_CLIENT_DATA_PROXY_CLIENT_VERSION || globalThis.PRISMA_CLIENT_DATA_PROXY_CLIENT_VERSION) return y.env.PRISMA_CLIENT_DATA_PROXY_CLIENT_VERSION || globalThis.PRISMA_CLIENT_DATA_PROXY_CLIENT_VERSION;
+      if (e.includes("accelerate") && n !== "0.0.0" && n !== "in-memory") return n;
+      let [i, o] = n?.split("-") ?? [];
+      if (o === void 0 && up.test(i)) return i;
+      if (o !== void 0 || n === "0.0.0" || n === "in-memory") {
+        let [s] = r.split("-") ?? [], [a, l, d] = s.split("."), g = pp(`<=${a}.${l}.${d}`), h = await je(g, { clientVersion: n });
+        if (!h.ok) throw new Error(`Failed to fetch stable Prisma version, unpkg.com status ${h.status} ${h.statusText}, response body: ${await h.text() || "<empty body>"}`);
+        let T = await h.text();
+        Bs("length of body fetched from unpkg.com", T.length);
+        let I;
+        try {
+          I = JSON.parse(T);
+        } catch (S) {
+          throw console.error("JSON.parse error: body fetched from unpkg.com: ", T), S;
+        }
+        return I.version;
+      }
+      throw new Ve("Only `major.minor.patch` versions are supported by Accelerate.", { clientVersion: n });
+    }
+    async function qs(e, t) {
+      let r = await cp(e, t);
+      return Bs("version", r), r;
+    }
+    function pp(e) {
+      return encodeURI(`https://unpkg.com/prisma@${e}/package.json`);
+    }
+    var Vs = 3;
+    var ir = z("prisma:client:dataproxyEngine");
+    var Et = class {
+      name = "DataProxyEngine";
+      inlineSchema;
+      inlineSchemaHash;
+      inlineDatasources;
+      config;
+      logEmitter;
+      env;
+      clientVersion;
+      engineHash;
+      tracingHelper;
+      remoteClientVersion;
+      host;
+      headerBuilder;
+      startPromise;
+      protocol;
+      constructor(t) {
+        Ls(t), this.config = t, this.env = t.env, this.inlineSchema = Fs(t.inlineSchema), this.inlineDatasources = t.inlineDatasources, this.inlineSchemaHash = t.inlineSchemaHash, this.clientVersion = t.clientVersion, this.engineHash = t.engineVersion, this.logEmitter = t.logEmitter, this.tracingHelper = t.tracingHelper;
+      }
+      apiKey() {
+        return this.headerBuilder.apiKey;
+      }
+      version() {
+        return this.engineHash;
+      }
+      async start() {
+        this.startPromise !== void 0 && await this.startPromise, this.startPromise = (async () => {
+          let { apiKey: t, url: r } = this.getURLAndAPIKey();
+          this.host = r.host, this.protocol = r.protocol, this.headerBuilder = new en({ apiKey: t, tracingHelper: this.tracingHelper, logLevel: this.config.logLevel ?? "error", logQueries: this.config.logQueries, engineHash: this.engineHash }), this.remoteClientVersion = await qs(this.host, this.config), ir("host", this.host), ir("protocol", this.protocol);
+        })(), await this.startPromise;
+      }
+      async stop() {
+      }
+      propagateResponseExtensions(t) {
+        t?.logs?.length && t.logs.forEach((r) => {
+          switch (r.level) {
+            case "debug":
+            case "trace":
+              ir(r);
+              break;
+            case "error":
+            case "warn":
+            case "info": {
+              this.logEmitter.emit(r.level, { timestamp: Yn(r.timestamp), message: r.attributes.message ?? "", target: r.target ?? "BinaryEngine" });
+              break;
+            }
+            case "query": {
+              this.logEmitter.emit("query", { query: r.attributes.query ?? "", timestamp: Yn(r.timestamp), duration: r.attributes.duration_ms ?? 0, params: r.attributes.params ?? "", target: r.target ?? "BinaryEngine" });
+              break;
+            }
+            default:
+              r.level;
+          }
+        }), t?.traces?.length && this.tracingHelper.dispatchEngineSpans(t.traces);
+      }
+      onBeforeExit() {
+        throw new Error('"beforeExit" hook is not applicable to the remote query engine');
+      }
+      async url(t) {
+        return await this.start(), `${this.protocol}//${this.host}/${this.remoteClientVersion}/${this.inlineSchemaHash}/${t}`;
+      }
+      async uploadSchema() {
+        let t = { name: "schemaUpload", internal: true };
+        return this.tracingHelper.runInChildSpan(t, async () => {
+          let r = await je(await this.url("schema"), { method: "PUT", headers: this.headerBuilder.build(), body: this.inlineSchema, clientVersion: this.clientVersion });
+          r.ok || ir("schema response status", r.status);
+          let n = await rr(r, this.clientVersion);
+          if (n) throw this.logEmitter.emit("warn", { message: `Error while uploading schema: ${n.message}`, timestamp: /* @__PURE__ */ new Date(), target: "" }), n;
+          this.logEmitter.emit("info", { message: `Schema (re)uploaded (hash: ${this.inlineSchemaHash})`, timestamp: /* @__PURE__ */ new Date(), target: "" });
+        });
+      }
+      request(t, { traceparent: r, interactiveTransaction: n, customDataProxyFetch: i }) {
+        return this.requestInternal({ body: t, traceparent: r, interactiveTransaction: n, customDataProxyFetch: i });
+      }
+      async requestBatch(t, { traceparent: r, transaction: n, customDataProxyFetch: i }) {
+        let o = n?.kind === "itx" ? n.options : void 0, s = Wr(t, n);
+        return (await this.requestInternal({ body: s, customDataProxyFetch: i, interactiveTransaction: o, traceparent: r })).map((l) => (l.extensions && this.propagateResponseExtensions(l.extensions), "errors" in l ? this.convertProtocolErrorsToClientError(l.errors) : l));
+      }
+      requestInternal({ body: t, traceparent: r, customDataProxyFetch: n, interactiveTransaction: i }) {
+        return this.withRetry({ actionGerund: "querying", callback: async ({ logHttpCall: o }) => {
+          let s = i ? `${i.payload.endpoint}/graphql` : await this.url("graphql");
+          o(s);
+          let a = await je(s, { method: "POST", headers: this.headerBuilder.build({ traceparent: r, transactionId: i?.id }), body: JSON.stringify(t), clientVersion: this.clientVersion }, n);
+          a.ok || ir("graphql response status", a.status), await this.handleError(await rr(a, this.clientVersion));
+          let l = await a.json();
+          if (l.extensions && this.propagateResponseExtensions(l.extensions), "errors" in l) throw this.convertProtocolErrorsToClientError(l.errors);
+          return "batchResult" in l ? l.batchResult : l;
+        } });
+      }
+      async transaction(t, r, n) {
+        let i = { start: "starting", commit: "committing", rollback: "rolling back" };
+        return this.withRetry({ actionGerund: `${i[t]} transaction`, callback: async ({ logHttpCall: o }) => {
+          if (t === "start") {
+            let s = JSON.stringify({ max_wait: n.maxWait, timeout: n.timeout, isolation_level: n.isolationLevel }), a = await this.url("transaction/start");
+            o(a);
+            let l = await je(a, { method: "POST", headers: this.headerBuilder.build({ traceparent: r.traceparent }), body: s, clientVersion: this.clientVersion });
+            await this.handleError(await rr(l, this.clientVersion));
+            let d = await l.json(), { extensions: g } = d;
+            g && this.propagateResponseExtensions(g);
+            let h = d.id, T = d["data-proxy"].endpoint;
+            return { id: h, payload: { endpoint: T } };
+          } else {
+            let s = `${n.payload.endpoint}/${t}`;
+            o(s);
+            let a = await je(s, { method: "POST", headers: this.headerBuilder.build({ traceparent: r.traceparent }), clientVersion: this.clientVersion });
+            await this.handleError(await rr(a, this.clientVersion));
+            let l = await a.json(), { extensions: d } = l;
+            d && this.propagateResponseExtensions(d);
+            return;
+          }
+        } });
+      }
+      getURLAndAPIKey() {
+        return Ms({ clientVersion: this.clientVersion, env: this.env, inlineDatasources: this.inlineDatasources, overrideDatasources: this.config.overrideDatasources });
+      }
+      metrics() {
+        throw new Ve("Metrics are not yet supported for Accelerate", { clientVersion: this.clientVersion });
+      }
+      async withRetry(t) {
+        for (let r = 0; ; r++) {
+          let n = (i) => {
+            this.logEmitter.emit("info", { message: `Calling ${i} (n=${r})`, timestamp: /* @__PURE__ */ new Date(), target: "" });
+          };
+          try {
+            return await t.callback({ logHttpCall: n });
+          } catch (i) {
+            if (!(i instanceof ae) || !i.isRetryable) throw i;
+            if (r >= Vs) throw i instanceof ht ? i.cause : i;
+            this.logEmitter.emit("warn", { message: `Attempt ${r + 1}/${Vs} failed for ${t.actionGerund}: ${i.message ?? "(unknown)"}`, timestamp: /* @__PURE__ */ new Date(), target: "" });
+            let o = await Ns(r);
+            this.logEmitter.emit("warn", { message: `Retrying after ${o}ms`, timestamp: /* @__PURE__ */ new Date(), target: "" });
+          }
+        }
+      }
+      async handleError(t) {
+        if (t instanceof $e) throw await this.uploadSchema(), new ht({ clientVersion: this.clientVersion, cause: t });
+        if (t) throw t;
+      }
+      convertProtocolErrorsToClientError(t) {
+        return t.length === 1 ? Hr(t[0], this.config.clientVersion, this.config.activeProvider) : new ie(JSON.stringify(t), { clientVersion: this.config.clientVersion });
+      }
+      applyPendingMigrations() {
+        throw new Error("Method not implemented.");
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function $s({ url: e, adapter: t, copyEngine: r, targetBuildType: n }) {
+      let i = [], o = [], s = (C) => {
+        i.push({ _tag: "warning", value: C });
+      }, a = (C) => {
+        let M = C.join(`
+`);
+        o.push({ _tag: "error", value: M });
+      }, l = !!e?.startsWith("prisma://"), d = yr(e), g = !!t, h = l || d;
+      !g && r && h && n !== "client" && n !== "wasm-compiler-edge" && s(["recommend--no-engine", "In production, we recommend using `prisma generate --no-engine` (See: `prisma generate --help`)"]);
+      let T = h || !r;
+      g && (T || n === "edge") && (n === "edge" ? a(["Prisma Client was configured to use the `adapter` option but it was imported via its `/edge` endpoint.", "Please either remove the `/edge` endpoint or remove the `adapter` from the Prisma Client constructor."]) : h ? a(["You've provided both a driver adapter and an Accelerate database URL. Driver adapters currently cannot connect to Accelerate.", "Please provide either a driver adapter with a direct database URL or an Accelerate URL and no driver adapter."]) : r || a(["Prisma Client was configured to use the `adapter` option but `prisma generate` was run with `--no-engine`.", "Please run `prisma generate` without `--no-engine` to be able to use Prisma Client with the adapter."]));
+      let I = { accelerate: T, ppg: d, driverAdapters: g };
+      function S(C) {
+        return C.length > 0;
+      }
+      return S(o) ? { ok: false, diagnostics: { warnings: i, errors: o }, isUsing: I } : { ok: true, diagnostics: { warnings: i }, isUsing: I };
+    }
+    function js({ copyEngine: e = true }, t) {
+      let r;
+      try {
+        r = gt({ inlineDatasources: t.inlineDatasources, overrideDatasources: t.overrideDatasources, env: { ...t.env, ...y.env }, clientVersion: t.clientVersion });
+      } catch {
+      }
+      let { ok: n, isUsing: i, diagnostics: o } = $s({ url: r, adapter: t.adapter, copyEngine: e, targetBuildType: "edge" });
+      for (let h of o.warnings) St(...h.value);
+      if (!n) {
+        let h = o.errors[0];
+        throw new X(h.value, { clientVersion: t.clientVersion });
+      }
+      let s = Ze(t.generator), a = s === "library", l = s === "binary", d = s === "client", g = (i.accelerate || i.ppg) && !i.driverAdapters;
+      return i.accelerate ? new Et(t) : (i.driverAdapters, new Et(t));
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Gs({ generator: e }) {
+      return e?.previewFeatures ?? [];
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Js = (e) => ({ command: e });
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Qs = (e) => e.strings.reduce((t, r, n) => `${t}@P${n}${r}`);
+    f();
+    u();
+    c();
+    p();
+    m();
+    function bt(e) {
+      try {
+        return Ks(e, "fast");
+      } catch {
+        return Ks(e, "slow");
+      }
+    }
+    function Ks(e, t) {
+      return JSON.stringify(e.map((r) => Hs(r, t)));
+    }
+    function Hs(e, t) {
+      if (Array.isArray(e)) return e.map((r) => Hs(r, t));
+      if (typeof e == "bigint") return { prisma__type: "bigint", prisma__value: e.toString() };
+      if (Xe(e)) return { prisma__type: "date", prisma__value: e.toJSON() };
+      if (Ae.isDecimal(e)) return { prisma__type: "decimal", prisma__value: e.toJSON() };
+      if (w.Buffer.isBuffer(e)) return { prisma__type: "bytes", prisma__value: e.toString("base64") };
+      if (mp(e)) return { prisma__type: "bytes", prisma__value: w.Buffer.from(e).toString("base64") };
+      if (ArrayBuffer.isView(e)) {
+        let { buffer: r, byteOffset: n, byteLength: i } = e;
+        return { prisma__type: "bytes", prisma__value: w.Buffer.from(r, n, i).toString("base64") };
+      }
+      return typeof e == "object" && t === "slow" ? zs(e) : e;
+    }
+    function mp(e) {
+      return e instanceof ArrayBuffer || e instanceof SharedArrayBuffer ? true : typeof e == "object" && e !== null ? e[Symbol.toStringTag] === "ArrayBuffer" || e[Symbol.toStringTag] === "SharedArrayBuffer" : false;
+    }
+    function zs(e) {
+      if (typeof e != "object" || e === null) return e;
+      if (typeof e.toJSON == "function") return e.toJSON();
+      if (Array.isArray(e)) return e.map(Ws);
+      let t = {};
+      for (let r of Object.keys(e)) t[r] = Ws(e[r]);
+      return t;
+    }
+    function Ws(e) {
+      return typeof e == "bigint" ? e.toString() : zs(e);
+    }
+    var fp = /^(\s*alter\s)/i;
+    var Ys = z("prisma:client");
+    function ii(e, t, r, n) {
+      if (!(e !== "postgresql" && e !== "cockroachdb") && r.length > 0 && fp.exec(t)) throw new Error(`Running ALTER using ${n} is not supported
+Using the example below you can still execute your query with Prisma, but please note that it is vulnerable to SQL injection attacks and requires you to take care of input sanitization.
+
+Example:
+  await prisma.$executeRawUnsafe(\`ALTER USER prisma WITH PASSWORD '\${password}'\`)
+
+More Information: https://pris.ly/d/execute-raw
+`);
+    }
+    var oi = ({ clientMethod: e, activeProvider: t }) => (r) => {
+      let n = "", i;
+      if (Gr(r)) n = r.sql, i = { values: bt(r.values), __prismaRawParameters__: true };
+      else if (Array.isArray(r)) {
+        let [o, ...s] = r;
+        n = o, i = { values: bt(s || []), __prismaRawParameters__: true };
+      } else switch (t) {
+        case "sqlite":
+        case "mysql": {
+          n = r.sql, i = { values: bt(r.values), __prismaRawParameters__: true };
+          break;
+        }
+        case "cockroachdb":
+        case "postgresql":
+        case "postgres": {
+          n = r.text, i = { values: bt(r.values), __prismaRawParameters__: true };
+          break;
+        }
+        case "sqlserver": {
+          n = Qs(r), i = { values: bt(r.values), __prismaRawParameters__: true };
+          break;
+        }
+        default:
+          throw new Error(`The ${t} provider does not support ${e}`);
+      }
+      return i?.values ? Ys(`prisma.${e}(${n}, ${i.values})`) : Ys(`prisma.${e}(${n})`), { query: n, parameters: i };
+    };
+    var Zs = { requestArgsToMiddlewareArgs(e) {
+      return [e.strings, ...e.values];
+    }, middlewareArgsToRequestArgs(e) {
+      let [t, ...r] = e;
+      return new se(t, r);
+    } };
+    var Xs = { requestArgsToMiddlewareArgs(e) {
+      return [e];
+    }, middlewareArgsToRequestArgs(e) {
+      return e[0];
+    } };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function si(e) {
+      return function(r, n) {
+        let i, o = (s = e) => {
+          try {
+            return s === void 0 || s?.kind === "itx" ? i ??= ea(r(s)) : ea(r(s));
+          } catch (a) {
+            return Promise.reject(a);
+          }
+        };
+        return { get spec() {
+          return n;
+        }, then(s, a) {
+          return o().then(s, a);
+        }, catch(s) {
+          return o().catch(s);
+        }, finally(s) {
+          return o().finally(s);
+        }, requestTransaction(s) {
+          let a = o(s);
+          return a.requestTransaction ? a.requestTransaction(s) : a;
+        }, [Symbol.toStringTag]: "PrismaPromise" };
+      };
+    }
+    function ea(e) {
+      return typeof e.then == "function" ? e : Promise.resolve(e);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var dp = xn.split(".")[0];
+    var gp = { isEnabled() {
+      return false;
+    }, getTraceParent() {
+      return "00-10-10-00";
+    }, dispatchEngineSpans() {
+    }, getActiveContext() {
+    }, runInChildSpan(e, t) {
+      return t();
+    } };
+    var ai = class {
+      isEnabled() {
+        return this.getGlobalTracingHelper().isEnabled();
+      }
+      getTraceParent(t) {
+        return this.getGlobalTracingHelper().getTraceParent(t);
+      }
+      dispatchEngineSpans(t) {
+        return this.getGlobalTracingHelper().dispatchEngineSpans(t);
+      }
+      getActiveContext() {
+        return this.getGlobalTracingHelper().getActiveContext();
+      }
+      runInChildSpan(t, r) {
+        return this.getGlobalTracingHelper().runInChildSpan(t, r);
+      }
+      getGlobalTracingHelper() {
+        let t = globalThis[`V${dp}_PRISMA_INSTRUMENTATION`], r = globalThis.PRISMA_INSTRUMENTATION;
+        return t?.helper ?? r?.helper ?? gp;
+      }
+    };
+    function ta() {
+      return new ai();
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ra(e, t = () => {
+    }) {
+      let r, n = new Promise((i) => r = i);
+      return { then(i) {
+        return --e === 0 && r(t()), i?.(n);
+      } };
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function na(e) {
+      return typeof e == "string" ? e : e.reduce((t, r) => {
+        let n = typeof r == "string" ? r : r.level;
+        return n === "query" ? t : t && (r === "info" || t === "info") ? "info" : n;
+      }, void 0);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    f();
+    u();
+    c();
+    p();
+    m();
+    function tn(e) {
+      return typeof e.batchRequestIdx == "number";
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function ia(e) {
+      if (e.action !== "findUnique" && e.action !== "findUniqueOrThrow") return;
+      let t = [];
+      return e.modelName && t.push(e.modelName), e.query.arguments && t.push(li(e.query.arguments)), t.push(li(e.query.selection)), t.join("");
+    }
+    function li(e) {
+      return `(${Object.keys(e).sort().map((r) => {
+        let n = e[r];
+        return typeof n == "object" && n !== null ? `(${r} ${li(n)})` : r;
+      }).join(" ")})`;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var hp = { aggregate: false, aggregateRaw: false, createMany: true, createManyAndReturn: true, createOne: true, deleteMany: true, deleteOne: true, executeRaw: true, findFirst: false, findFirstOrThrow: false, findMany: false, findRaw: false, findUnique: false, findUniqueOrThrow: false, groupBy: false, queryRaw: false, runCommandRaw: true, updateMany: true, updateManyAndReturn: true, updateOne: true, upsertOne: true };
+    function ui(e) {
+      return hp[e];
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var rn = class {
+      constructor(t) {
+        this.options = t;
+        this.batches = {};
+      }
+      batches;
+      tickActive = false;
+      request(t) {
+        let r = this.options.batchBy(t);
+        return r ? (this.batches[r] || (this.batches[r] = [], this.tickActive || (this.tickActive = true, y.nextTick(() => {
+          this.dispatchBatches(), this.tickActive = false;
+        }))), new Promise((n, i) => {
+          this.batches[r].push({ request: t, resolve: n, reject: i });
+        })) : this.options.singleLoader(t);
+      }
+      dispatchBatches() {
+        for (let t in this.batches) {
+          let r = this.batches[t];
+          delete this.batches[t], r.length === 1 ? this.options.singleLoader(r[0].request).then((n) => {
+            n instanceof Error ? r[0].reject(n) : r[0].resolve(n);
+          }).catch((n) => {
+            r[0].reject(n);
+          }) : (r.sort((n, i) => this.options.batchOrder(n.request, i.request)), this.options.batchLoader(r.map((n) => n.request)).then((n) => {
+            if (n instanceof Error) for (let i = 0; i < r.length; i++) r[i].reject(n);
+            else for (let i = 0; i < r.length; i++) {
+              let o = n[i];
+              o instanceof Error ? r[i].reject(o) : r[i].resolve(o);
+            }
+          }).catch((n) => {
+            for (let i = 0; i < r.length; i++) r[i].reject(n);
+          }));
+        }
+      }
+      get [Symbol.toStringTag]() {
+        return "DataLoader";
+      }
+    };
+    f();
+    u();
+    c();
+    p();
+    m();
+    function Ge(e, t) {
+      if (t === null) return t;
+      switch (e) {
+        case "bigint":
+          return BigInt(t);
+        case "bytes": {
+          let { buffer: r, byteOffset: n, byteLength: i } = w.Buffer.from(t, "base64");
+          return new Uint8Array(r, n, i);
+        }
+        case "decimal":
+          return new Ae(t);
+        case "datetime":
+        case "date":
+          return new Date(t);
+        case "time":
+          return /* @__PURE__ */ new Date(`1970-01-01T${t}Z`);
+        case "bigint-array":
+          return t.map((r) => Ge("bigint", r));
+        case "bytes-array":
+          return t.map((r) => Ge("bytes", r));
+        case "decimal-array":
+          return t.map((r) => Ge("decimal", r));
+        case "datetime-array":
+          return t.map((r) => Ge("datetime", r));
+        case "date-array":
+          return t.map((r) => Ge("date", r));
+        case "time-array":
+          return t.map((r) => Ge("time", r));
+        default:
+          return t;
+      }
+    }
+    function nn(e) {
+      let t = [], r = yp(e);
+      for (let n = 0; n < e.rows.length; n++) {
+        let i = e.rows[n], o = { ...r };
+        for (let s = 0; s < i.length; s++) o[e.columns[s]] = Ge(e.types[s], i[s]);
+        t.push(o);
+      }
+      return t;
+    }
+    function yp(e) {
+      let t = {};
+      for (let r = 0; r < e.columns.length; r++) t[e.columns[r]] = null;
+      return t;
+    }
+    var wp = z("prisma:client:request_handler");
+    var on = class {
+      client;
+      dataloader;
+      logEmitter;
+      constructor(t, r) {
+        this.logEmitter = r, this.client = t, this.dataloader = new rn({ batchLoader: Ts(async ({ requests: n, customDataProxyFetch: i }) => {
+          let { transaction: o, otelParentCtx: s } = n[0], a = n.map((h) => h.protocolQuery), l = this.client._tracingHelper.getTraceParent(s), d = n.some((h) => ui(h.protocolQuery.action));
+          return (await this.client._engine.requestBatch(a, { traceparent: l, transaction: Ep(o), containsWrite: d, customDataProxyFetch: i })).map((h, T) => {
+            if (h instanceof Error) return h;
+            try {
+              return this.mapQueryEngineResult(n[T], h);
+            } catch (I) {
+              return I;
+            }
+          });
+        }), singleLoader: async (n) => {
+          let i = n.transaction?.kind === "itx" ? oa(n.transaction) : void 0, o = await this.client._engine.request(n.protocolQuery, { traceparent: this.client._tracingHelper.getTraceParent(), interactiveTransaction: i, isWrite: ui(n.protocolQuery.action), customDataProxyFetch: n.customDataProxyFetch });
+          return this.mapQueryEngineResult(n, o);
+        }, batchBy: (n) => n.transaction?.id ? `transaction-${n.transaction.id}` : ia(n.protocolQuery), batchOrder(n, i) {
+          return n.transaction?.kind === "batch" && i.transaction?.kind === "batch" ? n.transaction.index - i.transaction.index : 0;
+        } });
+      }
+      async request(t) {
+        try {
+          return await this.dataloader.request(t);
+        } catch (r) {
+          let { clientMethod: n, callsite: i, transaction: o, args: s, modelName: a } = t;
+          this.handleAndLogRequestError({ error: r, clientMethod: n, callsite: i, transaction: o, args: s, modelName: a, globalOmit: t.globalOmit });
+        }
+      }
+      mapQueryEngineResult({ dataPath: t, unpacker: r }, n) {
+        let i = n?.data, o = this.unpack(i, t, r);
+        return y.env.PRISMA_CLIENT_GET_TIME ? { data: o } : o;
+      }
+      handleAndLogRequestError(t) {
+        try {
+          this.handleRequestError(t);
+        } catch (r) {
+          throw this.logEmitter && this.logEmitter.emit("error", { message: r.message, target: t.clientMethod, timestamp: /* @__PURE__ */ new Date() }), r;
+        }
+      }
+      handleRequestError({ error: t, clientMethod: r, callsite: n, transaction: i, args: o, modelName: s, globalOmit: a }) {
+        if (wp(t), bp(t, i)) throw t;
+        if (t instanceof ne && xp(t)) {
+          let d = sa(t.meta);
+          Ur({ args: o, errors: [d], callsite: n, errorFormat: this.client._errorFormat, originalMethod: r, clientVersion: this.client._clientVersion, globalOmit: a });
+        }
+        let l = t.message;
+        if (n && (l = Sr({ callsite: n, originalMethod: r, isPanic: t.isPanic, showColors: this.client._errorFormat === "pretty", message: l })), l = this.sanitizeMessage(l), t.code) {
+          let d = s ? { modelName: s, ...t.meta } : t.meta;
+          throw new ne(l, { code: t.code, clientVersion: this.client._clientVersion, meta: d, batchRequestIdx: t.batchRequestIdx });
+        } else {
+          if (t.isPanic) throw new Pe(l, this.client._clientVersion);
+          if (t instanceof ie) throw new ie(l, { clientVersion: this.client._clientVersion, batchRequestIdx: t.batchRequestIdx });
+          if (t instanceof Q) throw new Q(l, this.client._clientVersion);
+          if (t instanceof Pe) throw new Pe(l, this.client._clientVersion);
+        }
+        throw t.clientVersion = this.client._clientVersion, t;
+      }
+      sanitizeMessage(t) {
+        return this.client._errorFormat && this.client._errorFormat !== "pretty" ? Rn(t) : t;
+      }
+      unpack(t, r, n) {
+        if (!t || (t.data && (t = t.data), !t)) return t;
+        let i = Object.keys(t)[0], o = Object.values(t)[0], s = r.filter((d) => d !== "select" && d !== "include"), a = Kn(o, s), l = i === "queryRaw" ? nn(a) : dt(a);
+        return n ? n(l) : l;
+      }
+      get [Symbol.toStringTag]() {
+        return "RequestHandler";
+      }
+    };
+    function Ep(e) {
+      if (e) {
+        if (e.kind === "batch") return { kind: "batch", options: { isolationLevel: e.isolationLevel } };
+        if (e.kind === "itx") return { kind: "itx", options: oa(e) };
+        Ue(e, "Unknown transaction kind");
+      }
+    }
+    function oa(e) {
+      return { id: e.id, payload: e.payload };
+    }
+    function bp(e, t) {
+      return tn(e) && t?.kind === "batch" && e.batchRequestIdx !== t.index;
+    }
+    function xp(e) {
+      return e.code === "P2009" || e.code === "P2012";
+    }
+    function sa(e) {
+      if (e.kind === "Union") return { kind: "Union", errors: e.errors.map(sa) };
+      if (Array.isArray(e.selectionPath)) {
+        let [, ...t] = e.selectionPath;
+        return { ...e, selectionPath: t };
+      }
+      return e;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var aa = Ds;
+    f();
+    u();
+    c();
+    p();
+    m();
+    var ma = Qe(Nn());
+    f();
+    u();
+    c();
+    p();
+    m();
+    var q = class extends Error {
+      constructor(t) {
+        super(t + `
+Read more at https://pris.ly/d/client-constructor`), this.name = "PrismaClientConstructorValidationError";
+      }
+      get [Symbol.toStringTag]() {
+        return "PrismaClientConstructorValidationError";
+      }
+    };
+    N(q, "PrismaClientConstructorValidationError");
+    var la = ["datasources", "datasourceUrl", "errorFormat", "adapter", "log", "transactionOptions", "omit", "__internal"];
+    var ua = ["pretty", "colorless", "minimal"];
+    var ca = ["info", "query", "warn", "error"];
+    var Pp = { datasources: (e, { datasourceNames: t }) => {
+      if (e) {
+        if (typeof e != "object" || Array.isArray(e)) throw new q(`Invalid value ${JSON.stringify(e)} for "datasources" provided to PrismaClient constructor`);
+        for (let [r, n] of Object.entries(e)) {
+          if (!t.includes(r)) {
+            let i = xt(r, t) || ` Available datasources: ${t.join(", ")}`;
+            throw new q(`Unknown datasource ${r} provided to PrismaClient constructor.${i}`);
+          }
+          if (typeof n != "object" || Array.isArray(n)) throw new q(`Invalid value ${JSON.stringify(e)} for datasource "${r}" provided to PrismaClient constructor.
+It should have this form: { url: "CONNECTION_STRING" }`);
+          if (n && typeof n == "object") for (let [i, o] of Object.entries(n)) {
+            if (i !== "url") throw new q(`Invalid value ${JSON.stringify(e)} for datasource "${r}" provided to PrismaClient constructor.
+It should have this form: { url: "CONNECTION_STRING" }`);
+            if (typeof o != "string") throw new q(`Invalid value ${JSON.stringify(o)} for datasource "${r}" provided to PrismaClient constructor.
+It should have this form: { url: "CONNECTION_STRING" }`);
+          }
+        }
+      }
+    }, adapter: (e, t) => {
+      if (!e && Ze(t.generator) === "client") throw new q('Using engine type "client" requires a driver adapter to be provided to PrismaClient constructor.');
+      if (e !== null) {
+        if (e === void 0) throw new q('"adapter" property must not be undefined, use null to conditionally disable driver adapters.');
+        if (Ze(t.generator) === "binary") throw new q('Cannot use a driver adapter with the "binary" Query Engine. Please use the "library" Query Engine.');
+      }
+    }, datasourceUrl: (e) => {
+      if (typeof e < "u" && typeof e != "string") throw new q(`Invalid value ${JSON.stringify(e)} for "datasourceUrl" provided to PrismaClient constructor.
+Expected string or undefined.`);
+    }, errorFormat: (e) => {
+      if (e) {
+        if (typeof e != "string") throw new q(`Invalid value ${JSON.stringify(e)} for "errorFormat" provided to PrismaClient constructor.`);
+        if (!ua.includes(e)) {
+          let t = xt(e, ua);
+          throw new q(`Invalid errorFormat ${e} provided to PrismaClient constructor.${t}`);
+        }
+      }
+    }, log: (e) => {
+      if (!e) return;
+      if (!Array.isArray(e)) throw new q(`Invalid value ${JSON.stringify(e)} for "log" provided to PrismaClient constructor.`);
+      function t(r) {
+        if (typeof r == "string" && !ca.includes(r)) {
+          let n = xt(r, ca);
+          throw new q(`Invalid log level "${r}" provided to PrismaClient constructor.${n}`);
+        }
+      }
+      for (let r of e) {
+        t(r);
+        let n = { level: t, emit: (i) => {
+          let o = ["stdout", "event"];
+          if (!o.includes(i)) {
+            let s = xt(i, o);
+            throw new q(`Invalid value ${JSON.stringify(i)} for "emit" in logLevel provided to PrismaClient constructor.${s}`);
+          }
+        } };
+        if (r && typeof r == "object") for (let [i, o] of Object.entries(r)) if (n[i]) n[i](o);
+        else throw new q(`Invalid property ${i} for "log" provided to PrismaClient constructor`);
+      }
+    }, transactionOptions: (e) => {
+      if (!e) return;
+      let t = e.maxWait;
+      if (t != null && t <= 0) throw new q(`Invalid value ${t} for maxWait in "transactionOptions" provided to PrismaClient constructor. maxWait needs to be greater than 0`);
+      let r = e.timeout;
+      if (r != null && r <= 0) throw new q(`Invalid value ${r} for timeout in "transactionOptions" provided to PrismaClient constructor. timeout needs to be greater than 0`);
+    }, omit: (e, t) => {
+      if (typeof e != "object") throw new q('"omit" option is expected to be an object.');
+      if (e === null) throw new q('"omit" option can not be `null`');
+      let r = [];
+      for (let [n, i] of Object.entries(e)) {
+        let o = Tp(n, t.runtimeDataModel);
+        if (!o) {
+          r.push({ kind: "UnknownModel", modelKey: n });
+          continue;
+        }
+        for (let [s, a] of Object.entries(i)) {
+          let l = o.fields.find((d) => d.name === s);
+          if (!l) {
+            r.push({ kind: "UnknownField", modelKey: n, fieldName: s });
+            continue;
+          }
+          if (l.relationName) {
+            r.push({ kind: "RelationInOmit", modelKey: n, fieldName: s });
+            continue;
+          }
+          typeof a != "boolean" && r.push({ kind: "InvalidFieldValue", modelKey: n, fieldName: s });
+        }
+      }
+      if (r.length > 0) throw new q(Ap(e, r));
+    }, __internal: (e) => {
+      if (!e) return;
+      let t = ["debug", "engine", "configOverride"];
+      if (typeof e != "object") throw new q(`Invalid value ${JSON.stringify(e)} for "__internal" to PrismaClient constructor`);
+      for (let [r] of Object.entries(e)) if (!t.includes(r)) {
+        let n = xt(r, t);
+        throw new q(`Invalid property ${JSON.stringify(r)} for "__internal" provided to PrismaClient constructor.${n}`);
+      }
+    } };
+    function fa(e, t) {
+      for (let [r, n] of Object.entries(e)) {
+        if (!la.includes(r)) {
+          let i = xt(r, la);
+          throw new q(`Unknown property ${r} provided to PrismaClient constructor.${i}`);
+        }
+        Pp[r](n, t);
+      }
+      if (e.datasourceUrl && e.datasources) throw new q('Can not use "datasourceUrl" and "datasources" options at the same time. Pick one of them');
+    }
+    function xt(e, t) {
+      if (t.length === 0 || typeof e != "string") return "";
+      let r = vp(e, t);
+      return r ? ` Did you mean "${r}"?` : "";
+    }
+    function vp(e, t) {
+      if (t.length === 0) return null;
+      let r = t.map((i) => ({ value: i, distance: (0, ma.default)(e, i) }));
+      r.sort((i, o) => i.distance < o.distance ? -1 : 1);
+      let n = r[0];
+      return n.distance < 3 ? n.value : null;
+    }
+    function Tp(e, t) {
+      return pa(t.models, e) ?? pa(t.types, e);
+    }
+    function pa(e, t) {
+      let r = Object.keys(e).find((n) => Ie(n) === t);
+      if (r) return e[r];
+    }
+    function Ap(e, t) {
+      let r = ut(e);
+      for (let o of t) switch (o.kind) {
+        case "UnknownModel":
+          r.arguments.getField(o.modelKey)?.markAsError(), r.addErrorMessage(() => `Unknown model name: ${o.modelKey}.`);
+          break;
+        case "UnknownField":
+          r.arguments.getDeepField([o.modelKey, o.fieldName])?.markAsError(), r.addErrorMessage(() => `Model "${o.modelKey}" does not have a field named "${o.fieldName}".`);
+          break;
+        case "RelationInOmit":
+          r.arguments.getDeepField([o.modelKey, o.fieldName])?.markAsError(), r.addErrorMessage(() => 'Relations are already excluded by default and can not be specified in "omit".');
+          break;
+        case "InvalidFieldValue":
+          r.arguments.getDeepFieldValue([o.modelKey, o.fieldName])?.markAsError(), r.addErrorMessage(() => "Omit field option value must be a boolean.");
+          break;
+      }
+      let { message: n, args: i } = Lr(r, "colorless");
+      return `Error validating "omit" option:
+
+${i}
+
+${n}`;
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    function da(e) {
+      return e.length === 0 ? Promise.resolve([]) : new Promise((t, r) => {
+        let n = new Array(e.length), i = null, o = false, s = 0, a = () => {
+          o || (s++, s === e.length && (o = true, i ? r(i) : t(n)));
+        }, l = (d) => {
+          o || (o = true, r(d));
+        };
+        for (let d = 0; d < e.length; d++) e[d].then((g) => {
+          n[d] = g, a();
+        }, (g) => {
+          if (!tn(g)) {
+            l(g);
+            return;
+          }
+          g.batchRequestIdx === d ? l(g) : (i || (i = g), a());
+        });
+      });
+    }
+    var Fe = z("prisma:client");
+    typeof globalThis == "object" && (globalThis.NODE_CLIENT = true);
+    var Rp = { requestArgsToMiddlewareArgs: (e) => e, middlewareArgsToRequestArgs: (e) => e };
+    var Cp = /* @__PURE__ */ Symbol.for("prisma.client.transaction.id");
+    var Sp = { id: 0, nextId() {
+      return ++this.id;
+    } };
+    function ya(e) {
+      class t {
+        _originalClient = this;
+        _runtimeDataModel;
+        _requestHandler;
+        _connectionPromise;
+        _disconnectionPromise;
+        _engineConfig;
+        _accelerateEngineConfig;
+        _clientVersion;
+        _errorFormat;
+        _tracingHelper;
+        _previewFeatures;
+        _activeProvider;
+        _globalOmit;
+        _extensions;
+        _engine;
+        _appliedParent;
+        _createPrismaPromise = si();
+        constructor(n) {
+          e = n?.__internal?.configOverride?.(e) ?? e, Is(e), n && fa(n, e);
+          let i = new Jr().on("error", () => {
+          });
+          this._extensions = ct.empty(), this._previewFeatures = Gs(e), this._clientVersion = e.clientVersion ?? aa, this._activeProvider = e.activeProvider, this._globalOmit = n?.omit, this._tracingHelper = ta();
+          let o = e.relativeEnvPaths && { rootEnvPath: e.relativeEnvPaths.rootEnvPath && dr.resolve(e.dirname, e.relativeEnvPaths.rootEnvPath), schemaEnvPath: e.relativeEnvPaths.schemaEnvPath && dr.resolve(e.dirname, e.relativeEnvPaths.schemaEnvPath) }, s;
+          if (n?.adapter) {
+            s = n.adapter;
+            let l = e.activeProvider === "postgresql" || e.activeProvider === "cockroachdb" ? "postgres" : e.activeProvider;
+            if (s.provider !== l) throw new Q(`The Driver Adapter \`${s.adapterName}\`, based on \`${s.provider}\`, is not compatible with the provider \`${l}\` specified in the Prisma schema.`, this._clientVersion);
+            if (n.datasources || n.datasourceUrl !== void 0) throw new Q("Custom datasource configuration is not compatible with Prisma Driver Adapters. Please define the database connection string directly in the Driver Adapter configuration.", this._clientVersion);
+          }
+          let a = e.injectableEdgeEnv?.();
+          try {
+            let l = n ?? {}, d = l.__internal ?? {}, g = d.debug === true;
+            g && z.enable("prisma:client");
+            let h = dr.resolve(e.dirname, e.relativePath);
+            Qi.existsSync(h) || (h = e.dirname), Fe("dirname", e.dirname), Fe("relativePath", e.relativePath), Fe("cwd", h);
+            let T = d.engine || {};
+            if (l.errorFormat ? this._errorFormat = l.errorFormat : y.env.NODE_ENV === "production" ? this._errorFormat = "minimal" : y.env.NO_COLOR ? this._errorFormat = "colorless" : this._errorFormat = "colorless", this._runtimeDataModel = e.runtimeDataModel, this._engineConfig = { cwd: h, dirname: e.dirname, enableDebugLogs: g, allowTriggerPanic: T.allowTriggerPanic, prismaPath: T.binaryPath ?? void 0, engineEndpoint: T.endpoint, generator: e.generator, showColors: this._errorFormat === "pretty", logLevel: l.log && na(l.log), logQueries: l.log && !!(typeof l.log == "string" ? l.log === "query" : l.log.find((I) => typeof I == "string" ? I === "query" : I.level === "query")), env: a?.parsed ?? {}, flags: [], engineWasm: e.engineWasm, compilerWasm: e.compilerWasm, clientVersion: e.clientVersion, engineVersion: e.engineVersion, previewFeatures: this._previewFeatures, activeProvider: e.activeProvider, inlineSchema: e.inlineSchema, overrideDatasources: Os(l, e.datasourceNames), inlineDatasources: e.inlineDatasources, inlineSchemaHash: e.inlineSchemaHash, tracingHelper: this._tracingHelper, transactionOptions: { maxWait: l.transactionOptions?.maxWait ?? 2e3, timeout: l.transactionOptions?.timeout ?? 5e3, isolationLevel: l.transactionOptions?.isolationLevel }, logEmitter: i, isBundled: e.isBundled, adapter: s }, this._accelerateEngineConfig = { ...this._engineConfig, accelerateUtils: { resolveDatasourceUrl: gt, getBatchRequestPayload: Wr, prismaGraphQLToJSError: Hr, PrismaClientUnknownRequestError: ie, PrismaClientInitializationError: Q, PrismaClientKnownRequestError: ne, debug: z("prisma:client:accelerateEngine"), engineVersion: ha.version, clientVersion: e.clientVersion } }, Fe("clientVersion", e.clientVersion), this._engine = js(e, this._engineConfig), this._requestHandler = new on(this, i), l.log) for (let I of l.log) {
+              let S = typeof I == "string" ? I : I.emit === "stdout" ? I.level : null;
+              S && this.$on(S, (C) => {
+                Ct.log(`${Ct.tags[S] ?? ""}`, C.message || C.query);
+              });
+            }
+          } catch (l) {
+            throw l.clientVersion = this._clientVersion, l;
+          }
+          return this._appliedParent = Gt(this);
+        }
+        get [Symbol.toStringTag]() {
+          return "PrismaClient";
+        }
+        $on(n, i) {
+          return n === "beforeExit" ? this._engine.onBeforeExit(i) : n && this._engineConfig.logEmitter.on(n, i), this;
+        }
+        $connect() {
+          try {
+            return this._engine.start();
+          } catch (n) {
+            throw n.clientVersion = this._clientVersion, n;
+          }
+        }
+        async $disconnect() {
+          try {
+            await this._engine.stop();
+          } catch (n) {
+            throw n.clientVersion = this._clientVersion, n;
+          } finally {
+            Ji();
+          }
+        }
+        $executeRawInternal(n, i, o, s) {
+          let a = this._activeProvider;
+          return this._request({ action: "executeRaw", args: o, transaction: n, clientMethod: i, argsMapper: oi({ clientMethod: i, activeProvider: a }), callsite: Ne(this._errorFormat), dataPath: [], middlewareArgsMapper: s });
+        }
+        $executeRaw(n, ...i) {
+          return this._createPrismaPromise((o) => {
+            if (n.raw !== void 0 || n.sql !== void 0) {
+              let [s, a] = ga(n, i);
+              return ii(this._activeProvider, s.text, s.values, Array.isArray(n) ? "prisma.$executeRaw`<SQL>`" : "prisma.$executeRaw(sql`<SQL>`)"), this.$executeRawInternal(o, "$executeRaw", s, a);
+            }
+            throw new X("`$executeRaw` is a tag function, please use it like the following:\n```\nconst result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`\n```\n\nOr read our docs at https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access#executeraw\n", { clientVersion: this._clientVersion });
+          });
+        }
+        $executeRawUnsafe(n, ...i) {
+          return this._createPrismaPromise((o) => (ii(this._activeProvider, n, i, "prisma.$executeRawUnsafe(<SQL>, [...values])"), this.$executeRawInternal(o, "$executeRawUnsafe", [n, ...i])));
+        }
+        $runCommandRaw(n) {
+          if (e.activeProvider !== "mongodb") throw new X(`The ${e.activeProvider} provider does not support $runCommandRaw. Use the mongodb provider.`, { clientVersion: this._clientVersion });
+          return this._createPrismaPromise((i) => this._request({ args: n, clientMethod: "$runCommandRaw", dataPath: [], action: "runCommandRaw", argsMapper: Js, callsite: Ne(this._errorFormat), transaction: i }));
+        }
+        async $queryRawInternal(n, i, o, s) {
+          let a = this._activeProvider;
+          return this._request({ action: "queryRaw", args: o, transaction: n, clientMethod: i, argsMapper: oi({ clientMethod: i, activeProvider: a }), callsite: Ne(this._errorFormat), dataPath: [], middlewareArgsMapper: s });
+        }
+        $queryRaw(n, ...i) {
+          return this._createPrismaPromise((o) => {
+            if (n.raw !== void 0 || n.sql !== void 0) return this.$queryRawInternal(o, "$queryRaw", ...ga(n, i));
+            throw new X("`$queryRaw` is a tag function, please use it like the following:\n```\nconst result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`\n```\n\nOr read our docs at https://www.prisma.io/docs/concepts/components/prisma-client/raw-database-access#queryraw\n", { clientVersion: this._clientVersion });
+          });
+        }
+        $queryRawTyped(n) {
+          return this._createPrismaPromise((i) => {
+            if (!this._hasPreviewFlag("typedSql")) throw new X("`typedSql` preview feature must be enabled in order to access $queryRawTyped API", { clientVersion: this._clientVersion });
+            return this.$queryRawInternal(i, "$queryRawTyped", n);
+          });
+        }
+        $queryRawUnsafe(n, ...i) {
+          return this._createPrismaPromise((o) => this.$queryRawInternal(o, "$queryRawUnsafe", [n, ...i]));
+        }
+        _transactionWithArray({ promises: n, options: i }) {
+          let o = Sp.nextId(), s = ra(n.length), a = n.map((l, d) => {
+            if (l?.[Symbol.toStringTag] !== "PrismaPromise") throw new Error("All elements of the array need to be Prisma Client promises. Hint: Please make sure you are not awaiting the Prisma client calls you intended to pass in the $transaction function.");
+            let g = i?.isolationLevel ?? this._engineConfig.transactionOptions.isolationLevel, h = { kind: "batch", id: o, index: d, isolationLevel: g, lock: s };
+            return l.requestTransaction?.(h) ?? l;
+          });
+          return da(a);
+        }
+        async _transactionWithCallback({ callback: n, options: i }) {
+          let o = { traceparent: this._tracingHelper.getTraceParent() }, s = { maxWait: i?.maxWait ?? this._engineConfig.transactionOptions.maxWait, timeout: i?.timeout ?? this._engineConfig.transactionOptions.timeout, isolationLevel: i?.isolationLevel ?? this._engineConfig.transactionOptions.isolationLevel }, a = await this._engine.transaction("start", o, s), l;
+          try {
+            let d = { kind: "itx", ...a };
+            l = await n(this._createItxClient(d)), await this._engine.transaction("commit", o, a);
+          } catch (d) {
+            throw await this._engine.transaction("rollback", o, a).catch(() => {
+            }), d;
+          }
+          return l;
+        }
+        _createItxClient(n) {
+          return me(Gt(me(ds(this), [te("_appliedParent", () => this._appliedParent._createItxClient(n)), te("_createPrismaPromise", () => si(n)), te(Cp, () => n.id)])), [mt(Es)]);
+        }
+        $transaction(n, i) {
+          let o;
+          typeof n == "function" ? this._engineConfig.adapter?.adapterName === "@prisma/adapter-d1" ? o = () => {
+            throw new Error("Cloudflare D1 does not support interactive transactions. We recommend you to refactor your queries with that limitation in mind, and use batch transactions with `prisma.$transactions([])` where applicable.");
+          } : o = () => this._transactionWithCallback({ callback: n, options: i }) : o = () => this._transactionWithArray({ promises: n, options: i });
+          let s = { name: "transaction", attributes: { method: "$transaction" } };
+          return this._tracingHelper.runInChildSpan(s, o);
+        }
+        _request(n) {
+          n.otelParentCtx = this._tracingHelper.getActiveContext();
+          let i = n.middlewareArgsMapper ?? Rp, o = { args: i.requestArgsToMiddlewareArgs(n.args), dataPath: n.dataPath, runInTransaction: !!n.transaction, action: n.action, model: n.model }, s = { operation: { name: "operation", attributes: { method: o.action, model: o.model, name: o.model ? `${o.model}.${o.action}` : o.action } } }, a = async (l) => {
+            let { runInTransaction: d, args: g, ...h } = l, T = { ...n, ...h };
+            g && (T.args = i.middlewareArgsToRequestArgs(g)), n.transaction !== void 0 && d === false && delete T.transaction;
+            let I = await vs(this, T);
+            return T.model ? ws({ result: I, modelName: T.model, args: T.args, extensions: this._extensions, runtimeDataModel: this._runtimeDataModel, globalOmit: this._globalOmit }) : I;
+          };
+          return this._tracingHelper.runInChildSpan(s.operation, () => a(o));
+        }
+        async _executeRequest({ args: n, clientMethod: i, dataPath: o, callsite: s, action: a, model: l, argsMapper: d, transaction: g, unpacker: h, otelParentCtx: T, customDataProxyFetch: I }) {
+          try {
+            n = d ? d(n) : n;
+            let S = { name: "serialize" }, C = this._tracingHelper.runInChildSpan(S, () => $r({ modelName: l, runtimeDataModel: this._runtimeDataModel, action: a, args: n, clientMethod: i, callsite: s, extensions: this._extensions, errorFormat: this._errorFormat, clientVersion: this._clientVersion, previewFeatures: this._previewFeatures, globalOmit: this._globalOmit }));
+            return z.enabled("prisma:client") && (Fe("Prisma Client call:"), Fe(`prisma.${i}(${is(n)})`), Fe("Generated request:"), Fe(JSON.stringify(C, null, 2) + `
+`)), g?.kind === "batch" && await g.lock, this._requestHandler.request({ protocolQuery: C, modelName: l, action: a, clientMethod: i, dataPath: o, callsite: s, args: n, extensions: this._extensions, transaction: g, unpacker: h, otelParentCtx: T, otelChildCtx: this._tracingHelper.getActiveContext(), globalOmit: this._globalOmit, customDataProxyFetch: I });
+          } catch (S) {
+            throw S.clientVersion = this._clientVersion, S;
+          }
+        }
+        $metrics = new pt(this);
+        _hasPreviewFlag(n) {
+          return !!this._engineConfig.previewFeatures?.includes(n);
+        }
+        $applyPendingMigrations() {
+          return this._engine.applyPendingMigrations();
+        }
+        $extends = gs;
+      }
+      return t;
+    }
+    function ga(e, t) {
+      return Ip(e) ? [new se(e, t), Zs] : [e, Xs];
+    }
+    function Ip(e) {
+      return Array.isArray(e) && Array.isArray(e.raw);
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+    var Op = /* @__PURE__ */ new Set(["toJSON", "$$typeof", "asymmetricMatch", Symbol.iterator, Symbol.toStringTag, Symbol.isConcatSpreadable, Symbol.toPrimitive]);
+    function wa(e) {
+      return new Proxy(e, { get(t, r) {
+        if (r in t) return t[r];
+        if (!Op.has(r)) throw new TypeError(`Invalid enum value: ${String(r)}`);
+      } });
+    }
+    f();
+    u();
+    c();
+    p();
+    m();
+  }
+});
+
+// node_modules/.prisma/client/edge.js
+var require_edge2 = __commonJS({
+  "node_modules/.prisma/client/edge.js"(exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var {
+      PrismaClientKnownRequestError: PrismaClientKnownRequestError2,
+      PrismaClientUnknownRequestError: PrismaClientUnknownRequestError2,
+      PrismaClientRustPanicError: PrismaClientRustPanicError2,
+      PrismaClientInitializationError: PrismaClientInitializationError2,
+      PrismaClientValidationError: PrismaClientValidationError2,
+      getPrismaClient: getPrismaClient2,
+      sqltag: sqltag2,
+      empty: empty2,
+      join: join2,
+      raw: raw3,
+      skip: skip2,
+      Decimal: Decimal2,
+      Debug: Debug2,
+      objectEnumValues: objectEnumValues2,
+      makeStrictEnum: makeStrictEnum2,
+      Extensions: Extensions2,
+      warnOnce: warnOnce2,
+      defineDmmfProperty: defineDmmfProperty2,
+      Public: Public2,
+      getRuntime: getRuntime2,
+      createParam: createParam2
+    } = require_edge();
+    var Prisma = {};
+    exports.Prisma = Prisma;
+    exports.$Enums = {};
+    Prisma.prismaVersion = {
+      client: "6.19.2",
+      engine: "c2990dca591cba766e3b7ef5d9e8a84796e47ab7"
+    };
+    Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError2;
+    Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError2;
+    Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError2;
+    Prisma.PrismaClientInitializationError = PrismaClientInitializationError2;
+    Prisma.PrismaClientValidationError = PrismaClientValidationError2;
+    Prisma.Decimal = Decimal2;
+    Prisma.sql = sqltag2;
+    Prisma.empty = empty2;
+    Prisma.join = join2;
+    Prisma.raw = raw3;
+    Prisma.validator = Public2.validator;
+    Prisma.getExtensionContext = Extensions2.getExtensionContext;
+    Prisma.defineExtension = Extensions2.defineExtension;
+    Prisma.DbNull = objectEnumValues2.instances.DbNull;
+    Prisma.JsonNull = objectEnumValues2.instances.JsonNull;
+    Prisma.AnyNull = objectEnumValues2.instances.AnyNull;
+    Prisma.NullTypes = {
+      DbNull: objectEnumValues2.classes.DbNull,
+      JsonNull: objectEnumValues2.classes.JsonNull,
+      AnyNull: objectEnumValues2.classes.AnyNull
+    };
+    exports.Prisma.TransactionIsolationLevel = makeStrictEnum2({
+      ReadUncommitted: "ReadUncommitted",
+      ReadCommitted: "ReadCommitted",
+      RepeatableRead: "RepeatableRead",
+      Serializable: "Serializable"
+    });
+    exports.Prisma.UserScalarFieldEnum = {
+      id: "id",
+      email: "email",
+      displayName: "displayName",
+      githubId: "githubId",
+      githubAccessToken: "githubAccessToken",
+      createdAt: "createdAt"
+    };
+    exports.Prisma.OrganizationScalarFieldEnum = {
+      id: "id",
+      name: "name",
+      githubId: "githubId",
+      createdAt: "createdAt"
+    };
+    exports.Prisma.RepositoryScalarFieldEnum = {
+      id: "id",
+      userId: "userId",
+      orgId: "orgId",
+      name: "name",
+      owner: "owner",
+      githubId: "githubId",
+      webhookId: "webhookId",
+      createdAt: "createdAt"
+    };
+    exports.Prisma.PullRequestScalarFieldEnum = {
+      id: "id",
+      githubPrId: "githubPrId",
+      repoId: "repoId",
+      title: "title",
+      authorLogin: "authorLogin",
+      openedAt: "openedAt",
+      mergedAt: "mergedAt",
+      closedAt: "closedAt",
+      cycleTimeMs: "cycleTimeMs"
+    };
+    exports.Prisma.CommitScalarFieldEnum = {
+      id: "id",
+      repoId: "repoId",
+      sha: "sha",
+      author: "author",
+      message: "message",
+      committedAt: "committedAt"
+    };
+    exports.Prisma.WebhookEventScalarFieldEnum = {
+      id: "id",
+      repoId: "repoId",
+      eventType: "eventType",
+      payload: "payload",
+      processedAt: "processedAt",
+      createdAt: "createdAt"
+    };
+    exports.Prisma.MetricScalarFieldEnum = {
+      id: "id",
+      repoId: "repoId",
+      date: "date",
+      prCount: "prCount",
+      commitCount: "commitCount",
+      avgCycleTimeMs: "avgCycleTimeMs",
+      avgReviewTimeMs: "avgReviewTimeMs"
+    };
+    exports.Prisma.SortOrder = {
+      asc: "asc",
+      desc: "desc"
+    };
+    exports.Prisma.JsonNullValueInput = {
+      JsonNull: Prisma.JsonNull
+    };
+    exports.Prisma.QueryMode = {
+      default: "default",
+      insensitive: "insensitive"
+    };
+    exports.Prisma.NullsOrder = {
+      first: "first",
+      last: "last"
+    };
+    exports.Prisma.JsonNullValueFilter = {
+      DbNull: Prisma.DbNull,
+      JsonNull: Prisma.JsonNull,
+      AnyNull: Prisma.AnyNull
+    };
+    exports.Prisma.ModelName = {
+      User: "User",
+      Organization: "Organization",
+      Repository: "Repository",
+      PullRequest: "PullRequest",
+      Commit: "Commit",
+      WebhookEvent: "WebhookEvent",
+      Metric: "Metric"
+    };
+    var config = {
+      "generator": {
+        "name": "client",
+        "provider": {
+          "fromEnvVar": null,
+          "value": "prisma-client-js"
+        },
+        "output": {
+          "value": "/home/user/node_modules/@prisma/client",
+          "fromEnvVar": null
+        },
+        "config": {
+          "engineType": "library"
+        },
+        "binaryTargets": [
+          {
+            "fromEnvVar": null,
+            "value": "debian-openssl-3.0.x",
+            "native": true
+          }
+        ],
+        "previewFeatures": [],
+        "sourceFilePath": "/home/user/prisma/schema.prisma"
+      },
+      "relativeEnvPaths": {
+        "rootEnvPath": null
+      },
+      "relativePath": "../../../prisma",
+      "clientVersion": "6.19.2",
+      "engineVersion": "c2990dca591cba766e3b7ef5d9e8a84796e47ab7",
+      "datasourceNames": [
+        "db"
+      ],
+      "activeProvider": "postgresql",
+      "postinstall": false,
+      "inlineDatasources": {
+        "db": {
+          "url": {
+            "fromEnvVar": "DATABASE_URL",
+            "value": null
+          }
+        }
+      },
+      "inlineSchema": 'generator client {\n  provider = "prisma-client-js"\n}\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\nmodel User {\n  id                String       @id @default(cuid())\n  email             String?      @unique\n  displayName       String?\n  githubId          String       @unique\n  githubAccessToken String?\n  repositories      Repository[]\n  createdAt         DateTime     @default(now())\n}\n\nmodel Organization {\n  id           String       @id @default(cuid())\n  name         String\n  githubId     String       @unique\n  repositories Repository[]\n  createdAt    DateTime     @default(now())\n}\n\nmodel Repository {\n  id           String        @id @default(cuid())\n  userId       String\n  user         User          @relation(fields: [userId], references: [id])\n  orgId        String?\n  org          Organization? @relation(fields: [orgId], references: [id])\n  name         String\n  owner        String\n  githubId     String        @unique\n  webhookId    String?\n  pullRequests PullRequest[]\n  metrics      Metric[]\n  createdAt    DateTime      @default(now())\n}\n\nmodel PullRequest {\n  id          String     @id @default(cuid())\n  githubPrId  String     @unique\n  repoId      String\n  repository  Repository @relation(fields: [repoId], references: [id])\n  title       String\n  authorLogin String\n  openedAt    DateTime\n  mergedAt    DateTime?\n  closedAt    DateTime?\n  cycleTimeMs BigInt?\n}\n\nmodel Commit {\n  id          String   @id @default(cuid())\n  repoId      String\n  sha         String   @unique\n  author      String\n  message     String?\n  committedAt DateTime\n}\n\nmodel WebhookEvent {\n  id          String    @id @default(cuid())\n  repoId      String?\n  eventType   String\n  payload     Json\n  processedAt DateTime?\n  createdAt   DateTime  @default(now())\n}\n\nmodel Metric {\n  id              String     @id @default(cuid())\n  repoId          String\n  repository      Repository @relation(fields: [repoId], references: [id])\n  date            DateTime // Day-truncated\n  prCount         Int        @default(0)\n  commitCount     Int        @default(0)\n  avgCycleTimeMs  Float      @default(0)\n  avgReviewTimeMs Float      @default(0)\n\n  @@unique([repoId, date])\n}\n',
+      "inlineSchemaHash": "04bd3fe0b6c1dde809b2f9681fa141bba354c5b2718af3d259f621f27639cb52",
+      "copyEngine": false
+    };
+    config.dirname = "/";
+    config.runtimeDataModel = JSON.parse('{"models":{"User":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"email","kind":"scalar","isList":false,"isRequired":false,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"displayName","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"githubId","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"githubAccessToken","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"repositories","kind":"object","isList":true,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Repository","nativeType":null,"relationName":"RepositoryToUser","relationFromFields":[],"relationToFields":[],"isGenerated":false,"isUpdatedAt":false},{"name":"createdAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"Organization":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"name","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"githubId","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"repositories","kind":"object","isList":true,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Repository","nativeType":null,"relationName":"OrganizationToRepository","relationFromFields":[],"relationToFields":[],"isGenerated":false,"isUpdatedAt":false},{"name":"createdAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"Repository":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"userId","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":true,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"user","kind":"object","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"User","nativeType":null,"relationName":"RepositoryToUser","relationFromFields":["userId"],"relationToFields":["id"],"isGenerated":false,"isUpdatedAt":false},{"name":"orgId","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":true,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"org","kind":"object","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Organization","nativeType":null,"relationName":"OrganizationToRepository","relationFromFields":["orgId"],"relationToFields":["id"],"isGenerated":false,"isUpdatedAt":false},{"name":"name","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"owner","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"githubId","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"webhookId","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"pullRequests","kind":"object","isList":true,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"PullRequest","nativeType":null,"relationName":"PullRequestToRepository","relationFromFields":[],"relationToFields":[],"isGenerated":false,"isUpdatedAt":false},{"name":"metrics","kind":"object","isList":true,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Metric","nativeType":null,"relationName":"MetricToRepository","relationFromFields":[],"relationToFields":[],"isGenerated":false,"isUpdatedAt":false},{"name":"createdAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"PullRequest":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"githubPrId","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"repoId","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":true,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"repository","kind":"object","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Repository","nativeType":null,"relationName":"PullRequestToRepository","relationFromFields":["repoId"],"relationToFields":["id"],"isGenerated":false,"isUpdatedAt":false},{"name":"title","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"authorLogin","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"openedAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"mergedAt","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"closedAt","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"cycleTimeMs","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"BigInt","nativeType":null,"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"Commit":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"repoId","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"sha","kind":"scalar","isList":false,"isRequired":true,"isUnique":true,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"author","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"message","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"committedAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"WebhookEvent":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"repoId","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"eventType","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"payload","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Json","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"processedAt","kind":"scalar","isList":false,"isRequired":false,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"createdAt","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"DateTime","nativeType":null,"default":{"name":"now","args":[]},"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[],"uniqueIndexes":[],"isGenerated":false},"Metric":{"dbName":null,"schema":null,"fields":[{"name":"id","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":true,"isReadOnly":false,"hasDefaultValue":true,"type":"String","nativeType":null,"default":{"name":"cuid","args":[1]},"isGenerated":false,"isUpdatedAt":false},{"name":"repoId","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":true,"hasDefaultValue":false,"type":"String","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"repository","kind":"object","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"Repository","nativeType":null,"relationName":"MetricToRepository","relationFromFields":["repoId"],"relationToFields":["id"],"isGenerated":false,"isUpdatedAt":false},{"name":"date","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":false,"type":"DateTime","nativeType":null,"isGenerated":false,"isUpdatedAt":false},{"name":"prCount","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"Int","nativeType":null,"default":0,"isGenerated":false,"isUpdatedAt":false},{"name":"commitCount","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"Int","nativeType":null,"default":0,"isGenerated":false,"isUpdatedAt":false},{"name":"avgCycleTimeMs","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"Float","nativeType":null,"default":0,"isGenerated":false,"isUpdatedAt":false},{"name":"avgReviewTimeMs","kind":"scalar","isList":false,"isRequired":true,"isUnique":false,"isId":false,"isReadOnly":false,"hasDefaultValue":true,"type":"Float","nativeType":null,"default":0,"isGenerated":false,"isUpdatedAt":false}],"primaryKey":null,"uniqueFields":[["repoId","date"]],"uniqueIndexes":[{"name":null,"fields":["repoId","date"]}],"isGenerated":false}},"enums":{},"types":{}}');
+    defineDmmfProperty2(exports.Prisma, config.runtimeDataModel);
+    config.engineWasm = void 0;
+    config.compilerWasm = void 0;
+    config.injectableEdgeEnv = () => ({
+      parsed: {
+        DATABASE_URL: typeof globalThis !== "undefined" && globalThis["DATABASE_URL"] || typeof process !== "undefined" && process.env && process.env.DATABASE_URL || void 0
+      }
+    });
+    if (typeof globalThis !== "undefined" && globalThis["DEBUG"] || typeof process !== "undefined" && process.env && process.env.DEBUG || void 0) {
+      Debug2.enable(typeof globalThis !== "undefined" && globalThis["DEBUG"] || typeof process !== "undefined" && process.env && process.env.DEBUG || void 0);
+    }
+    var PrismaClient2 = getPrismaClient2(config);
+    exports.PrismaClient = PrismaClient2;
+    Object.assign(exports, Prisma);
+  }
+});
+
+// node_modules/@prisma/client/edge.js
+var require_edge3 = __commonJS({
+  "node_modules/@prisma/client/edge.js"(exports, module) {
+    module.exports = {
+      // https://github.com/prisma/prisma/pull/12907
+      ...require_edge2()
+    };
+  }
 });
 
 // node_modules/hono/dist/compose.js
@@ -177,13 +6316,13 @@ var getPattern = (label, next) => {
   }
   return null;
 };
-var tryDecode = (str, decoder) => {
+var tryDecode = (str, decoder2) => {
   try {
-    return decoder(str);
+    return decoder2(str);
   } catch {
     return str.replace(/(?:%[0-9A-Fa-f]{2})+/g, (match2) => {
       try {
-        return decoder(match2);
+        return decoder2(match2);
       } catch {
         return match2;
       }
@@ -412,7 +6551,7 @@ var HonoRequest = class {
     return parseBody(this, options);
   }
   #cachedBody = (key) => {
-    const { bodyCache, raw: raw2 } = this;
+    const { bodyCache, raw: raw3 } = this;
     const cachedBody = bodyCache[key];
     if (cachedBody) {
       return cachedBody;
@@ -426,7 +6565,7 @@ var HonoRequest = class {
         return new Response(body)[key]();
       });
     }
-    return bodyCache[key] = raw2[key]();
+    return bodyCache[key] = raw3[key]();
   };
   /**
    * `.json()` can parse Request body of type `application/json`
@@ -602,7 +6741,7 @@ var HtmlEscapedCallbackPhase = {
   BeforeStream: 2,
   Stream: 3
 };
-var raw = (value, callbacks) => {
+var raw2 = (value, callbacks) => {
   const escapedString = new String(value);
   escapedString.isEscaped = true;
   escapedString.callbacks = callbacks;
@@ -632,7 +6771,7 @@ var resolveCallback = async (str, phase, preserveCallbacks, context, buffer) => 
     ).then(() => buffer[0])
   );
   if (preserveCallbacks) {
-    return raw(await resStr, callbacks);
+    return raw2(await resStr, callbacks);
   } else {
     return resStr;
   }
@@ -2146,6686 +8285,6742 @@ var cors = (options) => {
   };
 };
 
-// node_modules/@blinkdotnew/sdk/dist/index.mjs
-var __require2 = /* @__PURE__ */ ((x) => typeof __require !== "undefined" ? __require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof __require !== "undefined" ? __require : a)[b]
-}) : x)(function(x) {
-  if (typeof __require !== "undefined") return __require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
+// .blink-cf-build/index.ts
+var import_edge = __toESM(require_edge3(), 1);
+
+// node_modules/uncrypto/dist/crypto.web.mjs
+var webCrypto = globalThis.crypto;
+var subtle = webCrypto.subtle;
+
+// node_modules/@upstash/redis/chunk-IH7W44G6.mjs
+var __defProp2 = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp2(target, name, { get: all[name], enumerable: true });
+};
+var error_exports = {};
+__export(error_exports, {
+  UpstashError: () => UpstashError,
+  UpstashJSONParseError: () => UpstashJSONParseError,
+  UrlError: () => UrlError
 });
-function detectPlatform() {
-  if (typeof Deno !== "undefined") {
-    return "deno";
-  }
-  if (typeof process !== "undefined" && process.versions?.node) {
-    if (typeof navigator !== "undefined" && navigator.product === "ReactNative") {
-      return "react-native";
-    }
-    return "node";
-  }
-  if (typeof navigator !== "undefined" && navigator.product === "ReactNative") {
-    return "react-native";
-  }
-  if (typeof window !== "undefined" && typeof document !== "undefined") {
-    return "web";
-  }
-  return "node";
-}
-var platform = detectPlatform();
-var isWeb = platform === "web";
-var isReactNative = platform === "react-native";
-var isDeno = platform === "deno";
-var isBrowser = isWeb || isReactNative;
-var WebStorageAdapter = class {
-  getItem(key) {
-    try {
-      if (typeof localStorage === "undefined") return null;
-      return localStorage.getItem(key);
-    } catch (error) {
-      console.warn("Failed to get item from localStorage:", error);
-      return null;
-    }
-  }
-  setItem(key, value) {
-    try {
-      if (typeof localStorage === "undefined") return;
-      localStorage.setItem(key, value);
-    } catch (error) {
-      console.warn("Failed to set item in localStorage:", error);
-    }
-  }
-  removeItem(key) {
-    try {
-      if (typeof localStorage === "undefined") return;
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.warn("Failed to remove item from localStorage:", error);
-    }
-  }
-  clear() {
-    try {
-      if (typeof localStorage === "undefined") return;
-      localStorage.clear();
-    } catch (error) {
-      console.warn("Failed to clear localStorage:", error);
-    }
+var UpstashError = class extends Error {
+  constructor(message2, options) {
+    super(message2, options);
+    this.name = "UpstashError";
   }
 };
-var NoOpStorageAdapter = class {
-  getItem(_key) {
-    return null;
-  }
-  setItem(_key, _value) {
-  }
-  removeItem(_key) {
-  }
-  clear() {
-  }
-};
-function getDefaultStorageAdapter() {
-  if (isDeno) {
-    return new NoOpStorageAdapter();
-  }
-  if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-    try {
-      localStorage.setItem("__test__", "test");
-      localStorage.removeItem("__test__");
-      return new WebStorageAdapter();
-    } catch {
-    }
-  }
-  return new NoOpStorageAdapter();
-}
-var BlinkError = class extends Error {
-  constructor(message, code, status, details) {
-    super(message);
-    this.code = code;
-    this.status = status;
-    this.details = details;
-    this.name = "BlinkError";
-  }
-};
-var BlinkAuthError = class extends BlinkError {
-  code;
-  retryable;
-  userMessage;
-  constructor(code, message, userMessage, details) {
-    super(message, code, 401, details);
-    this.name = "BlinkAuthError";
-    this.code = code;
-    this.retryable = ["NETWORK_ERROR", "RATE_LIMITED"].includes(code);
-    this.userMessage = userMessage || this.getDefaultUserMessage(code);
-  }
-  getDefaultUserMessage(code) {
-    switch (code) {
-      case "INVALID_CREDENTIALS":
-        return "Invalid email or password. Please try again.";
-      case "EMAIL_NOT_VERIFIED":
-        return "Please verify your email address before signing in.";
-      case "POPUP_CANCELED":
-        return "Sign-in was canceled. Please try again.";
-      case "NETWORK_ERROR":
-        return "Network error. Please check your connection and try again.";
-      case "RATE_LIMITED":
-        return "Too many attempts. Please wait a moment and try again.";
-      case "AUTH_TIMEOUT":
-        return "Authentication timed out. Please try again.";
-      case "REDIRECT_FAILED":
-        return "Redirect failed. Please try again.";
-      case "TOKEN_EXPIRED":
-        return "Session expired. Please sign in again.";
-      case "USER_NOT_FOUND":
-        return "User not found. Please check your email and try again.";
-      case "EMAIL_ALREADY_EXISTS":
-        return "An account with this email already exists.";
-      case "WEAK_PASSWORD":
-        return "Password is too weak. Please choose a stronger password.";
-      case "INVALID_EMAIL":
-        return "Please enter a valid email address.";
-      case "MAGIC_LINK_EXPIRED":
-        return "Magic link has expired. Please request a new one.";
-      case "VERIFICATION_FAILED":
-        return "Verification failed. Please try again.";
-      default:
-        return "Authentication error. Please try again.";
-    }
-  }
-};
-var BlinkNetworkError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "NETWORK_ERROR", status, details);
-    this.name = "BlinkNetworkError";
-  }
-};
-var BlinkValidationError = class extends BlinkError {
-  constructor(message, details) {
-    super(message, "VALIDATION_ERROR", 400, details);
-    this.name = "BlinkValidationError";
-  }
-};
-var BlinkStorageError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "STORAGE_ERROR", status, details);
-    this.name = "BlinkStorageError";
-  }
-};
-var BlinkAIError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "AI_ERROR", status, details);
-    this.name = "BlinkAIError";
-  }
-};
-var BlinkDataError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "DATA_ERROR", status, details);
-    this.name = "BlinkDataError";
-  }
-};
-var BlinkRealtimeError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "REALTIME_ERROR", status, details);
-    this.name = "BlinkRealtimeError";
-  }
-};
-var BlinkNotificationsError = class extends BlinkError {
-  constructor(message, status, details) {
-    super(message, "NOTIFICATIONS_ERROR", status, details);
-    this.name = "BlinkNotificationsError";
-  }
-};
-function camelToSnake(str) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
-function convertFilterKeysToSnakeCase(condition) {
-  if (!condition) return condition;
-  if ("AND" in condition) {
-    return {
-      AND: condition.AND?.map(convertFilterKeysToSnakeCase)
-    };
-  }
-  if ("OR" in condition) {
-    return {
-      OR: condition.OR?.map(convertFilterKeysToSnakeCase)
-    };
-  }
-  const converted = {};
-  for (const [field, value] of Object.entries(condition)) {
-    const snakeField = camelToSnake(field);
-    converted[snakeField] = value;
-  }
-  return converted;
-}
-function buildFilterQuery(condition) {
-  if (!condition) return "";
-  if ("AND" in condition) {
-    const andConditions = condition.AND?.map(buildFilterQuery).filter(Boolean) || [];
-    return andConditions.length > 0 ? `and=(${andConditions.join(",")})` : "";
-  }
-  if ("OR" in condition) {
-    const orConditions = condition.OR?.map(buildFilterQuery).filter(Boolean) || [];
-    return orConditions.length > 0 ? `or=(${orConditions.join(",")})` : "";
-  }
-  const params = [];
-  for (const [field, value] of Object.entries(condition)) {
-    if (value === void 0 || value === null) continue;
-    if (typeof value === "object" && !Array.isArray(value)) {
-      for (const [operator, operatorValue] of Object.entries(value)) {
-        const param = buildOperatorQuery(field, operator, operatorValue);
-        if (param) params.push(param);
-      }
-    } else {
-      params.push(`${field}=eq.${encodeQueryValue(value)}`);
-    }
-  }
-  return params.join("&");
-}
-function buildOperatorQuery(field, operator, value) {
-  switch (operator) {
-    case "eq":
-      return `${field}=eq.${encodeQueryValue(value)}`;
-    case "neq":
-      return `${field}=neq.${encodeQueryValue(value)}`;
-    case "gt":
-      return `${field}=gt.${encodeQueryValue(value)}`;
-    case "gte":
-      return `${field}=gte.${encodeQueryValue(value)}`;
-    case "lt":
-      return `${field}=lt.${encodeQueryValue(value)}`;
-    case "lte":
-      return `${field}=lte.${encodeQueryValue(value)}`;
-    case "like":
-      return `${field}=like.${encodeQueryValue(value)}`;
-    case "ilike":
-      return `${field}=ilike.${encodeQueryValue(value)}`;
-    case "is":
-      return `${field}=is.${value === null ? "null" : encodeQueryValue(value)}`;
-    case "not":
-      return `${field}=not.${encodeQueryValue(value)}`;
-    case "in":
-      if (Array.isArray(value)) {
-        const values = value.map(encodeQueryValue).join(",");
-        return `${field}=in.(${values})`;
-      }
-      return "";
-    case "not_in":
-      if (Array.isArray(value)) {
-        const values = value.map(encodeQueryValue).join(",");
-        return `${field}=not.in.(${values})`;
-      }
-      return "";
-    default:
-      return "";
-  }
-}
-function encodeQueryValue(value) {
-  if (value === null) return "null";
-  if (typeof value === "boolean") {
-    return value ? "1" : "0";
-  }
-  if (typeof value === "number") return value.toString();
-  return encodeURIComponent(String(value));
-}
-function buildQuery(options = {}) {
-  const params = {};
-  if (options.select && options.select.length > 0) {
-    const snakeFields = options.select.map(camelToSnake);
-    params.select = snakeFields.join(",");
-  } else {
-    params.select = "*";
-  }
-  if (options.where) {
-    const convertedWhere = convertFilterKeysToSnakeCase(options.where);
-    const filterQuery = buildFilterQuery(convertedWhere);
-    if (filterQuery) {
-      const filterParams = filterQuery.split("&");
-      for (const param of filterParams) {
-        const [key, value] = param.split("=", 2);
-        if (key && value) {
-          params[key] = value;
-        }
-      }
-    }
-  }
-  if (options.orderBy) {
-    if (typeof options.orderBy === "string") {
-      params.order = options.orderBy;
-    } else {
-      const orderClauses = Object.entries(options.orderBy).map(([field, direction]) => `${camelToSnake(field)}.${direction}`);
-      params.order = orderClauses.join(",");
-    }
-  }
-  if (options.limit !== void 0) {
-    params.limit = options.limit.toString();
-  }
-  if (options.offset !== void 0) {
-    params.offset = options.offset.toString();
-  }
-  if (options.cursor) {
-    params.cursor = options.cursor;
-  }
-  return params;
-}
-function camelToSnake2(str) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
-function snakeToCamel(str) {
-  return str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
-}
-function convertKeysToSnakeCase(obj) {
-  if (obj === null || obj === void 0) return obj;
-  if (typeof obj !== "object") return obj;
-  if (Array.isArray(obj)) return obj.map(convertKeysToSnakeCase);
-  const converted = {};
-  for (const [key, value] of Object.entries(obj)) {
-    const snakeKey = camelToSnake2(key);
-    converted[snakeKey] = convertKeysToSnakeCase(value);
-  }
-  return converted;
-}
-function convertKeysToCamelCase(obj) {
-  if (obj === null || obj === void 0) return obj;
-  if (typeof obj !== "object") return obj;
-  if (Array.isArray(obj)) return obj.map(convertKeysToCamelCase);
-  const converted = {};
-  for (const [key, value] of Object.entries(obj)) {
-    const camelKey = snakeToCamel(key);
-    converted[camelKey] = convertKeysToCamelCase(value);
-  }
-  return converted;
-}
-var HttpClient = class {
-  authUrl = "https://blink.new";
-  coreUrl = "https://core.blink.new";
-  projectId;
-  publishableKey;
-  secretKey;
-  // Permanent, non-expiring key (like Stripe's sk_live_...)
-  getToken;
-  getValidToken;
-  constructor(config, getToken, getValidToken) {
-    this.projectId = config.projectId;
-    this.publishableKey = config.publishableKey;
-    this.secretKey = config.secretKey || config.serviceToken;
-    this.getToken = getToken;
-    this.getValidToken = getValidToken;
-  }
-  shouldAttachPublishableKey(path, method) {
-    if (method !== "GET" && method !== "POST") return false;
-    if (path.includes("/api/analytics/")) return true;
-    if (path.includes("/api/storage/")) return true;
-    if (path.includes("/api/db/") && path.includes("/rest/v1/")) return method === "GET";
-    return false;
-  }
-  shouldSkipSecretKey(url) {
-    try {
-      const parsed = new URL(url);
-      return parsed.hostname.endsWith(".functions.blink.new") || parsed.hostname.endsWith(".backend.blink.new");
-    } catch {
-      return false;
-    }
-  }
-  getAuthorizationHeader(url, token) {
-    if (this.secretKey && !this.shouldSkipSecretKey(url)) {
-      return `Bearer ${this.secretKey}`;
-    }
-    if (token) {
-      return `Bearer ${token}`;
-    }
-    return null;
-  }
-  /**
-   * Make an authenticated request to the Blink API
-   */
-  async request(path, options = {}) {
-    const url = this.buildUrl(path, options.searchParams);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const method = options.method || "GET";
-    const headers = {
-      "Content-Type": "application/json",
-      ...options.headers
-    };
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) {
-      headers.Authorization = auth;
-    } else if (this.publishableKey && !headers["x-blink-publishable-key"] && this.shouldAttachPublishableKey(path, method)) {
-      headers["x-blink-publishable-key"] = this.publishableKey;
-    }
-    const requestInit = {
-      method,
-      headers,
-      signal: options.signal
-    };
-    if (options.body && method !== "GET") {
-      requestInit.body = typeof options.body === "string" ? options.body : JSON.stringify(options.body);
-    }
-    try {
-      const response = await fetch(url, requestInit);
-      if (!response.ok) {
-        await this.handleErrorResponse(response);
-      }
-      const data = await this.parseResponse(response);
-      return {
-        data,
-        status: response.status,
-        headers: response.headers
-      };
-    } catch (error) {
-      if (error instanceof BlinkError) {
-        throw error;
-      }
-      throw new BlinkNetworkError(
-        `Network request failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * GET request
-   */
-  async get(path, searchParams) {
-    return this.request(path, { method: "GET", searchParams });
-  }
-  /**
-   * POST request
-   */
-  async post(path, body, headers) {
-    return this.request(path, { method: "POST", body, headers });
-  }
-  /**
-   * PATCH request
-   */
-  async patch(path, body, headers) {
-    return this.request(path, { method: "PATCH", body, headers });
-  }
-  /**
-   * DELETE request
-   */
-  async delete(path, searchParams) {
-    return this.request(path, { method: "DELETE", searchParams });
-  }
-  /**
-   * Database-specific requests
-   */
-  // Table operations (PostgREST-compatible)
-  async dbGet(table, searchParams) {
-    const response = await this.get(`/api/db/${this.projectId}/rest/v1/${table}`, searchParams);
-    const convertedData = convertKeysToCamelCase(response.data);
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  async dbPost(table, body, options = {}) {
-    const headers = {};
-    if (options.returning) {
-      headers.Prefer = "return=representation";
-    }
-    const convertedBody = convertKeysToSnakeCase(body);
-    const response = await this.post(`/api/db/${this.projectId}/rest/v1/${table}`, convertedBody, headers);
-    const convertedData = convertKeysToCamelCase(response.data);
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  async dbUpsert(table, body, options = {}) {
-    const headers = {};
-    if (options.returning) {
-      headers.Prefer = "return=representation";
-    }
-    const convertedBody = convertKeysToSnakeCase(body);
-    const onConflict = options.onConflict || "id";
-    const response = await this.request(
-      `/api/db/${this.projectId}/rest/v1/${table}`,
-      {
-        method: "POST",
-        body: convertedBody,
-        headers,
-        searchParams: { on_conflict: onConflict }
-      }
+var UrlError = class extends Error {
+  constructor(url) {
+    super(
+      `Upstash Redis client was passed an invalid URL. You should pass a URL starting with https. Received: "${url}". `
     );
-    const convertedData = convertKeysToCamelCase(response.data);
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  async dbPatch(table, body, searchParams, options = {}) {
-    const headers = {};
-    if (options.returning) {
-      headers.Prefer = "return=representation";
-    }
-    const convertedBody = convertKeysToSnakeCase(body);
-    const response = await this.request(`/api/db/${this.projectId}/rest/v1/${table}`, {
-      method: "PATCH",
-      body: convertedBody,
-      headers,
-      searchParams
-    });
-    const convertedData = convertKeysToCamelCase(response.data);
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  async dbDelete(table, searchParams, options = {}) {
-    const headers = {};
-    if (options.returning) {
-      headers.Prefer = "return=representation";
-    }
-    const response = await this.request(`/api/db/${this.projectId}/rest/v1/${table}`, {
-      method: "DELETE",
-      headers,
-      searchParams
-    });
-    const convertedData = convertKeysToCamelCase(response.data);
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  // Raw SQL operations
-  async dbSql(query, params) {
-    const response = await this.post(`/api/db/${this.projectId}/sql`, { query, params });
-    const convertedData = {
-      ...response.data,
-      rows: convertKeysToCamelCase(response.data.rows)
-    };
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  // Batch SQL operations
-  async dbBatch(statements, mode = "write") {
-    const response = await this.post(`/api/db/${this.projectId}/batch`, { statements, mode });
-    const convertedData = {
-      ...response.data,
-      results: response.data.results.map((result) => ({
-        ...result,
-        rows: convertKeysToCamelCase(result.rows)
-      }))
-    };
-    return {
-      ...response,
-      data: convertedData
-    };
-  }
-  /**
-   * Upload file with progress tracking
-   */
-  async uploadFile(path, file, filePath, options = {}) {
-    const url = this.buildUrl(path);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const formData = new FormData();
-    if (file instanceof File) {
-      formData.append("file", file);
-    } else if (file instanceof Blob) {
-      const blobWithType = options.contentType ? new Blob([file], { type: options.contentType }) : file;
-      formData.append("file", blobWithType);
-    } else if (typeof Buffer !== "undefined" && file instanceof Buffer) {
-      const blob = new Blob([new Uint8Array(file)], { type: options.contentType || "application/octet-stream" });
-      formData.append("file", blob);
-    } else {
-      throw new BlinkValidationError("Unsupported file type");
-    }
-    formData.append("path", filePath);
-    const headers = {};
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) {
-      headers.Authorization = auth;
-    } else if (this.publishableKey && path.includes("/api/storage/") && !headers["x-blink-publishable-key"]) {
-      headers["x-blink-publishable-key"] = this.publishableKey;
-    }
-    try {
-      if (typeof XMLHttpRequest !== "undefined" && options.onProgress) {
-        return this.uploadWithProgress(url, formData, headers, options.onProgress);
-      }
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: formData
-      });
-      if (!response.ok) {
-        await this.handleErrorResponse(response);
-      }
-      const data = await this.parseResponse(response);
-      return {
-        data,
-        status: response.status,
-        headers: response.headers
-      };
-    } catch (error) {
-      if (error instanceof BlinkError) {
-        throw error;
-      }
-      throw new BlinkNetworkError(
-        `File upload failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Upload with progress tracking using XMLHttpRequest
-   */
-  uploadWithProgress(url, formData, headers, onProgress) {
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.upload.addEventListener("progress", (event) => {
-        if (event.lengthComputable) {
-          const percent = Math.round(event.loaded / event.total * 100);
-          onProgress(percent);
-        }
-      });
-      xhr.addEventListener("load", async () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try {
-            const data = JSON.parse(xhr.responseText);
-            resolve({
-              data,
-              status: xhr.status,
-              headers: new Headers()
-              // XMLHttpRequest doesn't provide easy access to response headers
-            });
-          } catch (error) {
-            reject(new BlinkNetworkError("Failed to parse response", xhr.status));
-          }
-        } else {
-          try {
-            const errorData = JSON.parse(xhr.responseText);
-            const message = errorData.error?.message || errorData.message || `HTTP ${xhr.status}`;
-            switch (xhr.status) {
-              case 401:
-                reject(new BlinkAuthError(message, errorData));
-                break;
-              case 400:
-                reject(new BlinkValidationError(message, errorData));
-                break;
-              default:
-                reject(new BlinkNetworkError(message, xhr.status, errorData));
-            }
-          } catch {
-            reject(new BlinkNetworkError(`HTTP ${xhr.status}`, xhr.status));
-          }
-        }
-      });
-      xhr.addEventListener("error", () => {
-        reject(new BlinkNetworkError("Network error during file upload"));
-      });
-      xhr.open("POST", url);
-      Object.entries(headers).forEach(([key, value]) => {
-        xhr.setRequestHeader(key, value);
-      });
-      xhr.send(formData);
-    });
-  }
-  /**
-   * AI-specific requests
-   */
-  async aiText(prompt, options = {}) {
-    const { signal, ...body } = options;
-    const requestBody = { ...body };
-    if (prompt) {
-      requestBody.prompt = prompt;
-    }
-    return this.request(`/api/ai/${this.projectId}/text`, {
-      method: "POST",
-      body: requestBody,
-      signal
-    });
-  }
-  /**
-   * Stream AI text generation - uses Vercel AI SDK's pipeUIMessageStreamToResponse (Data Stream Protocol)
-   */
-  async streamAiText(prompt, options = {}, onChunk) {
-    const url = this.buildUrl(`/api/ai/${this.projectId}/text`);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) headers.Authorization = auth;
-    const body = {
-      prompt,
-      stream: true,
-      ...options
-    };
-    const { signal: _signal, ...jsonBody } = body;
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(jsonBody),
-        signal: options.signal
-      });
-      if (!response.ok) {
-        await this.handleErrorResponse(response);
-      }
-      if (!response.body) {
-        throw new BlinkNetworkError("No response body for streaming");
-      }
-      return this.parseDataStreamProtocol(response.body, onChunk);
-    } catch (error) {
-      if (error instanceof BlinkError) {
-        throw error;
-      }
-      throw new BlinkNetworkError(
-        `Streaming request failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        0,
-        { originalError: error }
-      );
-    }
-  }
-  async aiObject(prompt, options = {}) {
-    const { signal, ...body } = options;
-    const requestBody = { ...body };
-    if (prompt) {
-      requestBody.prompt = prompt;
-    }
-    return this.request(`/api/ai/${this.projectId}/object`, {
-      method: "POST",
-      body: requestBody,
-      signal
-    });
-  }
-  /**
-   * Stream AI object generation - uses Vercel AI SDK's pipeTextStreamToResponse
-   */
-  async streamAiObject(prompt, options = {}, onPartial) {
-    const url = this.buildUrl(`/api/ai/${this.projectId}/object`);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) headers.Authorization = auth;
-    const body = {
-      prompt,
-      stream: true,
-      ...options
-    };
-    const { signal: _signal2, ...jsonBody2 } = body;
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(jsonBody2),
-        signal: options.signal
-      });
-      if (!response.ok) {
-        await this.handleErrorResponse(response);
-      }
-      if (!response.body) {
-        throw new BlinkNetworkError("No response body for streaming");
-      }
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let latestObject = {};
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          const chunk = decoder.decode(value, { stream: true });
-          buffer += chunk;
-          try {
-            const parsed = JSON.parse(buffer);
-            latestObject = parsed;
-            if (onPartial) {
-              onPartial(parsed);
-            }
-          } catch {
-          }
-        }
-        if (buffer) {
-          try {
-            latestObject = JSON.parse(buffer);
-          } catch {
-          }
-        }
-        return { object: latestObject };
-      } finally {
-        reader.releaseLock();
-      }
-    } catch (error) {
-      if (error instanceof BlinkError) {
-        throw error;
-      }
-      throw new BlinkNetworkError(
-        `Streaming request failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        0,
-        { originalError: error }
-      );
-    }
-  }
-  async aiImage(prompt, options = {}) {
-    const { signal, ...body } = options;
-    return this.request(`/api/ai/${this.projectId}/image`, {
-      method: "POST",
-      body: {
-        prompt,
-        ...body
-      },
-      signal
-    });
-  }
-  async aiSpeech(text, options = {}) {
-    const { signal, ...body } = options;
-    return this.request(`/api/ai/${this.projectId}/speech`, {
-      method: "POST",
-      body: {
-        text,
-        ...body
-      },
-      signal
-    });
-  }
-  async aiTranscribe(audio, options = {}) {
-    const { signal, ...body } = options;
-    let payloadAudio;
-    if (typeof audio === "string" || Array.isArray(audio)) {
-      payloadAudio = audio;
-    } else if (audio instanceof Uint8Array) {
-      payloadAudio = Array.from(audio);
-    } else if (audio instanceof ArrayBuffer) {
-      payloadAudio = Array.from(new Uint8Array(audio));
-    } else if (typeof Buffer !== "undefined" && Buffer.isBuffer(audio)) {
-      payloadAudio = Array.from(new Uint8Array(audio));
-    } else {
-      throw new BlinkValidationError("Unsupported audio input type");
-    }
-    return this.request(`/api/ai/${this.projectId}/transcribe`, {
-      method: "POST",
-      body: {
-        audio: payloadAudio,
-        ...body
-      },
-      signal
-    });
-  }
-  async aiVideo(prompt, options = {}) {
-    const { signal, ...body } = options;
-    return this.request(`/api/ai/${this.projectId}/video`, {
-      method: "POST",
-      body: {
-        prompt,
-        ...body
-      },
-      signal
-    });
-  }
-  /**
-   * AI Agent request (non-streaming)
-   * Returns JSON response with text, steps, usage, and billing
-   */
-  async aiAgent(requestBody, signal) {
-    return this.request(`/api/ai/${this.projectId}/agent`, {
-      method: "POST",
-      body: requestBody,
-      signal
-    });
-  }
-  /**
-   * AI Agent streaming request
-   * Returns raw Response for SSE streaming (compatible with AI SDK useChat)
-   */
-  async aiAgentStream(requestBody, signal) {
-    const url = this.buildUrl(`/api/ai/${this.projectId}/agent`);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) headers.Authorization = auth;
-    const response = await fetch(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(requestBody),
-      signal
-    });
-    if (!response.ok) {
-      await this.handleErrorResponse(response);
-    }
-    return response;
-  }
-  /**
-   * RAG AI Search streaming request
-   * Returns raw Response for SSE streaming
-   */
-  async ragAiSearchStream(body, signal) {
-    const url = this.buildUrl(`/api/rag/${this.projectId}/ai-search`);
-    const token = this.getValidToken ? await this.getValidToken() : this.getToken();
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const auth = this.getAuthorizationHeader(url, token);
-    if (auth) headers.Authorization = auth;
-    const response = await fetch(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-      signal
-    });
-    if (!response.ok) {
-      await this.handleErrorResponse(response);
-    }
-    return response;
-  }
-  /**
-   * Data-specific requests
-   */
-  async dataExtractFromUrl(projectId, request) {
-    return this.request(`/api/data/${projectId}/extract-from-url`, {
-      method: "POST",
-      body: JSON.stringify(request)
-    });
-  }
-  async dataExtractFromBlob(projectId, file, chunking, chunkSize) {
-    const formData = new FormData();
-    formData.append("file", file);
-    if (chunking !== void 0) {
-      formData.append("chunking", String(chunking));
-    }
-    if (chunkSize !== void 0) {
-      formData.append("chunkSize", String(chunkSize));
-    }
-    return this.request(`/api/data/${projectId}/extract-from-blob`, {
-      method: "POST",
-      body: formData
-    });
-  }
-  async dataScrape(projectId, request) {
-    return this.request(`/api/data/${projectId}/scrape`, {
-      method: "POST",
-      body: JSON.stringify(request)
-    });
-  }
-  async dataScreenshot(projectId, request) {
-    return this.request(`/api/data/${projectId}/screenshot`, {
-      method: "POST",
-      body: JSON.stringify(request)
-    });
-  }
-  async dataFetch(projectId, request) {
-    return this.post(`/api/data/${projectId}/fetch`, request);
-  }
-  async dataSearch(projectId, request) {
-    return this.post(`/api/data/${projectId}/search`, request);
-  }
-  /**
-   * Connector requests
-   */
-  formatProviderForPath(provider) {
-    return provider.replace("_", "-");
-  }
-  async connectorStatus(provider) {
-    return this.request(`/api/connectors/${this.formatProviderForPath(provider)}/${this.projectId}/status`, {
-      method: "GET"
-    });
-  }
-  async connectorExecute(provider, request) {
-    const path = request.method.startsWith("/") ? request.method : `/${request.method}`;
-    const url = `/api/connectors/${this.formatProviderForPath(provider)}/${this.projectId}${path}`;
-    const method = (request.http_method || "GET").toUpperCase();
-    if (method === "GET") {
-      return this.request(url, {
-        method: "GET",
-        searchParams: request.params
-      });
-    }
-    return this.request(url, {
-      method,
-      body: request.params || {}
-    });
-  }
-  async connectorSaveApiKey(provider, request) {
-    return this.request(`/api/connectors/${this.formatProviderForPath(provider)}/${this.projectId}/api-key`, {
-      method: "POST",
-      body: request
-    });
-  }
-  /**
-   * Realtime-specific requests
-   */
-  async realtimePublish(projectId, request) {
-    return this.post(`/api/realtime/${projectId}/publish`, request);
-  }
-  async realtimeGetPresence(projectId, channel) {
-    return this.get(`/api/realtime/${projectId}/presence`, { channel });
-  }
-  async realtimeGetMessages(projectId, options) {
-    const { channel, ...searchParams } = options;
-    return this.get(`/api/realtime/${projectId}/messages`, {
-      channel,
-      ...Object.fromEntries(
-        Object.entries(searchParams).filter(([k, v]) => v !== void 0).map(([k, v]) => [k, String(v)])
-      )
-    });
-  }
-  /**
-   * Private helper methods
-   */
-  buildUrl(path, searchParams) {
-    const baseUrl = path.includes("/api/auth/") ? this.authUrl : this.coreUrl;
-    const url = new URL(path, baseUrl);
-    if (searchParams) {
-      Object.entries(searchParams).forEach(([key, value]) => {
-        url.searchParams.set(key, value);
-      });
-    }
-    return url.toString();
-  }
-  async parseResponse(response) {
-    const contentType = response.headers.get("content-type");
-    if (contentType?.includes("application/json")) {
-      return response.json();
-    }
-    if (contentType?.includes("text/")) {
-      return response.text();
-    }
-    return response.blob();
-  }
-  async handleErrorResponse(response) {
-    let errorData;
-    try {
-      const contentType = response.headers.get("content-type");
-      if (contentType?.includes("application/json")) {
-        errorData = await response.json();
-      } else {
-        errorData = { message: await response.text() };
-      }
-    } catch {
-      errorData = { message: "Unknown error occurred" };
-    }
-    const message = errorData.error?.message || errorData.message || `HTTP ${response.status}`;
-    errorData.error?.code || errorData.code;
-    switch (response.status) {
-      case 401:
-        throw new BlinkAuthError(message, errorData);
-      case 400:
-        throw new BlinkValidationError(message, errorData);
-      default:
-        throw new BlinkNetworkError(message, response.status, errorData);
-    }
-  }
-  /**
-   * Parse Vercel AI SDK v5 Data Stream Protocol (Server-Sent Events)
-   * Supports all event types from the UI Message Stream protocol
-   */
-  async parseDataStreamProtocol(body, onChunk) {
-    const reader = body.getReader();
-    const decoder = new TextDecoder();
-    const finalResult = {
-      text: "",
-      toolCalls: [],
-      toolResults: [],
-      sources: [],
-      files: [],
-      reasoning: []
-    };
-    let buffer = "";
-    try {
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n");
-        buffer = lines.pop() || "";
-        for (const line of lines) {
-          if (!line.trim()) continue;
-          if (line === "[DONE]") {
-            continue;
-          }
-          if (!line.startsWith("data: ")) continue;
-          try {
-            const jsonStr = line.slice(6);
-            const part = JSON.parse(jsonStr);
-            switch (part.type) {
-              case "text-start":
-                break;
-              case "text-delta":
-                if (part.delta) {
-                  finalResult.text += part.delta;
-                  if (onChunk) onChunk(part.delta);
-                }
-                if (part.textDelta) {
-                  finalResult.text += part.textDelta;
-                  if (onChunk) onChunk(part.textDelta);
-                }
-                break;
-              case "text-end":
-                break;
-              case "tool-call":
-                finalResult.toolCalls.push({
-                  toolCallId: part.toolCallId,
-                  toolName: part.toolName,
-                  args: part.args
-                });
-                break;
-              case "tool-result":
-                finalResult.toolResults.push({
-                  toolCallId: part.toolCallId,
-                  toolName: part.toolName,
-                  result: part.result
-                });
-                break;
-              case "source-url":
-                finalResult.sources.push({
-                  id: part.id,
-                  url: part.url,
-                  title: part.title
-                });
-                break;
-              case "file":
-                finalResult.files.push(part.file);
-                break;
-              case "reasoning":
-                finalResult.reasoning.push(part.content);
-                break;
-              case "finish":
-                finalResult.finishReason = part.finishReason;
-                finalResult.usage = part.usage;
-                if (part.response) finalResult.response = part.response;
-                break;
-              case "error":
-                finalResult.error = part.error;
-                throw new Error(part.error);
-              case "data":
-                if (!finalResult.customData) finalResult.customData = [];
-                finalResult.customData.push(part.value);
-                break;
-            }
-          } catch (e) {
-          }
-        }
-      }
-      return finalResult;
-    } finally {
-      reader.releaseLock();
-    }
+    this.name = "UrlError";
   }
 };
-function hasWindow() {
-  return typeof window !== "undefined";
+var UpstashJSONParseError = class extends UpstashError {
+  constructor(body, options) {
+    const truncatedBody = body.length > 200 ? body.slice(0, 200) + "..." : body;
+    super(`Unable to parse response body: ${truncatedBody}`, options);
+    this.name = "UpstashJSONParseError";
+  }
+};
+function parseRecursive(obj) {
+  const parsed = Array.isArray(obj) ? obj.map((o) => {
+    try {
+      return parseRecursive(o);
+    } catch {
+      return o;
+    }
+  }) : JSON.parse(obj);
+  if (typeof parsed === "number" && parsed.toString() !== obj) {
+    return obj;
+  }
+  return parsed;
 }
-function hasWindowLocation() {
-  return typeof window !== "undefined" && typeof window.location !== "undefined";
-}
-function hasDocument() {
-  return typeof document !== "undefined";
-}
-function isReactNative2() {
-  return typeof navigator !== "undefined" && navigator.product === "ReactNative";
-}
-function getWindowLocation() {
-  if (!hasWindow()) return null;
+function parseResponse(result) {
   try {
-    return window.location;
+    return parseRecursive(result);
   } catch {
-    return null;
+    return result;
   }
 }
-function getLocationHref() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.href;
-  } catch {
-    return null;
+function deserializeScanResponse(result) {
+  return [result[0], ...parseResponse(result.slice(1))];
+}
+function deserializeScanWithTypesResponse(result) {
+  const [cursor, keys] = result;
+  const parsedKeys = [];
+  for (let i = 0; i < keys.length; i += 2) {
+    parsedKeys.push({ key: keys[i], type: keys[i + 1] });
   }
+  return [cursor, parsedKeys];
 }
-function getLocationOrigin() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.origin;
-  } catch {
-    return null;
+function mergeHeaders(...headers) {
+  const merged = {};
+  for (const header of headers) {
+    if (!header) continue;
+    for (const [key, value] of Object.entries(header)) {
+      if (value !== void 0 && value !== null) {
+        merged[key] = value;
+      }
+    }
   }
+  return merged;
 }
-function getLocationHostname() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.hostname;
-  } catch {
-    return null;
+function kvArrayToObject(v) {
+  if (typeof v === "object" && v !== null && !Array.isArray(v)) return v;
+  if (!Array.isArray(v)) return {};
+  const obj = {};
+  for (let i = 0; i < v.length; i += 2) {
+    if (typeof v[i] === "string") obj[v[i]] = v[i + 1];
   }
+  return obj;
 }
-function getLocationPathname() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.pathname;
-  } catch {
-    return null;
-  }
-}
-function getLocationSearch() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.search;
-  } catch {
-    return null;
-  }
-}
-function getLocationHash() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.hash;
-  } catch {
-    return null;
-  }
-}
-function getLocationProtocol() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.protocol;
-  } catch {
-    return null;
-  }
-}
-function getLocationHost() {
-  const loc = getWindowLocation();
-  if (!loc) return null;
-  try {
-    return loc.host;
-  } catch {
-    return null;
-  }
-}
-function constructFullUrl() {
-  if (!hasWindow()) return null;
-  const protocol = getLocationProtocol();
-  const host = getLocationHost();
-  const pathname = getLocationPathname();
-  const search = getLocationSearch();
-  const hash = getLocationHash();
-  if (!protocol || !host) return null;
-  return `${protocol}//${host}${pathname || ""}${search || ""}${hash || ""}`;
-}
-function getDocumentReferrer() {
-  if (!hasDocument()) return null;
-  try {
-    return document.referrer || null;
-  } catch {
-    return null;
-  }
-}
-function getWindowInnerWidth() {
-  if (!hasWindow()) return null;
-  try {
-    return window.innerWidth;
-  } catch {
-    return null;
-  }
-}
-function isIframe() {
-  if (!hasWindow()) return false;
-  try {
-    return window.self !== window.top;
-  } catch {
-    return true;
-  }
-}
-function getSessionStorage() {
-  if (!hasWindow()) return null;
-  try {
-    return window.sessionStorage;
-  } catch {
-    return null;
-  }
-}
-var BlinkAuth = class {
-  config;
-  authConfig;
-  authState;
-  listeners = /* @__PURE__ */ new Set();
-  authUrl;
-  coreUrl;
-  parentWindowTokens = null;
-  isIframe = false;
-  initializationPromise = null;
-  isInitialized = false;
-  storage;
+var MAX_BUFFER_SIZE = 1024 * 1024;
+var HttpClient = class {
+  baseUrl;
+  headers;
+  options;
+  readYourWrites;
+  upstashSyncToken = "";
+  hasCredentials;
+  retry;
   constructor(config) {
-    this.config = config;
-    if (!config.projectId) {
-      throw new Error("projectId is required for authentication");
-    }
-    this.authConfig = {
-      mode: "managed",
-      // Default mode
-      authUrl: "https://blink.new",
-      coreUrl: "https://core.blink.new",
-      detectSessionInUrl: true,
-      // Default to true for web compatibility
-      ...config.auth
+    this.options = {
+      backend: config.options?.backend,
+      agent: config.agent,
+      responseEncoding: config.responseEncoding ?? "base64",
+      // default to base64
+      cache: config.cache,
+      signal: config.signal,
+      keepAlive: config.keepAlive ?? true
     };
-    this.authUrl = this.authConfig.authUrl || "https://blink.new";
-    this.coreUrl = this.authConfig.coreUrl || "https://core.blink.new";
-    const hostname = getLocationHostname();
-    if (hostname && this.authUrl === "https://blink.new" && (hostname === "localhost" || hostname === "127.0.0.1")) {
-      console.warn("\u26A0\uFE0F Using default authUrl in development. Set auth.authUrl to your app origin for headless auth endpoints to work.");
+    this.upstashSyncToken = "";
+    this.readYourWrites = config.readYourWrites ?? true;
+    this.baseUrl = (config.baseUrl || "").replace(/\/$/, "");
+    const urlRegex = /^https?:\/\/[^\s#$./?].\S*$/;
+    if (this.baseUrl && !urlRegex.test(this.baseUrl)) {
+      throw new UrlError(this.baseUrl);
     }
-    if (config.authRequired !== void 0 && !config.auth?.mode) {
-      this.authConfig.mode = config.authRequired ? "managed" : "headless";
-    }
-    this.authState = {
-      user: null,
-      tokens: null,
-      isAuthenticated: false,
-      isLoading: false
+    this.headers = {
+      "Content-Type": "application/json",
+      ...config.headers
     };
-    this.storage = config.auth?.storage || config.storage || getDefaultStorageAdapter();
-    if (isWeb) {
-      this.isIframe = isIframe();
-      this.setupParentWindowListener();
-      this.setupCrossTabSync();
-      this.initializationPromise = this.initialize();
-    } else {
-      this.isInitialized = true;
+    this.hasCredentials = Boolean(this.baseUrl && this.headers.authorization.split(" ")[1]);
+    if (this.options.responseEncoding === "base64") {
+      this.headers["Upstash-Encoding"] = "base64";
     }
+    this.retry = typeof config.retry === "boolean" && !config.retry ? {
+      attempts: 1,
+      backoff: () => 0
+    } : {
+      attempts: config.retry?.retries ?? 5,
+      backoff: config.retry?.backoff ?? ((retryCount) => Math.exp(retryCount) * 50)
+    };
   }
-  /**
-   * Generate project-scoped storage key
-   */
-  getStorageKey(suffix) {
-    return `blink_${suffix}_${this.config.projectId}`;
+  mergeTelemetry(telemetry) {
+    this.headers = merge(this.headers, "Upstash-Telemetry-Runtime", telemetry.runtime);
+    this.headers = merge(this.headers, "Upstash-Telemetry-Platform", telemetry.platform);
+    this.headers = merge(this.headers, "Upstash-Telemetry-Sdk", telemetry.sdk);
   }
-  /**
-   * Migrate existing global tokens to project-scoped storage
-   * DISABLED: We don't migrate global blink_tokens anymore because:
-   * 1. Platform uses blink_tokens for platform auth (different user)
-   * 2. Migrating platform tokens would cause project to show wrong user
-   * 3. Projects should always authenticate fresh via their own flow
-   */
-  migrateExistingTokens() {
-  }
-  /**
-   * Wait for authentication initialization to complete
-   */
-  async waitForInitialization() {
-    if (this.isInitialized) return;
-    if (this.initializationPromise) {
-      await this.initializationPromise;
+  async request(req) {
+    const requestHeaders = mergeHeaders(this.headers, req.headers ?? {});
+    const requestUrl = [this.baseUrl, ...req.path ?? []].join("/");
+    const isEventStream = requestHeaders.Accept === "text/event-stream";
+    const signal = req.signal ?? this.options.signal;
+    const isSignalFunction = typeof signal === "function";
+    const requestOptions = {
+      cache: this.options.cache,
+      method: "POST",
+      headers: requestHeaders,
+      body: JSON.stringify(req.body),
+      keepalive: this.options.keepAlive,
+      agent: this.options.agent,
+      signal: isSignalFunction ? signal() : signal,
+      /**
+       * Fastly specific
+       */
+      backend: this.options.backend
+    };
+    if (!this.hasCredentials) {
+      console.warn(
+        "[Upstash Redis] Redis client was initialized without url or token. Failed to execute command."
+      );
     }
-  }
-  /**
-   * Setup listener for tokens from parent window
-   */
-  setupParentWindowListener() {
-    if (!isWeb || !this.isIframe || !hasWindow()) return;
-    window.addEventListener("message", (event) => {
-      if (event.origin !== "https://blink.new" && event.origin !== "http://localhost:3000" && event.origin !== "http://localhost:3001") {
-        return;
-      }
-      if (event.data?.type === "BLINK_AUTH_TOKENS") {
-        console.log("\u{1F4E5} Received auth tokens from parent window");
-        const { tokens } = event.data;
-        if (tokens) {
-          this.parentWindowTokens = tokens;
-          this.setTokens(tokens, false).then(() => {
-            console.log("\u2705 Tokens from parent window applied");
-          }).catch((error) => {
-            console.error("Failed to apply parent window tokens:", error);
-          });
-        }
-      }
-      if (event.data?.type === "BLINK_AUTH_LOGOUT") {
-        console.log("\u{1F4E4} Received logout command from parent window");
-        this.clearTokens();
-      }
-    });
-    if (hasWindow() && window.parent !== window) {
-      console.log("\u{1F504} Requesting auth tokens from parent window");
-      window.parent.postMessage({
-        type: "BLINK_REQUEST_AUTH_TOKENS",
-        projectId: this.config.projectId
-      }, "*");
+    if (this.readYourWrites) {
+      const newHeader = this.upstashSyncToken;
+      this.headers["upstash-sync-token"] = newHeader;
     }
-  }
-  /**
-   * Initialize authentication from stored tokens or URL fragments
-   */
-  async initialize() {
-    console.log("\u{1F680} Initializing Blink Auth...");
-    this.setLoading(true);
-    try {
-      this.migrateExistingTokens();
-      if (this.isIframe) {
-        console.log("\u{1F50D} Detected iframe environment, waiting for parent tokens...");
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        if (this.parentWindowTokens) {
-          console.log("\u2705 Using tokens from parent window");
-          await this.setTokens(this.parentWindowTokens, false);
-          return;
-        }
-      }
-      if (this.authConfig.detectSessionInUrl !== false) {
-        const tokensFromUrl = this.extractTokensFromUrl();
-        if (tokensFromUrl) {
-          console.log("\u{1F4E5} Found tokens in URL, setting them...");
-          await this.setTokens(tokensFromUrl, true);
-          this.clearUrlTokens();
-          console.log("\u2705 Auth initialization complete (from URL)");
-          return;
-        }
-      }
-      const storedTokens = await this.getStoredTokens();
-      if (storedTokens) {
-        console.log("\u{1F4BE} Found stored tokens, validating...", {
-          hasAccessToken: !!storedTokens.access_token,
-          hasRefreshToken: !!storedTokens.refresh_token,
-          issuedAt: storedTokens.issued_at,
-          expiresIn: storedTokens.expires_in,
-          refreshExpiresIn: storedTokens.refresh_expires_in,
-          currentTime: Math.floor(Date.now() / 1e3)
-        });
-        this.authState.tokens = storedTokens;
-        console.log("\u{1F527} Tokens set in auth state, refresh token available:", !!this.authState.tokens?.refresh_token);
-        const isValid = await this.validateStoredTokens(storedTokens);
-        if (isValid) {
-          console.log("\u2705 Auth initialization complete (from storage)");
-          return;
-        } else {
-          console.log("\u{1F504} Stored tokens invalid, clearing...");
-          this.clearTokens();
-        }
-      }
-      console.log("\u274C No tokens found");
-      if (this.config.authRequired && hasWindowLocation()) {
-        console.log("\u{1F504} Auth required, redirecting to auth page...");
-        this.redirectToAuth();
-      } else {
-        console.log("\u26A0\uFE0F Auth not required or no window.location, continuing without authentication");
-      }
-    } finally {
-      this.setLoading(false);
-      this.isInitialized = true;
-    }
-  }
-  /**
-   * Redirect to Blink auth page
-   */
-  login(nextUrl) {
-    if (!hasWindowLocation()) {
-      console.warn("login() called in non-browser environment (no window.location available)");
-      return;
-    }
-    let redirectUrl = nextUrl || this.authConfig.redirectUrl;
-    if (!redirectUrl) {
-      const href = getLocationHref();
-      if (href && href.startsWith("http")) {
-        redirectUrl = href;
-      } else {
-        redirectUrl = constructFullUrl() || void 0;
-      }
-    }
-    if (redirectUrl) {
+    let res = null;
+    let error = null;
+    for (let i = 0; i <= this.retry.attempts; i++) {
       try {
-        const url = new URL(redirectUrl);
-        url.searchParams.delete("redirect_url");
-        url.searchParams.delete("redirect");
-        redirectUrl = url.toString();
-      } catch (e) {
-        console.warn("Failed to parse redirect URL:", e);
-      }
-    }
-    const authUrl = new URL("/auth", this.authUrl);
-    authUrl.searchParams.set("redirect_url", redirectUrl || "");
-    if (this.config.projectId) {
-      authUrl.searchParams.set("project_id", this.config.projectId);
-    }
-    window.location.href = authUrl.toString();
-  }
-  /**
-   * Logout and clear stored tokens
-   */
-  logout(redirectUrl) {
-    this.clearTokens();
-    if (redirectUrl && hasWindowLocation()) {
-      window.location.href = redirectUrl;
-    }
-  }
-  /**
-   * Check if user is authenticated
-   */
-  isAuthenticated() {
-    return this.authState.isAuthenticated;
-  }
-  /**
-   * Get current user (sync)
-   */
-  currentUser() {
-    return this.authState.user;
-  }
-  /**
-   * Get current access token
-   */
-  getToken() {
-    return this.authState.tokens?.access_token || null;
-  }
-  /**
-   * Check if access token is expired based on timestamp
-   */
-  isAccessTokenExpired() {
-    const tokens = this.authState.tokens;
-    if (!tokens || !tokens.issued_at) {
-      return true;
-    }
-    const now = Math.floor(Date.now() / 1e3);
-    const expiresAt = tokens.issued_at + tokens.expires_in;
-    const bufferTime = 30;
-    return now >= expiresAt - bufferTime;
-  }
-  /**
-   * Check if refresh token is expired based on timestamp
-   */
-  isRefreshTokenExpired() {
-    const tokens = this.authState.tokens;
-    if (!tokens || !tokens.refresh_token || !tokens.issued_at || !tokens.refresh_expires_in) {
-      return true;
-    }
-    const now = Math.floor(Date.now() / 1e3);
-    const expiresAt = tokens.issued_at + tokens.refresh_expires_in;
-    return now >= expiresAt;
-  }
-  /**
-   * Get a valid access token, refreshing if necessary
-   */
-  async getValidToken() {
-    const tokens = this.authState.tokens;
-    if (!tokens) {
-      return null;
-    }
-    if (!this.isAccessTokenExpired()) {
-      console.log("\u2705 Access token is still valid");
-      return tokens.access_token;
-    }
-    console.log("\u23F0 Access token expired, attempting refresh...");
-    if (this.isRefreshTokenExpired()) {
-      console.log("\u274C Refresh token also expired, clearing tokens");
-      this.clearTokens();
-      if (this.config.authRequired) {
-        this.redirectToAuth();
-      }
-      return null;
-    }
-    const refreshed = await this.refreshToken();
-    if (refreshed) {
-      console.log("\u2705 Token refreshed successfully");
-      return this.authState.tokens?.access_token || null;
-    } else {
-      console.log("\u274C Token refresh failed");
-      this.clearTokens();
-      if (this.config.authRequired) {
-        this.redirectToAuth();
-      }
-      return null;
-    }
-  }
-  /**
-   * Fetch current user profile from API
-   * Gracefully waits for auth initialization to complete before throwing errors
-   */
-  async me() {
-    await this.waitForInitialization();
-    if (this.authState.isAuthenticated && this.authState.user) {
-      return this.authState.user;
-    }
-    if (!this.authState.isAuthenticated) {
-      return new Promise((resolve, reject) => {
-        if (this.authState.user) {
-          resolve(this.authState.user);
-          return;
+        res = await fetch(requestUrl, requestOptions);
+        break;
+      } catch (error_) {
+        if (requestOptions.signal?.aborted && isSignalFunction) {
+          throw error_;
+        } else if (requestOptions.signal?.aborted) {
+          const myBlob = new Blob([
+            JSON.stringify({ result: requestOptions.signal.reason ?? "Aborted" })
+          ]);
+          const myOptions = {
+            status: 200,
+            statusText: requestOptions.signal.reason ?? "Aborted"
+          };
+          res = new Response(myBlob, myOptions);
+          break;
         }
-        const timeout = setTimeout(() => {
-          unsubscribe();
-          reject(new BlinkAuthError("AUTH_TIMEOUT", "Authentication timeout - no user available"));
-        }, 5e3);
-        const unsubscribe = this.onAuthStateChanged((state) => {
-          if (state.user) {
-            clearTimeout(timeout);
-            unsubscribe();
-            resolve(state.user);
-          } else if (!state.isLoading && !state.isAuthenticated) {
-            clearTimeout(timeout);
-            unsubscribe();
-            reject(new BlinkAuthError("INVALID_CREDENTIALS", "Not authenticated"));
-          }
-        });
-      });
-    }
-    let token = this.getToken();
-    if (!token) {
-      throw new BlinkAuthError("TOKEN_EXPIRED", "No access token available");
-    }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/me`, {
-        headers: {
-          "Authorization": `Bearer ${token}`
+        error = error_;
+        if (i < this.retry.attempts) {
+          await new Promise((r) => setTimeout(r, this.retry.backoff(i)));
         }
-      });
-      if (!response.ok) {
-        if (response.status === 401) {
-          const refreshed = await this.refreshToken();
-          if (refreshed) {
-            token = this.getToken();
-            if (token) {
-              const retryResponse = await fetch(`${this.authUrl}/api/auth/me`, {
-                headers: {
-                  "Authorization": `Bearer ${token}`
-                }
-              });
-              if (retryResponse.ok) {
-                const retryData = await retryResponse.json();
-                const user2 = retryData.user;
-                this.updateAuthState({
-                  ...this.authState,
-                  user: user2
-                });
-                return user2;
+      }
+    }
+    if (!res) {
+      throw error ?? new Error("Exhausted all retries");
+    }
+    if (!res.ok) {
+      let body2;
+      const rawBody2 = await res.text();
+      try {
+        body2 = JSON.parse(rawBody2);
+      } catch (error2) {
+        throw new UpstashJSONParseError(rawBody2, { cause: error2 });
+      }
+      throw new UpstashError(`${body2.error}, command was: ${JSON.stringify(req.body)}`);
+    }
+    if (this.readYourWrites) {
+      const headers = res.headers;
+      this.upstashSyncToken = headers.get("upstash-sync-token") ?? "";
+    }
+    if (isEventStream && req && req.onMessage && res.body) {
+      const reader = res.body.getReader();
+      const decoder2 = new TextDecoder();
+      (async () => {
+        try {
+          let buffer = "";
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            buffer += decoder2.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() || "";
+            if (buffer.length > MAX_BUFFER_SIZE) {
+              throw new Error("Buffer size exceeded (1MB)");
+            }
+            for (const line of lines) {
+              if (line.startsWith("data: ")) {
+                const data = line.slice(6);
+                req.onMessage?.(data);
               }
             }
           }
-          this.clearTokens();
-          if (this.config.authRequired) {
-            this.redirectToAuth();
+        } catch (error2) {
+          if (error2 instanceof Error && error2.name === "AbortError") {
+          } else {
+            console.error("Stream reading error:", error2);
+          }
+        } finally {
+          try {
+            await reader.cancel();
+          } catch {
           }
         }
-        const errorData = await response.json().catch(() => ({}));
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || `Failed to fetch user: ${response.statusText}`);
-      }
-      const data = await response.json();
-      const user = data.user;
-      this.updateAuthState({
-        ...this.authState,
-        user
-      });
-      return user;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      })();
+      return { result: 1 };
     }
-  }
-  /**
-   * Sign up with email and password (headless mode)
-   */
-  async signUp(data) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signUp is only available in headless mode");
-    }
+    let body;
+    const rawBody = await res.text();
     try {
-      const response = await fetch(`${this.authUrl}/api/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          ...data,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Sign up failed");
+      body = JSON.parse(rawBody);
+    } catch (error2) {
+      throw new UpstashJSONParseError(rawBody, { cause: error2 });
+    }
+    if (this.readYourWrites) {
+      const headers = res.headers;
+      this.upstashSyncToken = headers.get("upstash-sync-token") ?? "";
+    }
+    if (this.options.responseEncoding === "base64") {
+      if (Array.isArray(body)) {
+        return body.map(({ result: result2, error: error2 }) => ({
+          result: decode(result2),
+          error: error2
+        }));
       }
-      const result = await response.json();
-      await this.setTokens({
-        access_token: result.access_token,
-        refresh_token: result.refresh_token,
-        token_type: result.token_type,
-        expires_in: result.expires_in,
-        refresh_expires_in: result.refresh_expires_in
-      }, true, result.user);
-      return result.user;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+      const result = decode(body.result);
+      return { result, error: body.error };
     }
+    return body;
   }
-  /**
-   * Sign in with email and password (headless mode)
-   */
-  async signInWithEmail(email, password) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithEmail is only available in headless mode");
+};
+function base64decode(b64) {
+  let dec = "";
+  try {
+    const binString = atob(b64);
+    const size = binString.length;
+    const bytes = new Uint8Array(size);
+    for (let i = 0; i < size; i++) {
+      bytes[i] = binString.charCodeAt(i);
     }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/signin/email`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Sign in failed");
-      }
-      const result = await response.json();
-      await this.setTokens({
-        access_token: result.access_token,
-        refresh_token: result.refresh_token,
-        token_type: result.token_type,
-        expires_in: result.expires_in,
-        refresh_expires_in: result.refresh_expires_in
-      }, true, result.user);
-      return result.user;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
+    dec = new TextDecoder().decode(bytes);
+  } catch {
+    dec = b64;
   }
-  /**
-   * Sign in with Google (headless mode)
-   * 
-   * **Universal OAuth** - Works on both Web and React Native!
-   * 
-   * On React Native, requires `webBrowser` to be configured in client:
-   * ```typescript
-   * const blink = createClient({
-   *   auth: { mode: 'headless', webBrowser: WebBrowser }
-   * })
-   * await blink.auth.signInWithGoogle() // Works on both platforms!
-   * ```
-   */
-  async signInWithGoogle(options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithGoogle is only available in headless mode");
+  return dec;
+}
+function decode(raw3) {
+  let result = void 0;
+  switch (typeof raw3) {
+    case "undefined": {
+      return raw3;
     }
-    return this.signInWithProvider("google", options);
-  }
-  /**
-   * Sign in with GitHub (headless mode)
-   * 
-   * **Universal OAuth** - Works on both Web and React Native!
-   * See signInWithGoogle() for setup instructions.
-   */
-  async signInWithGitHub(options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithGitHub is only available in headless mode");
+    case "number": {
+      result = raw3;
+      break;
     }
-    return this.signInWithProvider("github", options);
-  }
-  /**
-   * Sign in with Apple (headless mode)
-   * 
-   * **Universal OAuth** - Works on both Web and React Native!
-   * See signInWithGoogle() for setup instructions.
-   */
-  async signInWithApple(options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithApple is only available in headless mode");
-    }
-    return this.signInWithProvider("apple", options);
-  }
-  /**
-   * Sign in with Microsoft (headless mode)
-   * 
-   * **Universal OAuth** - Works on both Web and React Native!
-   * See signInWithGoogle() for setup instructions.
-   */
-  async signInWithMicrosoft(options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithMicrosoft is only available in headless mode");
-    }
-    return this.signInWithProvider("microsoft", options);
-  }
-  /**
-   * Initiate OAuth for mobile without deep linking (expo-web-browser pattern)
-   * 
-   * This method:
-   * 1. Generates a unique session ID
-   * 2. Returns OAuth URL with session parameter
-   * 3. App opens URL in expo-web-browser
-   * 4. App polls checkMobileOAuthSession() until complete
-   * 
-   * @param provider - OAuth provider (google, github, apple, etc.)
-   * @param options - Optional metadata
-   * @returns Session ID and OAuth URL
-   * 
-   * @example
-   * // React Native with expo-web-browser
-   * import * as WebBrowser from 'expo-web-browser';
-   * 
-   * const { sessionId, authUrl } = await blink.auth.initiateMobileOAuth('google');
-   * 
-   * // Open browser
-   * await WebBrowser.openAuthSessionAsync(authUrl);
-   * 
-   * // Poll for completion
-   * const user = await blink.auth.pollMobileOAuthSession(sessionId);
-   * console.log('Authenticated:', user.email);
-   */
-  async initiateMobileOAuth(provider, options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError(
-        "INVALID_CREDENTIALS",
-        "initiateMobileOAuth is only available in headless mode"
-      );
-    }
-    const sessionId = this.generateSessionId();
-    const authUrl = new URL("/auth", this.authUrl);
-    authUrl.searchParams.set("provider", provider);
-    authUrl.searchParams.set("project_id", this.config.projectId);
-    authUrl.searchParams.set("mode", "mobile-session");
-    authUrl.searchParams.set("session_id", sessionId);
-    if (options?.metadata) {
-      authUrl.searchParams.set("metadata", JSON.stringify(options.metadata));
-    }
-    return {
-      sessionId,
-      authUrl: authUrl.toString()
-    };
-  }
-  /**
-   * Check mobile OAuth session status (single check)
-   * 
-   * @param sessionId - Session ID from initiateMobileOAuth
-   * @returns Tokens if session is complete, null if still pending
-   */
-  async checkMobileOAuthSession(sessionId) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/mobile-session/${sessionId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      if (response.status === 404 || response.status === 202) {
-        return null;
-      }
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(
-          errorCode,
-          errorData.error || "Failed to check OAuth session"
+    case "object": {
+      if (Array.isArray(raw3)) {
+        result = raw3.map(
+          (v) => typeof v === "string" ? base64decode(v) : Array.isArray(v) ? v.map((element) => decode(element)) : v
         );
+      } else {
+        result = null;
       }
-      const data = await response.json();
-      return {
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
-        token_type: data.token_type || "Bearer",
-        expires_in: data.expires_in || 3600,
-        refresh_expires_in: data.refresh_expires_in
+      break;
+    }
+    case "string": {
+      result = raw3 === "OK" ? "OK" : base64decode(raw3);
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+  return result;
+}
+function merge(obj, key, value) {
+  if (!value) {
+    return obj;
+  }
+  obj[key] = obj[key] ? [obj[key], value].join(",") : value;
+  return obj;
+}
+var defaultSerializer = (c) => {
+  switch (typeof c) {
+    case "string":
+    case "number":
+    case "boolean": {
+      return c;
+    }
+    default: {
+      return JSON.stringify(c);
+    }
+  }
+};
+var Command = class {
+  command;
+  serialize;
+  deserialize;
+  headers;
+  path;
+  onMessage;
+  isStreaming;
+  signal;
+  /**
+   * Create a new command instance.
+   *
+   * You can define a custom `deserialize` function. By default we try to deserialize as json.
+   */
+  constructor(command, opts) {
+    this.serialize = defaultSerializer;
+    this.deserialize = opts?.automaticDeserialization === void 0 || opts.automaticDeserialization ? opts?.deserialize ?? parseResponse : (x) => x;
+    this.command = command.map((c) => this.serialize(c));
+    this.headers = opts?.headers;
+    this.path = opts?.path;
+    this.onMessage = opts?.streamOptions?.onMessage;
+    this.isStreaming = opts?.streamOptions?.isStreaming ?? false;
+    this.signal = opts?.streamOptions?.signal;
+    if (opts?.latencyLogging) {
+      const originalExec = this.exec.bind(this);
+      this.exec = async (client) => {
+        const start = performance.now();
+        const result = await originalExec(client);
+        const end = performance.now();
+        const loggerResult = (end - start).toFixed(2);
+        console.log(
+          `Latency for \x1B[38;2;19;185;39m${this.command[0].toString().toUpperCase()}\x1B[0m: \x1B[38;2;0;255;255m${loggerResult} ms\x1B[0m`
+        );
+        return result;
       };
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        `Network error: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
     }
   }
   /**
-   * Poll mobile OAuth session until complete (convenience method)
-   * 
-   * @param sessionId - Session ID from initiateMobileOAuth
-   * @param options - Polling options
-   * @returns Authenticated user
-   * 
-   * @example
-   * const { sessionId, authUrl } = await blink.auth.initiateMobileOAuth('google');
-   * await WebBrowser.openAuthSessionAsync(authUrl);
-   * const user = await blink.auth.pollMobileOAuthSession(sessionId, {
-   *   maxAttempts: 60,
-   *   intervalMs: 1000
-   * });
+   * Execute the command using a client.
    */
-  async pollMobileOAuthSession(sessionId, options) {
-    const maxAttempts = options?.maxAttempts || 60;
-    const intervalMs = options?.intervalMs || 1e3;
-    for (let attempt = 0; attempt < maxAttempts; attempt++) {
-      const tokens = await this.checkMobileOAuthSession(sessionId);
-      if (tokens) {
-        await this.setTokens(tokens, true);
-        return this.authState.user;
-      }
-      await new Promise((resolve) => setTimeout(resolve, intervalMs));
+  async exec(client) {
+    const { result, error } = await client.request({
+      body: this.command,
+      path: this.path,
+      upstashSyncToken: client.upstashSyncToken,
+      headers: this.headers,
+      onMessage: this.onMessage,
+      isStreaming: this.isStreaming,
+      signal: this.signal
+    });
+    if (error) {
+      throw new UpstashError(error);
     }
-    throw new BlinkAuthError(
-      "AUTH_TIMEOUT",
-      "Mobile OAuth session timed out"
-    );
+    if (result === void 0) {
+      throw new TypeError("Request did not return a result");
+    }
+    return this.deserialize(result);
   }
-  /**
-   * Sign in with OAuth provider using expo-web-browser (React Native)
-   * 
-   * This is a convenience method that handles the entire flow:
-   * 1. Initiates mobile OAuth session
-   * 2. Returns auth URL to open in WebBrowser
-   * 3. Provides polling function to call after browser opens
-   * 
-   * @param provider - OAuth provider
-   * @returns Object with authUrl and authenticate function
-   * 
-   * @example
-   * import * as WebBrowser from 'expo-web-browser';
-   * 
-   * const { authUrl, authenticate } = await blink.auth.signInWithProviderMobile('google');
-   * 
-   * // Open browser
-   * await WebBrowser.openAuthSessionAsync(authUrl);
-   * 
-   * // Wait for authentication
-   * const user = await authenticate();
-   */
-  async signInWithProviderMobile(provider, options) {
-    const { sessionId, authUrl } = await this.initiateMobileOAuth(provider, options);
-    return {
-      authUrl,
-      authenticate: () => this.pollMobileOAuthSession(sessionId, {
-        maxAttempts: 60,
-        intervalMs: 1e3
+};
+var ExecCommand = class extends Command {
+  constructor(cmd, opts) {
+    const normalizedCmd = cmd.map((arg) => typeof arg === "string" ? arg : String(arg));
+    super(normalizedCmd, opts);
+  }
+};
+var FIELD_TYPES = [
+  "TEXT",
+  "U64",
+  "I64",
+  "F64",
+  "BOOL",
+  "DATE",
+  "KEYWORD",
+  "FACET"
+];
+function isFieldType(value) {
+  return typeof value === "string" && FIELD_TYPES.includes(value);
+}
+function isDetailedField(value) {
+  return typeof value === "object" && value !== null && "type" in value && isFieldType(value.type);
+}
+function isNestedSchema(value) {
+  return typeof value === "object" && value !== null && !isDetailedField(value);
+}
+function flattenSchema(schema, pathPrefix = []) {
+  const fields = [];
+  for (const [key, value] of Object.entries(schema)) {
+    const currentPath = [...pathPrefix, key];
+    const pathString = currentPath.join(".");
+    if (isFieldType(value)) {
+      fields.push({
+        path: pathString,
+        type: value
+      });
+    } else if (isDetailedField(value)) {
+      fields.push({
+        path: pathString,
+        type: value.type,
+        fast: "fast" in value ? value.fast : void 0,
+        noTokenize: "noTokenize" in value ? value.noTokenize : void 0,
+        noStem: "noStem" in value ? value.noStem : void 0,
+        from: "from" in value ? value.from : void 0
+      });
+    } else if (isNestedSchema(value)) {
+      const nestedFields = flattenSchema(value, currentPath);
+      fields.push(...nestedFields);
+    }
+  }
+  return fields;
+}
+function deserializeQueryResponse(rawResponse) {
+  return rawResponse.map((itemRaw) => {
+    const raw3 = itemRaw;
+    const key = raw3[0];
+    const score = Number(raw3[1]);
+    const rawFields = raw3[2];
+    if (rawFields === void 0) {
+      return { key, score };
+    }
+    if (!Array.isArray(rawFields) || rawFields.length === 0) {
+      return { key, score, data: {} };
+    }
+    let data = {};
+    for (const fieldRaw of rawFields) {
+      const key2 = fieldRaw[0];
+      const value = fieldRaw[1];
+      const pathParts = key2.split(".");
+      if (pathParts.length === 1) {
+        data[key2] = value;
+      } else {
+        let currentObj = data;
+        for (let i = 0; i < pathParts.length - 1; i++) {
+          const pathPart = pathParts[i];
+          if (!(pathPart in currentObj)) {
+            currentObj[pathPart] = {};
+          }
+          currentObj = currentObj[pathPart];
+        }
+        currentObj[pathParts.at(-1)] = value;
+      }
+    }
+    if ("$" in data) {
+      data = data["$"];
+    }
+    return { key, score, data };
+  });
+}
+function deserializeDescribeResponse(rawResponse) {
+  const description = {};
+  for (let i = 0; i < rawResponse.length; i += 2) {
+    const descriptor = rawResponse[i];
+    switch (descriptor) {
+      case "name": {
+        description["name"] = rawResponse[i + 1];
+        break;
+      }
+      case "type": {
+        description["dataType"] = rawResponse[i + 1].toLowerCase();
+        break;
+      }
+      case "prefixes": {
+        description["prefixes"] = rawResponse[i + 1];
+        break;
+      }
+      case "language": {
+        description["language"] = rawResponse[i + 1];
+        break;
+      }
+      case "schema": {
+        const schema = {};
+        for (const fieldDescription of rawResponse[i + 1]) {
+          const fieldName = fieldDescription[0];
+          const fieldInfo = { type: fieldDescription[1] };
+          if (fieldDescription.length > 2) {
+            for (let j = 2; j < fieldDescription.length; j++) {
+              const fieldOption = fieldDescription[j];
+              switch (fieldOption) {
+                case "NOSTEM": {
+                  fieldInfo.noStem = true;
+                  break;
+                }
+                case "NOTOKENIZE": {
+                  fieldInfo.noTokenize = true;
+                  break;
+                }
+                case "FAST": {
+                  fieldInfo.fast = true;
+                  break;
+                }
+                case "FROM": {
+                  fieldInfo.from = fieldDescription[++j];
+                  break;
+                }
+              }
+            }
+          }
+          schema[fieldName] = fieldInfo;
+        }
+        description["schema"] = schema;
+        break;
+      }
+    }
+  }
+  return description;
+}
+function parseCountResponse(rawResponse) {
+  return typeof rawResponse === "number" ? rawResponse : Number.parseInt(rawResponse, 10);
+}
+function deserializeAggregateResponse(rawResponse) {
+  return parseAggregationArray(rawResponse);
+}
+function parseAggregationArray(arr) {
+  const result = {};
+  for (let i = 0; i < arr.length; i += 2) {
+    const key = arr[i];
+    const value = arr[i + 1];
+    if (Array.isArray(value)) {
+      if (value.length > 0 && typeof value[0] === "string") {
+        result[key] = value[0] === "buckets" ? parseBucketsValue(value) : parseStatsValue(value);
+      } else {
+        result[key] = parseAggregationArray(value);
+      }
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+function coerceNumericString(value) {
+  if (typeof value === "string" && value !== "" && !Number.isNaN(Number(value))) {
+    return Number(value);
+  }
+  return value;
+}
+function parseStatsValue(arr) {
+  const result = {};
+  for (let i = 0; i < arr.length; i += 2) {
+    const key = arr[i];
+    const value = arr[i + 1];
+    if (Array.isArray(value) && value.length > 0) {
+      if (typeof value[0] === "string") {
+        result[key] = parseStatsValue(value);
+      } else if (Array.isArray(value[0]) && typeof value[0][0] === "string") {
+        result[key] = value.map((item) => parseStatsValue(item));
+      } else {
+        result[key] = value;
+      }
+    } else {
+      result[key] = coerceNumericString(value);
+    }
+  }
+  return result;
+}
+function parseBucketsValue(arr) {
+  if (arr[0] === "buckets" && Array.isArray(arr[1])) {
+    const result = {
+      buckets: arr[1].map((bucket) => {
+        const bucketObj = {};
+        for (let i = 0; i < bucket.length; i += 2) {
+          const key = bucket[i];
+          const value = bucket[i + 1];
+          bucketObj[key] = Array.isArray(value) && value.length > 0 && typeof value[0] === "string" ? parseStatsValue(value) : value;
+        }
+        return bucketObj;
       })
     };
+    for (let i = 2; i < arr.length; i += 2) {
+      result[arr[i]] = arr[i + 1];
+    }
+    return result;
   }
-  /**
-   * Universal OAuth flow using session-based authentication (internal)
-   * Works on ALL platforms: Web, iOS, Android
-   * Uses expo-web-browser to open auth URL and polls for completion
-   */
-  async signInWithProviderUniversal(provider, options) {
-    const webBrowser = this.authConfig.webBrowser;
-    if (!webBrowser) {
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        "webBrowser module is required for universal OAuth flow"
-      );
-    }
-    const { sessionId, authUrl } = await this.initiateMobileOAuth(provider, options);
-    console.log("\u{1F510} Opening OAuth browser for", provider);
-    const browserPromise = webBrowser.openAuthSessionAsync(authUrl);
-    const raceResult = await Promise.race([
-      browserPromise.then((result) => ({ closed: true, result })).catch((err) => ({ closed: true, error: err })),
-      new Promise(
-        (resolve) => setTimeout(() => resolve({ closed: false }), 5e3)
-      )
-    ]);
-    if (raceResult.closed) {
-      if ("result" in raceResult) {
-        console.log("\u{1F510} Browser closed with result:", raceResult.result.type);
-      } else {
-        console.log("\u{1F510} Browser closed with error");
-      }
-    } else {
-      console.log("\u{1F510} Browser still open (new tab/stuck popup), starting to poll...");
-    }
-    const user = await this.pollMobileOAuthSession(sessionId, {
-      maxAttempts: 120,
-      // 60 seconds (give user time to complete auth)
-      intervalMs: 500
-    });
-    console.log("\u2705 OAuth completed successfully");
-    return user;
+  return arr;
+}
+function buildQueryCommand(redisCommand, name, options) {
+  const query = JSON.stringify(options?.filter ?? {});
+  const command = [redisCommand, name, query];
+  if (options?.limit !== void 0) {
+    command.push("LIMIT", options.limit.toString());
   }
-  /**
-   * Generic provider sign-in method (headless mode)
-   * 
-   * **Universal OAuth** - Works seamlessly on both Web and React Native!
-   * 
-   * When `webBrowser` is configured in the client, this method automatically
-   * uses the session-based OAuth flow that works on ALL platforms.
-   * 
-   * **Universal Setup (configure once, works everywhere):**
-   * ```typescript
-   * import * as WebBrowser from 'expo-web-browser'
-   * import AsyncStorage from '@react-native-async-storage/async-storage'
-   * 
-   * const blink = createClient({
-   *   projectId: 'your-project',
-   *   auth: {
-   *     mode: 'headless',
-   *     webBrowser: WebBrowser  // Pass the module here
-   *   },
-   *   storage: new AsyncStorageAdapter(AsyncStorage)
-   * })
-   * 
-   * // Now this works on ALL platforms - no platform checks needed!
-   * const user = await blink.auth.signInWithGoogle()
-   * ```
-   * 
-   * @param provider - OAuth provider (google, github, apple, etc.)
-   * @param options - Optional redirect URL and metadata
-   * @returns Promise that resolves with authenticated user
-   */
-  async signInWithProvider(provider, options) {
-    if (this.authConfig.mode !== "headless") {
-      throw new BlinkAuthError("INVALID_CREDENTIALS", "signInWithProvider is only available in headless mode");
-    }
-    if (this.authConfig.webBrowser) {
-      return this.signInWithProviderUniversal(provider, options);
-    }
-    if (isReactNative2()) {
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        'React Native OAuth requires webBrowser in config!\n\nimport * as WebBrowser from "expo-web-browser";\n\nconst blink = createClient({\n  projectId: "your-project",\n  auth: {\n    mode: "headless",\n    webBrowser: WebBrowser\n  }\n})\n\nawait blink.auth.signInWithGoogle() // Works on all platforms!'
-      );
-    }
-    if (!hasWindow()) {
-      throw new BlinkAuthError("NETWORK_ERROR", "signInWithProvider requires a browser environment");
-    }
-    const shouldPreferRedirect = isWeb && this.isIframe || typeof window !== "undefined" && window.crossOriginIsolated === true;
-    const state = this.generateState();
-    try {
-      const sessionStorage = getSessionStorage();
-      if (sessionStorage) {
-        sessionStorage.setItem("blink_oauth_state", state);
-      }
-    } catch {
-    }
-    const redirectUrl = options?.redirectUrl || getLocationOrigin() || "";
-    const buildAuthUrl = (mode) => {
-      const url = new URL("/auth", this.authUrl);
-      url.searchParams.set("provider", provider);
-      url.searchParams.set("project_id", this.config.projectId);
-      url.searchParams.set("state", state);
-      url.searchParams.set("mode", mode);
-      url.searchParams.set("redirect_url", redirectUrl);
-      url.searchParams.set("opener_origin", getLocationOrigin() || "");
-      return url;
-    };
-    if (shouldPreferRedirect) {
-      window.location.href = buildAuthUrl("redirect").toString();
-      return new Promise(() => {
-      });
-    }
-    return new Promise((resolve, reject) => {
-      const popupUrl = buildAuthUrl("popup");
-      const popup = window.open(
-        popupUrl.toString(),
-        "blink-auth",
-        "width=500,height=600,scrollbars=yes,resizable=yes"
-      );
-      if (!popup) {
-        reject(new BlinkAuthError("POPUP_CANCELED", "Popup was blocked"));
-        return;
-      }
-      let timeoutId;
-      let closedIntervalId;
-      let cleanedUp = false;
-      const cleanup = () => {
-        if (cleanedUp) return;
-        cleanedUp = true;
-        clearTimeout(timeoutId);
-        if (closedIntervalId) clearInterval(closedIntervalId);
-        window.removeEventListener("message", messageListener);
-      };
-      const messageListener = (event) => {
-        let allowed = false;
-        try {
-          const authOrigin = new URL(this.authUrl).origin;
-          if (event.origin === authOrigin) allowed = true;
-        } catch {
-        }
-        if (event.origin === "http://localhost:3000" || event.origin === "http://localhost:3001") allowed = true;
-        if (!allowed) return;
-        if (event.data?.type === "BLINK_AUTH_TOKENS") {
-          const { access_token, refresh_token, token_type, expires_in, refresh_expires_in, projectId, state: returnedState } = event.data;
-          try {
-            const sessionStorage = getSessionStorage();
-            const expected = sessionStorage?.getItem("blink_oauth_state");
-            if (returnedState && expected && returnedState !== expected) {
-              reject(new BlinkAuthError("VERIFICATION_FAILED", "State mismatch"));
-              clearTimeout(timeoutId);
-              window.removeEventListener("message", messageListener);
-              popup.close();
-              return;
-            }
-          } catch {
-          }
-          if (projectId !== this.config.projectId) {
-            reject(new BlinkAuthError("INVALID_CREDENTIALS", "Project ID mismatch"));
-            return;
-          }
-          this.setTokens({
-            access_token,
-            refresh_token,
-            token_type,
-            expires_in,
-            refresh_expires_in
-          }, true).then(() => {
-            resolve(this.authState.user);
-          }).catch(reject);
-          cleanup();
-          popup.close();
-        } else if (event.data?.type === "BLINK_AUTH_ERROR") {
-          const errorCode = this.mapErrorCodeFromResponse(event.data.code);
-          reject(new BlinkAuthError(errorCode, event.data.message || "Authentication failed"));
-          cleanup();
-          popup.close();
-        }
-      };
-      if (popup.opener === null) {
-        try {
-          popup.close();
-        } catch {
-        }
-        cleanup();
-        window.location.href = buildAuthUrl("redirect").toString();
-        return;
-      }
-      timeoutId = setTimeout(() => {
-        cleanup();
-        if (!popup.closed) {
-          popup.close();
-        }
-        reject(new BlinkAuthError("AUTH_TIMEOUT", "Authentication timed out"));
-      }, 3e5);
-      closedIntervalId = setInterval(() => {
-        if (popup.closed) {
-          cleanup();
-          reject(new BlinkAuthError("POPUP_CANCELED", "Authentication was canceled"));
-        }
-      }, 1e3);
-      window.addEventListener("message", messageListener);
-    });
+  if (options?.offset !== void 0) {
+    command.push("OFFSET", options.offset.toString());
   }
-  /**
-   * Generate password reset token (for custom email delivery)
-   */
-  async generatePasswordResetToken(email) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/password/reset/generate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(
-          errorCode,
-          errorData.error || "Failed to generate password reset token",
-          errorData.error
-        );
+  if (options?.select && Object.keys(options.select).length === 0) {
+    command.push("NOCONTENT");
+  }
+  if (options) {
+    if ("orderBy" in options && options.orderBy) {
+      command.push("ORDERBY");
+      for (const [field, direction] of Object.entries(options.orderBy)) {
+        command.push(field, direction);
       }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        "Failed to generate password reset token",
-        "Network error occurred"
-      );
+    } else if ("scoreFunc" in options && options.scoreFunc) {
+      command.push("SCOREFUNC", ...buildScoreFunc(options.scoreFunc));
     }
   }
-  /**
-   * Send password reset email (using Blink default email service)
-   */
-  async sendPasswordResetEmail(email, options) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/password/reset`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          projectId: this.config.projectId,
-          redirectUrl: options?.redirectUrl
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to send password reset email");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+  if (options?.highlight) {
+    command.push(
+      "HIGHLIGHT",
+      "FIELDS",
+      options.highlight.fields.length.toString(),
+      ...options.highlight.fields
+    );
+    if (options.highlight.preTag && options.highlight.postTag) {
+      command.push("TAGS", options.highlight.preTag, options.highlight.postTag);
     }
   }
-  /**
-   * Confirm password reset with token
-   */
-  async confirmPasswordReset(token, newPassword) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/password/reset/confirm`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token,
-          password: newPassword,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to reset password");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+  if (options?.select && Object.keys(options.select).length > 0) {
+    command.push(
+      "SELECT",
+      Object.keys(options.select).length.toString(),
+      ...Object.keys(options.select)
+    );
+  }
+  return command;
+}
+function buildScoreFunc(scoreBy) {
+  const result = [];
+  if (typeof scoreBy === "string") {
+    result.push("FIELDVALUE", scoreBy);
+  } else if ("fields" in scoreBy) {
+    if (scoreBy.combineMode) {
+      result.push("COMBINEMODE", scoreBy.combineMode.toUpperCase());
+    }
+    if (scoreBy.scoreMode) {
+      result.push("SCOREMODE", scoreBy.scoreMode.toUpperCase());
+    }
+    for (const field of scoreBy.fields) {
+      result.push(...buildScoreFuncField(field));
+    }
+  } else {
+    result.push(...buildScoreFuncField(scoreBy));
+  }
+  return result;
+}
+function buildScoreFuncField(field) {
+  const result = [];
+  if (typeof field === "string") {
+    result.push("FIELDVALUE", field);
+  } else {
+    if (field.scoreMode) {
+      result.push("SCOREMODE", field.scoreMode.toUpperCase());
+    }
+    result.push("FIELDVALUE", field.field);
+    if (field.modifier) {
+      result.push("MODIFIER", field.modifier.toUpperCase());
+    }
+    if (field.factor !== void 0) {
+      result.push("FACTOR", field.factor.toString());
+    }
+    if (field.missing !== void 0) {
+      result.push("MISSING", field.missing.toString());
     }
   }
-  /**
-   * Change password (requires current authentication)
-   */
-  async changePassword(oldPassword, newPassword) {
-    const token = await this.getValidToken();
-    if (!token) {
-      throw new BlinkAuthError("TOKEN_EXPIRED", "No access token available");
+  return result;
+}
+function buildCreateIndexCommand(params) {
+  const { name, schema, dataType, prefix, language, skipInitialScan, existsOk } = params;
+  const prefixArray = Array.isArray(prefix) ? prefix : [prefix];
+  const payload = [
+    name,
+    ...skipInitialScan ? ["SKIPINITIALSCAN"] : [],
+    ...existsOk ? ["EXISTSOK"] : [],
+    "ON",
+    dataType.toUpperCase(),
+    "PREFIX",
+    prefixArray.length.toString(),
+    ...prefixArray,
+    ...language ? ["LANGUAGE", language] : [],
+    "SCHEMA"
+  ];
+  const fields = flattenSchema(schema);
+  for (const field of fields) {
+    payload.push(field.path, field.type);
+    if (field.fast) {
+      payload.push("FAST");
     }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/password/change`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          oldPassword,
-          newPassword
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to change password");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+    if (field.noTokenize) {
+      payload.push("NOTOKENIZE");
     }
-  }
-  /**
-   * Generate email verification token (for custom email delivery)
-   */
-  async generateEmailVerificationToken() {
-    const token = await this.getValidToken();
-    if (!token) {
-      throw new BlinkAuthError("TOKEN_EXPIRED", "No access token available");
+    if (field.noStem) {
+      payload.push("NOSTEM");
     }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/email/verify/generate`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(
-          errorCode,
-          errorData.error || "Failed to generate email verification token",
-          errorData.error
-        );
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        "Failed to generate email verification token",
-        "Network error occurred"
-      );
+    if (field.from) {
+      payload.push("FROM", field.from);
     }
   }
-  /**
-   * Send email verification (using Blink default email service)
-   */
-  async sendEmailVerification() {
-    const token = await this.getValidToken();
-    if (!token) {
-      throw new BlinkAuthError("TOKEN_EXPIRED", "No access token available");
-    }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/email/verify/send`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to send verification email");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
+  return ["SEARCH.CREATE", ...payload];
+}
+function buildAggregateCommand(name, options) {
+  const query = JSON.stringify(options?.filter ?? {});
+  const aggregations = JSON.stringify(options.aggregations);
+  return ["SEARCH.AGGREGATE", name, query, aggregations];
+}
+var SearchIndex = class {
+  name;
+  schema;
+  client;
+  constructor({ name, schema, client }) {
+    this.name = name;
+    this.schema = schema;
+    this.client = client;
+  }
+  async waitIndexing() {
+    const command = ["SEARCH.WAITINDEXING", this.name];
+    return await new ExecCommand(command).exec(this.client);
+  }
+  async describe() {
+    const command = ["SEARCH.DESCRIBE", this.name];
+    const rawResult = await new ExecCommand(command).exec(
+      this.client
+    );
+    if (!rawResult) return null;
+    return deserializeDescribeResponse(rawResult);
+  }
+  async query(options) {
+    const command = buildQueryCommand("SEARCH.QUERY", this.name, options);
+    const rawResult = await new ExecCommand(command).exec(
+      this.client
+    );
+    if (!rawResult) return rawResult;
+    return deserializeQueryResponse(rawResult);
+  }
+  async aggregate(options) {
+    const command = buildAggregateCommand(this.name, options);
+    const rawResult = await new ExecCommand(
+      command
+    ).exec(this.client);
+    return deserializeAggregateResponse(rawResult);
+  }
+  async count({ filter }) {
+    const command = buildQueryCommand("SEARCH.COUNT", this.name, { filter });
+    const rawResult = await new ExecCommand(command).exec(
+      this.client
+    );
+    return { count: parseCountResponse(rawResult) };
+  }
+  async drop() {
+    const command = ["SEARCH.DROP", this.name];
+    const result = await new ExecCommand(command).exec(this.client);
+    return result;
+  }
+  async addAlias({ alias }) {
+    const command = ["SEARCH.ALIASADD", alias, this.name];
+    const result = await new ExecCommand(command).exec(this.client);
+    return result;
+  }
+};
+async function createIndex(client, params) {
+  const { name, schema } = params;
+  const createIndexCommand = buildCreateIndexCommand(params);
+  await new ExecCommand(createIndexCommand).exec(client);
+  return initIndex(client, { name, schema });
+}
+function initIndex(client, params) {
+  const { name, schema } = params;
+  return new SearchIndex({ name, schema, client });
+}
+async function listAliases(client) {
+  const command = ["SEARCH.LISTALIASES"];
+  const rawResult = await new ExecCommand(command).exec(client);
+  if (rawResult === 0 || Array.isArray(rawResult) && rawResult.length === 0) {
+    return {};
+  }
+  if (!Array.isArray(rawResult)) {
+    return {};
+  }
+  const aliases = {};
+  for (const pair of rawResult) {
+    if (Array.isArray(pair) && pair.length === 2) {
+      const [alias, index] = pair;
+      aliases[alias] = index;
     }
   }
-  /**
-   * Verify email with token
-   */
-  async verifyEmail(token) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/email/verify`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to verify email");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
-  }
-  /**
-   * Generate magic link token (for custom email delivery)
-   */
-  async generateMagicLinkToken(email, options) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/signin/magic/generate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          redirectUrl: options?.redirectUrl,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(
-          errorCode,
-          errorData.error || "Failed to generate magic link token",
-          errorData.error
-        );
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError(
-        "NETWORK_ERROR",
-        "Failed to generate magic link token",
-        "Network error occurred"
-      );
-    }
-  }
-  /**
-   * Send magic link (using Blink default email service)
-   */
-  async sendMagicLink(email, options) {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/signin/magic`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          redirectUrl: options?.redirectUrl,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Failed to send magic link");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
-  }
-  /**
-   * Verify magic link (automatic on redirect)
-   */
-  async verifyMagicLink(token) {
-    const magicToken = token || this.extractMagicTokenFromUrl();
-    if (!magicToken) {
-      throw new BlinkAuthError("VERIFICATION_FAILED", "No magic link token found");
-    }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/signin/magic/verify`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token: magicToken,
-          projectId: this.config.projectId
-        })
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || "Magic link verification failed");
-      }
-      const result = await response.json();
-      await this.setTokens({
-        access_token: result.access_token,
-        refresh_token: result.refresh_token,
-        token_type: result.token_type,
-        expires_in: result.expires_in,
-        refresh_expires_in: result.refresh_expires_in
-      }, true, result.user);
-      return result.user;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
-  }
-  /**
-   * Get available providers for the current project
-   */
-  async getAvailableProviders() {
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/providers?projectId=${encodeURIComponent(this.config.projectId)}`);
-      if (!response.ok) {
-        return ["email", "google"];
-      }
-      const data = await response.json();
-      return data.providers || ["email", "google"];
-    } catch (error) {
-      return ["email", "google"];
-    }
-  }
-  /**
-   * Check if user has a specific role
-   */
-  hasRole(role) {
-    const user = this.authState.user;
-    if (!user || !user.role) {
-      return false;
-    }
-    if (Array.isArray(role)) {
-      return role.includes(user.role);
-    }
-    return user.role === role;
-  }
-  /**
-   * Check if user can perform a specific action
-   */
-  can(permission, resource) {
-    const user = this.authState.user;
-    if (!user || !user.role) {
-      return false;
-    }
-    const roles = this.authConfig.roles;
-    if (!roles) {
-      return false;
-    }
-    const roleConfig = roles[user.role];
-    if (!roleConfig) {
-      return false;
-    }
-    if (roleConfig.permissions.includes("*")) {
-      return true;
-    }
-    const fullPermission = resource ? `${permission}.${resource}` : permission;
-    if (roleConfig.permissions.includes(fullPermission)) {
-      return true;
-    }
-    if (roleConfig.permissions.includes(permission)) {
-      return true;
-    }
-    const visited = /* @__PURE__ */ new Set();
-    const hasPermissionInRole = (roleName) => {
-      if (visited.has(roleName)) return false;
-      visited.add(roleName);
-      const rc = roles[roleName];
-      if (!rc) return false;
-      if (rc.permissions.includes("*")) return true;
-      const fullPermission2 = resource ? `${permission}.${resource}` : permission;
-      if (rc.permissions.includes(fullPermission2) || rc.permissions.includes(permission)) return true;
-      if (rc.inherit) {
-        for (const parent of rc.inherit) {
-          if (hasPermissionInRole(parent)) return true;
-        }
-      }
-      return false;
-    };
-    if (hasPermissionInRole(user.role)) return true;
-    return false;
-  }
-  /**
-   * Sign out (clear local tokens)
-   * Note: With stateless tokens, this only clears local storage
-   */
-  async signOut() {
-    this.clearTokens();
-  }
-  /**
-   * @deprecated Use signOut() instead. Kept for backward compatibility.
-   */
-  async revokeAllSessions() {
-    return this.signOut();
-  }
-  /**
-   * Recover auth state (clear corrupted tokens and re-initialize)
-   */
-  async recoverAuthState() {
-    console.log("\u{1F504} Recovering auth state...");
-    this.clearTokens();
-    this.isInitialized = false;
-    this.initializationPromise = null;
-    if (typeof window !== "undefined") {
-      this.initializationPromise = this.initialize();
-      await this.initializationPromise;
-    }
-    console.log("\u2705 Auth state recovery complete");
-  }
-  /**
-   * Update user profile
-   */
-  async updateMe(updates) {
-    const token = this.getToken();
-    if (!token) {
-      throw new BlinkAuthError("TOKEN_EXPIRED", "No access token available");
-    }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/me`, {
-        method: "PATCH",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updates)
-      });
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorCode = this.mapErrorCodeFromResponse(errorData.code);
-        throw new BlinkAuthError(errorCode, errorData.error || `Failed to update user: ${response.statusText}`);
-      }
-      const data = await response.json();
-      const user = data.user;
-      this.updateAuthState({
-        ...this.authState,
-        user
-      });
-      return user;
-    } catch (error) {
-      if (error instanceof BlinkAuthError) {
-        throw error;
-      }
-      throw new BlinkAuthError("NETWORK_ERROR", `Network error: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
-  }
-  /**
-   * Manually set tokens (for server-side usage)
-   */
-  async setToken(jwt, persist = false) {
-    const tokens = {
-      access_token: jwt,
-      token_type: "Bearer",
-      expires_in: 15 * 60
-      // Default 15 minutes
-    };
-    await this.setTokens(tokens, persist);
-  }
-  /**
-   * Manually set auth session from tokens (React Native deep link OAuth)
-   * 
-   * Use this method to set the user session after receiving tokens from a deep link callback.
-   * This is the React Native equivalent of automatic URL token detection on web.
-   * 
-   * @param tokens - Auth tokens received from deep link or OAuth callback
-   * @param persist - Whether to persist tokens to storage (default: true)
-   * 
-   * @example
-   * // React Native: Handle deep link OAuth callback
-   * import * as Linking from 'expo-linking'
-   * 
-   * Linking.addEventListener('url', async ({ url }) => {
-   *   const { queryParams } = Linking.parse(url)
-   *   
-   *   if (queryParams.access_token) {
-   *     await blink.auth.setSession({
-   *       access_token: queryParams.access_token,
-   *       refresh_token: queryParams.refresh_token,
-   *       expires_in: parseInt(queryParams.expires_in) || 3600,
-   *       refresh_expires_in: parseInt(queryParams.refresh_expires_in)
-   *     })
-   *     
-   *     console.log('User authenticated:', blink.auth.currentUser())
-   *   }
-   * })
-   */
-  async setSession(tokens, persist = true) {
-    const authTokens = {
-      access_token: tokens.access_token,
-      refresh_token: tokens.refresh_token,
-      token_type: "Bearer",
-      expires_in: tokens.expires_in || 3600,
-      // Default 1 hour
-      refresh_expires_in: tokens.refresh_expires_in,
-      issued_at: Math.floor(Date.now() / 1e3)
-    };
-    await this.setTokens(authTokens, persist);
-    const user = await this.me();
-    return user;
-  }
-  /**
-   * Verify a Blink Auth token using the introspection endpoint.
-   * 
-   * **Server-side / Edge Function use only.**
-   * 
-   * This is the recommended way to verify user tokens in Deno Edge Functions
-   * and other server-side contexts. It calls the Blink API introspection 
-   * endpoint which validates the token without exposing the JWT secret.
-   * 
-   * @param token - The raw JWT token (without "Bearer " prefix) or full Authorization header
-   * @returns Token introspection result with validity and claims
-   * 
-   * @example
-   * // Deno Edge Function usage
-   * import { createClient } from "npm:@blinkdotnew/sdk";
-   * 
-   * const blink = createClient({
-   *   projectId: Deno.env.get("BLINK_PROJECT_ID")!,
-   *   secretKey: Deno.env.get("BLINK_SECRET_KEY"),
-   * });
-   * 
-   * async function handler(req: Request): Promise<Response> {
-   *   const authHeader = req.headers.get("Authorization");
-   *   const result = await blink.auth.verifyToken(authHeader);
-   *   
-   *   if (!result.valid) {
-   *     return new Response(JSON.stringify({ error: result.error }), { status: 401 });
-   *   }
-   *   
-   *   // User is authenticated
-   *   console.log("User ID:", result.userId);
-   *   console.log("Email:", result.email);
-   *   console.log("Project:", result.projectId);
-   *   
-   *   // Continue with your logic...
-   * }
-   */
-  async verifyToken(token) {
-    if (!token) {
-      return { valid: false, error: "Token required" };
-    }
-    let cleanToken = token.toLowerCase().startsWith("bearer ") ? token.slice(7) : token;
-    cleanToken = cleanToken.trim();
-    if (!cleanToken) {
-      return { valid: false, error: "Token required" };
-    }
-    try {
-      const response = await fetch(`${this.coreUrl}/api/auth/introspect`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${cleanToken}`,
-          "Content-Type": "application/json"
-        }
-      });
-      const contentType = response.headers.get("content-type")?.toLowerCase();
-      if (!contentType || !contentType.includes("application/json")) {
-        return {
-          valid: false,
-          error: `Server error: ${response.status} ${response.statusText}`
-        };
-      }
-      const result = await response.json();
-      if (!result || typeof result !== "object" || typeof result.valid !== "boolean") {
-        return {
-          valid: false,
-          error: result && (result.error || result.message) || `Request failed: ${response.status}`
-        };
-      }
-      return result;
-    } catch (error) {
-      console.error("[BlinkAuth] Token verification failed:", error);
-      return {
-        valid: false,
-        error: error instanceof Error ? error.message : "Token verification failed"
-      };
-    }
-  }
-  /**
-   * Refresh access token using refresh token
-   */
-  async refreshToken() {
-    const refreshToken = this.authState.tokens?.refresh_token;
-    if (!refreshToken) {
-      return false;
-    }
-    try {
-      const response = await fetch(`${this.authUrl}/api/auth/refresh`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          refresh_token: refreshToken
-        })
-      });
-      if (!response.ok) {
-        if (response.status === 401) {
-          this.clearTokens();
-          if (this.config.authRequired) {
-            this.redirectToAuth();
-          }
-        }
-        return false;
-      }
-      const data = await response.json();
-      await this.setTokens({
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
-        token_type: data.token_type,
-        expires_in: data.expires_in,
-        refresh_expires_in: data.refresh_expires_in
-      }, true);
-      return true;
-    } catch (error) {
-      console.error("Token refresh failed:", error);
-      return false;
-    }
-  }
-  /**
-   * Add auth state change listener
-   */
-  onAuthStateChanged(callback) {
-    this.listeners.add(callback);
-    queueMicrotask(() => {
-      try {
-        callback(this.authState);
-      } catch (error) {
-        console.error("Error in auth state change callback:", error);
-      }
-    });
-    return () => {
-      this.listeners.delete(callback);
-    };
-  }
-  /**
-   * Private helper methods
-   */
-  async validateStoredTokens(tokens) {
-    try {
-      console.log("\u{1F50D} Validating stored tokens...");
-      if (this.isAccessTokenExpired()) {
-        console.log("\u23F0 Access token expired based on timestamp, attempting refresh...");
-        if (!tokens.refresh_token) {
-          console.log("\u274C No refresh token available");
-          return false;
-        }
-        if (this.isRefreshTokenExpired()) {
-          console.log("\u274C Refresh token also expired");
-          return false;
-        }
-        const refreshed = await this.refreshToken();
-        if (refreshed) {
-          console.log("\u2705 Token refreshed successfully during validation");
-          return true;
-        } else {
-          console.log("\u274C Token refresh failed during validation");
-          return false;
-        }
-      }
-      const response = await fetch(`${this.authUrl}/api/auth/me`, {
-        headers: {
-          "Authorization": `Bearer ${tokens.access_token}`
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        const user = data.user;
-        this.updateAuthState({
-          user,
-          tokens,
-          isAuthenticated: true,
-          isLoading: false
-        });
-        console.log("\u2705 Stored tokens are valid, user authenticated");
-        return true;
-      } else if (response.status === 401 && tokens.refresh_token) {
-        console.log("\u{1F504} Access token expired (server validation), attempting refresh...");
-        if (this.isRefreshTokenExpired()) {
-          console.log("\u274C Refresh token expired");
-          return false;
-        }
-        const refreshed = await this.refreshToken();
-        if (refreshed) {
-          console.log("\u2705 Token refreshed successfully after server validation");
-          return true;
-        } else {
-          console.log("\u274C Token refresh failed after server validation");
-          return false;
-        }
-      } else {
-        console.log("\u274C Token validation failed:", response.status, response.statusText);
-        return false;
-      }
-    } catch (error) {
-      console.log("\u{1F4A5} Error validating tokens:", error);
-      return false;
-    }
-  }
-  async setTokens(tokens, persist, knownUser) {
-    const tokensWithTimestamp = {
-      ...tokens,
-      issued_at: tokens.issued_at || Math.floor(Date.now() / 1e3)
-    };
-    console.log("\u{1F510} Setting tokens:", {
-      persist,
-      hasAccessToken: !!tokensWithTimestamp.access_token,
-      hasRefreshToken: !!tokensWithTimestamp.refresh_token,
-      expiresIn: tokensWithTimestamp.expires_in,
-      issuedAt: tokensWithTimestamp.issued_at,
-      hasKnownUser: !!knownUser
-    });
-    if (persist) {
-      try {
-        const result = this.storage.setItem(
-          this.getStorageKey("tokens"),
-          JSON.stringify(tokensWithTimestamp)
-        );
-        if (result instanceof Promise) {
-          await result;
-        }
-        console.log("\u{1F4BE} Tokens persisted to storage");
-      } catch (error) {
-        console.log("\u{1F4A5} Error persisting tokens:", error);
-      }
-    }
-    let user = knownUser || null;
-    if (!user) {
-      try {
-        console.log("\u{1F464} Fetching user data...");
-        const response = await fetch(`${this.authUrl}/api/auth/me`, {
-          headers: {
-            "Authorization": `Bearer ${tokensWithTimestamp.access_token}`
-          }
-        });
-        console.log("\u{1F4E1} User fetch response:", {
-          status: response.status,
-          statusText: response.statusText,
-          ok: response.ok
-        });
-        if (response.ok) {
-          const data = await response.json();
-          user = data.user;
-          console.log("\u2705 User data fetched successfully:", {
-            id: user?.id,
-            email: user?.email,
-            displayName: user?.displayName
-          });
-        } else {
-          console.log("\u274C Failed to fetch user data:", await response.text());
-        }
-      } catch (error) {
-        console.log("\u{1F4A5} Error fetching user data:", error);
-      }
-    } else {
-      console.log("\u2705 Using known user data (skipping /api/auth/me):", {
-        id: user?.id,
-        email: user?.email
-      });
-    }
-    this.updateAuthState({
-      user,
-      tokens: tokensWithTimestamp,
-      isAuthenticated: !!user,
-      isLoading: false
-    });
-    console.log("\u{1F3AF} Auth state updated:", {
-      hasUser: !!user,
-      isAuthenticated: !!user,
-      isLoading: false
-    });
-  }
-  clearTokens() {
-    try {
-      const result = this.storage.removeItem(this.getStorageKey("tokens"));
-      if (result instanceof Promise) {
-        result.catch((error) => {
-          console.log("\u{1F4A5} Error clearing tokens from storage:", error);
-        });
-      }
-    } catch (error) {
-      console.log("\u{1F4A5} Error clearing tokens:", error);
-    }
-    this.updateAuthState({
-      user: null,
-      tokens: null,
-      isAuthenticated: false,
-      isLoading: false
-    });
-  }
-  async getStoredTokens() {
-    if (isWeb && this.isIframe && this.parentWindowTokens) {
-      return this.parentWindowTokens;
-    }
-    try {
-      const result = this.storage.getItem(this.getStorageKey("tokens"));
-      const stored = result instanceof Promise ? await result : result;
-      console.log("\u{1F50D} Checking storage for tokens:", {
-        hasStoredData: !!stored,
-        storedLength: stored?.length || 0,
-        isIframe: isWeb && this.isIframe
-      });
-      if (stored) {
-        const tokens = JSON.parse(stored);
-        console.log("\u{1F4E6} Parsed stored tokens:", {
-          hasAccessToken: !!tokens.access_token,
-          hasRefreshToken: !!tokens.refresh_token,
-          tokenType: tokens.token_type,
-          expiresIn: tokens.expires_in
-        });
-        return tokens;
-      }
-      return null;
-    } catch (error) {
-      console.log("\u{1F4A5} Error reading tokens from storage:", error);
-      return null;
-    }
-  }
-  extractTokensFromUrl() {
-    const search = getLocationSearch();
-    if (!search) return null;
-    const params = new URLSearchParams(search);
-    const accessToken = params.get("access_token");
-    const refreshToken = params.get("refresh_token");
-    console.log("\u{1F50D} Extracting tokens from URL:", {
-      url: getLocationHref(),
-      accessToken: accessToken ? `${accessToken.substring(0, 20)}...` : null,
-      refreshToken: refreshToken ? `${refreshToken.substring(0, 20)}...` : null,
-      allParams: Object.fromEntries(params.entries())
-    });
-    if (accessToken) {
-      const tokens = {
-        access_token: accessToken,
-        refresh_token: refreshToken || void 0,
-        token_type: "Bearer",
-        expires_in: 15 * 60,
-        // 15 minutes default
-        refresh_expires_in: refreshToken ? 30 * 24 * 60 * 60 : void 0,
-        // 30 days default
-        issued_at: Math.floor(Date.now() / 1e3)
-        // Current timestamp
-      };
-      console.log("\u2705 Tokens extracted successfully:", {
-        hasAccessToken: !!tokens.access_token,
-        hasRefreshToken: !!tokens.refresh_token
-      });
-      return tokens;
-    }
-    console.log("\u274C No access token found in URL");
+  return aliases;
+}
+async function addAlias(client, { indexName, alias }) {
+  const command = ["SEARCH.ALIASADD", alias, indexName];
+  const result = await new ExecCommand(command).exec(client);
+  return result;
+}
+async function delAlias(client, { alias }) {
+  const command = ["SEARCH.ALIASDEL", alias];
+  const result = await new ExecCommand(command).exec(client);
+  return result;
+}
+function deserialize(result) {
+  if (result.length === 0) {
     return null;
   }
-  clearUrlTokens() {
-    const href = getLocationHref();
-    if (!href || !hasWindowLocation()) return;
-    const url = new URL(href);
-    url.searchParams.delete("access_token");
-    url.searchParams.delete("refresh_token");
-    url.searchParams.delete("token_type");
-    url.searchParams.delete("project_id");
-    url.searchParams.delete("expires_in");
-    url.searchParams.delete("refresh_expires_in");
-    url.searchParams.delete("state");
-    url.searchParams.delete("code");
-    url.searchParams.delete("error");
-    url.searchParams.delete("error_description");
-    window.history.replaceState({}, "", url.toString());
-    console.log("\u{1F9F9} URL cleaned up, removed auth parameters");
-  }
-  redirectToAuth() {
-    if (hasWindowLocation()) {
-      this.login();
-    }
-  }
-  setLoading(loading) {
-    this.updateAuthState({
-      ...this.authState,
-      isLoading: loading
-    });
-  }
-  updateAuthState(newState) {
-    this.authState = newState;
-    this.listeners.forEach((callback) => {
-      try {
-        callback(newState);
-      } catch (error) {
-        console.error("Error in auth state change callback:", error);
-      }
-    });
-  }
-  /**
-   * Generate secure random state for OAuth flows
-   */
-  generateState() {
-    if (typeof crypto !== "undefined" && crypto.getRandomValues) {
-      const array = new Uint8Array(16);
-      crypto.getRandomValues(array);
-      return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
-    } else {
-      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-  }
-  /**
-   * Generate unique session ID for mobile OAuth
-   */
-  generateSessionId() {
-    if (typeof crypto !== "undefined" && crypto.getRandomValues) {
-      const array = new Uint8Array(32);
-      crypto.getRandomValues(array);
-      return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
-    } else {
-      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-  }
-  /**
-   * Extract magic link token from URL
-   */
-  extractMagicTokenFromUrl() {
-    const search = getLocationSearch();
-    if (!search) return null;
-    const params = new URLSearchParams(search);
-    return params.get("magic_token") || params.get("token");
-  }
-  /**
-   * Map server error codes to BlinkAuthErrorCode
-   */
-  mapErrorCodeFromResponse(serverCode) {
-    switch (serverCode) {
-      case "INVALID_CREDENTIALS":
-      case "auth/invalid-credential":
-      case "auth/wrong-password":
-      case "auth/user-not-found":
-        return "INVALID_CREDENTIALS";
-      case "EMAIL_NOT_VERIFIED":
-      case "auth/email-not-verified":
-        return "EMAIL_NOT_VERIFIED";
-      case "EMAIL_ALREADY_VERIFIED":
-        return "VERIFICATION_FAILED";
-      case "POPUP_CANCELED":
-      case "auth/popup-closed-by-user":
-        return "POPUP_CANCELED";
-      case "NETWORK_ERROR":
-        return "NETWORK_ERROR";
-      case "RATE_LIMITED":
-      case "auth/too-many-requests":
-        return "RATE_LIMITED";
-      case "AUTH_TIMEOUT":
-        return "AUTH_TIMEOUT";
-      case "REDIRECT_FAILED":
-        return "REDIRECT_FAILED";
-      case "TOKEN_EXPIRED":
-      case "auth/id-token-expired":
-        return "TOKEN_EXPIRED";
-      case "USER_NOT_FOUND":
-        return "USER_NOT_FOUND";
-      case "EMAIL_ALREADY_EXISTS":
-      case "auth/email-already-in-use":
-        return "EMAIL_ALREADY_EXISTS";
-      case "WEAK_PASSWORD":
-      case "auth/weak-password":
-        return "WEAK_PASSWORD";
-      case "INVALID_EMAIL":
-      case "auth/invalid-email":
-        return "INVALID_EMAIL";
-      case "MAGIC_LINK_EXPIRED":
-        return "MAGIC_LINK_EXPIRED";
-      case "VERIFICATION_FAILED":
-        return "VERIFICATION_FAILED";
-      default:
-        return "NETWORK_ERROR";
-    }
-  }
-  /**
-   * Setup cross-tab authentication synchronization
-   */
-  setupCrossTabSync() {
-    if (!isWeb || !hasWindow()) return;
-    window.addEventListener("storage", (e) => {
-      if (e.key === this.getStorageKey("tokens")) {
-        const newTokens = e.newValue ? JSON.parse(e.newValue) : null;
-        if (newTokens && newTokens !== this.authState.tokens) {
-          this.setTokens(newTokens, false).catch((error) => {
-            console.error("Failed to sync tokens from other tab:", error);
-          });
-        } else if (!newTokens && this.authState.tokens) {
-          this.clearTokens();
-        }
-      }
-    });
-  }
-};
-function assertServerOnly(methodName) {
-  if (typeof window !== "undefined") {
-    throw new Error(`${methodName} is server-only. Use Blink CRUD methods (blink.db.<table>.*) instead.`);
-  }
-}
-function camelToSnake3(str) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
-function generateSecureId() {
-  if (typeof crypto !== "undefined" && crypto.getRandomValues) {
-    const array = new Uint8Array(16);
-    crypto.getRandomValues(array);
-    return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
-  } else {
-    const timestamp = Date.now().toString(36);
-    const randomPart = Math.random().toString(36).substring(2, 15);
-    const extraRandom = Math.random().toString(36).substring(2, 15);
-    return `${timestamp}_${randomPart}_${extraRandom}`;
-  }
-}
-function ensureRecordId(record) {
-  if (!record.id) {
-    return { ...record, id: generateSecureId() };
-  }
-  return record;
-}
-var BlinkTable = class {
-  constructor(tableName, httpClient) {
-    this.tableName = tableName;
-    this.httpClient = httpClient;
-    this.actualTableName = camelToSnake3(tableName);
-  }
-  actualTableName;
-  /**
-   * Create a single record
-   */
-  async create(data, options = {}) {
-    const record = ensureRecordId(data);
-    const response = await this.httpClient.dbPost(
-      this.actualTableName,
-      record,
-      { returning: options.returning !== false }
-    );
-    const result = Array.isArray(response.data) ? response.data[0] : response.data;
-    if (!result) {
-      throw new Error("Failed to create record");
-    }
-    return result;
-  }
-  /**
-   * Create multiple records
-   */
-  async createMany(data, options = {}) {
-    const records = data.map(ensureRecordId);
-    const response = await this.httpClient.dbPost(
-      this.actualTableName,
-      records,
-      { returning: options.returning !== false }
-    );
-    const results = Array.isArray(response.data) ? response.data : [response.data];
-    return results;
-  }
-  /**
-   * Upsert a single record (insert or update on conflict)
-   */
-  async upsert(data, options = {}) {
-    const record = ensureRecordId(data);
-    const onConflict = options.onConflict || "id";
-    const response = await this.httpClient.dbUpsert(
-      this.actualTableName,
-      record,
-      { onConflict, returning: options.returning !== false }
-    );
-    const result = Array.isArray(response.data) ? response.data[0] : response.data;
-    if (!result) {
-      throw new Error("Failed to upsert record");
-    }
-    return result;
-  }
-  /**
-   * Upsert multiple records
-   */
-  async upsertMany(data, options = {}) {
-    const records = data.map(ensureRecordId);
-    const onConflict = options.onConflict || "id";
-    const response = await this.httpClient.dbUpsert(
-      this.actualTableName,
-      records,
-      { onConflict, returning: options.returning !== false }
-    );
-    const results = Array.isArray(response.data) ? response.data : [response.data];
-    return results;
-  }
-  /**
-   * Get a single record by ID
-   */
-  async get(id) {
-    const searchParams = {
-      id: `eq.${id}`,
-      limit: "1"
-    };
-    const response = await this.httpClient.dbGet(this.actualTableName, searchParams);
-    const records = response.data;
-    if (records.length === 0) {
-      return null;
-    }
-    return records[0] || null;
-  }
-  /**
-   * List records with filtering, sorting, and pagination
-   */
-  async list(options = {}) {
-    const queryParams = buildQuery(options);
-    const searchParams = queryParams;
-    const response = await this.httpClient.dbGet(this.actualTableName, searchParams);
-    const records = response.data;
-    return records;
-  }
-  /**
-   * Update a single record by ID
-   */
-  async update(id, data, options = {}) {
-    const searchParams = {
-      id: `eq.${id}`
-    };
-    const response = await this.httpClient.dbPatch(
-      this.actualTableName,
-      data,
-      searchParams,
-      { returning: options.returning !== false }
-    );
-    const records = response.data;
-    if (!records || records.length === 0) {
-      throw new Error(`Record with id ${id} not found`);
-    }
-    return records[0];
-  }
-  /**
-   * Update multiple records
-   */
-  async updateMany(updates, options = {}) {
-    const results = [];
-    for (const update of updates) {
-      const { id, ...data } = update;
-      const result = await this.update(id, data, options);
-      results.push(result);
-    }
-    return results;
-  }
-  /**
-   * Delete a single record by ID
-   */
-  async delete(id) {
-    const searchParams = {
-      id: `eq.${id}`
-    };
-    await this.httpClient.dbDelete(this.actualTableName, searchParams);
-  }
-  /**
-   * Delete multiple records based on filter
-   */
-  async deleteMany(options) {
-    const queryParams = buildQuery({ where: options.where });
-    const searchParams = queryParams;
-    await this.httpClient.dbDelete(this.actualTableName, searchParams);
-  }
-  /**
-   * Count records matching filter
-   */
-  async count(options = {}) {
-    const queryParams = buildQuery({
-      where: options.where,
-      select: ["id"]
-    });
-    const response = await this.httpClient.request(
-      `/api/db/${this.httpClient.projectId}/rest/v1/${this.actualTableName}`,
-      {
-        method: "GET",
-        searchParams: queryParams,
-        headers: {
-          "Prefer": "count=exact"
-        }
-      }
-    );
-    const contentRange = response.headers.get("content-range");
-    if (contentRange) {
-      const match2 = contentRange.match(/\/(\d+)$/);
-      if (match2 && match2[1]) {
-        return parseInt(match2[1], 10);
-      }
-    }
-    const records = response.data;
-    return records.length;
-  }
-  /**
-   * Check if any records exist matching filter
-   */
-  async exists(options) {
-    const count = await this.count(options);
-    return count > 0;
-  }
-  /**
-   * Raw SQL query on this table (for advanced use cases)
-   */
-  async sql(query, params) {
-    assertServerOnly("blink.db.<table>.sql");
-    const response = await this.httpClient.dbSql(query, params);
-    return response.data;
-  }
-  /**
-   * Private helper methods
-   */
-  extractCursor(record) {
-    return record.id || record._id || String(Math.random());
-  }
-};
-var BlinkDatabase = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-    const proxy = new Proxy(this, {
-      get(target, prop) {
-        if (prop === "table") {
-          return target.table.bind(target);
-        }
-        if (prop in target) {
-          const value = target[prop];
-          return typeof value === "function" ? value.bind(target) : value;
-        }
-        if (typeof prop === "string") {
-          return target.table(prop);
-        }
-        return void 0;
-      }
-    });
-    return proxy;
-  }
-  tables = /* @__PURE__ */ new Map();
-  /**
-   * Get a table instance for any table name
-   */
-  table(tableName) {
-    if (!this.tables.has(tableName)) {
-      this.tables.set(tableName, new BlinkTable(tableName, this.httpClient));
-    }
-    const table = this.tables.get(tableName);
-    if (!table) {
-      throw new Error(`Table ${tableName} not found`);
-    }
-    return table;
-  }
-  /**
-   * Execute raw SQL query
-   */
-  async sql(query, params) {
-    assertServerOnly("blink.db.sql");
-    const response = await this.httpClient.dbSql(query, params);
-    return response.data;
-  }
-  /**
-   * Execute batch SQL operations
-   */
-  async batch(statements, mode = "write") {
-    assertServerOnly("blink.db.batch");
-    const response = await this.httpClient.dbBatch(statements, mode);
-    return response.data;
-  }
-};
-var BlinkStorageImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-  }
-  /**
-   * Upload a file to project storage
-   * 
-   * @param file - File, Blob, or Buffer to upload
-   * @param path - Destination path within project storage (extension will be auto-corrected to match file type)
-   * @param options - Upload options including upsert and progress callback
-   * @returns Promise resolving to upload response with public URL
-   * 
-   * @example
-   * ```ts
-   * // Extension automatically corrected to match actual file type
-   * const { publicUrl } = await blink.storage.upload(
-   *   pngFile,
-   *   `avatars/${user.id}`, // No extension needed!
-   *   { upsert: true }
-   * );
-   * // If file is PNG, final path will be: avatars/user123.png
-   * 
-   * // Or with extension (will be corrected if wrong)
-   * const { publicUrl } = await blink.storage.upload(
-   *   pngFile,
-   *   `avatars/${user.id}.jpg`, // Wrong extension
-   *   { upsert: true }
-   * );
-   * // Final path will be: avatars/user123.png (auto-corrected!)
-   * ```
-   */
-  async upload(file, path, options = {}) {
+  const obj = {};
+  for (let i = 0; i < result.length; i += 2) {
+    const key = result[i];
+    const value = result[i + 1];
     try {
-      if (!file) {
-        throw new BlinkStorageError("File is required");
-      }
-      if (!path || typeof path !== "string" || !path.trim()) {
-        throw new BlinkStorageError("Path must be a non-empty string");
-      }
-      const maxSize = 50 * 1024 * 1024;
-      let fileSize = 0;
-      if (file instanceof File || file instanceof Blob) {
-        fileSize = file.size;
-      } else if (typeof Buffer !== "undefined" && file instanceof Buffer) {
-        fileSize = file.length;
-      }
-      if (fileSize > maxSize) {
-        throw new BlinkStorageError(`File size (${Math.round(fileSize / 1024 / 1024)}MB) exceeds maximum allowed size (50MB)`);
-      }
-      const { correctedPath, detectedContentType } = await this.detectFileTypeAndCorrectPath(file, path);
-      const response = await this.httpClient.uploadFile(
-        `/api/storage/${this.httpClient.projectId}/upload`,
-        file,
-        correctedPath,
-        // Use corrected path with proper extension
-        {
-          onProgress: options.onProgress,
-          contentType: detectedContentType
-          // Pass detected content type
-        }
-      );
-      if (response.data?.data?.publicUrl) {
-        return { publicUrl: response.data.data.publicUrl };
-      } else if (response.data?.publicUrl) {
-        return { publicUrl: response.data.publicUrl };
-      } else {
-        throw new BlinkStorageError("Invalid response format: missing publicUrl");
-      }
-    } catch (error) {
-      if (error instanceof BlinkStorageError) {
-        throw error;
-      }
-      if (error instanceof Error && "status" in error) {
-        const status = error.status;
-        if (status === 409) {
-          throw new BlinkStorageError("File already exists.", 409);
-        }
-        if (status === 400) {
-          throw new BlinkStorageError("Invalid request parameters", 400);
-        }
-      }
-      throw new BlinkStorageError(
-        `Upload failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Detect file type from actual file content and correct path extension
-   * This ensures the path extension always matches the actual file type
-   */
-  async detectFileTypeAndCorrectPath(file, originalPath) {
-    try {
-      const fileSignature = await this.getFileSignature(file);
-      const detectedType = this.detectFileTypeFromSignature(fileSignature);
-      let detectedContentType = detectedType.mimeType;
-      let detectedExtension = detectedType.extension;
-      if (!detectedContentType && file instanceof File && file.type) {
-        detectedContentType = file.type;
-        detectedExtension = this.getExtensionFromMimeType(file.type);
-      }
-      if (!detectedContentType) {
-        detectedContentType = "application/octet-stream";
-        detectedExtension = "bin";
-      }
-      const pathParts = originalPath.split("/");
-      const fileName = pathParts[pathParts.length - 1];
-      const directory = pathParts.slice(0, -1).join("/");
-      if (!fileName) {
-        throw new Error("Invalid path: filename cannot be empty");
-      }
-      const nameWithoutExt = fileName.includes(".") ? fileName.substring(0, fileName.lastIndexOf(".")) : fileName;
-      const correctedFileName = `${nameWithoutExt}.${detectedExtension}`;
-      const correctedPath = directory ? `${directory}/${correctedFileName}` : correctedFileName;
-      return {
-        correctedPath,
-        detectedContentType
-      };
-    } catch (error) {
-      return {
-        correctedPath: originalPath,
-        detectedContentType: "application/octet-stream"
-      };
-    }
-  }
-  /**
-   * Get the first few bytes of a file to analyze its signature
-   */
-  async getFileSignature(file) {
-    const bytesToRead = 12;
-    if (typeof Buffer !== "undefined" && file instanceof Buffer) {
-      return new Uint8Array(file.slice(0, bytesToRead));
-    }
-    if (file instanceof File || file instanceof Blob) {
-      const slice = file.slice(0, bytesToRead);
-      const arrayBuffer = await slice.arrayBuffer();
-      return new Uint8Array(arrayBuffer);
-    }
-    throw new Error("Unsupported file type for signature detection");
-  }
-  /**
-   * Detect file type from file signature (magic numbers)
-   * This is the most reliable way to detect actual file type
-   */
-  detectFileTypeFromSignature(signature) {
-    const hex = Array.from(signature).map((b) => b.toString(16).padStart(2, "0")).join("");
-    const signatures = {
-      // Images
-      "ffd8ff": { mimeType: "image/jpeg", extension: "jpg" },
-      "89504e47": { mimeType: "image/png", extension: "png" },
-      "47494638": { mimeType: "image/gif", extension: "gif" },
-      "52494646": { mimeType: "image/webp", extension: "webp" },
-      // RIFF (WebP container)
-      "424d": { mimeType: "image/bmp", extension: "bmp" },
-      "49492a00": { mimeType: "image/tiff", extension: "tiff" },
-      "4d4d002a": { mimeType: "image/tiff", extension: "tiff" },
-      // Documents
-      "25504446": { mimeType: "application/pdf", extension: "pdf" },
-      "504b0304": { mimeType: "application/zip", extension: "zip" },
-      // Also used by docx, xlsx
-      "d0cf11e0": { mimeType: "application/msword", extension: "doc" },
-      // Audio
-      "494433": { mimeType: "audio/mpeg", extension: "mp3" },
-      "664c6143": { mimeType: "audio/flac", extension: "flac" },
-      "4f676753": { mimeType: "audio/ogg", extension: "ogg" },
-      // Video
-      "000000": { mimeType: "video/mp4", extension: "mp4" },
-      // ftyp box
-      "1a45dfa3": { mimeType: "video/webm", extension: "webm" },
-      // Text
-      "efbbbf": { mimeType: "text/plain", extension: "txt" }
-      // UTF-8 BOM
-    };
-    for (const [sig, type] of Object.entries(signatures)) {
-      if (hex.startsWith(sig)) {
-        return type;
-      }
-    }
-    if (hex.startsWith("52494646") && hex.substring(16, 24) === "57454250") {
-      return { mimeType: "image/webp", extension: "webp" };
-    }
-    if (hex.substring(8, 16) === "66747970") {
-      return { mimeType: "video/mp4", extension: "mp4" };
-    }
-    return { mimeType: "", extension: "" };
-  }
-  /**
-   * Get file extension from MIME type as fallback
-   */
-  getExtensionFromMimeType(mimeType) {
-    const mimeToExt = {
-      "image/jpeg": "jpg",
-      "image/png": "png",
-      "image/gif": "gif",
-      "image/webp": "webp",
-      "image/bmp": "bmp",
-      "image/svg+xml": "svg",
-      "application/pdf": "pdf",
-      "text/plain": "txt",
-      "text/html": "html",
-      "text/css": "css",
-      "application/javascript": "js",
-      "application/json": "json",
-      "audio/mpeg": "mp3",
-      "audio/wav": "wav",
-      "audio/ogg": "ogg",
-      "video/mp4": "mp4",
-      "video/webm": "webm",
-      "application/zip": "zip"
-    };
-    return mimeToExt[mimeType] || "bin";
-  }
-  /**
-   * Get a download URL for a file that triggers browser download
-   * 
-   * @param path - Path to the file in project storage
-   * @param options - Download options including custom filename
-   * @returns Promise resolving to download response with download URL
-   * 
-   * @example
-   * ```ts
-   * // Download with original filename
-   * const { downloadUrl, filename } = await blink.storage.download('images/photo.jpg');
-   * window.open(downloadUrl, '_blank');
-   * 
-   * // Download with custom filename
-   * const { downloadUrl } = await blink.storage.download(
-   *   'images/photo.jpg',
-   *   { filename: 'my-photo.jpg' }
-   * );
-   * 
-   * // Create download link in React
-   * <a href={downloadUrl} download={filename}>Download Image</a>
-   * ```
-   */
-  async download(path, options = {}) {
-    try {
-      if (!path || typeof path !== "string" || !path.trim()) {
-        throw new BlinkStorageError("Path must be a non-empty string");
-      }
-      const response = await this.httpClient.request(
-        `/api/storage/${this.httpClient.projectId}/download`,
-        {
-          method: "GET",
-          searchParams: {
-            path: path.trim(),
-            ...options.filename && { filename: options.filename }
-          }
-        }
-      );
-      if (response.data?.downloadUrl) {
-        return {
-          downloadUrl: response.data.downloadUrl,
-          filename: response.data.filename || options.filename || path.split("/").pop() || "download",
-          contentType: response.data.contentType,
-          size: response.data.size
-        };
-      } else {
-        throw new BlinkStorageError("Invalid response format: missing downloadUrl");
-      }
-    } catch (error) {
-      if (error instanceof BlinkStorageError) {
-        throw error;
-      }
-      if (error instanceof Error && "status" in error) {
-        const status = error.status;
-        if (status === 404) {
-          throw new BlinkStorageError("File not found", 404);
-        }
-        if (status === 400) {
-          throw new BlinkStorageError("Invalid request parameters", 400);
-        }
-      }
-      throw new BlinkStorageError(
-        `Download failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Remove one or more files from project storage
-   * 
-   * @param paths - File paths to remove
-   * @returns Promise that resolves when files are removed
-   * 
-   * @example
-   * ```ts
-   * await blink.storage.remove('avatars/user1.png');
-   * await blink.storage.remove('file1.pdf', 'file2.pdf', 'file3.pdf');
-   * ```
-   */
-  async remove(...paths) {
-    try {
-      if (paths.length === 0) {
-        throw new BlinkStorageError("At least one path must be provided");
-      }
-      for (const path of paths) {
-        if (!path || typeof path !== "string") {
-          throw new BlinkStorageError("All paths must be non-empty strings");
-        }
-      }
-      await this.httpClient.request(
-        `/api/storage/${this.httpClient.projectId}/remove`,
-        {
-          method: "DELETE",
-          body: { paths },
-          headers: { "Content-Type": "application/json" }
-        }
-      );
-    } catch (error) {
-      if (error instanceof BlinkStorageError) {
-        throw error;
-      }
-      if (error instanceof Error && "status" in error) {
-        const status = error.status;
-        if (status === 400) {
-          throw new BlinkStorageError("Invalid request parameters", 400);
-        }
-      }
-      throw new BlinkStorageError(
-        `Failed to remove files: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-};
-function serializeTools(tools) {
-  return tools;
-}
-function createStopConditions(maxSteps, stopWhen) {
-  if (stopWhen && stopWhen.length > 0) {
-    return stopWhen;
-  }
-  if (maxSteps && maxSteps > 0) {
-    return [{ type: "step_count_is", count: maxSteps }];
-  }
-  return void 0;
-}
-var Agent = class {
-  httpClient = null;
-  config;
-  /**
-   * Create a new Agent instance.
-   * Auto-binds to default client if createClient() was called.
-   * 
-   * @param options - Agent configuration options
-   */
-  constructor(options) {
-    if (!options.model) {
-      throw new BlinkAIError("Agent model is required");
-    }
-    this.config = options;
-    try {
-      this.httpClient = _getDefaultHttpClient();
+      obj[key] = JSON.parse(value);
     } catch {
+      obj[key] = value;
     }
   }
-  /**
-   * Internal: Set the HTTP client (called by BlinkClient)
-   */
-  _setHttpClient(client) {
-    this.httpClient = client;
+  return obj;
+}
+var HRandFieldCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["hrandfield", cmd[0]];
+    if (typeof cmd[1] === "number") {
+      command.push(cmd[1]);
+    }
+    if (cmd[2]) {
+      command.push("WITHVALUES");
+    }
+    super(command, {
+      // @ts-expect-error to silence compiler
+      deserialize: cmd[2] ? (result) => deserialize(result) : opts?.deserialize,
+      ...opts
+    });
   }
-  /**
-   * Internal: Get the agent config for API requests
-   */
-  getAgentConfig() {
-    const { model, system, instructions, tools, webhookTools, clientTools, toolChoice, stopWhen, maxSteps } = this.config;
-    const serializedTools = tools ? serializeTools(tools) : void 0;
-    const stopConditions = createStopConditions(maxSteps, stopWhen);
+};
+var AppendCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["append", ...cmd], opts);
+  }
+};
+var BitCountCommand = class extends Command {
+  constructor([key, start, end], opts) {
+    const command = ["bitcount", key];
+    if (typeof start === "number") {
+      command.push(start);
+    }
+    if (typeof end === "number") {
+      command.push(end);
+    }
+    super(command, opts);
+  }
+};
+var BitFieldCommand = class {
+  constructor(args, client, opts, execOperation = (command) => command.exec(this.client)) {
+    this.client = client;
+    this.opts = opts;
+    this.execOperation = execOperation;
+    this.command = ["bitfield", ...args];
+  }
+  command;
+  chain(...args) {
+    this.command.push(...args);
+    return this;
+  }
+  get(...args) {
+    return this.chain("get", ...args);
+  }
+  set(...args) {
+    return this.chain("set", ...args);
+  }
+  incrby(...args) {
+    return this.chain("incrby", ...args);
+  }
+  overflow(overflow) {
+    return this.chain("overflow", overflow);
+  }
+  exec() {
+    const command = new Command(this.command, this.opts);
+    return this.execOperation(command);
+  }
+};
+var BitOpCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["bitop", ...cmd], opts);
+  }
+};
+var BitPosCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["bitpos", ...cmd], opts);
+  }
+};
+var ClientSetInfoCommand = class extends Command {
+  constructor([attribute, value], opts) {
+    super(["CLIENT", "SETINFO", attribute.toUpperCase(), value], opts);
+  }
+};
+var CopyCommand = class extends Command {
+  constructor([key, destinationKey, opts], commandOptions) {
+    super(["COPY", key, destinationKey, ...opts?.replace ? ["REPLACE"] : []], {
+      ...commandOptions,
+      deserialize(result) {
+        if (result > 0) {
+          return "COPIED";
+        }
+        return "NOT_COPIED";
+      }
+    });
+  }
+};
+var DBSizeCommand = class extends Command {
+  constructor(opts) {
+    super(["dbsize"], opts);
+  }
+};
+var DecrCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["decr", ...cmd], opts);
+  }
+};
+var DecrByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["decrby", ...cmd], opts);
+  }
+};
+var DelCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["del", ...cmd], opts);
+  }
+};
+var EchoCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["echo", ...cmd], opts);
+  }
+};
+var EvalROCommand = class extends Command {
+  constructor([script, keys, args], opts) {
+    super(["eval_ro", script, keys.length, ...keys, ...args ?? []], opts);
+  }
+};
+var EvalCommand = class extends Command {
+  constructor([script, keys, args], opts) {
+    super(["eval", script, keys.length, ...keys, ...args ?? []], opts);
+  }
+};
+var EvalshaROCommand = class extends Command {
+  constructor([sha, keys, args], opts) {
+    super(["evalsha_ro", sha, keys.length, ...keys, ...args ?? []], opts);
+  }
+};
+var EvalshaCommand = class extends Command {
+  constructor([sha, keys, args], opts) {
+    super(["evalsha", sha, keys.length, ...keys, ...args ?? []], opts);
+  }
+};
+var ExistsCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["exists", ...cmd], opts);
+  }
+};
+var ExpireCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["expire", ...cmd.filter(Boolean)], opts);
+  }
+};
+var ExpireAtCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["expireat", ...cmd], opts);
+  }
+};
+var FCallCommand = class extends Command {
+  constructor([functionName, keys, args], opts) {
+    super(["fcall", functionName, ...keys ? [keys.length, ...keys] : [0], ...args ?? []], opts);
+  }
+};
+var FCallRoCommand = class extends Command {
+  constructor([functionName, keys, args], opts) {
+    super(
+      ["fcall_ro", functionName, ...keys ? [keys.length, ...keys] : [0], ...args ?? []],
+      opts
+    );
+  }
+};
+var FlushAllCommand = class extends Command {
+  constructor(args, opts) {
+    const command = ["flushall"];
+    if (args && args.length > 0 && args[0].async) {
+      command.push("async");
+    }
+    super(command, opts);
+  }
+};
+var FlushDBCommand = class extends Command {
+  constructor([opts], cmdOpts) {
+    const command = ["flushdb"];
+    if (opts?.async) {
+      command.push("async");
+    }
+    super(command, cmdOpts);
+  }
+};
+var FunctionDeleteCommand = class extends Command {
+  constructor([libraryName], opts) {
+    super(["function", "delete", libraryName], opts);
+  }
+};
+var FunctionFlushCommand = class extends Command {
+  constructor(opts) {
+    super(["function", "flush"], opts);
+  }
+};
+var FunctionListCommand = class extends Command {
+  constructor([args], opts) {
+    const command = ["function", "list"];
+    if (args?.libraryName) {
+      command.push("libraryname", args.libraryName);
+    }
+    if (args?.withCode) {
+      command.push("withcode");
+    }
+    super(command, { deserialize: deserialize2, ...opts });
+  }
+};
+function deserialize2(result) {
+  if (!Array.isArray(result)) return [];
+  return result.map((libRaw) => {
+    const lib = kvArrayToObject(libRaw);
+    const functionsParsed = lib.functions.map(
+      (fnRaw) => kvArrayToObject(fnRaw)
+    );
     return {
-      model,
-      system: system || instructions,
-      tools: serializedTools,
-      webhook_tools: webhookTools,
-      client_tools: clientTools,
-      tool_choice: toolChoice,
-      stop_when: stopConditions
+      libraryName: lib.library_name,
+      engine: lib.engine,
+      functions: functionsParsed.map((fn) => ({
+        name: fn.name,
+        description: fn.description ?? void 0,
+        flags: fn.flags
+      })),
+      libraryCode: lib.library_code
     };
-  }
-  /**
-   * Generate a response (non-streaming)
-   * 
-   * @param options - Generation options (prompt or messages)
-   * @returns Promise<AgentResponse> with text, steps, usage, and billing
-   * 
-   * @example
-   * ```ts
-   * const result = await agent.generate({
-   *   prompt: 'What is the weather in San Francisco?',
-   * })
-   * console.log(result.text)
-   * console.log(result.steps)
-   * ```
-   */
-  async generate(options) {
-    if (!this.httpClient) {
-      throw new BlinkAIError(
-        "Agent not initialized. Call createClient() first, or use useAgent() in React."
-      );
-    }
-    if (!options.prompt && !options.messages) {
-      throw new BlinkAIError("Either prompt or messages is required");
-    }
-    if (options.prompt && options.messages) {
-      throw new BlinkAIError("prompt and messages are mutually exclusive");
-    }
-    try {
-      const requestBody = {
-        stream: false,
-        agent: this.getAgentConfig()
-      };
-      if (options.prompt) {
-        requestBody.prompt = options.prompt;
-      } else if (options.messages) {
-        requestBody.messages = options.messages;
-      }
-      if (options.sandbox) {
-        requestBody.sandbox_id = typeof options.sandbox === "string" ? options.sandbox : options.sandbox.id;
-      }
-      const response = await this.httpClient.aiAgent(requestBody, options.signal);
-      return response.data;
-    } catch (error) {
-      console.error("[Agent] generate failed:", error);
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Agent generate failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Stream a response (real-time)
-   * 
-   * @param options - Stream options (prompt or messages)
-   * @returns Promise<Response> - AI SDK UI Message Stream for useChat compatibility
-   * 
-   * @example
-   * ```ts
-   * const stream = await agent.stream({
-   *   prompt: 'Tell me a story',
-   * })
-   * 
-   * // Process stream
-   * for await (const chunk of stream.body) {
-   *   // Handle chunk
-   * }
-   * ```
-   */
-  async stream(options) {
-    if (!this.httpClient) {
-      throw new BlinkAIError(
-        "Agent not initialized. Call createClient() first, or use useAgent() in React."
-      );
-    }
-    if (!options.prompt && !options.messages) {
-      throw new BlinkAIError("Either prompt or messages is required");
-    }
-    if (options.prompt && options.messages) {
-      throw new BlinkAIError("prompt and messages are mutually exclusive");
-    }
-    try {
-      const requestBody = {
-        stream: true,
-        agent: this.getAgentConfig()
-      };
-      if (options.prompt) {
-        requestBody.prompt = options.prompt;
-      } else if (options.messages) {
-        requestBody.messages = options.messages;
-      }
-      if (options.sandbox) {
-        requestBody.sandbox_id = typeof options.sandbox === "string" ? options.sandbox : options.sandbox.id;
-      }
-      return await this.httpClient.aiAgentStream(requestBody, options.signal);
-    } catch (error) {
-      console.error("[Agent] stream failed:", error);
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Agent stream failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Get the agent's model
-   */
-  get model() {
-    return this.config.model;
-  }
-  /**
-   * Get the agent's system prompt
-   */
-  get system() {
-    return this.config.system || this.config.instructions;
-  }
-  /**
-   * Get the agent's tools
-   */
-  get tools() {
-    return this.config.tools;
+  });
+}
+var FunctionLoadCommand = class extends Command {
+  constructor([args], opts) {
+    super(["function", "load", ...args.replace ? ["replace"] : [], args.code], opts);
   }
 };
-var BlinkAIImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-  }
-  // Supported image formats for validation
-  SUPPORTED_IMAGE_FORMATS = ["jpg", "jpeg", "png", "gif", "webp"];
-  /**
-   * Validates if a URL is a valid HTTPS image URL
-   */
-  validateImageUrl(url) {
-    try {
-      const parsedUrl = new URL(url);
-      if (parsedUrl.protocol !== "https:") {
-        return { isValid: false, error: "Image URLs must use HTTPS protocol" };
-      }
-      const pathname = parsedUrl.pathname.toLowerCase();
-      const hasValidExtension = this.SUPPORTED_IMAGE_FORMATS.some(
-        (format) => pathname.endsWith(`.${format}`)
-      );
-      if (!hasValidExtension) {
-        return {
-          isValid: false,
-          error: `Image URL must end with a supported format: ${this.SUPPORTED_IMAGE_FORMATS.join(", ")}`
-        };
-      }
-      return { isValid: true };
-    } catch (error) {
-      return { isValid: false, error: "Invalid URL format" };
-    }
-  }
-  /**
-   * Validates messages for image content
-   */
-  validateMessages(messages) {
-    const errors = [];
-    messages.forEach((message, messageIndex) => {
-      if (Array.isArray(message.content)) {
-        message.content.forEach((item, contentIndex) => {
-          if (item.type === "image") {
-            if (!item.image || typeof item.image !== "string") {
-              errors.push(`Message ${messageIndex}, content ${contentIndex}: Image content must have a valid image URL`);
-            } else {
-              const validation = this.validateImageUrl(item.image);
-              if (!validation.isValid) {
-                errors.push(`Message ${messageIndex}, content ${contentIndex}: ${validation.error}`);
-              }
-            }
-          }
-        });
-      }
-    });
-    return { isValid: errors.length === 0, errors };
-  }
-  /**
-   * Get MIME type for audio format
-   */
-  getMimeTypeForFormat(format) {
-    const mimeTypes = {
-      mp3: "audio/mpeg",
-      opus: "audio/opus",
-      aac: "audio/aac",
-      flac: "audio/flac",
-      wav: "audio/wav",
-      pcm: "audio/pcm"
-    };
-    return mimeTypes[format] || "audio/mpeg";
-  }
-  /**
-   * Generates a text response using the Blink AI engine.
-   * 
-   * @param options - An object containing either:
-   *   - `prompt`: a simple string prompt
-   *   - OR `messages`: an array of chat messages for conversation
-   *   - Plus optional model, search, maxSteps, experimental_continueSteps, maxTokens, temperature, signal parameters
-   * 
-   * @example
-   * ```ts
-   * // Simple prompt
-   * const { text } = await blink.ai.generateText({ 
-   *   prompt: "Write a poem about coding" 
-   * });
-   * 
-   * // Chat messages (text only)
-   * const { text } = await blink.ai.generateText({
-   *   messages: [
-   *     { role: "system", content: "You are a helpful assistant" },
-   *     { role: "user", content: "Explain quantum computing" }
-   *   ]
-   * });
-   * 
-   * // With image content
-   * const { text } = await blink.ai.generateText({
-   *   messages: [
-   *     { 
-   *       role: "user", 
-   *       content: [
-   *         { type: "text", text: "What do you see in this image?" },
-   *         { type: "image", image: "https://example.com/photo.jpg" }
-   *       ]
-   *     }
-   *   ]
-   * });
-   * 
-   * // Mixed content with multiple images
-   * const { text } = await blink.ai.generateText({
-   *   messages: [
-   *     { 
-   *       role: "user", 
-   *       content: [
-   *         { type: "text", text: "Compare these two images:" },
-   *         { type: "image", image: "https://example.com/image1.jpg" },
-   *         { type: "image", image: "https://example.com/image2.jpg" }
-   *       ]
-   *     }
-   *   ]
-   * });
-   * 
-   * // With options
-   * const { text, usage } = await blink.ai.generateText({
-   *   prompt: "Summarize this article",
-   *   model: "gpt-4.1-mini",
-   *   maxTokens: 150,
-   *   temperature: 0.7
-   * });
-   * 
-   * // With web search (OpenAI models only)
-   * const { text, sources } = await blink.ai.generateText({
-   *   prompt: "What are the latest developments in AI?",
-   *   model: "gpt-4.1-mini",
-   *   search: true // Enables web search
-   * });
-   * 
-   * // With advanced multi-step configuration
-   * const { text } = await blink.ai.generateText({
-   *   prompt: "Research and analyze recent tech trends",
-   *   model: "gpt-4o",
-   *   search: true,
-   *   maxSteps: 10, // Allow up to 10 reasoning steps
-   *   experimental_continueSteps: true // Enable continued reasoning
-   * });
-   * ```
-   * 
-   * @returns Promise<TextGenerationResponse> - Object containing:
-   *   - `text`: Generated text string
-   *   - `usage`: Token usage information
-   *   - `finishReason`: Why generation stopped ("stop", "length", etc.)
-   */
-  async generateText(options) {
-    try {
-      if (!options.prompt && !options.messages) {
-        throw new BlinkAIError("Either prompt or messages is required");
-      }
-      if (options.messages) {
-        const validation = this.validateMessages(options.messages);
-        if (!validation.isValid) {
-          throw new BlinkAIError(`Message validation failed: ${validation.errors.join("; ")}`);
-        }
-      }
-      const requestBody = {
-        model: options.model,
-        stream: false,
-        search: options.search,
-        maxSteps: options.maxSteps,
-        experimental_continueSteps: options.experimental_continueSteps,
-        maxTokens: options.maxTokens,
-        temperature: options.temperature,
-        signal: options.signal
-      };
-      if (options.prompt) {
-        requestBody.prompt = options.prompt;
-      }
-      if (options.messages) {
-        requestBody.messages = options.messages;
-      }
-      const response = await this.httpClient.aiText(
-        options.prompt || "",
-        requestBody
-      );
-      return response.data;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Text generation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Streams text generation with real-time updates as the AI generates content.
-   * 
-   * @param options - Same as generateText: either `prompt` or `messages` with optional parameters including search, maxSteps, experimental_continueSteps
-   * @param onChunk - Callback function that receives each text chunk as it's generated
-   * 
-   * @example
-   * ```ts
-   * // Stream with prompt
-   * await blink.ai.streamText(
-   *   { prompt: "Write a short story about space exploration" },
-   *   (chunk) => {
-   *     process.stdout.write(chunk); // Real-time output
-   *   }
-   * );
-   * 
-   * // Stream with messages
-   * await blink.ai.streamText(
-   *   { 
-   *     messages: [
-   *       { role: "system", content: "You are a creative writer" },
-   *       { role: "user", content: "Write a haiku about programming" }
-   *     ]
-   *   },
-   *   (chunk) => updateUI(chunk)
-   * );
-   * ```
-   * 
-   * @returns Promise<TextGenerationResponse> - Final complete response with full text and metadata
-   */
-  async streamText(options, onChunk) {
-    try {
-      if (!options.prompt && !options.messages) {
-        throw new BlinkAIError("Either prompt or messages is required");
-      }
-      if (options.messages) {
-        const validation = this.validateMessages(options.messages);
-        if (!validation.isValid) {
-          throw new BlinkAIError(`Message validation failed: ${validation.errors.join("; ")}`);
-        }
-      }
-      const result = await this.httpClient.streamAiText(
-        options.prompt || "",
-        {
-          model: options.model,
-          messages: options.messages,
-          search: options.search,
-          maxSteps: options.maxSteps,
-          experimental_continueSteps: options.experimental_continueSteps,
-          maxTokens: options.maxTokens,
-          temperature: options.temperature,
-          signal: options.signal
-        },
-        onChunk
-      );
-      return {
-        text: result.text || "",
-        finishReason: result.finishReason || "stop",
-        usage: result.usage,
-        toolCalls: result.toolCalls,
-        toolResults: result.toolResults,
-        sources: result.sources,
-        files: result.files,
-        reasoningDetails: result.reasoning,
-        response: result.response
-      };
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Text streaming failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Generates structured JSON objects using AI with schema validation.
-   * 
-   * @param options - Object containing:
-   *   - `prompt`: Description of what object to generate (required)
-   *   - `schema`: JSON Schema to validate the generated object
-   *   - `output`: Type of output ("object", "array", "enum")
-   *   - `enum`: Array of allowed values for enum output
-   *   - Plus optional model, signal parameters
-   * 
-   * @example
-   * ```ts
-   * // Generate user profile
-   * const { object } = await blink.ai.generateObject({
-   *   prompt: "Generate a user profile for a software developer",
-   *   schema: {
-   *     type: "object",
-   *     properties: {
-   *       name: { type: "string" },
-   *       age: { type: "number" },
-   *       skills: { type: "array", items: { type: "string" } },
-   *       experience: { type: "number" }
-   *     },
-   *     required: ["name", "skills"]
-   *   }
-   * });
-   * 
-   * // Generate array of items
-   * const { object } = await blink.ai.generateObject({
-   *   prompt: "List 5 programming languages",
-   *   output: "array",
-   *   schema: {
-   *     type: "array",
-   *     items: { type: "string" }
-   *   }
-   * });
-   * 
-   * // Generate enum value
-   * const { object } = await blink.ai.generateObject({
-   *   prompt: "Choose the best programming language for web development",
-   *   output: "enum",
-   *   enum: ["JavaScript", "Python", "TypeScript", "Go"]
-   * });
-   * ```
-   * 
-   * @returns Promise<ObjectGenerationResponse> - Object containing:
-   *   - `object`: The generated and validated JSON object/array/enum
-   *   - `usage`: Token usage information
-   *   - `finishReason`: Why generation stopped
-   */
-  async generateObject(options) {
-    try {
-      if (!options.prompt) {
-        throw new BlinkAIError("Prompt is required");
-      }
-      const response = await this.httpClient.aiObject(
-        options.prompt,
-        {
-          model: options.model,
-          output: options.output,
-          schema: options.schema,
-          enum: options.enum,
-          stream: false,
-          signal: options.signal
-        }
-      );
-      return response.data;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Object generation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Streams structured object generation with real-time partial updates as the AI builds the object.
-   * 
-   * @param options - Same as generateObject: prompt, schema, output type, etc.
-   * @param onPartial - Callback function that receives partial object updates as they're generated
-   * 
-   * @example
-   * ```ts
-   * // Stream object generation with schema
-   * await blink.ai.streamObject(
-   *   {
-   *     prompt: "Generate a detailed product catalog entry",
-   *     schema: {
-   *       type: "object",
-   *       properties: {
-   *         name: { type: "string" },
-   *         price: { type: "number" },
-   *         description: { type: "string" },
-   *         features: { type: "array", items: { type: "string" } }
-   *       }
-   *     }
-   *   },
-   *   (partial) => {
-   *     console.log("Partial update:", partial);
-   *     updateProductForm(partial); // Update UI in real-time
-   *   }
-   * );
-   * ```
-   * 
-   * @returns Promise<ObjectGenerationResponse> - Final complete object with metadata
-   */
-  async streamObject(options, onPartial) {
-    try {
-      if (!options.prompt) {
-        throw new BlinkAIError("Prompt is required");
-      }
-      const result = await this.httpClient.streamAiObject(
-        options.prompt,
-        {
-          model: options.model,
-          output: options.output,
-          schema: options.schema,
-          enum: options.enum,
-          signal: options.signal
-        },
-        onPartial
-      );
-      return {
-        object: result.object || {},
-        finishReason: "stop",
-        usage: result.usage
-      };
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Object streaming failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Generates images from text descriptions using AI image models.
-   * 
-   * @param options - Object containing:
-   *   - `prompt`: Text description of the desired image (required, up to 100k characters)
-   *   - `model`: AI model to use (optional). Available models:
-   *       **Fal.ai Models (Recommended):**
-   *       - `"fal-ai/nano-banana"` (default) - Gemini 2.5 Flash Image (Fast)
-   *       - `"fal-ai/nano-banana-pro"` - Gemini 3 Pro Image (High quality)
-   *       - `"fal-ai/gemini-25-flash-image"` - Alias for nano-banana
-   *       - `"fal-ai/gemini-3-pro-image-preview"` - Alias for nano-banana-pro
-   *       **Legacy Gemini Models:**
-   *       - `"gemini-2.5-flash-image-preview"` - Direct Gemini API
-   *       - `"gemini-3-pro-image-preview"` - Direct Gemini API
-   *   - `n`: Number of images to generate (default: 1)
-   *   - `size`: Image dimensions (e.g., "1024x1024", "512x512")
-   *   - Plus optional signal parameter
-   * 
-   * @example
-   * ```ts
-   * // Basic image generation (uses default fast model)
-   * const { data } = await blink.ai.generateImage({
-   *   prompt: "A serene landscape with mountains and a lake at sunset"
-   * });
-   * console.log("Image URL:", data[0].url);
-   * 
-   * // High quality generation with Pro model
-   * const { data } = await blink.ai.generateImage({
-   *   prompt: "A detailed infographic about AI with charts and diagrams",
-   *   model: "fal-ai/nano-banana-pro",
-   *   n: 2
-   * });
-   * 
-   * // Fast generation with specific size
-   * const { data } = await blink.ai.generateImage({
-   *   prompt: "A futuristic city skyline with flying cars",
-   *   model: "fal-ai/nano-banana",
-   *   size: "1024x1024",
-   *   n: 3
-   * });
-   * data.forEach((img, i) => console.log(`Image ${i+1}:`, img.url));
-   * 
-   * // Using legacy Gemini model
-   * const { data } = await blink.ai.generateImage({
-   *   prompt: "A cute robot mascot for a tech company",
-   *   model: "gemini-2.5-flash-image-preview"
-   * });
-   * ```
-   * 
-   * @returns Promise<ImageGenerationResponse> - Object containing:
-   *   - `data`: Array of generated images with URLs
-   *   - `created`: Timestamp of generation
-   *   - `model`: The model used for generation
-   */
-  async generateImage(options) {
-    try {
-      if (!options.prompt) {
-        throw new BlinkAIError("Prompt is required");
-      }
-      const response = await this.httpClient.aiImage(
-        options.prompt,
-        {
-          model: options.model,
-          n: options.n,
-          size: options.size,
-          signal: options.signal
-        }
-      );
-      let imageResponse;
-      if (response.data?.result?.data) {
-        imageResponse = response.data.result;
-      } else if (response.data?.data) {
-        imageResponse = response.data;
-      } else {
-        throw new BlinkAIError("Invalid response format: missing image data");
-      }
-      if (!Array.isArray(imageResponse.data)) {
-        throw new BlinkAIError("Invalid response format: data should be an array");
-      }
-      imageResponse.data = imageResponse.data.map((item) => {
-        if (typeof item === "string") {
-          return { url: item };
-        } else if (item.url) {
-          return item;
-        } else {
-          throw new BlinkAIError("Invalid image response format");
-        }
-      });
-      return imageResponse;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Image generation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Modifies existing images using AI image editing models with text prompts for image-to-image editing.
-   * 
-   * @param options - Object containing:
-   *   - `images`: Array of public image URLs to modify (required, up to 50 images)
-   *   - `prompt`: Text description of desired modifications (required, up to 100k characters)
-   *   - `model`: AI model to use (optional). Available editing models:
-   *       **Fal.ai Editing Models (Recommended):**
-   *       - `"fal-ai/nano-banana/edit"` (default) - Flash editing (Fast)
-   *       - `"fal-ai/nano-banana-pro/edit"` - Pro editing (High quality)
-   *       - `"fal-ai/gemini-25-flash-image/edit"` - Alias for nano-banana/edit
-   *       - `"fal-ai/gemini-3-pro-image-preview/edit"` - Alias for nano-banana-pro/edit
-   *       **Legacy Gemini Models:**
-   *       - `"gemini-2.5-flash-image-preview"` - Direct Gemini API
-   *       - `"gemini-3-pro-image-preview"` - Direct Gemini API
-   *   - `n`: Number of output images to generate (default: 1)
-   *   - Plus optional signal parameter
-   * 
-   * @example
-   * ```ts
-   * // Fast editing with default model
-   * const { data } = await blink.ai.modifyImage({
-   *   images: ["https://storage.example.com/photo.jpg"],
-   *   prompt: "make it green"
-   * });
-   * 
-   * // High quality editing with Pro model
-   * const { data } = await blink.ai.modifyImage({
-   *   images: ["https://storage.example.com/landscape.jpg"],
-   *   prompt: "add a tree in the background",
-   *   model: "fal-ai/nano-banana-pro/edit"
-   * });
-   * 
-   * // Professional headshots from casual photos
-   * const { data } = await blink.ai.modifyImage({
-   *   images: [
-   *     "https://storage.example.com/user-photo-1.jpg",
-   *     "https://storage.example.com/user-photo-2.jpg"
-   *   ],
-   *   prompt: "Transform into professional business headshots with studio lighting",
-   *   model: "fal-ai/nano-banana/edit",
-   *   n: 4
-   * });
-   * data.forEach((img, i) => console.log(`Headshot ${i+1}:`, img.url));
-   * 
-   * // Artistic style transformation
-   * const { data } = await blink.ai.modifyImage({
-   *   images: ["https://storage.example.com/portrait.jpg"],
-   *   prompt: "Transform into oil painting style with dramatic lighting",
-   *   model: "fal-ai/nano-banana-pro/edit"
-   * });
-   * 
-   * // Background replacement
-   * const { data } = await blink.ai.modifyImage({
-   *   images: ["https://storage.example.com/product.jpg"],
-   *   prompt: "Remove background and place on clean white studio background",
-   *   n: 2
-   * });
-   * 
-   * // Batch processing multiple photos
-   * const userPhotos = [
-   *   "https://storage.example.com/photo1.jpg",
-   *   "https://storage.example.com/photo2.jpg",
-   *   "https://storage.example.com/photo3.jpg"
-   * ];
-   * const { data } = await blink.ai.modifyImage({
-   *   images: userPhotos,
-   *   prompt: "Convert to black and white vintage style photographs"
-   * });
-   * 
-   * // 🎨 Style Transfer - IMPORTANT: Provide all images in array
-   * // ❌ WRONG - Don't reference other images in prompt
-   * const wrong = await blink.ai.modifyImage({
-   *   images: [userPhotoUrl],
-   *   prompt: `Apply hairstyle from ${referenceUrl}`
-   * });
-   * 
-   * // ✅ CORRECT - Provide all images in array
-   * const { data } = await blink.ai.modifyImage({
-   *   images: [userPhotoUrl, hairstyleReferenceUrl],
-   *   prompt: "Apply the hairstyle from the second image to the person in the first image"
-   * });
-   * ```
-   * 
-   * @returns Promise<ImageGenerationResponse> - Object containing:
-   *   - `data`: Array of modified images with URLs
-   *   - `created`: Timestamp of generation
-   *   - `model`: The model used for editing
-   */
-  async modifyImage(options) {
-    try {
-      if (!options.prompt) {
-        throw new BlinkAIError("Prompt is required");
-      }
-      if (!options.images || !Array.isArray(options.images) || options.images.length === 0) {
-        throw new BlinkAIError("Images array is required and must contain at least one image URL");
-      }
-      if (options.images.length > 50) {
-        throw new BlinkAIError("Maximum 50 images allowed");
-      }
-      for (let i = 0; i < options.images.length; i++) {
-        const validation = this.validateImageUrl(options.images[i]);
-        if (!validation.isValid) {
-          throw new BlinkAIError(`Image ${i + 1}: ${validation.error}`);
-        }
-      }
-      const response = await this.httpClient.aiImage(
-        options.prompt,
-        // Non-null assertion since we validated above
-        {
-          model: options.model,
-          images: options.images,
-          n: options.n,
-          signal: options.signal
-        }
-      );
-      let imageResponse;
-      if (response.data?.result?.data) {
-        imageResponse = response.data.result;
-      } else if (response.data?.data) {
-        imageResponse = response.data;
-      } else {
-        throw new BlinkAIError("Invalid response format: missing image data");
-      }
-      if (!Array.isArray(imageResponse.data)) {
-        throw new BlinkAIError("Invalid response format: data should be an array");
-      }
-      imageResponse.data = imageResponse.data.map((item) => {
-        if (typeof item === "string") {
-          return { url: item };
-        } else if (item.url) {
-          return item;
-        } else {
-          throw new BlinkAIError("Invalid image response format");
-        }
-      });
-      return imageResponse;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Image modification failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Generates videos from text prompts or images using AI video generation models.
-   * 
-   * @param options - Object containing:
-   *   - `prompt`: Text description of the video to generate (required)
-   *   - `model`: Video model to use (optional). Available models:
-   *       **Text-to-Video Models:**
-   *       - `"fal-ai/veo3.1"` - Google Veo 3.1 (best quality)
-   *       - `"fal-ai/veo3.1/fast"` (default) - Veo 3.1 fast mode (faster, cheaper)
-   *       - `"fal-ai/sora-2/text-to-video/pro"` - OpenAI Sora 2
-   *       - `"fal-ai/kling-video/v2.6/pro/text-to-video"` - Kling 2.6
-   *       **Image-to-Video Models:**
-   *       - `"fal-ai/veo3.1/image-to-video"` - Veo 3.1 I2V
-   *       - `"fal-ai/veo3.1/fast/image-to-video"` - Veo 3.1 fast I2V
-   *       - `"fal-ai/sora-2/image-to-video/pro"` - Sora 2 I2V
-   *       - `"fal-ai/kling-video/v2.6/pro/image-to-video"` - Kling 2.6 I2V
-   *   - `image_url`: Source image URL for image-to-video (required for I2V models)
-   *   - `duration`: Video duration ("4s", "5s", "6s", "8s", "10s", "12s")
-   *   - `aspect_ratio`: Aspect ratio ("16:9", "9:16", "1:1")
-   *   - `resolution`: Resolution ("720p", "1080p") - Veo/Sora only
-   *   - `negative_prompt`: What to avoid in generation - Veo/Kling only
-   *   - `generate_audio`: Generate audio with video (default: true)
-   *   - `seed`: For reproducibility - Veo only
-   *   - `cfg_scale`: Guidance scale (0-1) - Kling only
-   *   - Plus optional signal parameter
-   * 
-   * @example
-   * ```ts
-   * // Basic text-to-video generation (uses default fast model)
-   * const { result } = await blink.ai.generateVideo({
-   *   prompt: "A serene sunset over the ocean with gentle waves"
-   * });
-   * console.log("Video URL:", result.video.url);
-   * 
-   * // High quality with Veo 3.1
-   * const { result } = await blink.ai.generateVideo({
-   *   prompt: "A cinematic shot of a futuristic city at night",
-   *   model: "fal-ai/veo3.1",
-   *   resolution: "1080p",
-   *   aspect_ratio: "16:9"
-   * });
-   * 
-   * // Image-to-video animation
-   * const { result } = await blink.ai.generateVideo({
-   *   prompt: "Animate this image with gentle camera movement",
-   *   model: "fal-ai/veo3.1/fast/image-to-video",
-   *   image_url: "https://example.com/my-image.jpg",
-   *   duration: "5s"
-   * });
-   * 
-   * // Using Sora 2 for creative videos
-   * const { result } = await blink.ai.generateVideo({
-   *   prompt: "A magical forest with glowing fireflies",
-   *   model: "fal-ai/sora-2/text-to-video/pro",
-   *   duration: "8s"
-   * });
-   * 
-   * // Using Kling for detailed videos
-   * const { result, usage } = await blink.ai.generateVideo({
-   *   prompt: "A professional cooking tutorial scene",
-   *   model: "fal-ai/kling-video/v2.6/pro/text-to-video",
-   *   negative_prompt: "blur, distort, low quality",
-   *   cfg_scale: 0.7
-   * });
-   * console.log("Credits charged:", usage?.creditsCharged);
-   * ```
-   * 
-   * @returns Promise<VideoGenerationResponse> - Object containing:
-   *   - `result.video.url`: URL to the generated video
-   *   - `result.video.content_type`: MIME type (video/mp4)
-   *   - `result.video.file_name`: Generated filename
-   *   - `result.video.file_size`: File size in bytes
-   *   - `metadata`: Generation metadata (projectId, timestamp, model)
-   *   - `usage`: Credits charged and cost information
-   */
-  async generateVideo(options) {
-    try {
-      if (!options.prompt) {
-        throw new BlinkAIError("Prompt is required");
-      }
-      const i2vModels = [
-        "fal-ai/veo3.1/image-to-video",
-        "fal-ai/veo3.1/fast/image-to-video",
-        "fal-ai/sora-2/image-to-video/pro",
-        "fal-ai/kling-video/v2.6/pro/image-to-video"
-      ];
-      if (options.model && i2vModels.includes(options.model) && !options.image_url) {
-        throw new BlinkAIError("image_url is required for image-to-video models");
-      }
-      if (options.image_url) {
-        const validation = this.validateImageUrl(options.image_url);
-        if (!validation.isValid) {
-          throw new BlinkAIError(`Invalid image_url: ${validation.error}`);
-        }
-      }
-      const response = await this.httpClient.aiVideo(
-        options.prompt,
-        {
-          model: options.model,
-          image_url: options.image_url,
-          duration: options.duration,
-          aspect_ratio: options.aspect_ratio,
-          resolution: options.resolution,
-          negative_prompt: options.negative_prompt,
-          generate_audio: options.generate_audio,
-          seed: options.seed,
-          cfg_scale: options.cfg_scale,
-          signal: options.signal
-        }
-      );
-      if (!response.data?.result?.video?.url) {
-        throw new BlinkAIError("Invalid response format: missing video URL");
-      }
-      return response.data;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Video generation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Converts text to speech using AI voice synthesis models.
-   * 
-   * @param options - Object containing:
-   *   - `text`: Text content to convert to speech (required)
-   *   - `voice`: Voice to use ("alloy", "echo", "fable", "onyx", "nova", "shimmer")
-   *   - `response_format`: Audio format ("mp3", "opus", "aac", "flac", "wav", "pcm")
-   *   - `speed`: Speech speed (0.25 to 4.0, default: 1.0)
-   *   - Plus optional model, signal parameters
-   * 
-   * @example
-   * ```ts
-   * // Basic text-to-speech
-   * const { url } = await blink.ai.generateSpeech({
-   *   text: "Hello, welcome to our AI-powered application!"
-   * });
-   * console.log("Audio URL:", url);
-   * 
-   * // Custom voice and format
-   * const { url, voice, format } = await blink.ai.generateSpeech({
-   *   text: "This is a demonstration of our speech synthesis capabilities.",
-   *   voice: "nova",
-   *   response_format: "wav",
-   *   speed: 1.2
-   * });
-   * console.log(`Generated ${format} audio with ${voice} voice:`, url);
-   * 
-   * // Slow, clear speech for accessibility
-   * const { url } = await blink.ai.generateSpeech({
-   *   text: "Please listen carefully to these important instructions.",
-   *   voice: "echo",
-   *   speed: 0.8
-   * });
-   * ```
-   * 
-   * @returns Promise<SpeechGenerationResponse> - Object containing:
-   *   - `url`: URL to the generated audio file
-   *   - `voice`: Voice used for generation
-   *   - `format`: Audio format
-   *   - `mimeType`: MIME type of the audio
-   */
-  async generateSpeech(options) {
-    try {
-      if (!options.text) {
-        throw new BlinkAIError("Text is required");
-      }
-      const response = await this.httpClient.aiSpeech(
-        options.text,
-        {
-          model: options.model,
-          voice: options.voice,
-          response_format: options.response_format,
-          speed: options.speed,
-          signal: options.signal
-        }
-      );
-      let speechResponse;
-      if (response.data?.result) {
-        speechResponse = response.data.result;
-      } else if (response.data?.url) {
-        speechResponse = response.data;
-      } else {
-        throw new BlinkAIError("Invalid response format: missing speech data");
-      }
-      if (!speechResponse.url) {
-        if (typeof response.data === "string") {
-          speechResponse = {
-            url: response.data,
-            voice: options.voice || "alloy",
-            format: options.response_format || "mp3",
-            mimeType: this.getMimeTypeForFormat(options.response_format || "mp3")
-          };
-        } else if (response.data?.data) {
-          speechResponse = {
-            url: response.data.data,
-            voice: options.voice || "alloy",
-            format: options.response_format || "mp3",
-            mimeType: this.getMimeTypeForFormat(options.response_format || "mp3")
-          };
-        } else {
-          throw new BlinkAIError("Invalid response format: no audio URL found");
-        }
-      }
-      if (!speechResponse.voice) {
-        speechResponse.voice = options.voice || "alloy";
-      }
-      if (!speechResponse.format) {
-        speechResponse.format = options.response_format || "mp3";
-      }
-      if (!speechResponse.mimeType) {
-        speechResponse.mimeType = this.getMimeTypeForFormat(speechResponse.format);
-      }
-      return speechResponse;
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Speech generation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  /**
-   * Transcribes audio content to text using AI speech recognition models.
-   * 
-   * @param options - Object containing:
-   *   - `audio`: Audio input as URL string, base64 string, or number array buffer (required)
-   *   - `language`: Language code for transcription (e.g., "en", "es", "fr")
-   *   - `response_format`: Output format ("json", "text", "srt", "verbose_json", "vtt")
-   *   - Plus optional model, signal parameters
-   * 
-   * @example
-   * ```ts
-   * // Transcribe from URL
-   * const { text } = await blink.ai.transcribeAudio({
-   *   audio: "https://example.com/meeting-recording.mp3"
-   * });
-   * console.log("Transcription:", text);
-   * 
-   * // Transcribe with language hint
-   * const { text, language } = await blink.ai.transcribeAudio({
-   *   audio: "https://example.com/spanish-audio.wav",
-   *   language: "es"
-   * });
-   * console.log(`Transcribed ${language}:`, text);
-   * 
-   * // Transcribe with timestamps (verbose format)
-   * const result = await blink.ai.transcribeAudio({
-   *   audio: audioFileUrl,
-   *   response_format: "verbose_json"
-   * });
-   * result.segments?.forEach(segment => {
-   *   console.log(`${segment.start}s - ${segment.end}s: ${segment.text}`);
-   * });
-   * 
-   * // Transcribe from audio buffer
-   * const audioBuffer = new Array(1024).fill(0); // Your audio data
-   * const { text } = await blink.ai.transcribeAudio({
-   *   audio: audioBuffer,
-   *   language: "en"
-   * });
-   * ```
-   * 
-   * @returns Promise<TranscriptionResponse> - Object containing:
-   *   - `text`: Transcribed text content
-   *   - `transcript`: Alias for text
-   *   - `segments`: Array of timestamped segments (if verbose format)
-   *   - `language`: Detected language
-   *   - `duration`: Audio duration in seconds
-   */
-  async transcribeAudio(options) {
-    try {
-      if (!options.audio) {
-        throw new BlinkAIError("Audio is required");
-      }
-      const response = await this.httpClient.aiTranscribe(
-        options.audio,
-        {
-          model: options.model,
-          language: options.language,
-          response_format: options.response_format,
-          signal: options.signal
-        }
-      );
-      if (response.data?.result) {
-        return response.data.result;
-      } else if (response.data?.text || response.data?.transcript) {
-        return {
-          text: response.data.text || response.data.transcript,
-          transcript: response.data.transcript || response.data.text,
-          ...response.data
-        };
-      } else {
-        throw new BlinkAIError("Invalid response format: missing transcription text");
-      }
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Audio transcription failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  async agent(options) {
-    try {
-      if (!options.agent?.model) {
-        throw new BlinkAIError("agent.model is required");
-      }
-      if (!options.prompt && !options.messages) {
-        throw new BlinkAIError("Either prompt or messages is required");
-      }
-      if (options.prompt && options.messages) {
-        throw new BlinkAIError("prompt and messages are mutually exclusive");
-      }
-      const serializedTools = options.agent.tools ? serializeTools(options.agent.tools) : void 0;
-      const requestBody = {
-        stream: options.stream,
-        agent: {
-          model: options.agent.model,
-          system: options.agent.system,
-          tools: serializedTools,
-          webhook_tools: options.agent.webhook_tools,
-          client_tools: options.agent.client_tools,
-          tool_choice: options.agent.tool_choice,
-          stop_when: options.agent.stop_when,
-          prepare_step: options.agent.prepare_step
-        }
-      };
-      if (options.prompt) {
-        requestBody.prompt = options.prompt;
-      } else if (options.messages) {
-        requestBody.messages = options.messages;
-      }
-      if (options.stream) {
-        return await this.httpClient.aiAgentStream(requestBody, options.signal);
-      } else {
-        const response = await this.httpClient.aiAgent(requestBody, options.signal);
-        return response.data;
-      }
-    } catch (error) {
-      if (error instanceof BlinkAIError) {
-        throw error;
-      }
-      throw new BlinkAIError(
-        `Agent request failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-        void 0,
-        { originalError: error }
-      );
-    }
-  }
-  // ============================================================================
-  // Agent Factory
-  // ============================================================================
-  /**
-   * Creates a reusable Agent instance with the Vercel AI SDK pattern.
-   * 
-   * The Agent can be used multiple times with different prompts:
-   * - `agent.generate({ prompt })` for non-streaming
-   * - `agent.stream({ prompt })` for streaming
-   * 
-   * @param options - Agent configuration (model, tools, system, etc.)
-   * @returns Agent instance
-   * 
-   * @example
-   * ```ts
-   * const weatherAgent = blink.ai.createAgent({
-   *   model: 'anthropic/claude-sonnet-4-20250514',
-   *   system: 'You are a helpful weather assistant.',
-   *   tools: [webSearch, fetchUrl],
-   *   maxSteps: 10,
-   * })
-   * 
-   * // Non-streaming
-   * const result = await weatherAgent.generate({
-   *   prompt: 'What is the weather in San Francisco?',
-   * })
-   * 
-   * // Streaming
-   * const stream = await weatherAgent.stream({
-   *   prompt: 'Tell me about weather patterns',
-   * })
-   * ```
-   */
-  createAgent(options) {
-    const agent = new Agent(options);
-    agent._setHttpClient(this.httpClient);
-    return agent;
-  }
-  /**
-   * Binds an existing Agent instance to this client's HTTP client.
-   * 
-   * Used internally by useAgent() when an Agent instance is passed.
-   * This allows agents created with `new Agent()` to be used with the hook.
-   * 
-   * @param agent - Existing Agent instance
-   * @returns The same Agent instance (with httpClient set)
-   */
-  bindAgent(agent) {
-    agent._setHttpClient(this.httpClient);
-    return agent;
+var FunctionStatsCommand = class extends Command {
+  constructor(opts) {
+    super(["function", "stats"], { deserialize: deserialize3, ...opts });
   }
 };
-var BlinkDataImpl = class {
-  constructor(httpClient, projectId) {
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-  }
-  async extractFromUrl(url, options = {}) {
-    const { chunking = false, chunkSize } = options;
-    const request = { url, chunking, chunkSize };
-    const response = await this.httpClient.dataExtractFromUrl(this.projectId, request);
-    return chunking ? response.data.chunks : response.data.text;
-  }
-  async extractFromBlob(file, options = {}) {
-    const { chunking = false, chunkSize } = options;
-    const response = await this.httpClient.dataExtractFromBlob(this.projectId, file, chunking, chunkSize);
-    return chunking ? response.data.chunks : response.data.text;
-  }
-  async scrape(url) {
-    const request = {
-      url,
-      formats: ["markdown", "html", "links", "extract", "metadata"]
-    };
-    const response = await this.httpClient.dataScrape(this.projectId, request);
-    const data = response.data;
-    return {
-      markdown: data.markdown || "",
-      html: data.html || "",
-      metadata: {
-        title: data.metadata?.title || "",
-        description: data.metadata?.description || "",
-        url: data.metadata?.url || url,
-        domain: data.metadata?.domain || new URL(url).hostname,
-        favicon: data.metadata?.favicon,
-        image: data.metadata?.image,
-        author: data.metadata?.author,
-        publishedTime: data.metadata?.publishedTime,
-        modifiedTime: data.metadata?.modifiedTime,
-        type: data.metadata?.type,
-        siteName: data.metadata?.siteName,
-        locale: data.metadata?.locale,
-        keywords: data.metadata?.keywords || []
-      },
-      links: data.links || [],
-      extract: {
-        title: data.extract?.title || data.metadata?.title || "",
-        description: data.extract?.description || data.metadata?.description || "",
-        headings: data.extract?.headings || [],
-        text: data.extract?.text || data.markdown || ""
-      }
-    };
-  }
-  async screenshot(url, options = {}) {
-    const request = { url, ...options };
-    const response = await this.httpClient.dataScreenshot(this.projectId, request);
-    return response.data.url;
-  }
-  async fetch(request) {
-    const response = await this.httpClient.dataFetch(this.projectId, request);
-    if ("status" in response.data && "headers" in response.data) {
-      return response.data;
-    }
-    throw new BlinkDataError("Unexpected response format from fetch endpoint");
-  }
-  async fetchAsync(request) {
-    const asyncRequest = { ...request, async: true };
-    const response = await this.httpClient.dataFetch(this.projectId, asyncRequest);
-    if ("status" in response.data && response.data.status === "triggered") {
-      return response.data;
-    }
-    throw new BlinkDataError("Unexpected response format from async fetch endpoint");
-  }
-  async search(query, options) {
-    const normalizeType = (type) => {
-      switch (type) {
-        case "news":
-          return "nws";
-        case "images":
-        case "image":
-          return "isch";
-        case "videos":
-        case "video":
-          return "vid";
-        case "shopping":
-        case "shop":
-          return "shop";
-        default:
-          return void 0;
-      }
-    };
-    const request = {
-      q: query,
-      location: options?.location,
-      hl: options?.language || "en",
-      tbm: normalizeType(options?.type),
-      num: options?.limit
-    };
-    const response = await this.httpClient.dataSearch(this.projectId, request);
-    return response.data;
-  }
-};
-var getWebSocketClass = () => {
-  if (typeof WebSocket !== "undefined") {
-    return WebSocket;
-  }
-  try {
-    const WS = __require2("ws");
-    return WS;
-  } catch (error) {
-    throw new BlinkRealtimeError('WebSocket is not available. Install "ws" package for Node.js environments.');
-  }
-};
-var RealtimeConnection = class {
-  constructor(httpClient, projectId) {
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-  }
-  websocket = null;
-  isConnected = false;
-  isConnecting = false;
-  reconnectTimer = null;
-  heartbeatTimer = null;
-  reconnectAttempts = 0;
-  connectionPromise = null;
-  // Channel management
-  channels = /* @__PURE__ */ new Map();
-  pendingSubscriptions = /* @__PURE__ */ new Map();
-  // Message queue for when socket not ready
-  messageQueue = [];
-  /**
-   * Check if connection is ready
-   */
-  isReady() {
-    return this.isConnected && this.websocket?.readyState === 1;
-  }
-  /**
-   * Ensure WebSocket connection is established
-   */
-  async connect() {
-    if (this.isConnected && this.websocket?.readyState === 1) {
-      return;
-    }
-    if (this.connectionPromise) {
-      return this.connectionPromise;
-    }
-    this.connectionPromise = this.connectWebSocket();
-    try {
-      await this.connectionPromise;
-    } finally {
-      this.connectionPromise = null;
-    }
-  }
-  /**
-   * Join a channel (subscribe)
-   */
-  async joinChannel(channelName, handler, options = {}) {
-    await this.connect();
-    this.channels.set(channelName, { handler, options });
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
-        this.pendingSubscriptions.delete(channelName);
-        this.channels.delete(channelName);
-        reject(new BlinkRealtimeError("Subscription timeout - no acknowledgment from server"));
-      }, 1e4);
-      this.pendingSubscriptions.set(channelName, { resolve, reject, timeout });
-      const subscribeMessage = {
-        type: "subscribe",
-        payload: {
-          channel: channelName,
-          userId: options.userId,
-          metadata: options.metadata
-        }
-      };
-      try {
-        this.sendRaw(JSON.stringify(subscribeMessage));
-      } catch (error) {
-        clearTimeout(timeout);
-        this.pendingSubscriptions.delete(channelName);
-        this.channels.delete(channelName);
-        reject(error);
-      }
-    });
-  }
-  /**
-   * Leave a channel (unsubscribe)
-   */
-  async leaveChannel(channelName) {
-    this.channels.delete(channelName);
-    const pending = this.pendingSubscriptions.get(channelName);
-    if (pending) {
-      clearTimeout(pending.timeout);
-      pending.reject(new BlinkRealtimeError("Subscription cancelled"));
-      this.pendingSubscriptions.delete(channelName);
-    }
-    if (this.websocket && this.websocket.readyState === 1) {
-      const unsubscribeMessage = {
-        type: "unsubscribe",
-        payload: { channel: channelName }
-      };
-      this.websocket.send(JSON.stringify(unsubscribeMessage));
-    }
-    if (this.channels.size === 0) {
-      this.disconnect();
-    }
-  }
-  /**
-   * Send a message to a channel
-   */
-  async send(channelName, type, data, options = {}) {
-    await this.connect();
-    const publishMessage = {
-      type: "publish",
-      payload: {
-        channel: channelName,
-        type,
-        data,
-        userId: options.userId,
-        metadata: options.metadata
-      }
-    };
-    return this.sendWithResponse(JSON.stringify(publishMessage), channelName);
-  }
-  /**
-   * Disconnect and cleanup
-   */
-  disconnect() {
-    this.isConnected = false;
-    this.isConnecting = false;
-    if (this.heartbeatTimer) {
-      clearInterval(this.heartbeatTimer);
-      this.heartbeatTimer = null;
-    }
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-      this.reconnectTimer = null;
-    }
-    this.messageQueue.forEach((q) => {
-      clearTimeout(q.timeout);
-      q.reject(new BlinkRealtimeError("Connection closed"));
-    });
-    this.messageQueue = [];
-    this.pendingSubscriptions.forEach((pending, channel) => {
-      clearTimeout(pending.timeout);
-      pending.reject(new BlinkRealtimeError("Connection closed"));
-    });
-    this.pendingSubscriptions.clear();
-    if (this.websocket) {
-      this.websocket.close();
-      this.websocket = null;
-    }
-  }
-  /**
-   * Get count of active channels
-   */
-  getChannelCount() {
-    return this.channels.size;
-  }
-  // Private methods
-  async connectWebSocket() {
-    if (this.websocket && this.websocket.readyState === 1) {
-      this.isConnected = true;
-      return;
-    }
-    if (this.isConnecting) {
-      return new Promise((resolve, reject) => {
-        const checkConnection = () => {
-          if (this.isConnected) {
-            resolve();
-          } else if (!this.isConnecting) {
-            reject(new BlinkRealtimeError("Connection failed"));
-          } else {
-            setTimeout(checkConnection, 100);
-          }
-        };
-        checkConnection();
-      });
-    }
-    this.isConnecting = true;
-    this.isConnected = false;
-    return new Promise((resolve, reject) => {
-      try {
-        const httpClient = this.httpClient;
-        const coreUrl = httpClient.coreUrl || "https://core.blink.new";
-        const baseUrl = coreUrl.replace("https://", "wss://").replace("http://", "ws://");
-        const wsUrl = `${baseUrl}?project_id=${this.projectId}`;
-        console.log(`\u{1F517} Connecting to realtime: ${wsUrl}`);
-        const WSClass = getWebSocketClass();
-        this.websocket = new WSClass(wsUrl);
-        if (!this.websocket) {
-          this.isConnecting = false;
-          reject(new BlinkRealtimeError("Failed to create WebSocket instance"));
-          return;
-        }
-        this.websocket.onopen = () => {
-          console.log(`\u{1F517} Connected to realtime for project ${this.projectId}`);
-          this.isConnecting = false;
-          this.isConnected = true;
-          this.reconnectAttempts = 0;
-          this.startHeartbeat();
-          this.flushMessageQueue();
-          resolve();
-        };
-        this.websocket.onmessage = (event) => {
-          try {
-            const message = JSON.parse(event.data);
-            this.handleMessage(message);
-          } catch (error) {
-            console.error("Failed to parse WebSocket message:", error);
-          }
-        };
-        this.websocket.onclose = () => {
-          console.log(`\u{1F50C} Disconnected from realtime for project ${this.projectId}`);
-          this.isConnecting = false;
-          this.isConnected = false;
-          this.rejectQueuedMessages(new BlinkRealtimeError("WebSocket connection closed"));
-          this.scheduleReconnect();
-        };
-        this.websocket.onerror = (error) => {
-          console.error("WebSocket error:", error);
-          this.isConnecting = false;
-          this.isConnected = false;
-          reject(new BlinkRealtimeError(`WebSocket connection failed to ${wsUrl}`));
-        };
-        setTimeout(() => {
-          if (this.websocket?.readyState !== 1) {
-            this.isConnecting = false;
-            reject(new BlinkRealtimeError("WebSocket connection timeout"));
-          }
-        }, 1e4);
-      } catch (error) {
-        this.isConnecting = false;
-        reject(new BlinkRealtimeError(`Failed to create WebSocket connection: ${error instanceof Error ? error.message : "Unknown error"}`));
-      }
-    });
-  }
-  handleMessage(message) {
-    const channelName = message.payload?.channel;
-    switch (message.type) {
-      case "connected":
-        console.log(`\u2705 WebSocket connected: ${message.payload?.socketId}`);
-        break;
-      case "subscribed":
-        console.log(`\u2705 Subscribed to channel: ${channelName}`);
-        const pendingSub = this.pendingSubscriptions.get(channelName);
-        if (pendingSub) {
-          clearTimeout(pendingSub.timeout);
-          pendingSub.resolve();
-          this.pendingSubscriptions.delete(channelName);
-        }
-        const subHandler = this.channels.get(channelName);
-        if (subHandler) {
-          subHandler.handler.onSubscribed();
-        }
-        break;
-      case "message":
-        const msgChannel = this.channels.get(message.payload?.channel);
-        if (msgChannel) {
-          msgChannel.handler.onMessage(message.payload);
-        }
-        break;
-      case "presence":
-        const presChannel = this.channels.get(message.payload?.channel);
-        if (presChannel) {
-          const users = message.payload?.data?.users || [];
-          presChannel.handler.onPresence(users);
-        }
-        break;
-      case "published":
-        break;
-      case "pong":
-        break;
-      case "error":
-        console.error("Realtime error:", message.payload?.error);
-        const errChannel = this.channels.get(channelName);
-        if (errChannel) {
-          errChannel.handler.onError(message.payload?.error);
-        }
-        const pendingErr = this.pendingSubscriptions.get(channelName);
-        if (pendingErr) {
-          clearTimeout(pendingErr.timeout);
-          pendingErr.reject(new BlinkRealtimeError(`Subscription error: ${message.payload?.error}`));
-          this.pendingSubscriptions.delete(channelName);
-        }
-        break;
-      case "unsubscribed":
-        console.log(`\u274C Unsubscribed from channel: ${channelName}`);
-        break;
-      default:
-        console.log("Unknown message type:", message.type);
-    }
-  }
-  sendRaw(message) {
-    if (this.websocket && this.websocket.readyState === 1) {
-      this.websocket.send(message);
-    } else {
-      throw new BlinkRealtimeError("Cannot send message: WebSocket not connected");
-    }
-  }
-  sendWithResponse(message, channelName) {
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
-        const index = this.messageQueue.findIndex((q) => q.resolve === resolve);
-        if (index > -1) {
-          this.messageQueue.splice(index, 1);
-        }
-        reject(new BlinkRealtimeError("Message send timeout - no response from server"));
-      }, 1e4);
-      if (this.websocket && this.websocket.readyState === 1) {
-        const handleResponse = (event) => {
-          try {
-            const response = JSON.parse(event.data);
-            if (response.type === "published" && response.payload.channel === channelName) {
-              clearTimeout(timeout);
-              this.websocket.removeEventListener("message", handleResponse);
-              resolve(response.payload.messageId);
-            } else if (response.type === "error") {
-              clearTimeout(timeout);
-              this.websocket.removeEventListener("message", handleResponse);
-              reject(new BlinkRealtimeError(`Server error: ${response.payload.error}`));
-            }
-          } catch (err) {
-          }
-        };
-        this.websocket.addEventListener("message", handleResponse);
-        this.websocket.send(message);
-      } else {
-        this.messageQueue.push({ message, resolve, reject, timeout });
-      }
-    });
-  }
-  flushMessageQueue() {
-    if (!this.websocket || this.websocket.readyState !== 1) return;
-    const queue = [...this.messageQueue];
-    this.messageQueue = [];
-    queue.forEach((q) => {
-      try {
-        this.websocket.send(q.message);
-      } catch (error) {
-        clearTimeout(q.timeout);
-        q.reject(new BlinkRealtimeError("Failed to send queued message"));
-      }
-    });
-  }
-  rejectQueuedMessages(error) {
-    const queue = [...this.messageQueue];
-    this.messageQueue = [];
-    queue.forEach((q) => {
-      clearTimeout(q.timeout);
-      q.reject(error);
-    });
-  }
-  startHeartbeat() {
-    if (this.heartbeatTimer) {
-      clearInterval(this.heartbeatTimer);
-    }
-    this.heartbeatTimer = globalThis.setInterval(() => {
-      if (this.websocket && this.websocket.readyState === 1) {
-        this.websocket.send(JSON.stringify({ type: "ping", payload: {} }));
-      }
-    }, 25e3);
-  }
-  scheduleReconnect() {
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-    }
-    if (this.channels.size === 0) {
-      return;
-    }
-    this.reconnectAttempts++;
-    const baseDelay = Math.min(3e4, Math.pow(2, this.reconnectAttempts) * 1e3);
-    const jitter = Math.random() * 1e3;
-    const delay = baseDelay + jitter;
-    console.log(`\u{1F504} Scheduling reconnect attempt ${this.reconnectAttempts} in ${Math.round(delay)}ms`);
-    this.reconnectTimer = globalThis.setTimeout(async () => {
-      if (this.channels.size === 0) return;
-      try {
-        await this.connectWebSocket();
-        await this.resubscribeAllChannels();
-      } catch (error) {
-        console.error("Reconnection failed:", error);
-        this.scheduleReconnect();
-      }
-    }, delay);
-  }
-  async resubscribeAllChannels() {
-    console.log(`\u{1F504} Resubscribing ${this.channels.size} channels...`);
-    for (const [channelName, subscription] of this.channels) {
-      try {
-        const subscribeMessage = {
-          type: "subscribe",
-          payload: {
-            channel: channelName,
-            userId: subscription.options.userId,
-            metadata: subscription.options.metadata
-          }
-        };
-        if (this.websocket && this.websocket.readyState === 1) {
-          this.websocket.send(JSON.stringify(subscribeMessage));
-        }
-      } catch (error) {
-        console.error(`Failed to resubscribe to ${channelName}:`, error);
-      }
-    }
-  }
-};
-var BlinkRealtimeChannel = class {
-  constructor(channelName, connection, httpClient, projectId) {
-    this.channelName = channelName;
-    this.connection = connection;
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-  }
-  messageCallbacks = [];
-  presenceCallbacks = [];
-  isSubscribed = false;
-  subscribeOptions = {};
-  /**
-   * Check if channel is ready for publishing
-   */
-  isReady() {
-    return this.isSubscribed && this.connection.isReady();
-  }
-  async subscribe(options = {}) {
-    if (this.isSubscribed) {
-      return;
-    }
-    this.subscribeOptions = options;
-    const handler = {
-      onMessage: (message) => {
-        this.messageCallbacks.forEach((callback) => {
-          try {
-            callback(message);
-          } catch (error) {
-            console.error("Error in message callback:", error);
-          }
-        });
-      },
-      onPresence: (users) => {
-        this.presenceCallbacks.forEach((callback) => {
-          try {
-            callback(users);
-          } catch (error) {
-            console.error("Error in presence callback:", error);
-          }
-        });
-      },
-      onSubscribed: () => {
-        this.isSubscribed = true;
-      },
-      onError: (error) => {
-        console.error(`Channel ${this.channelName} error:`, error);
-      }
-    };
-    await this.connection.joinChannel(this.channelName, handler, options);
-    this.isSubscribed = true;
-  }
-  async unsubscribe() {
-    if (!this.isSubscribed) {
-      return;
-    }
-    await this.connection.leaveChannel(this.channelName);
-    this.cleanup();
-  }
-  async publish(type, data, options = {}) {
-    return this.connection.send(this.channelName, type, data, options);
-  }
-  onMessage(callback) {
-    this.messageCallbacks.push(callback);
-    return () => {
-      const index = this.messageCallbacks.indexOf(callback);
-      if (index > -1) {
-        this.messageCallbacks.splice(index, 1);
-      }
-    };
-  }
-  onPresence(callback) {
-    this.presenceCallbacks.push(callback);
-    return () => {
-      const index = this.presenceCallbacks.indexOf(callback);
-      if (index > -1) {
-        this.presenceCallbacks.splice(index, 1);
-      }
-    };
-  }
-  async getPresence() {
-    try {
-      const response = await this.httpClient.realtimeGetPresence(this.projectId, this.channelName);
-      return response.data.users || [];
-    } catch (error) {
-      throw new BlinkRealtimeError(
-        `Failed to get presence for channel ${this.channelName}: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
-    }
-  }
-  async getMessages(options = {}) {
-    try {
-      const response = await this.httpClient.realtimeGetMessages(this.projectId, {
-        channel: this.channelName,
-        limit: options.limit,
-        start: options.after || "-",
-        end: options.before || "+"
-      });
-      return response.data.messages || [];
-    } catch (error) {
-      throw new BlinkRealtimeError(
-        `Failed to get messages for channel ${this.channelName}: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
-    }
-  }
-  cleanup() {
-    this.isSubscribed = false;
-    this.subscribeOptions = {};
-    this.messageCallbacks = [];
-    this.presenceCallbacks = [];
-  }
-};
-var BlinkRealtimeImpl = class {
-  constructor(httpClient, projectId) {
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-    this.connection = new RealtimeConnection(httpClient, projectId);
-  }
-  connection;
-  channels = /* @__PURE__ */ new Map();
-  handlers = {};
-  channel(name) {
-    if (!this.channels.has(name)) {
-      this.channels.set(name, new BlinkRealtimeChannel(name, this.connection, this.httpClient, this.projectId));
-    }
-    return this.channels.get(name);
-  }
-  async subscribe(channelName, callback, options = {}) {
-    const channel = this.channel(channelName);
-    await channel.subscribe(options);
-    const state = this.handlers[channelName] ??= {
-      msgHandlers: /* @__PURE__ */ new Set(),
-      presHandlers: /* @__PURE__ */ new Set(),
-      subscribed: true
-    };
-    state.msgHandlers.add(callback);
-    const messageUnsub = channel.onMessage(callback);
-    return () => {
-      messageUnsub();
-      state.msgHandlers.delete(callback);
-      if (state.msgHandlers.size === 0 && state.presHandlers.size === 0) {
-        channel.unsubscribe();
-        delete this.handlers[channelName];
-      }
-    };
-  }
-  async publish(channelName, type, data, options = {}) {
-    const channel = this.channel(channelName);
-    return channel.publish(type, data, options);
-  }
-  async presence(channelName) {
-    const channel = this.channel(channelName);
-    return channel.getPresence();
-  }
-  onPresence(channelName, callback) {
-    const channel = this.channel(channelName);
-    const state = this.handlers[channelName] ??= {
-      msgHandlers: /* @__PURE__ */ new Set(),
-      presHandlers: /* @__PURE__ */ new Set(),
-      subscribed: false
-    };
-    state.presHandlers.add(callback);
-    const presenceUnsub = channel.onPresence(callback);
-    return () => {
-      presenceUnsub();
-      state.presHandlers.delete(callback);
-      if (state.msgHandlers.size === 0 && state.presHandlers.size === 0) {
-        channel.unsubscribe();
-        delete this.handlers[channelName];
-      }
-    };
-  }
-  /**
-   * Get the number of active WebSocket connections (should always be 0 or 1)
-   */
-  getConnectionCount() {
-    return this.connection.isReady() ? 1 : 0;
-  }
-  /**
-   * Get the number of active channels
-   */
-  getChannelCount() {
-    return this.connection.getChannelCount();
-  }
-};
-var BlinkNotificationsImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-  }
-  /**
-   * Sends an email using the Blink Notifications API.
-   *
-   * @param params - An object containing the details for the email.
-   *   - `to`: The recipient's email address or an array of addresses.
-   *   - `subject`: The subject line of the email.
-   *   - `html`: The HTML body of the email. For best results across all email
-   *             clients (like Gmail, Outlook), use inline CSS and table-based layouts.
-   *   - `text`: A plain-text version of the email body (optional).
-   *   - `from`: A custom sender name (e.g., "Acme Inc"). The email address will
-   *             be auto-generated by the project (e.g., "noreply@project.blink-email.com").
-   *   - `replyTo`: An email address for recipients to reply to (optional).
-   *   - `cc`: A CC recipient's email address or an array of addresses (optional).
-   *   - `bcc`: A BCC recipient's email address or an array of addresses (optional).
-   *   - `attachments`: An array of objects for files to attach, each with a `url`.
-   *                    The file at the URL will be fetched and attached by the server.
-   *
-   * @example
-   * ```ts
-   * // Send a simple email
-   * const { success, messageId } = await blink.notifications.email({
-   *   to: 'customer@example.com',
-   *   subject: 'Your order has shipped!',
-   *   html: '<h1>Order Confirmation</h1><p>Your order #12345 is on its way.</p>'
-   * });
-   *
-   * // Send an email with attachments and a custom from name
-   * const { success } = await blink.notifications.email({
-   *   to: ['team@example.com', 'manager@example.com'],
-   *   subject: 'New Invoice',
-   *   from: 'Blink Invoicing',
-   *   html: '<p>Please find the invoice attached.</p>',
-   *   attachments: [
-   *     { url: 'https://example.com/invoice.pdf', filename: 'invoice.pdf' }
-   *   ]
-   * });
-   * ```
-   *
-   * @returns A promise that resolves with an object containing the status of the email send.
-   *   - `success`: A boolean indicating if the email was sent successfully.
-   *   - `messageId`: The unique ID of the message from the email provider.
-   */
-  async email(params) {
-    try {
-      if (!params.to || !params.subject || !params.html && !params.text) {
-        throw new BlinkNotificationsError('The "to", "subject", and either "html" or "text" fields are required.');
-      }
-      const response = await this.httpClient.post(`/api/notifications/${this.httpClient.projectId}/email`, params);
-      if (!response.data || typeof response.data.success !== "boolean") {
-        throw new BlinkNotificationsError("Invalid response from email API");
-      }
-      return response.data;
-    } catch (error) {
-      if (error instanceof BlinkNotificationsError) {
-        throw error;
-      }
-      const errorMessage = error.response?.data?.error?.message || error.message || "An unknown error occurred";
-      throw new BlinkNotificationsError(`Failed to send email: ${errorMessage}`, error.response?.status, error.response?.data?.error);
-    }
-  }
-};
-var SESSION_DURATION = 30 * 60 * 1e3;
-var MAX_BATCH_SIZE = 10;
-var BATCH_TIMEOUT = 3e3;
-var MAX_STRING_LENGTH = 256;
-var BlinkAnalyticsImpl = class {
-  httpClient;
-  projectId;
-  queue = [];
-  timer = null;
-  enabled = true;
-  userId = null;
-  userEmail = null;
-  hasTrackedPageview = false;
-  utmParams = {};
-  persistedAttribution = {};
-  constructor(httpClient, projectId) {
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-    if (!isWeb) {
-      this.enabled = false;
-      return;
-    }
-    if (navigator.doNotTrack === "1") {
-      this.enabled = false;
-      return;
-    }
-    this.loadPersistedAttribution();
-    this.captureUTMParams();
-    this.loadQueue();
-    if (typeof window !== "undefined" && window.__BLINK_ANALYTICS_PRESENT) {
-      this.hasTrackedPageview = true;
-    }
-    this.trackPageview();
-    this.setupRouteChangeListener();
-    this.setupUnloadListener();
-  }
-  /**
-   * Generate project-scoped storage key for analytics
-   */
-  getStorageKey(suffix) {
-    return `blinkAnalytics${suffix}_${this.projectId}`;
-  }
-  /**
-   * Log a custom analytics event
-   */
-  log(eventName, data = {}) {
-    if (!this.enabled || !isWeb) {
-      return;
-    }
-    const event = this.buildEvent(eventName, data);
-    this.enqueue(event);
-  }
-  /**
-   * Disable analytics tracking
-   */
-  disable() {
-    this.enabled = false;
-    this.clearTimer();
-  }
-  /**
-   * Cleanup analytics instance (remove from global tracking)
-   */
-  destroy() {
-    this.disable();
-    if (typeof window !== "undefined") {
-      window.__blinkAnalyticsInstances?.delete(this);
-    }
-  }
-  /**
-   * Enable analytics tracking
-   */
-  enable() {
-    this.enabled = true;
-  }
-  /**
-   * Check if analytics is enabled
-   */
-  isEnabled() {
-    return this.enabled;
-  }
-  /**
-   * Set the user ID for analytics events
-   */
-  setUserId(userId) {
-    this.userId = userId;
-  }
-  /**
-   * Set the user email for analytics events
-   */
-  setUserEmail(email) {
-    this.userEmail = email;
-  }
-  /**
-   * Clear persisted attribution data
-   */
-  clearAttribution() {
-    this.persistedAttribution = {};
-    try {
-      localStorage.removeItem(this.getStorageKey("Attribution"));
-    } catch {
-    }
-  }
-  // Private methods
-  buildEvent(type, data = {}) {
-    const sessionId = this.getOrCreateSessionId();
-    const channel = this.detectChannel();
-    return {
-      type,
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      project_id: this.projectId,
-      user_id: this.userId,
-      user_email: this.userEmail,
-      session_id: sessionId,
-      pathname: getLocationPathname(),
-      referrer: getDocumentReferrer(),
-      screen_width: getWindowInnerWidth(),
-      channel,
-      utm_source: this.utmParams.utm_source || this.persistedAttribution.utm_source || null,
-      utm_medium: this.utmParams.utm_medium || this.persistedAttribution.utm_medium || null,
-      utm_campaign: this.utmParams.utm_campaign || this.persistedAttribution.utm_campaign || null,
-      utm_content: this.utmParams.utm_content || this.persistedAttribution.utm_content || null,
-      utm_term: this.utmParams.utm_term || this.persistedAttribution.utm_term || null,
-      ...this.sanitizeData(data)
-    };
-  }
-  sanitizeData(data) {
-    if (typeof data === "string") {
-      return data.length > MAX_STRING_LENGTH ? data.slice(0, MAX_STRING_LENGTH - 3) + "..." : data;
-    }
-    if (typeof data === "object" && data !== null) {
-      const result = {};
-      for (const key in data) {
-        result[key] = this.sanitizeData(data[key]);
-      }
-      return result;
-    }
-    return data;
-  }
-  enqueue(event) {
-    this.queue.push(event);
-    this.persistQueue();
-    if (this.queue.length >= MAX_BATCH_SIZE) {
-      this.flush();
-    } else if (!this.timer) {
-      this.timer = setTimeout(() => this.flush(), BATCH_TIMEOUT);
-    }
-  }
-  async flush() {
-    this.clearTimer();
-    if (this.queue.length === 0) {
-      return;
-    }
-    const events = this.queue.slice(0, MAX_BATCH_SIZE);
-    this.queue = this.queue.slice(MAX_BATCH_SIZE);
-    this.persistQueue();
-    try {
-      await this.httpClient.post(`/api/analytics/${this.projectId}/log`, { events });
-    } catch (error) {
-      this.queue = [...events, ...this.queue];
-      this.persistQueue();
-    }
-    if (this.queue.length > 0) {
-      this.timer = setTimeout(() => this.flush(), BATCH_TIMEOUT);
-    }
-  }
-  clearTimer() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-  }
-  getOrCreateSessionId() {
-    try {
-      const stored = localStorage.getItem(this.getStorageKey("Session"));
-      if (stored) {
-        const session = JSON.parse(stored);
-        const now = Date.now();
-        if (now - session.lastActivityAt > SESSION_DURATION) {
-          return this.createNewSession();
-        }
-        session.lastActivityAt = now;
-        localStorage.setItem(this.getStorageKey("Session"), JSON.stringify(session));
-        return session.id;
-      }
-      return this.createNewSession();
-    } catch {
-      return null;
-    }
-  }
-  createNewSession() {
-    const now = Date.now();
-    const randomId = Math.random().toString(36).substring(2, 10);
-    const session = {
-      id: `sess_${now}_${randomId}`,
-      startedAt: now,
-      lastActivityAt: now
-    };
-    try {
-      localStorage.setItem(this.getStorageKey("Session"), JSON.stringify(session));
-    } catch {
-    }
-    return session.id;
-  }
-  loadQueue() {
-    try {
-      const stored = localStorage.getItem(this.getStorageKey("Queue"));
-      if (stored) {
-        this.queue = JSON.parse(stored);
-        if (this.queue.length > 0) {
-          this.timer = setTimeout(() => this.flush(), BATCH_TIMEOUT);
-        }
-      }
-    } catch {
-      this.queue = [];
-    }
-  }
-  persistQueue() {
-    try {
-      if (this.queue.length === 0) {
-        localStorage.removeItem(this.getStorageKey("Queue"));
-      } else {
-        localStorage.setItem(this.getStorageKey("Queue"), JSON.stringify(this.queue));
-      }
-    } catch {
-    }
-  }
-  trackPageview() {
-    if (!this.hasTrackedPageview) {
-      this.log("pageview");
-      this.hasTrackedPageview = true;
-    }
-  }
-  setupRouteChangeListener() {
-    if (!isWeb) return;
-    if (!window.__blinkAnalyticsSetup) {
-      const originalPushState = history.pushState;
-      const originalReplaceState = history.replaceState;
-      const analyticsInstances = /* @__PURE__ */ new Set();
-      window.__blinkAnalyticsInstances = analyticsInstances;
-      history.pushState = (...args) => {
-        originalPushState.apply(history, args);
-        analyticsInstances.forEach((instance) => {
-          if (instance.isEnabled()) {
-            instance.log("pageview");
-          }
-        });
-      };
-      history.replaceState = (...args) => {
-        originalReplaceState.apply(history, args);
-        analyticsInstances.forEach((instance) => {
-          if (instance.isEnabled()) {
-            instance.log("pageview");
-          }
-        });
-      };
-      window.addEventListener("popstate", () => {
-        analyticsInstances.forEach((instance) => {
-          if (instance.isEnabled()) {
-            instance.log("pageview");
-          }
-        });
-      });
-      window.__blinkAnalyticsSetup = true;
-    }
-    window.__blinkAnalyticsInstances?.add(this);
-  }
-  setupUnloadListener() {
-    if (!isWeb || !hasWindow()) return;
-    window.addEventListener("pagehide", () => {
-      this.flush();
-    });
-    window.addEventListener("unload", () => {
-      this.flush();
-    });
-  }
-  captureUTMParams() {
-    if (!isWeb) return;
-    const search = getLocationSearch();
-    if (!search) {
-      this.utmParams = {};
-      return;
-    }
-    const urlParams = new URLSearchParams(search);
-    this.utmParams = {
-      utm_source: urlParams.get("utm_source"),
-      utm_medium: urlParams.get("utm_medium"),
-      utm_campaign: urlParams.get("utm_campaign"),
-      utm_content: urlParams.get("utm_content"),
-      utm_term: urlParams.get("utm_term")
-    };
-    const hasNewParams = Object.values(this.utmParams).some((v) => v !== null);
-    if (hasNewParams) {
-      this.persistAttribution();
-    }
-  }
-  loadPersistedAttribution() {
-    try {
-      const stored = localStorage.getItem(this.getStorageKey("Attribution"));
-      if (stored) {
-        this.persistedAttribution = JSON.parse(stored);
-      }
-    } catch {
-      this.persistedAttribution = {};
-    }
-  }
-  persistAttribution() {
-    try {
-      const attribution = {
-        ...this.persistedAttribution,
-        ...Object.fromEntries(
-          Object.entries(this.utmParams).filter(([_, v]) => v !== null)
-        )
-      };
-      localStorage.setItem(this.getStorageKey("Attribution"), JSON.stringify(attribution));
-      this.persistedAttribution = attribution;
-    } catch {
-    }
-  }
-  detectChannel() {
-    const referrer = getDocumentReferrer();
-    const utmMedium = this.utmParams.utm_medium;
-    this.utmParams.utm_source;
-    if (utmMedium) {
-      if (utmMedium === "cpc" || utmMedium === "ppc") return "Paid Search";
-      if (utmMedium === "email") return "Email";
-      if (utmMedium === "social") return "Social";
-      if (utmMedium === "referral") return "Referral";
-      if (utmMedium === "display") return "Display";
-      if (utmMedium === "affiliate") return "Affiliate";
-    }
-    if (!referrer) return "Direct";
-    try {
-      const referrerUrl = new URL(referrer);
-      const referrerDomain = referrerUrl.hostname.toLowerCase();
-      if (/google\.|bing\.|yahoo\.|duckduckgo\.|baidu\.|yandex\./.test(referrerDomain)) {
-        return "Organic Search";
-      }
-      if (/facebook\.|twitter\.|linkedin\.|instagram\.|youtube\.|tiktok\.|reddit\./.test(referrerDomain)) {
-        return "Social";
-      }
-      if (/mail\.|outlook\.|gmail\./.test(referrerDomain)) {
-        return "Email";
-      }
-      return "Referral";
-    } catch {
-      return "Direct";
-    }
-  }
-};
-var BlinkConnectorsImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-  }
-  async status(provider, options) {
-    const response = await this.httpClient.connectorStatus(provider);
-    return response.data;
-  }
-  async execute(provider, request) {
-    const response = await this.httpClient.connectorExecute(provider, request);
-    return response.data;
-  }
-  async saveApiKey(provider, request) {
-    const response = await this.httpClient.connectorSaveApiKey(provider, request);
-    return response.data;
-  }
-};
-var BlinkFunctionsImpl = class {
-  httpClient;
-  projectId;
-  getToken;
-  constructor(httpClient, projectId, getToken) {
-    this.httpClient = httpClient;
-    this.projectId = projectId;
-    this.getToken = getToken;
-  }
-  /**
-   * Get the project suffix from the full project ID.
-   * Project IDs are formatted as: prj_xxxxx
-   * The suffix is the last 8 characters used in function URLs.
-   */
-  getProjectSuffix() {
-    return this.projectId.slice(-8);
-  }
-  /**
-   * Build the full function URL using CF Workers format.
-   */
-  buildFunctionUrl(functionSlug, searchParams) {
-    const suffix = this.getProjectSuffix();
-    const baseUrl = `https://${suffix}.backend.blink.new/${functionSlug}`;
-    if (!searchParams || Object.keys(searchParams).length === 0) {
-      return baseUrl;
-    }
-    const url = new URL(baseUrl);
-    Object.entries(searchParams).forEach(([key, value]) => {
-      url.searchParams.set(key, value);
-    });
-    return url.toString();
-  }
-  async invoke(functionSlug, options = {}) {
-    const { method = "POST", body, headers = {}, searchParams } = options;
-    const url = this.buildFunctionUrl(functionSlug, searchParams);
-    const token = await this.getToken();
-    const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
-    const res = await this.httpClient.request(url, {
-      method,
-      body,
-      headers: { ...authHeaders, ...headers }
-    });
-    return { data: res.data, status: res.status, headers: res.headers };
-  }
-};
-function removeUndefined(obj) {
-  return Object.fromEntries(
-    Object.entries(obj).filter(([, v]) => v !== void 0)
+function deserialize3(result) {
+  const rawEngines = kvArrayToObject(kvArrayToObject(result).engines);
+  const parsedEngines = Object.fromEntries(
+    Object.entries(rawEngines).map(([key, value]) => [key, kvArrayToObject(value)])
   );
-}
-function convertCollection(api) {
-  return {
-    id: api.id,
-    name: api.name,
-    description: api.description,
-    embeddingModel: api.embedding_model,
-    embeddingDimensions: api.embedding_dimensions,
-    indexMetric: api.index_metric,
-    chunkMaxTokens: api.chunk_max_tokens,
-    chunkOverlapTokens: api.chunk_overlap_tokens,
-    documentCount: api.document_count,
-    chunkCount: api.chunk_count,
-    shared: api.shared,
-    createdAt: api.created_at,
-    updatedAt: api.updated_at
+  const final = {
+    engines: Object.fromEntries(
+      Object.entries(parsedEngines).map(([key, value]) => [
+        key,
+        {
+          librariesCount: value.libraries_count,
+          functionsCount: value.functions_count
+        }
+      ])
+    )
   };
+  return final;
 }
-function convertDocument(api) {
-  return {
-    id: api.id,
-    collectionId: api.collection_id,
-    filename: api.filename,
-    sourceType: api.source_type,
-    sourceUrl: api.source_url,
-    contentType: api.content_type,
-    fileSize: api.file_size,
-    status: api.status,
-    errorMessage: api.error_message,
-    processingStartedAt: api.processing_started_at,
-    processingCompletedAt: api.processing_completed_at,
-    chunkCount: api.chunk_count,
-    tokenCount: api.token_count,
-    metadata: api.metadata,
-    createdAt: api.created_at,
-    updatedAt: api.updated_at
-  };
-}
-function convertPartialDocument(api, options) {
-  let sourceType = "text";
-  if (options.url) sourceType = "url";
-  if (options.file) sourceType = "file";
-  return {
-    id: api.id || "",
-    collectionId: api.collection_id || options.collectionId || "",
-    filename: api.filename || options.filename,
-    sourceType: api.source_type || sourceType,
-    sourceUrl: api.source_url ?? options.url ?? null,
-    contentType: api.content_type ?? options.file?.contentType ?? null,
-    fileSize: api.file_size ?? null,
-    status: api.status || "pending",
-    errorMessage: api.error_message ?? null,
-    processingStartedAt: api.processing_started_at ?? null,
-    processingCompletedAt: api.processing_completed_at ?? null,
-    chunkCount: api.chunk_count ?? 0,
-    tokenCount: api.token_count ?? null,
-    metadata: api.metadata || options.metadata || {},
-    createdAt: api.created_at || (/* @__PURE__ */ new Date()).toISOString(),
-    updatedAt: api.updated_at || api.created_at || (/* @__PURE__ */ new Date()).toISOString()
-  };
-}
-function convertSearchResult(api) {
-  return {
-    chunkId: api.chunk_id,
-    documentId: api.document_id,
-    filename: api.filename,
-    content: api.content,
-    score: api.score,
-    chunkIndex: api.chunk_index,
-    metadata: api.metadata
-  };
-}
-function convertSearchResponse(api) {
-  return {
-    results: api.results.map(convertSearchResult),
-    query: api.query,
-    collectionId: api.collection_id,
-    totalResults: api.total_results
-  };
-}
-function convertAISearchSource(api) {
-  return {
-    documentId: api.document_id,
-    filename: api.filename,
-    chunkId: api.chunk_id,
-    excerpt: api.excerpt,
-    score: api.score
-  };
-}
-function convertAISearchResult(api) {
-  return {
-    answer: api.answer,
-    sources: api.sources.map(convertAISearchSource),
-    query: api.query,
-    model: api.model,
-    usage: {
-      inputTokens: api.usage.input_tokens,
-      outputTokens: api.usage.output_tokens
+var GeoAddCommand = class extends Command {
+  constructor([key, arg1, ...arg2], opts) {
+    const command = ["geoadd", key];
+    if ("nx" in arg1 && arg1.nx) {
+      command.push("nx");
+    } else if ("xx" in arg1 && arg1.xx) {
+      command.push("xx");
     }
-  };
-}
-var BlinkRAGImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-    this.projectId = httpClient.projectId;
-  }
-  projectId;
-  /**
-   * Build URL with project_id prefix
-   */
-  url(path) {
-    return `/api/rag/${this.projectId}${path}`;
-  }
-  // ============================================================================
-  // Collections
-  // ============================================================================
-  /**
-   * Create a new RAG collection
-   */
-  async createCollection(options) {
-    const body = removeUndefined({
-      name: options.name,
-      description: options.description,
-      embedding_model: options.embeddingModel,
-      embedding_dimensions: options.embeddingDimensions,
-      index_metric: options.indexMetric,
-      chunk_max_tokens: options.chunkMaxTokens,
-      chunk_overlap_tokens: options.chunkOverlapTokens,
-      shared: options.shared
-    });
-    const response = await this.httpClient.post(this.url("/collections"), body);
-    return convertCollection(response.data);
-  }
-  /**
-   * List all collections accessible to the current user
-   */
-  async listCollections() {
-    const response = await this.httpClient.get(this.url("/collections"));
-    return response.data.collections.map(convertCollection);
-  }
-  /**
-   * Get a specific collection by ID
-   */
-  async getCollection(collectionId) {
-    const response = await this.httpClient.get(this.url(`/collections/${collectionId}`));
-    return convertCollection(response.data);
-  }
-  /**
-   * Delete a collection and all its documents
-   */
-  async deleteCollection(collectionId) {
-    await this.httpClient.delete(this.url(`/collections/${collectionId}`));
-  }
-  // ============================================================================
-  // Documents
-  // ============================================================================
-  /**
-   * Upload a document for processing
-   * 
-   * @example
-   * // Upload text content
-   * const doc = await blink.rag.upload({
-   *   collectionName: 'docs',
-   *   filename: 'notes.txt',
-   *   content: 'My document content...'
-   * })
-   * 
-   * @example
-   * // Upload from URL
-   * const doc = await blink.rag.upload({
-   *   collectionId: 'col_abc123',
-   *   filename: 'article.html',
-   *   url: 'https://example.com/article'
-   * })
-   * 
-   * @example
-   * // Upload a file (base64)
-   * const doc = await blink.rag.upload({
-   *   collectionName: 'docs',
-   *   filename: 'report.pdf',
-   *   file: { data: base64Data, contentType: 'application/pdf' }
-   * })
-   */
-  async upload(options) {
-    if (!options.collectionId && !options.collectionName) {
-      throw new Error("collectionId or collectionName is required");
+    if ("ch" in arg1 && arg1.ch) {
+      command.push("ch");
     }
-    const body = removeUndefined({
-      collection_id: options.collectionId,
-      collection_name: options.collectionName,
-      filename: options.filename,
-      content: options.content,
-      url: options.url,
-      metadata: options.metadata
+    if ("latitude" in arg1 && arg1.latitude) {
+      command.push(arg1.longitude, arg1.latitude, arg1.member);
+    }
+    command.push(
+      ...arg2.flatMap(({ latitude, longitude, member }) => [longitude, latitude, member])
+    );
+    super(command, opts);
+  }
+};
+var GeoDistCommand = class extends Command {
+  constructor([key, member1, member2, unit = "M"], opts) {
+    super(["GEODIST", key, member1, member2, unit], opts);
+  }
+};
+var GeoHashCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key] = cmd;
+    const members = Array.isArray(cmd[1]) ? cmd[1] : cmd.slice(1);
+    super(["GEOHASH", key, ...members], opts);
+  }
+};
+var GeoPosCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key] = cmd;
+    const members = Array.isArray(cmd[1]) ? cmd[1] : cmd.slice(1);
+    super(["GEOPOS", key, ...members], {
+      deserialize: (result) => transform(result),
+      ...opts
     });
-    if (options.file) {
-      body.file = {
-        data: options.file.data,
-        content_type: options.file.contentType
+  }
+};
+function transform(result) {
+  const final = [];
+  for (const pos of result) {
+    if (!pos?.[0] || !pos?.[1]) {
+      continue;
+    }
+    final.push({ lng: Number.parseFloat(pos[0]), lat: Number.parseFloat(pos[1]) });
+  }
+  return final;
+}
+var GeoSearchCommand = class extends Command {
+  constructor([key, centerPoint, shape, order, opts], commandOptions) {
+    const command = ["GEOSEARCH", key];
+    if (centerPoint.type === "FROMMEMBER" || centerPoint.type === "frommember") {
+      command.push(centerPoint.type, centerPoint.member);
+    }
+    if (centerPoint.type === "FROMLONLAT" || centerPoint.type === "fromlonlat") {
+      command.push(centerPoint.type, centerPoint.coordinate.lon, centerPoint.coordinate.lat);
+    }
+    if (shape.type === "BYRADIUS" || shape.type === "byradius") {
+      command.push(shape.type, shape.radius, shape.radiusType);
+    }
+    if (shape.type === "BYBOX" || shape.type === "bybox") {
+      command.push(shape.type, shape.rect.width, shape.rect.height, shape.rectType);
+    }
+    command.push(order);
+    if (opts?.count) {
+      command.push("COUNT", opts.count.limit, ...opts.count.any ? ["ANY"] : []);
+    }
+    const transform2 = (result) => {
+      if (!opts?.withCoord && !opts?.withDist && !opts?.withHash) {
+        return result.map((member) => {
+          try {
+            return { member: JSON.parse(member) };
+          } catch {
+            return { member };
+          }
+        });
+      }
+      return result.map((members) => {
+        let counter = 1;
+        const obj = {};
+        try {
+          obj.member = JSON.parse(members[0]);
+        } catch {
+          obj.member = members[0];
+        }
+        if (opts.withDist) {
+          obj.dist = Number.parseFloat(members[counter++]);
+        }
+        if (opts.withHash) {
+          obj.hash = members[counter++].toString();
+        }
+        if (opts.withCoord) {
+          obj.coord = {
+            long: Number.parseFloat(members[counter][0]),
+            lat: Number.parseFloat(members[counter][1])
+          };
+        }
+        return obj;
+      });
+    };
+    super(
+      [
+        ...command,
+        ...opts?.withCoord ? ["WITHCOORD"] : [],
+        ...opts?.withDist ? ["WITHDIST"] : [],
+        ...opts?.withHash ? ["WITHHASH"] : []
+      ],
+      {
+        deserialize: transform2,
+        ...commandOptions
+      }
+    );
+  }
+};
+var GeoSearchStoreCommand = class extends Command {
+  constructor([destination, key, centerPoint, shape, order, opts], commandOptions) {
+    const command = ["GEOSEARCHSTORE", destination, key];
+    if (centerPoint.type === "FROMMEMBER" || centerPoint.type === "frommember") {
+      command.push(centerPoint.type, centerPoint.member);
+    }
+    if (centerPoint.type === "FROMLONLAT" || centerPoint.type === "fromlonlat") {
+      command.push(centerPoint.type, centerPoint.coordinate.lon, centerPoint.coordinate.lat);
+    }
+    if (shape.type === "BYRADIUS" || shape.type === "byradius") {
+      command.push(shape.type, shape.radius, shape.radiusType);
+    }
+    if (shape.type === "BYBOX" || shape.type === "bybox") {
+      command.push(shape.type, shape.rect.width, shape.rect.height, shape.rectType);
+    }
+    command.push(order);
+    if (opts?.count) {
+      command.push("COUNT", opts.count.limit, ...opts.count.any ? ["ANY"] : []);
+    }
+    super([...command, ...opts?.storeDist ? ["STOREDIST"] : []], commandOptions);
+  }
+};
+var GetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["get", ...cmd], opts);
+  }
+};
+var GetBitCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["getbit", ...cmd], opts);
+  }
+};
+var GetDelCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["getdel", ...cmd], opts);
+  }
+};
+var GetExCommand = class extends Command {
+  constructor([key, opts], cmdOpts) {
+    const command = ["getex", key];
+    if (opts) {
+      if ("ex" in opts && typeof opts.ex === "number") {
+        command.push("ex", opts.ex);
+      } else if ("px" in opts && typeof opts.px === "number") {
+        command.push("px", opts.px);
+      } else if ("exat" in opts && typeof opts.exat === "number") {
+        command.push("exat", opts.exat);
+      } else if ("pxat" in opts && typeof opts.pxat === "number") {
+        command.push("pxat", opts.pxat);
+      } else if ("persist" in opts && opts.persist) {
+        command.push("persist");
+      }
+    }
+    super(command, cmdOpts);
+  }
+};
+var GetRangeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["getrange", ...cmd], opts);
+  }
+};
+var GetSetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["getset", ...cmd], opts);
+  }
+};
+var HDelCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hdel", ...cmd], opts);
+  }
+};
+var HExistsCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hexists", ...cmd], opts);
+  }
+};
+var HExpireCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields, seconds, option] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(
+      [
+        "hexpire",
+        key,
+        seconds,
+        ...option ? [option] : [],
+        "FIELDS",
+        fieldArray.length,
+        ...fieldArray
+      ],
+      opts
+    );
+  }
+};
+var HExpireAtCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields, timestamp, option] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(
+      [
+        "hexpireat",
+        key,
+        timestamp,
+        ...option ? [option] : [],
+        "FIELDS",
+        fieldArray.length,
+        ...fieldArray
+      ],
+      opts
+    );
+  }
+};
+var HExpireTimeCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(["hexpiretime", key, "FIELDS", fieldArray.length, ...fieldArray], opts);
+  }
+};
+var HPersistCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(["hpersist", key, "FIELDS", fieldArray.length, ...fieldArray], opts);
+  }
+};
+var HPExpireCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields, milliseconds, option] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(
+      [
+        "hpexpire",
+        key,
+        milliseconds,
+        ...option ? [option] : [],
+        "FIELDS",
+        fieldArray.length,
+        ...fieldArray
+      ],
+      opts
+    );
+  }
+};
+var HPExpireAtCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields, timestamp, option] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(
+      [
+        "hpexpireat",
+        key,
+        timestamp,
+        ...option ? [option] : [],
+        "FIELDS",
+        fieldArray.length,
+        ...fieldArray
+      ],
+      opts
+    );
+  }
+};
+var HPExpireTimeCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(["hpexpiretime", key, "FIELDS", fieldArray.length, ...fieldArray], opts);
+  }
+};
+var HPTtlCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(["hpttl", key, "FIELDS", fieldArray.length, ...fieldArray], opts);
+  }
+};
+var HGetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hget", ...cmd], opts);
+  }
+};
+function deserialize4(result) {
+  if (result.length === 0) {
+    return null;
+  }
+  const obj = {};
+  for (let i = 0; i < result.length; i += 2) {
+    const key = result[i];
+    const value = result[i + 1];
+    try {
+      const valueIsNumberAndNotSafeInteger = !Number.isNaN(Number(value)) && !Number.isSafeInteger(Number(value));
+      obj[key] = valueIsNumberAndNotSafeInteger ? value : JSON.parse(value);
+    } catch {
+      obj[key] = value;
+    }
+  }
+  return obj;
+}
+var HGetAllCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hgetall", ...cmd], {
+      deserialize: (result) => deserialize4(result),
+      ...opts
+    });
+  }
+};
+function deserialize5(fields, result) {
+  if (result.every((field) => field === null)) {
+    return null;
+  }
+  const obj = {};
+  for (const [i, field] of fields.entries()) {
+    try {
+      obj[field] = JSON.parse(result[i]);
+    } catch {
+      obj[field] = result[i];
+    }
+  }
+  return obj;
+}
+var HMGetCommand = class extends Command {
+  constructor([key, ...fields], opts) {
+    super(["hmget", key, ...fields], {
+      deserialize: (result) => deserialize5(fields, result),
+      ...opts
+    });
+  }
+};
+var HGetDelCommand = class extends Command {
+  constructor([key, ...fields], opts) {
+    super(["hgetdel", key, "FIELDS", fields.length, ...fields], {
+      deserialize: (result) => deserialize5(fields.map(String), result),
+      ...opts
+    });
+  }
+};
+var HGetExCommand = class extends Command {
+  constructor([key, opts, ...fields], cmdOpts) {
+    const command = ["hgetex", key];
+    if ("ex" in opts && typeof opts.ex === "number") {
+      command.push("EX", opts.ex);
+    } else if ("px" in opts && typeof opts.px === "number") {
+      command.push("PX", opts.px);
+    } else if ("exat" in opts && typeof opts.exat === "number") {
+      command.push("EXAT", opts.exat);
+    } else if ("pxat" in opts && typeof opts.pxat === "number") {
+      command.push("PXAT", opts.pxat);
+    } else if ("persist" in opts && opts.persist) {
+      command.push("PERSIST");
+    }
+    command.push("FIELDS", fields.length, ...fields);
+    super(command, {
+      deserialize: (result) => deserialize5(fields.map(String), result),
+      ...cmdOpts
+    });
+  }
+};
+var HIncrByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hincrby", ...cmd], opts);
+  }
+};
+var HIncrByFloatCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hincrbyfloat", ...cmd], opts);
+  }
+};
+var HKeysCommand = class extends Command {
+  constructor([key], opts) {
+    super(["hkeys", key], opts);
+  }
+};
+var HLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hlen", ...cmd], opts);
+  }
+};
+var HMSetCommand = class extends Command {
+  constructor([key, kv], opts) {
+    super(["hmset", key, ...Object.entries(kv).flatMap(([field, value]) => [field, value])], opts);
+  }
+};
+var HScanCommand = class extends Command {
+  constructor([key, cursor, cmdOpts], opts) {
+    const command = ["hscan", key, cursor];
+    if (cmdOpts?.match) {
+      command.push("match", cmdOpts.match);
+    }
+    if (typeof cmdOpts?.count === "number") {
+      command.push("count", cmdOpts.count);
+    }
+    super(command, {
+      deserialize: deserializeScanResponse,
+      ...opts
+    });
+  }
+};
+var HSetCommand = class extends Command {
+  constructor([key, kv], opts) {
+    super(["hset", key, ...Object.entries(kv).flatMap(([field, value]) => [field, value])], opts);
+  }
+};
+var HSetExCommand = class extends Command {
+  constructor([key, opts, kv], cmdOpts) {
+    const command = ["hsetex", key];
+    if (opts.conditional) {
+      command.push(opts.conditional.toUpperCase());
+    }
+    if (opts.expiration) {
+      if ("ex" in opts.expiration && typeof opts.expiration.ex === "number") {
+        command.push("EX", opts.expiration.ex);
+      } else if ("px" in opts.expiration && typeof opts.expiration.px === "number") {
+        command.push("PX", opts.expiration.px);
+      } else if ("exat" in opts.expiration && typeof opts.expiration.exat === "number") {
+        command.push("EXAT", opts.expiration.exat);
+      } else if ("pxat" in opts.expiration && typeof opts.expiration.pxat === "number") {
+        command.push("PXAT", opts.expiration.pxat);
+      } else if ("keepttl" in opts.expiration && opts.expiration.keepttl) {
+        command.push("KEEPTTL");
+      }
+    }
+    const entries = Object.entries(kv);
+    command.push("FIELDS", entries.length);
+    for (const [field, value] of entries) {
+      command.push(field, value);
+    }
+    super(command, cmdOpts);
+  }
+};
+var HSetNXCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hsetnx", ...cmd], opts);
+  }
+};
+var HStrLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hstrlen", ...cmd], opts);
+  }
+};
+var HTtlCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, fields] = cmd;
+    const fieldArray = Array.isArray(fields) ? fields : [fields];
+    super(["httl", key, "FIELDS", fieldArray.length, ...fieldArray], opts);
+  }
+};
+var HValsCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["hvals", ...cmd], opts);
+  }
+};
+var IncrCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["incr", ...cmd], opts);
+  }
+};
+var IncrByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["incrby", ...cmd], opts);
+  }
+};
+var IncrByFloatCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["incrbyfloat", ...cmd], opts);
+  }
+};
+var JsonArrAppendCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.ARRAPPEND", ...cmd], opts);
+  }
+};
+var JsonArrIndexCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.ARRINDEX", ...cmd], opts);
+  }
+};
+var JsonArrInsertCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.ARRINSERT", ...cmd], opts);
+  }
+};
+var JsonArrLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.ARRLEN", cmd[0], cmd[1] ?? "$"], opts);
+  }
+};
+var JsonArrPopCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.ARRPOP", ...cmd], opts);
+  }
+};
+var JsonArrTrimCommand = class extends Command {
+  constructor(cmd, opts) {
+    const path = cmd[1] ?? "$";
+    const start = cmd[2] ?? 0;
+    const stop = cmd[3] ?? 0;
+    super(["JSON.ARRTRIM", cmd[0], path, start, stop], opts);
+  }
+};
+var JsonClearCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.CLEAR", ...cmd], opts);
+  }
+};
+var JsonDelCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.DEL", ...cmd], opts);
+  }
+};
+var JsonForgetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.FORGET", ...cmd], opts);
+  }
+};
+var JsonGetCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["JSON.GET"];
+    if (typeof cmd[1] === "string") {
+      command.push(...cmd);
+    } else {
+      command.push(cmd[0]);
+      if (cmd[1]) {
+        if (cmd[1].indent) {
+          command.push("INDENT", cmd[1].indent);
+        }
+        if (cmd[1].newline) {
+          command.push("NEWLINE", cmd[1].newline);
+        }
+        if (cmd[1].space) {
+          command.push("SPACE", cmd[1].space);
+        }
+      }
+      command.push(...cmd.slice(2));
+    }
+    super(command, opts);
+  }
+};
+var JsonMergeCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["JSON.MERGE", ...cmd];
+    super(command, opts);
+  }
+};
+var JsonMGetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.MGET", ...cmd[0], cmd[1]], opts);
+  }
+};
+var JsonMSetCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["JSON.MSET"];
+    for (const c of cmd) {
+      command.push(c.key, c.path, c.value);
+    }
+    super(command, opts);
+  }
+};
+var JsonNumIncrByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.NUMINCRBY", ...cmd], opts);
+  }
+};
+var JsonNumMultByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.NUMMULTBY", ...cmd], opts);
+  }
+};
+var JsonObjKeysCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.OBJKEYS", ...cmd], opts);
+  }
+};
+var JsonObjLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.OBJLEN", ...cmd], opts);
+  }
+};
+var JsonRespCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.RESP", ...cmd], opts);
+  }
+};
+var JsonSetCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["JSON.SET", cmd[0], cmd[1], cmd[2]];
+    if (cmd[3]) {
+      if (cmd[3].nx) {
+        command.push("NX");
+      } else if (cmd[3].xx) {
+        command.push("XX");
+      }
+    }
+    super(command, opts);
+  }
+};
+var JsonStrAppendCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.STRAPPEND", ...cmd], opts);
+  }
+};
+var JsonStrLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.STRLEN", ...cmd], opts);
+  }
+};
+var JsonToggleCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.TOGGLE", ...cmd], opts);
+  }
+};
+var JsonTypeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["JSON.TYPE", ...cmd], opts);
+  }
+};
+var KeysCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["keys", ...cmd], opts);
+  }
+};
+var LIndexCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lindex", ...cmd], opts);
+  }
+};
+var LInsertCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["linsert", ...cmd], opts);
+  }
+};
+var LLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["llen", ...cmd], opts);
+  }
+};
+var LMoveCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lmove", ...cmd], opts);
+  }
+};
+var LmPopCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [numkeys, keys, direction, count] = cmd;
+    super(["LMPOP", numkeys, ...keys, direction, ...count ? ["COUNT", count] : []], opts);
+  }
+};
+var LPopCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lpop", ...cmd], opts);
+  }
+};
+var LPosCommand = class extends Command {
+  constructor(cmd, opts) {
+    const args = ["lpos", cmd[0], cmd[1]];
+    if (typeof cmd[2]?.rank === "number") {
+      args.push("rank", cmd[2].rank);
+    }
+    if (typeof cmd[2]?.count === "number") {
+      args.push("count", cmd[2].count);
+    }
+    if (typeof cmd[2]?.maxLen === "number") {
+      args.push("maxLen", cmd[2].maxLen);
+    }
+    super(args, opts);
+  }
+};
+var LPushCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lpush", ...cmd], opts);
+  }
+};
+var LPushXCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lpushx", ...cmd], opts);
+  }
+};
+var LRangeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lrange", ...cmd], opts);
+  }
+};
+var LRemCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lrem", ...cmd], opts);
+  }
+};
+var LSetCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["lset", ...cmd], opts);
+  }
+};
+var LTrimCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["ltrim", ...cmd], opts);
+  }
+};
+var MGetCommand = class extends Command {
+  constructor(cmd, opts) {
+    const keys = Array.isArray(cmd[0]) ? cmd[0] : cmd;
+    super(["mget", ...keys], opts);
+  }
+};
+var MSetCommand = class extends Command {
+  constructor([kv], opts) {
+    super(["mset", ...Object.entries(kv).flatMap(([key, value]) => [key, value])], opts);
+  }
+};
+var MSetNXCommand = class extends Command {
+  constructor([kv], opts) {
+    super(["msetnx", ...Object.entries(kv).flat()], opts);
+  }
+};
+var PersistCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["persist", ...cmd], opts);
+  }
+};
+var PExpireCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pexpire", ...cmd], opts);
+  }
+};
+var PExpireAtCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pexpireat", ...cmd], opts);
+  }
+};
+var PfAddCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pfadd", ...cmd], opts);
+  }
+};
+var PfCountCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pfcount", ...cmd], opts);
+  }
+};
+var PfMergeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pfmerge", ...cmd], opts);
+  }
+};
+var PingCommand = class extends Command {
+  constructor(cmd, opts) {
+    const command = ["ping"];
+    if (cmd?.[0] !== void 0) {
+      command.push(cmd[0]);
+    }
+    super(command, opts);
+  }
+};
+var PSetEXCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["psetex", ...cmd], opts);
+  }
+};
+var PTtlCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["pttl", ...cmd], opts);
+  }
+};
+var PublishCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["publish", ...cmd], opts);
+  }
+};
+var RandomKeyCommand = class extends Command {
+  constructor(opts) {
+    super(["randomkey"], opts);
+  }
+};
+var RenameCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["rename", ...cmd], opts);
+  }
+};
+var RenameNXCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["renamenx", ...cmd], opts);
+  }
+};
+var RPopCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["rpop", ...cmd], opts);
+  }
+};
+var RPushCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["rpush", ...cmd], opts);
+  }
+};
+var RPushXCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["rpushx", ...cmd], opts);
+  }
+};
+var SAddCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sadd", ...cmd], opts);
+  }
+};
+var ScanCommand = class extends Command {
+  constructor([cursor, opts], cmdOpts) {
+    const command = ["scan", cursor];
+    if (opts?.match) {
+      command.push("match", opts.match);
+    }
+    if (typeof opts?.count === "number") {
+      command.push("count", opts.count);
+    }
+    if (opts && "withType" in opts && opts.withType === true) {
+      command.push("withtype");
+    } else if (opts && "type" in opts && opts.type && opts.type.length > 0) {
+      command.push("type", opts.type);
+    }
+    super(command, {
+      // @ts-expect-error ignore types here
+      deserialize: opts?.withType ? deserializeScanWithTypesResponse : deserializeScanResponse,
+      ...cmdOpts
+    });
+  }
+};
+var SCardCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["scard", ...cmd], opts);
+  }
+};
+var ScriptExistsCommand = class extends Command {
+  constructor(hashes, opts) {
+    super(["script", "exists", ...hashes], {
+      deserialize: (result) => result,
+      ...opts
+    });
+  }
+};
+var ScriptFlushCommand = class extends Command {
+  constructor([opts], cmdOpts) {
+    const cmd = ["script", "flush"];
+    if (opts?.sync) {
+      cmd.push("sync");
+    } else if (opts?.async) {
+      cmd.push("async");
+    }
+    super(cmd, cmdOpts);
+  }
+};
+var ScriptLoadCommand = class extends Command {
+  constructor(args, opts) {
+    super(["script", "load", ...args], opts);
+  }
+};
+var SDiffCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sdiff", ...cmd], opts);
+  }
+};
+var SDiffStoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sdiffstore", ...cmd], opts);
+  }
+};
+var SetCommand = class extends Command {
+  constructor([key, value, opts], cmdOpts) {
+    const command = ["set", key, value];
+    if (opts) {
+      if ("nx" in opts && opts.nx) {
+        command.push("nx");
+      } else if ("xx" in opts && opts.xx) {
+        command.push("xx");
+      }
+      if ("get" in opts && opts.get) {
+        command.push("get");
+      }
+      if ("ex" in opts && typeof opts.ex === "number") {
+        command.push("ex", opts.ex);
+      } else if ("px" in opts && typeof opts.px === "number") {
+        command.push("px", opts.px);
+      } else if ("exat" in opts && typeof opts.exat === "number") {
+        command.push("exat", opts.exat);
+      } else if ("pxat" in opts && typeof opts.pxat === "number") {
+        command.push("pxat", opts.pxat);
+      } else if ("keepTtl" in opts && opts.keepTtl) {
+        command.push("keepTtl");
+      }
+    }
+    super(command, cmdOpts);
+  }
+};
+var SetBitCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["setbit", ...cmd], opts);
+  }
+};
+var SetExCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["setex", ...cmd], opts);
+  }
+};
+var SetNxCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["setnx", ...cmd], opts);
+  }
+};
+var SetRangeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["setrange", ...cmd], opts);
+  }
+};
+var SInterCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sinter", ...cmd], opts);
+  }
+};
+var SInterCardCommand = class extends Command {
+  constructor(cmd, cmdOpts) {
+    const [keys, opts] = cmd;
+    const command = ["sintercard", keys.length, ...keys];
+    if (opts?.limit !== void 0) {
+      command.push("LIMIT", opts.limit);
+    }
+    super(command, cmdOpts);
+  }
+};
+var SInterStoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sinterstore", ...cmd], opts);
+  }
+};
+var SIsMemberCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sismember", ...cmd], opts);
+  }
+};
+var SMembersCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["smembers", ...cmd], opts);
+  }
+};
+var SMIsMemberCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["smismember", cmd[0], ...cmd[1]], opts);
+  }
+};
+var SMoveCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["smove", ...cmd], opts);
+  }
+};
+var SPopCommand = class extends Command {
+  constructor([key, count], opts) {
+    const command = ["spop", key];
+    if (typeof count === "number") {
+      command.push(count);
+    }
+    super(command, opts);
+  }
+};
+var SRandMemberCommand = class extends Command {
+  constructor([key, count], opts) {
+    const command = ["srandmember", key];
+    if (typeof count === "number") {
+      command.push(count);
+    }
+    super(command, opts);
+  }
+};
+var SRemCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["srem", ...cmd], opts);
+  }
+};
+var SScanCommand = class extends Command {
+  constructor([key, cursor, opts], cmdOpts) {
+    const command = ["sscan", key, cursor];
+    if (opts?.match) {
+      command.push("match", opts.match);
+    }
+    if (typeof opts?.count === "number") {
+      command.push("count", opts.count);
+    }
+    super(command, {
+      deserialize: deserializeScanResponse,
+      ...cmdOpts
+    });
+  }
+};
+var StrLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["strlen", ...cmd], opts);
+  }
+};
+var SUnionCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sunion", ...cmd], opts);
+  }
+};
+var SUnionStoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["sunionstore", ...cmd], opts);
+  }
+};
+var TimeCommand = class extends Command {
+  constructor(opts) {
+    super(["time"], opts);
+  }
+};
+var TouchCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["touch", ...cmd], opts);
+  }
+};
+var TtlCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["ttl", ...cmd], opts);
+  }
+};
+var TypeCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["type", ...cmd], opts);
+  }
+};
+var UnlinkCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["unlink", ...cmd], opts);
+  }
+};
+var XAckCommand = class extends Command {
+  constructor([key, group, id], opts) {
+    const ids = Array.isArray(id) ? [...id] : [id];
+    super(["XACK", key, group, ...ids], opts);
+  }
+};
+var XAckDelCommand = class extends Command {
+  constructor([key, group, opts, ...ids], cmdOpts) {
+    const command = ["XACKDEL", key, group];
+    command.push(opts.toUpperCase(), "IDS", ids.length, ...ids);
+    super(command, cmdOpts);
+  }
+};
+var XAddCommand = class extends Command {
+  constructor([key, id, entries, opts], commandOptions) {
+    const command = ["XADD", key];
+    if (opts) {
+      if (opts.nomkStream) {
+        command.push("NOMKSTREAM");
+      }
+      if (opts.trim) {
+        command.push(opts.trim.type, opts.trim.comparison, opts.trim.threshold);
+        if (opts.trim.limit !== void 0) {
+          command.push("LIMIT", opts.trim.limit);
+        }
+      }
+    }
+    command.push(id);
+    for (const [k, v] of Object.entries(entries)) {
+      command.push(k, v);
+    }
+    super(command, commandOptions);
+  }
+};
+var XAutoClaim = class extends Command {
+  constructor([key, group, consumer, minIdleTime, start, options], opts) {
+    const commands = [];
+    if (options?.count) {
+      commands.push("COUNT", options.count);
+    }
+    if (options?.justId) {
+      commands.push("JUSTID");
+    }
+    super(["XAUTOCLAIM", key, group, consumer, minIdleTime, start, ...commands], opts);
+  }
+};
+var XClaimCommand = class extends Command {
+  constructor([key, group, consumer, minIdleTime, id, options], opts) {
+    const ids = Array.isArray(id) ? [...id] : [id];
+    const commands = [];
+    if (options?.idleMS) {
+      commands.push("IDLE", options.idleMS);
+    }
+    if (options?.idleMS) {
+      commands.push("TIME", options.timeMS);
+    }
+    if (options?.retryCount) {
+      commands.push("RETRYCOUNT", options.retryCount);
+    }
+    if (options?.force) {
+      commands.push("FORCE");
+    }
+    if (options?.justId) {
+      commands.push("JUSTID");
+    }
+    if (options?.lastId) {
+      commands.push("LASTID", options.lastId);
+    }
+    super(["XCLAIM", key, group, consumer, minIdleTime, ...ids, ...commands], opts);
+  }
+};
+var XDelCommand = class extends Command {
+  constructor([key, ids], opts) {
+    const cmds = Array.isArray(ids) ? [...ids] : [ids];
+    super(["XDEL", key, ...cmds], opts);
+  }
+};
+var XDelExCommand = class extends Command {
+  constructor([key, opts, ...ids], cmdOpts) {
+    const command = ["XDELEX", key];
+    if (opts) {
+      command.push(opts.toUpperCase());
+    }
+    command.push("IDS", ids.length, ...ids);
+    super(command, cmdOpts);
+  }
+};
+var XGroupCommand = class extends Command {
+  constructor([key, opts], commandOptions) {
+    const command = ["XGROUP"];
+    switch (opts.type) {
+      case "CREATE": {
+        command.push("CREATE", key, opts.group, opts.id);
+        if (opts.options) {
+          if (opts.options.MKSTREAM) {
+            command.push("MKSTREAM");
+          }
+          if (opts.options.ENTRIESREAD !== void 0) {
+            command.push("ENTRIESREAD", opts.options.ENTRIESREAD.toString());
+          }
+        }
+        break;
+      }
+      case "CREATECONSUMER": {
+        command.push("CREATECONSUMER", key, opts.group, opts.consumer);
+        break;
+      }
+      case "DELCONSUMER": {
+        command.push("DELCONSUMER", key, opts.group, opts.consumer);
+        break;
+      }
+      case "DESTROY": {
+        command.push("DESTROY", key, opts.group);
+        break;
+      }
+      case "SETID": {
+        command.push("SETID", key, opts.group, opts.id);
+        if (opts.options?.ENTRIESREAD !== void 0) {
+          command.push("ENTRIESREAD", opts.options.ENTRIESREAD.toString());
+        }
+        break;
+      }
+      default: {
+        throw new Error("Invalid XGROUP");
+      }
+    }
+    super(command, commandOptions);
+  }
+};
+var XInfoCommand = class extends Command {
+  constructor([key, options], opts) {
+    const cmds = [];
+    if (options.type === "CONSUMERS") {
+      cmds.push("CONSUMERS", key, options.group);
+    } else {
+      cmds.push("GROUPS", key);
+    }
+    super(["XINFO", ...cmds], opts);
+  }
+};
+var XLenCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["XLEN", ...cmd], opts);
+  }
+};
+var XPendingCommand = class extends Command {
+  constructor([key, group, start, end, count, options], opts) {
+    const consumers = options?.consumer === void 0 ? [] : Array.isArray(options.consumer) ? [...options.consumer] : [options.consumer];
+    super(
+      [
+        "XPENDING",
+        key,
+        group,
+        ...options?.idleTime ? ["IDLE", options.idleTime] : [],
+        start,
+        end,
+        count,
+        ...consumers
+      ],
+      opts
+    );
+  }
+};
+function deserialize6(result) {
+  const obj = {};
+  for (const e of result) {
+    for (let i = 0; i < e.length; i += 2) {
+      const streamId = e[i];
+      const entries = e[i + 1];
+      if (!(streamId in obj)) {
+        obj[streamId] = {};
+      }
+      for (let j = 0; j < entries.length; j += 2) {
+        const field = entries[j];
+        const value = entries[j + 1];
+        try {
+          obj[streamId][field] = JSON.parse(value);
+        } catch {
+          obj[streamId][field] = value;
+        }
+      }
+    }
+  }
+  return obj;
+}
+var XRangeCommand = class extends Command {
+  constructor([key, start, end, count], opts) {
+    const command = ["XRANGE", key, start, end];
+    if (typeof count === "number") {
+      command.push("COUNT", count);
+    }
+    super(command, {
+      deserialize: (result) => deserialize6(result),
+      ...opts
+    });
+  }
+};
+var UNBALANCED_XREAD_ERR = "ERR Unbalanced XREAD list of streams: for each stream key an ID or '$' must be specified";
+var XReadCommand = class extends Command {
+  constructor([key, id, options], opts) {
+    if (Array.isArray(key) && Array.isArray(id) && key.length !== id.length) {
+      throw new Error(UNBALANCED_XREAD_ERR);
+    }
+    const commands = [];
+    if (typeof options?.count === "number") {
+      commands.push("COUNT", options.count);
+    }
+    if (typeof options?.blockMS === "number") {
+      commands.push("BLOCK", options.blockMS);
+    }
+    commands.push(
+      "STREAMS",
+      ...Array.isArray(key) ? [...key] : [key],
+      ...Array.isArray(id) ? [...id] : [id]
+    );
+    super(["XREAD", ...commands], opts);
+  }
+};
+var UNBALANCED_XREADGROUP_ERR = "ERR Unbalanced XREADGROUP list of streams: for each stream key an ID or '$' must be specified";
+var XReadGroupCommand = class extends Command {
+  constructor([group, consumer, key, id, options], opts) {
+    if (Array.isArray(key) && Array.isArray(id) && key.length !== id.length) {
+      throw new Error(UNBALANCED_XREADGROUP_ERR);
+    }
+    const commands = [];
+    if (typeof options?.count === "number") {
+      commands.push("COUNT", options.count);
+    }
+    if (typeof options?.blockMS === "number") {
+      commands.push("BLOCK", options.blockMS);
+    }
+    if (typeof options?.NOACK === "boolean" && options.NOACK) {
+      commands.push("NOACK");
+    }
+    commands.push(
+      "STREAMS",
+      ...Array.isArray(key) ? [...key] : [key],
+      ...Array.isArray(id) ? [...id] : [id]
+    );
+    super(["XREADGROUP", "GROUP", group, consumer, ...commands], opts);
+  }
+};
+var XRevRangeCommand = class extends Command {
+  constructor([key, end, start, count], opts) {
+    const command = ["XREVRANGE", key, end, start];
+    if (typeof count === "number") {
+      command.push("COUNT", count);
+    }
+    super(command, {
+      deserialize: (result) => deserialize7(result),
+      ...opts
+    });
+  }
+};
+function deserialize7(result) {
+  const obj = {};
+  for (const e of result) {
+    for (let i = 0; i < e.length; i += 2) {
+      const streamId = e[i];
+      const entries = e[i + 1];
+      if (!(streamId in obj)) {
+        obj[streamId] = {};
+      }
+      for (let j = 0; j < entries.length; j += 2) {
+        const field = entries[j];
+        const value = entries[j + 1];
+        try {
+          obj[streamId][field] = JSON.parse(value);
+        } catch {
+          obj[streamId][field] = value;
+        }
+      }
+    }
+  }
+  return obj;
+}
+var XTrimCommand = class extends Command {
+  constructor([key, options], opts) {
+    const { limit, strategy, threshold, exactness = "~" } = options;
+    super(["XTRIM", key, strategy, exactness, threshold, ...limit ? ["LIMIT", limit] : []], opts);
+  }
+};
+var ZAddCommand = class extends Command {
+  constructor([key, arg1, ...arg2], opts) {
+    const command = ["zadd", key];
+    if ("nx" in arg1 && arg1.nx) {
+      command.push("nx");
+    } else if ("xx" in arg1 && arg1.xx) {
+      command.push("xx");
+    }
+    if ("ch" in arg1 && arg1.ch) {
+      command.push("ch");
+    }
+    if ("incr" in arg1 && arg1.incr) {
+      command.push("incr");
+    }
+    if ("lt" in arg1 && arg1.lt) {
+      command.push("lt");
+    } else if ("gt" in arg1 && arg1.gt) {
+      command.push("gt");
+    }
+    if ("score" in arg1 && "member" in arg1) {
+      command.push(arg1.score, arg1.member);
+    }
+    command.push(...arg2.flatMap(({ score, member }) => [score, member]));
+    super(command, opts);
+  }
+};
+var ZCardCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zcard", ...cmd], opts);
+  }
+};
+var ZCountCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zcount", ...cmd], opts);
+  }
+};
+var ZIncrByCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zincrby", ...cmd], opts);
+  }
+};
+var ZInterStoreCommand = class extends Command {
+  constructor([destination, numKeys, keyOrKeys, opts], cmdOpts) {
+    const command = ["zinterstore", destination, numKeys];
+    if (Array.isArray(keyOrKeys)) {
+      command.push(...keyOrKeys);
+    } else {
+      command.push(keyOrKeys);
+    }
+    if (opts) {
+      if ("weights" in opts && opts.weights) {
+        command.push("weights", ...opts.weights);
+      } else if ("weight" in opts && typeof opts.weight === "number") {
+        command.push("weights", opts.weight);
+      }
+      if ("aggregate" in opts) {
+        command.push("aggregate", opts.aggregate);
+      }
+    }
+    super(command, cmdOpts);
+  }
+};
+var ZLexCountCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zlexcount", ...cmd], opts);
+  }
+};
+var ZPopMaxCommand = class extends Command {
+  constructor([key, count], opts) {
+    const command = ["zpopmax", key];
+    if (typeof count === "number") {
+      command.push(count);
+    }
+    super(command, opts);
+  }
+};
+var ZPopMinCommand = class extends Command {
+  constructor([key, count], opts) {
+    const command = ["zpopmin", key];
+    if (typeof count === "number") {
+      command.push(count);
+    }
+    super(command, opts);
+  }
+};
+var ZRangeCommand = class extends Command {
+  constructor([key, min, max, opts], cmdOpts) {
+    const command = ["zrange", key, min, max];
+    if (opts?.byScore) {
+      command.push("byscore");
+    }
+    if (opts?.byLex) {
+      command.push("bylex");
+    }
+    if (opts?.rev) {
+      command.push("rev");
+    }
+    if (opts?.count !== void 0 && opts.offset !== void 0) {
+      command.push("limit", opts.offset, opts.count);
+    }
+    if (opts?.withScores) {
+      command.push("withscores");
+    }
+    super(command, cmdOpts);
+  }
+};
+var ZRankCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zrank", ...cmd], opts);
+  }
+};
+var ZRemCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zrem", ...cmd], opts);
+  }
+};
+var ZRemRangeByLexCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zremrangebylex", ...cmd], opts);
+  }
+};
+var ZRemRangeByRankCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zremrangebyrank", ...cmd], opts);
+  }
+};
+var ZRemRangeByScoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zremrangebyscore", ...cmd], opts);
+  }
+};
+var ZRevRankCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zrevrank", ...cmd], opts);
+  }
+};
+var ZScanCommand = class extends Command {
+  constructor([key, cursor, opts], cmdOpts) {
+    const command = ["zscan", key, cursor];
+    if (opts?.match) {
+      command.push("match", opts.match);
+    }
+    if (typeof opts?.count === "number") {
+      command.push("count", opts.count);
+    }
+    super(command, {
+      deserialize: deserializeScanResponse,
+      ...cmdOpts
+    });
+  }
+};
+var ZScoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zscore", ...cmd], opts);
+  }
+};
+var ZUnionCommand = class extends Command {
+  constructor([numKeys, keyOrKeys, opts], cmdOpts) {
+    const command = ["zunion", numKeys];
+    if (Array.isArray(keyOrKeys)) {
+      command.push(...keyOrKeys);
+    } else {
+      command.push(keyOrKeys);
+    }
+    if (opts) {
+      if ("weights" in opts && opts.weights) {
+        command.push("weights", ...opts.weights);
+      } else if ("weight" in opts && typeof opts.weight === "number") {
+        command.push("weights", opts.weight);
+      }
+      if ("aggregate" in opts) {
+        command.push("aggregate", opts.aggregate);
+      }
+      if (opts.withScores) {
+        command.push("withscores");
+      }
+    }
+    super(command, cmdOpts);
+  }
+};
+var ZUnionStoreCommand = class extends Command {
+  constructor([destination, numKeys, keyOrKeys, opts], cmdOpts) {
+    const command = ["zunionstore", destination, numKeys];
+    if (Array.isArray(keyOrKeys)) {
+      command.push(...keyOrKeys);
+    } else {
+      command.push(keyOrKeys);
+    }
+    if (opts) {
+      if ("weights" in opts && opts.weights) {
+        command.push("weights", ...opts.weights);
+      } else if ("weight" in opts && typeof opts.weight === "number") {
+        command.push("weights", opts.weight);
+      }
+      if ("aggregate" in opts) {
+        command.push("aggregate", opts.aggregate);
+      }
+    }
+    super(command, cmdOpts);
+  }
+};
+var ZDiffStoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    super(["zdiffstore", ...cmd], opts);
+  }
+};
+var ZMScoreCommand = class extends Command {
+  constructor(cmd, opts) {
+    const [key, members] = cmd;
+    super(["zmscore", key, ...members], opts);
+  }
+};
+var Pipeline = class {
+  client;
+  commands;
+  commandOptions;
+  multiExec;
+  constructor(opts) {
+    this.client = opts.client;
+    this.commands = [];
+    this.commandOptions = opts.commandOptions;
+    this.multiExec = opts.multiExec ?? false;
+    if (this.commandOptions?.latencyLogging) {
+      const originalExec = this.exec.bind(this);
+      this.exec = async (options) => {
+        const start = performance.now();
+        const result = await (options ? originalExec(options) : originalExec());
+        const end = performance.now();
+        const loggerResult = (end - start).toFixed(2);
+        console.log(
+          `Latency for \x1B[38;2;19;185;39m${this.multiExec ? ["MULTI-EXEC"] : ["PIPELINE"].toString().toUpperCase()}\x1B[0m: \x1B[38;2;0;255;255m${loggerResult} ms\x1B[0m`
+        );
+        return result;
       };
     }
-    const response = await this.httpClient.post(this.url("/documents"), body);
-    return convertPartialDocument(response.data, options);
+  }
+  exec = async (options) => {
+    if (this.commands.length === 0) {
+      throw new Error("Pipeline is empty");
+    }
+    const path = this.multiExec ? ["multi-exec"] : ["pipeline"];
+    const res = await this.client.request({
+      path,
+      body: Object.values(this.commands).map((c) => c.command)
+    });
+    return options?.keepErrors ? res.map(({ error, result }, i) => {
+      return {
+        error,
+        result: this.commands[i].deserialize(result)
+      };
+    }) : res.map(({ error, result }, i) => {
+      if (error) {
+        throw new UpstashError(
+          `Command ${i + 1} [ ${this.commands[i].command[0]} ] failed: ${error}`
+        );
+      }
+      return this.commands[i].deserialize(result);
+    });
+  };
+  /**
+   * Returns the length of pipeline before the execution
+   */
+  length() {
+    return this.commands.length;
   }
   /**
-   * Get document status and metadata
+   * Pushes a command into the pipeline and returns a chainable instance of the
+   * pipeline
    */
-  async getDocument(documentId) {
-    const response = await this.httpClient.get(this.url(`/documents/${documentId}`));
-    return convertDocument(response.data);
+  chain(command) {
+    this.commands.push(command);
+    return this;
   }
   /**
-   * List documents, optionally filtered by collection or status
+   * @see https://redis.io/commands/append
    */
-  async listDocuments(options) {
-    const params = {};
-    if (options?.collectionId) params.collection_id = options.collectionId;
-    if (options?.status) params.status = options.status;
-    const queryString = Object.keys(params).length > 0 ? `?${new URLSearchParams(params).toString()}` : "";
-    const response = await this.httpClient.get(
-      this.url(`/documents${queryString}`)
+  append = (...args) => this.chain(new AppendCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/bitcount
+   */
+  bitcount = (...args) => this.chain(new BitCountCommand(args, this.commandOptions));
+  /**
+   * Returns an instance that can be used to execute `BITFIELD` commands on one key.
+   *
+   * @example
+   * ```typescript
+   * redis.set("mykey", 0);
+   * const result = await redis.pipeline()
+   *   .bitfield("mykey")
+   *   .set("u4", 0, 16)
+   *   .incr("u4", "#1", 1)
+   *   .exec();
+   * console.log(result); // [[0, 1]]
+   * ```
+   *
+   * @see https://redis.io/commands/bitfield
+   */
+  bitfield = (...args) => new BitFieldCommand(args, this.client, this.commandOptions, this.chain.bind(this));
+  /**
+   * @see https://redis.io/commands/bitop
+   */
+  bitop = (op, destinationKey, sourceKey, ...sourceKeys) => this.chain(
+    new BitOpCommand([op, destinationKey, sourceKey, ...sourceKeys], this.commandOptions)
+  );
+  /**
+   * @see https://redis.io/commands/bitpos
+   */
+  bitpos = (...args) => this.chain(new BitPosCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/client-setinfo
+   */
+  clientSetinfo = (...args) => this.chain(new ClientSetInfoCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/copy
+   */
+  copy = (...args) => this.chain(new CopyCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zdiffstore
+   */
+  zdiffstore = (...args) => this.chain(new ZDiffStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/dbsize
+   */
+  dbsize = () => this.chain(new DBSizeCommand(this.commandOptions));
+  /**
+   * @see https://redis.io/commands/decr
+   */
+  decr = (...args) => this.chain(new DecrCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/decrby
+   */
+  decrby = (...args) => this.chain(new DecrByCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/del
+   */
+  del = (...args) => this.chain(new DelCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/echo
+   */
+  echo = (...args) => this.chain(new EchoCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/eval_ro
+   */
+  evalRo = (...args) => this.chain(new EvalROCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/eval
+   */
+  eval = (...args) => this.chain(new EvalCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/evalsha_ro
+   */
+  evalshaRo = (...args) => this.chain(new EvalshaROCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/evalsha
+   */
+  evalsha = (...args) => this.chain(new EvalshaCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/exists
+   */
+  exists = (...args) => this.chain(new ExistsCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/expire
+   */
+  expire = (...args) => this.chain(new ExpireCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/expireat
+   */
+  expireat = (...args) => this.chain(new ExpireAtCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/flushall
+   */
+  flushall = (args) => this.chain(new FlushAllCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/flushdb
+   */
+  flushdb = (...args) => this.chain(new FlushDBCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geoadd
+   */
+  geoadd = (...args) => this.chain(new GeoAddCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geodist
+   */
+  geodist = (...args) => this.chain(new GeoDistCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geopos
+   */
+  geopos = (...args) => this.chain(new GeoPosCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geohash
+   */
+  geohash = (...args) => this.chain(new GeoHashCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geosearch
+   */
+  geosearch = (...args) => this.chain(new GeoSearchCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/geosearchstore
+   */
+  geosearchstore = (...args) => this.chain(new GeoSearchStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/get
+   */
+  get = (...args) => this.chain(new GetCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/getbit
+   */
+  getbit = (...args) => this.chain(new GetBitCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/getdel
+   */
+  getdel = (...args) => this.chain(new GetDelCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/getex
+   */
+  getex = (...args) => this.chain(new GetExCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/getrange
+   */
+  getrange = (...args) => this.chain(new GetRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/getset
+   */
+  getset = (key, value) => this.chain(new GetSetCommand([key, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hdel
+   */
+  hdel = (...args) => this.chain(new HDelCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hexists
+   */
+  hexists = (...args) => this.chain(new HExistsCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hexpire
+   */
+  hexpire = (...args) => this.chain(new HExpireCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hexpireat
+   */
+  hexpireat = (...args) => this.chain(new HExpireAtCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hexpiretime
+   */
+  hexpiretime = (...args) => this.chain(new HExpireTimeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/httl
+   */
+  httl = (...args) => this.chain(new HTtlCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hpexpire
+   */
+  hpexpire = (...args) => this.chain(new HPExpireCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hpexpireat
+   */
+  hpexpireat = (...args) => this.chain(new HPExpireAtCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hpexpiretime
+   */
+  hpexpiretime = (...args) => this.chain(new HPExpireTimeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hpttl
+   */
+  hpttl = (...args) => this.chain(new HPTtlCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hpersist
+   */
+  hpersist = (...args) => this.chain(new HPersistCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hget
+   */
+  hget = (...args) => this.chain(new HGetCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hgetall
+   */
+  hgetall = (...args) => this.chain(new HGetAllCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hgetdel
+   */
+  hgetdel = (...args) => this.chain(new HGetDelCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hgetex
+   */
+  hgetex = (...args) => this.chain(new HGetExCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hincrby
+   */
+  hincrby = (...args) => this.chain(new HIncrByCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hincrbyfloat
+   */
+  hincrbyfloat = (...args) => this.chain(new HIncrByFloatCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hkeys
+   */
+  hkeys = (...args) => this.chain(new HKeysCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hlen
+   */
+  hlen = (...args) => this.chain(new HLenCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hmget
+   */
+  hmget = (...args) => this.chain(new HMGetCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hmset
+   */
+  hmset = (key, kv) => this.chain(new HMSetCommand([key, kv], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hrandfield
+   */
+  hrandfield = (key, count, withValues) => this.chain(new HRandFieldCommand([key, count, withValues], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hscan
+   */
+  hscan = (...args) => this.chain(new HScanCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hset
+   */
+  hset = (key, kv) => this.chain(new HSetCommand([key, kv], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hsetex
+   */
+  hsetex = (...args) => this.chain(new HSetExCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hsetnx
+   */
+  hsetnx = (key, field, value) => this.chain(new HSetNXCommand([key, field, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hstrlen
+   */
+  hstrlen = (...args) => this.chain(new HStrLenCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/hvals
+   */
+  hvals = (...args) => this.chain(new HValsCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/incr
+   */
+  incr = (...args) => this.chain(new IncrCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/incrby
+   */
+  incrby = (...args) => this.chain(new IncrByCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/incrbyfloat
+   */
+  incrbyfloat = (...args) => this.chain(new IncrByFloatCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/keys
+   */
+  keys = (...args) => this.chain(new KeysCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lindex
+   */
+  lindex = (...args) => this.chain(new LIndexCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/linsert
+   */
+  linsert = (key, direction, pivot, value) => this.chain(new LInsertCommand([key, direction, pivot, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/llen
+   */
+  llen = (...args) => this.chain(new LLenCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lmove
+   */
+  lmove = (...args) => this.chain(new LMoveCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lpop
+   */
+  lpop = (...args) => this.chain(new LPopCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lmpop
+   */
+  lmpop = (...args) => this.chain(new LmPopCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lpos
+   */
+  lpos = (...args) => this.chain(new LPosCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lpush
+   */
+  lpush = (key, ...elements) => this.chain(new LPushCommand([key, ...elements], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lpushx
+   */
+  lpushx = (key, ...elements) => this.chain(new LPushXCommand([key, ...elements], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lrange
+   */
+  lrange = (...args) => this.chain(new LRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lrem
+   */
+  lrem = (key, count, value) => this.chain(new LRemCommand([key, count, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/lset
+   */
+  lset = (key, index, value) => this.chain(new LSetCommand([key, index, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/ltrim
+   */
+  ltrim = (...args) => this.chain(new LTrimCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/mget
+   */
+  mget = (...args) => this.chain(new MGetCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/mset
+   */
+  mset = (kv) => this.chain(new MSetCommand([kv], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/msetnx
+   */
+  msetnx = (kv) => this.chain(new MSetNXCommand([kv], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/persist
+   */
+  persist = (...args) => this.chain(new PersistCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pexpire
+   */
+  pexpire = (...args) => this.chain(new PExpireCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pexpireat
+   */
+  pexpireat = (...args) => this.chain(new PExpireAtCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pfadd
+   */
+  pfadd = (...args) => this.chain(new PfAddCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pfcount
+   */
+  pfcount = (...args) => this.chain(new PfCountCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pfmerge
+   */
+  pfmerge = (...args) => this.chain(new PfMergeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/ping
+   */
+  ping = (args) => this.chain(new PingCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/psetex
+   */
+  psetex = (key, ttl, value) => this.chain(new PSetEXCommand([key, ttl, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/pttl
+   */
+  pttl = (...args) => this.chain(new PTtlCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/publish
+   */
+  publish = (...args) => this.chain(new PublishCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/randomkey
+   */
+  randomkey = () => this.chain(new RandomKeyCommand(this.commandOptions));
+  /**
+   * @see https://redis.io/commands/rename
+   */
+  rename = (...args) => this.chain(new RenameCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/renamenx
+   */
+  renamenx = (...args) => this.chain(new RenameNXCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/rpop
+   */
+  rpop = (...args) => this.chain(new RPopCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/rpush
+   */
+  rpush = (key, ...elements) => this.chain(new RPushCommand([key, ...elements], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/rpushx
+   */
+  rpushx = (key, ...elements) => this.chain(new RPushXCommand([key, ...elements], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sadd
+   */
+  sadd = (key, member, ...members) => this.chain(new SAddCommand([key, member, ...members], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/scan
+   */
+  scan = (...args) => this.chain(new ScanCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/scard
+   */
+  scard = (...args) => this.chain(new SCardCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/script-exists
+   */
+  scriptExists = (...args) => this.chain(new ScriptExistsCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/script-flush
+   */
+  scriptFlush = (...args) => this.chain(new ScriptFlushCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/script-load
+   */
+  scriptLoad = (...args) => this.chain(new ScriptLoadCommand(args, this.commandOptions));
+  /*)*
+   * @see https://redis.io/commands/sdiff
+   */
+  sdiff = (...args) => this.chain(new SDiffCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sdiffstore
+   */
+  sdiffstore = (...args) => this.chain(new SDiffStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/set
+   */
+  set = (key, value, opts) => this.chain(new SetCommand([key, value, opts], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/setbit
+   */
+  setbit = (...args) => this.chain(new SetBitCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/setex
+   */
+  setex = (key, ttl, value) => this.chain(new SetExCommand([key, ttl, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/setnx
+   */
+  setnx = (key, value) => this.chain(new SetNxCommand([key, value], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/setrange
+   */
+  setrange = (...args) => this.chain(new SetRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sinter
+   */
+  sinter = (...args) => this.chain(new SInterCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sintercard
+   */
+  sintercard = (...args) => this.chain(new SInterCardCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sinterstore
+   */
+  sinterstore = (...args) => this.chain(new SInterStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sismember
+   */
+  sismember = (key, member) => this.chain(new SIsMemberCommand([key, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/smembers
+   */
+  smembers = (...args) => this.chain(new SMembersCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/smismember
+   */
+  smismember = (key, members) => this.chain(new SMIsMemberCommand([key, members], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/smove
+   */
+  smove = (source, destination, member) => this.chain(new SMoveCommand([source, destination, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/spop
+   */
+  spop = (...args) => this.chain(new SPopCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/srandmember
+   */
+  srandmember = (...args) => this.chain(new SRandMemberCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/srem
+   */
+  srem = (key, ...members) => this.chain(new SRemCommand([key, ...members], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sscan
+   */
+  sscan = (...args) => this.chain(new SScanCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/strlen
+   */
+  strlen = (...args) => this.chain(new StrLenCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sunion
+   */
+  sunion = (...args) => this.chain(new SUnionCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/sunionstore
+   */
+  sunionstore = (...args) => this.chain(new SUnionStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/time
+   */
+  time = () => this.chain(new TimeCommand(this.commandOptions));
+  /**
+   * @see https://redis.io/commands/touch
+   */
+  touch = (...args) => this.chain(new TouchCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/ttl
+   */
+  ttl = (...args) => this.chain(new TtlCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/type
+   */
+  type = (...args) => this.chain(new TypeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/unlink
+   */
+  unlink = (...args) => this.chain(new UnlinkCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zadd
+   */
+  zadd = (...args) => {
+    if ("score" in args[1]) {
+      return this.chain(
+        new ZAddCommand([args[0], args[1], ...args.slice(2)], this.commandOptions)
+      );
+    }
+    return this.chain(
+      new ZAddCommand(
+        [args[0], args[1], ...args.slice(2)],
+        this.commandOptions
+      )
     );
-    return response.data.documents.map(convertDocument);
-  }
+  };
   /**
-   * Delete a document and its chunks
+   * @see https://redis.io/commands/xadd
    */
-  async deleteDocument(documentId) {
-    await this.httpClient.delete(this.url(`/documents/${documentId}`));
-  }
+  xadd = (...args) => this.chain(new XAddCommand(args, this.commandOptions));
   /**
-   * Wait for a document to finish processing
-   * 
-   * @example
-   * const doc = await blink.rag.upload({ ... })
-   * const readyDoc = await blink.rag.waitForReady(doc.id)
-   * console.log(`Processed ${readyDoc.chunkCount} chunks`)
+   * @see https://redis.io/commands/xack
    */
-  async waitForReady(documentId, options) {
-    const { timeoutMs = 12e4, pollIntervalMs = 2e3 } = options || {};
-    const start = Date.now();
-    while (Date.now() - start < timeoutMs) {
-      const doc = await this.getDocument(documentId);
-      if (doc.status === "ready") {
-        return doc;
-      }
-      if (doc.status === "error") {
-        throw new Error(`Document processing failed: ${doc.errorMessage}`);
-      }
-      await new Promise((resolve) => setTimeout(resolve, pollIntervalMs));
-    }
-    throw new Error(`Document processing timeout after ${timeoutMs}ms`);
-  }
-  // ============================================================================
-  // Search
-  // ============================================================================
+  xack = (...args) => this.chain(new XAckCommand(args, this.commandOptions));
   /**
-   * Search for similar chunks using vector similarity
-   * 
-   * @example
-   * const results = await blink.rag.search({
-   *   collectionName: 'docs',
-   *   query: 'How do I configure authentication?',
-   *   maxResults: 5
-   * })
+   * @see https://redis.io/commands/xackdel
    */
-  async search(options) {
-    if (!options.collectionId && !options.collectionName) {
-      throw new Error("collectionId or collectionName is required");
-    }
-    const body = removeUndefined({
-      collection_id: options.collectionId,
-      collection_name: options.collectionName,
-      query: options.query,
-      max_results: options.maxResults,
-      score_threshold: options.scoreThreshold,
-      filters: options.filters,
-      include_content: options.includeContent
-    });
-    const response = await this.httpClient.post(this.url("/search"), body);
-    return convertSearchResponse(response.data);
-  }
-  async aiSearch(options) {
-    if (!options.collectionId && !options.collectionName) {
-      throw new Error("collectionId or collectionName is required");
-    }
-    const body = removeUndefined({
-      collection_id: options.collectionId,
-      collection_name: options.collectionName,
-      query: options.query,
-      model: options.model,
-      max_context_chunks: options.maxContextChunks,
-      score_threshold: options.scoreThreshold,
-      system_prompt: options.systemPrompt,
-      stream: options.stream
-    });
-    if (options.stream) {
-      const response2 = await this.httpClient.ragAiSearchStream(body, options.signal);
-      return response2.body;
-    }
-    const response = await this.httpClient.post(this.url("/ai-search"), body);
-    return convertAISearchResult(response.data);
-  }
-};
-var SandboxConnectionError = class extends Error {
-  sandboxId;
-  constructor(sandboxId, cause) {
-    super(`Failed to connect to sandbox ${sandboxId}`);
-    this.name = "SandboxConnectionError";
-    this.sandboxId = sandboxId;
-    if (cause) {
-      this.cause = cause;
-    }
-  }
-};
-var SandboxImpl = class {
-  constructor(id, template, hostPattern) {
-    this.id = id;
-    this.template = template;
-    this.hostPattern = hostPattern;
-  }
-  getHost(port) {
-    return this.hostPattern.replace("{port}", String(port));
-  }
-};
-var MAX_RETRIES = 3;
-var INITIAL_RETRY_DELAY_MS = 250;
-var BlinkSandboxImpl = class {
-  constructor(httpClient) {
-    this.httpClient = httpClient;
-    this.projectId = httpClient.projectId;
-  }
-  projectId;
+  xackdel = (...args) => this.chain(new XAckDelCommand(args, this.commandOptions));
   /**
-   * Build URL with project_id prefix
+   * @see https://redis.io/commands/xdel
    */
-  url(path) {
-    return `/api/sandbox/${this.projectId}${path}`;
-  }
-  async create(options = {}) {
-    const body = {
-      template: options.template,
-      timeout_ms: options.timeoutMs,
-      metadata: options.metadata,
-      secrets: options.secrets
+  xdel = (...args) => this.chain(new XDelCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xdelex
+   */
+  xdelex = (...args) => this.chain(new XDelExCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xgroup
+   */
+  xgroup = (...args) => this.chain(new XGroupCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xread
+   */
+  xread = (...args) => this.chain(new XReadCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xreadgroup
+   */
+  xreadgroup = (...args) => this.chain(new XReadGroupCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xinfo
+   */
+  xinfo = (...args) => this.chain(new XInfoCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xlen
+   */
+  xlen = (...args) => this.chain(new XLenCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xpending
+   */
+  xpending = (...args) => this.chain(new XPendingCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xclaim
+   */
+  xclaim = (...args) => this.chain(new XClaimCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xautoclaim
+   */
+  xautoclaim = (...args) => this.chain(new XAutoClaim(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xtrim
+   */
+  xtrim = (...args) => this.chain(new XTrimCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xrange
+   */
+  xrange = (...args) => this.chain(new XRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/xrevrange
+   */
+  xrevrange = (...args) => this.chain(new XRevRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zcard
+   */
+  zcard = (...args) => this.chain(new ZCardCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zcount
+   */
+  zcount = (...args) => this.chain(new ZCountCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zincrby
+   */
+  zincrby = (key, increment, member) => this.chain(new ZIncrByCommand([key, increment, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zinterstore
+   */
+  zinterstore = (...args) => this.chain(new ZInterStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zlexcount
+   */
+  zlexcount = (...args) => this.chain(new ZLexCountCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zmscore
+   */
+  zmscore = (...args) => this.chain(new ZMScoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zpopmax
+   */
+  zpopmax = (...args) => this.chain(new ZPopMaxCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zpopmin
+   */
+  zpopmin = (...args) => this.chain(new ZPopMinCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zrange
+   */
+  zrange = (...args) => this.chain(new ZRangeCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zrank
+   */
+  zrank = (key, member) => this.chain(new ZRankCommand([key, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zrem
+   */
+  zrem = (key, ...members) => this.chain(new ZRemCommand([key, ...members], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zremrangebylex
+   */
+  zremrangebylex = (...args) => this.chain(new ZRemRangeByLexCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zremrangebyrank
+   */
+  zremrangebyrank = (...args) => this.chain(new ZRemRangeByRankCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zremrangebyscore
+   */
+  zremrangebyscore = (...args) => this.chain(new ZRemRangeByScoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zrevrank
+   */
+  zrevrank = (key, member) => this.chain(new ZRevRankCommand([key, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zscan
+   */
+  zscan = (...args) => this.chain(new ZScanCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zscore
+   */
+  zscore = (key, member) => this.chain(new ZScoreCommand([key, member], this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zunionstore
+   */
+  zunionstore = (...args) => this.chain(new ZUnionStoreCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/zunion
+   */
+  zunion = (...args) => this.chain(new ZUnionCommand(args, this.commandOptions));
+  /**
+   * @see https://redis.io/commands/?group=json
+   */
+  get json() {
+    return {
+      /**
+       * @see https://redis.io/commands/json.arrappend
+       */
+      arrappend: (...args) => this.chain(new JsonArrAppendCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.arrindex
+       */
+      arrindex: (...args) => this.chain(new JsonArrIndexCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.arrinsert
+       */
+      arrinsert: (...args) => this.chain(new JsonArrInsertCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.arrlen
+       */
+      arrlen: (...args) => this.chain(new JsonArrLenCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.arrpop
+       */
+      arrpop: (...args) => this.chain(new JsonArrPopCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.arrtrim
+       */
+      arrtrim: (...args) => this.chain(new JsonArrTrimCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.clear
+       */
+      clear: (...args) => this.chain(new JsonClearCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.del
+       */
+      del: (...args) => this.chain(new JsonDelCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.forget
+       */
+      forget: (...args) => this.chain(new JsonForgetCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.get
+       */
+      get: (...args) => this.chain(new JsonGetCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.merge
+       */
+      merge: (...args) => this.chain(new JsonMergeCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.mget
+       */
+      mget: (...args) => this.chain(new JsonMGetCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.mset
+       */
+      mset: (...args) => this.chain(new JsonMSetCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.numincrby
+       */
+      numincrby: (...args) => this.chain(new JsonNumIncrByCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.nummultby
+       */
+      nummultby: (...args) => this.chain(new JsonNumMultByCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.objkeys
+       */
+      objkeys: (...args) => this.chain(new JsonObjKeysCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.objlen
+       */
+      objlen: (...args) => this.chain(new JsonObjLenCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.resp
+       */
+      resp: (...args) => this.chain(new JsonRespCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.set
+       */
+      set: (...args) => this.chain(new JsonSetCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.strappend
+       */
+      strappend: (...args) => this.chain(new JsonStrAppendCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.strlen
+       */
+      strlen: (...args) => this.chain(new JsonStrLenCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.toggle
+       */
+      toggle: (...args) => this.chain(new JsonToggleCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/commands/json.type
+       */
+      type: (...args) => this.chain(new JsonTypeCommand(args, this.commandOptions))
     };
-    const response = await this.httpClient.post(this.url("/create"), body);
-    const { id, template, host_pattern } = response.data;
-    return new SandboxImpl(id, template, host_pattern);
   }
-  async connect(sandboxId, options = {}) {
-    let lastError;
-    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
-      try {
-        const body = {
-          sandbox_id: sandboxId,
-          timeout_ms: options.timeoutMs
-        };
-        const response = await this.httpClient.post(this.url("/connect"), body);
-        const { id, template, host_pattern } = response.data;
-        return new SandboxImpl(id, template, host_pattern);
-      } catch (error) {
-        console.error(`[Sandbox] Connect attempt ${attempt + 1} failed:`, error);
-        lastError = error instanceof Error ? error : new Error(String(error));
-        if (lastError.message.includes("404") || lastError.message.includes("not found") || lastError.message.includes("unauthorized")) {
-          throw new SandboxConnectionError(sandboxId, lastError);
-        }
-        if (attempt < MAX_RETRIES - 1) {
-          const delay = INITIAL_RETRY_DELAY_MS * Math.pow(2, attempt);
-          await new Promise((resolve) => setTimeout(resolve, delay));
-        }
-      }
-    }
-    console.error(`[Sandbox] All ${MAX_RETRIES} connection attempts failed for sandbox ${sandboxId}`);
-    throw new SandboxConnectionError(sandboxId, lastError);
-  }
-  async kill(sandboxId) {
-    await this.httpClient.post(this.url("/kill"), { sandbox_id: sandboxId });
+  get functions() {
+    return {
+      /**
+       * @see https://redis.io/docs/latest/commands/function-load/
+       */
+      load: (...args) => this.chain(new FunctionLoadCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-list/
+       */
+      list: (...args) => this.chain(new FunctionListCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-delete/
+       */
+      delete: (...args) => this.chain(new FunctionDeleteCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-flush/
+       */
+      flush: () => this.chain(new FunctionFlushCommand(this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-stats/
+       */
+      stats: () => this.chain(new FunctionStatsCommand(this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/fcall/
+       */
+      call: (...args) => this.chain(new FCallCommand(args, this.commandOptions)),
+      /**
+       * @see https://redis.io/docs/latest/commands/fcall_ro/
+       */
+      callRo: (...args) => this.chain(new FCallRoCommand(args, this.commandOptions))
+    };
   }
 };
-var defaultClient = null;
-function getDefaultClient() {
-  if (!defaultClient) {
-    throw new Error(
-      "No Blink client initialized. Call createClient() first before using Agent or other SDK features."
-    );
+var EXCLUDE_COMMANDS = /* @__PURE__ */ new Set([
+  "scan",
+  "keys",
+  "flushdb",
+  "flushall",
+  "dbsize",
+  "hscan",
+  "hgetall",
+  "hkeys",
+  "lrange",
+  "sscan",
+  "smembers",
+  "xrange",
+  "xrevrange",
+  "zscan",
+  "zrange",
+  "exec"
+]);
+function createAutoPipelineProxy(_redis2, namespace = "root") {
+  const redis = _redis2;
+  if (!redis.autoPipelineExecutor) {
+    redis.autoPipelineExecutor = new AutoPipelineExecutor(redis);
   }
-  return defaultClient;
-}
-function _getDefaultHttpClient() {
-  return getDefaultClient()._httpClient;
-}
-var BlinkClientImpl = class {
-  auth;
-  db;
-  storage;
-  ai;
-  data;
-  realtime;
-  notifications;
-  analytics;
-  connectors;
-  functions;
-  rag;
-  sandbox;
-  /** @internal HTTP client for Agent auto-binding */
-  _httpClient;
-  constructor(config) {
-    if ((config.secretKey || config.serviceToken) && isBrowser) {
-      throw new Error("secretKey/serviceToken is server-only. Do not provide it in browser/React Native clients.");
+  return new Proxy(redis, {
+    get: (redis2, command) => {
+      if (command === "pipelineCounter") {
+        return redis2.autoPipelineExecutor.pipelineCounter;
+      }
+      if (namespace === "root" && command === "json") {
+        return createAutoPipelineProxy(redis2, "json");
+      }
+      if (namespace === "root" && command === "functions") {
+        return createAutoPipelineProxy(redis2, "functions");
+      }
+      if (namespace === "root") {
+        const commandInRedisButNotPipeline = command in redis2 && !(command in redis2.autoPipelineExecutor.pipeline);
+        const isCommandExcluded = EXCLUDE_COMMANDS.has(command);
+        if (commandInRedisButNotPipeline || isCommandExcluded) {
+          return redis2[command];
+        }
+      }
+      const pipeline = redis2.autoPipelineExecutor.pipeline;
+      const targetFunction = namespace === "json" ? pipeline.json[command] : namespace === "functions" ? pipeline.functions[command] : pipeline[command];
+      const isFunction = typeof targetFunction === "function";
+      if (isFunction) {
+        return (...args) => {
+          return redis2.autoPipelineExecutor.withAutoPipeline((pipeline2) => {
+            const targetFunction2 = namespace === "json" ? pipeline2.json[command] : namespace === "functions" ? pipeline2.functions[command] : pipeline2[command];
+            targetFunction2(...args);
+          });
+        };
+      }
+      return targetFunction;
     }
-    this.auth = new BlinkAuth(config);
-    this._httpClient = new HttpClient(
-      config,
-      () => this.auth.getToken(),
-      () => this.auth.getValidToken()
-    );
-    this.db = new BlinkDatabase(this._httpClient);
-    this.storage = new BlinkStorageImpl(this._httpClient);
-    this.ai = new BlinkAIImpl(this._httpClient);
-    this.data = new BlinkDataImpl(this._httpClient, config.projectId);
-    this.realtime = new BlinkRealtimeImpl(this._httpClient, config.projectId);
-    this.notifications = new BlinkNotificationsImpl(this._httpClient);
-    this.analytics = new BlinkAnalyticsImpl(this._httpClient, config.projectId);
-    this.connectors = new BlinkConnectorsImpl(this._httpClient);
-    this.functions = new BlinkFunctionsImpl(
-      this._httpClient,
-      config.projectId,
-      () => this.auth.getValidToken()
-    );
-    this.rag = new BlinkRAGImpl(this._httpClient);
-    this.sandbox = new BlinkSandboxImpl(this._httpClient);
-    this.auth.onAuthStateChanged((state) => {
-      if (state.isAuthenticated && state.user) {
-        this.analytics.setUserId(state.user.id);
-        this.analytics.setUserEmail(state.user.email);
-      } else {
-        this.analytics.setUserId(null);
-        this.analytics.setUserEmail(null);
+  });
+}
+var AutoPipelineExecutor = class {
+  pipelinePromises = /* @__PURE__ */ new WeakMap();
+  activePipeline = null;
+  indexInCurrentPipeline = 0;
+  redis;
+  pipeline;
+  // only to make sure that proxy can work
+  pipelineCounter = 0;
+  // to keep track of how many times a pipeline was executed
+  constructor(redis) {
+    this.redis = redis;
+    this.pipeline = redis.pipeline();
+  }
+  async withAutoPipeline(executeWithPipeline) {
+    const pipeline = this.activePipeline ?? this.redis.pipeline();
+    if (!this.activePipeline) {
+      this.activePipeline = pipeline;
+      this.indexInCurrentPipeline = 0;
+    }
+    const index = this.indexInCurrentPipeline++;
+    executeWithPipeline(pipeline);
+    const pipelineDone = this.deferExecution().then(() => {
+      if (!this.pipelinePromises.has(pipeline)) {
+        const pipelinePromise = pipeline.exec({ keepErrors: true });
+        this.pipelineCounter += 1;
+        this.pipelinePromises.set(pipeline, pipelinePromise);
+        this.activePipeline = null;
+      }
+      return this.pipelinePromises.get(pipeline);
+    });
+    const results = await pipelineDone;
+    const commandResult = results[index];
+    if (commandResult.error) {
+      throw new UpstashError(`Command failed: ${commandResult.error}`);
+    }
+    return commandResult.result;
+  }
+  async deferExecution() {
+    await Promise.resolve();
+    await Promise.resolve();
+  }
+};
+var PSubscribeCommand = class extends Command {
+  constructor(cmd, opts) {
+    const sseHeaders = {
+      Accept: "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive"
+    };
+    super([], {
+      ...opts,
+      headers: sseHeaders,
+      path: ["psubscribe", ...cmd],
+      streamOptions: {
+        isStreaming: true,
+        onMessage: opts?.streamOptions?.onMessage,
+        signal: opts?.streamOptions?.signal
       }
     });
   }
 };
-function createClient(config) {
-  if (!config.projectId) {
-    throw new Error("projectId is required");
+var Subscriber = class extends EventTarget {
+  subscriptions;
+  client;
+  listeners;
+  opts;
+  constructor(client, channels, isPattern = false, opts) {
+    super();
+    this.client = client;
+    this.subscriptions = /* @__PURE__ */ new Map();
+    this.listeners = /* @__PURE__ */ new Map();
+    this.opts = opts;
+    for (const channel of channels) {
+      if (isPattern) {
+        this.subscribeToPattern(channel);
+      } else {
+        this.subscribeToChannel(channel);
+      }
+    }
   }
-  const client = new BlinkClientImpl(config);
-  defaultClient = client;
-  return client;
+  subscribeToChannel(channel) {
+    const controller = new AbortController();
+    const command = new SubscribeCommand([channel], {
+      streamOptions: {
+        signal: controller.signal,
+        onMessage: (data) => this.handleMessage(data, false)
+      }
+    });
+    command.exec(this.client).catch((error) => {
+      if (error.name !== "AbortError") {
+        this.dispatchToListeners("error", error);
+      }
+    });
+    this.subscriptions.set(channel, {
+      command,
+      controller,
+      isPattern: false
+    });
+  }
+  subscribeToPattern(pattern) {
+    const controller = new AbortController();
+    const command = new PSubscribeCommand([pattern], {
+      streamOptions: {
+        signal: controller.signal,
+        onMessage: (data) => this.handleMessage(data, true)
+      }
+    });
+    command.exec(this.client).catch((error) => {
+      if (error.name !== "AbortError") {
+        this.dispatchToListeners("error", error);
+      }
+    });
+    this.subscriptions.set(pattern, {
+      command,
+      controller,
+      isPattern: true
+    });
+  }
+  handleMessage(data, isPattern) {
+    const messageData = data.replace(/^data:\s*/, "");
+    const firstCommaIndex = messageData.indexOf(",");
+    const secondCommaIndex = messageData.indexOf(",", firstCommaIndex + 1);
+    const thirdCommaIndex = isPattern ? messageData.indexOf(",", secondCommaIndex + 1) : -1;
+    if (firstCommaIndex !== -1 && secondCommaIndex !== -1) {
+      const type = messageData.slice(0, firstCommaIndex);
+      if (isPattern && type === "pmessage" && thirdCommaIndex !== -1) {
+        const pattern = messageData.slice(firstCommaIndex + 1, secondCommaIndex);
+        const channel = messageData.slice(secondCommaIndex + 1, thirdCommaIndex);
+        const messageStr = messageData.slice(thirdCommaIndex + 1);
+        try {
+          const message2 = this.opts?.automaticDeserialization === false ? messageStr : JSON.parse(messageStr);
+          this.dispatchToListeners("pmessage", { pattern, channel, message: message2 });
+          this.dispatchToListeners(`pmessage:${pattern}`, { pattern, channel, message: message2 });
+        } catch (error) {
+          this.dispatchToListeners("error", new Error(`Failed to parse message: ${error}`));
+        }
+      } else {
+        const channel = messageData.slice(firstCommaIndex + 1, secondCommaIndex);
+        const messageStr = messageData.slice(secondCommaIndex + 1);
+        try {
+          if (type === "subscribe" || type === "psubscribe" || type === "unsubscribe" || type === "punsubscribe") {
+            const count = Number.parseInt(messageStr);
+            this.dispatchToListeners(type, count);
+          } else {
+            const message2 = this.opts?.automaticDeserialization === false ? messageStr : parseWithTryCatch(messageStr);
+            this.dispatchToListeners(type, { channel, message: message2 });
+            this.dispatchToListeners(`${type}:${channel}`, { channel, message: message2 });
+          }
+        } catch (error) {
+          this.dispatchToListeners("error", new Error(`Failed to parse message: ${error}`));
+        }
+      }
+    }
+  }
+  dispatchToListeners(type, data) {
+    const listeners = this.listeners.get(type);
+    if (listeners) {
+      for (const listener of listeners) {
+        listener(data);
+      }
+    }
+  }
+  on(type, listener) {
+    if (!this.listeners.has(type)) {
+      this.listeners.set(type, /* @__PURE__ */ new Set());
+    }
+    this.listeners.get(type)?.add(listener);
+  }
+  removeAllListeners() {
+    this.listeners.clear();
+  }
+  async unsubscribe(channels) {
+    if (channels) {
+      for (const channel of channels) {
+        const subscription = this.subscriptions.get(channel);
+        if (subscription) {
+          try {
+            subscription.controller.abort();
+          } catch {
+          }
+          this.subscriptions.delete(channel);
+        }
+      }
+    } else {
+      for (const subscription of this.subscriptions.values()) {
+        try {
+          subscription.controller.abort();
+        } catch {
+        }
+      }
+      this.subscriptions.clear();
+      this.removeAllListeners();
+    }
+  }
+  getSubscribedChannels() {
+    return [...this.subscriptions.keys()];
+  }
+};
+var SubscribeCommand = class extends Command {
+  constructor(cmd, opts) {
+    const sseHeaders = {
+      Accept: "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive"
+    };
+    super([], {
+      ...opts,
+      headers: sseHeaders,
+      path: ["subscribe", ...cmd],
+      streamOptions: {
+        isStreaming: true,
+        onMessage: opts?.streamOptions?.onMessage,
+        signal: opts?.streamOptions?.signal
+      }
+    });
+  }
+};
+var parseWithTryCatch = (str) => {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return str;
+  }
+};
+var Script = class {
+  script;
+  /**
+   * @deprecated This property is initialized to an empty string and will be set in the init method
+   * asynchronously. Do not use this property immidiately after the constructor.
+   *
+   * This property is only exposed for backwards compatibility and will be removed in the
+   * future major release.
+   */
+  sha1;
+  initPromise;
+  redis;
+  constructor(redis, script) {
+    this.redis = redis;
+    this.script = script;
+    this.sha1 = "";
+    void this.init(script);
+  }
+  /**
+   * Initialize the script by computing its SHA-1 hash.
+   */
+  init(script) {
+    if (!this.initPromise) {
+      this.initPromise = this.digest(script).then((sha1) => {
+        this.sha1 = sha1;
+      });
+    }
+    return this.initPromise;
+  }
+  /**
+   * Send an `EVAL` command to redis.
+   */
+  async eval(keys, args) {
+    await this.init(this.script);
+    return await this.redis.eval(this.script, keys, args);
+  }
+  /**
+   * Calculates the sha1 hash of the script and then calls `EVALSHA`.
+   */
+  async evalsha(keys, args) {
+    await this.init(this.script);
+    return await this.redis.evalsha(this.sha1, keys, args);
+  }
+  /**
+   * Optimistically try to run `EVALSHA` first.
+   * If the script is not loaded in redis, it will fall back and try again with `EVAL`.
+   *
+   * Following calls will be able to use the cached script
+   */
+  async exec(keys, args) {
+    await this.init(this.script);
+    const res = await this.redis.evalsha(this.sha1, keys, args).catch(async (error) => {
+      if (error instanceof Error && error.message.toLowerCase().includes("noscript")) {
+        return await this.redis.eval(this.script, keys, args);
+      }
+      throw error;
+    });
+    return res;
+  }
+  /**
+   * Compute the sha1 hash of the script and return its hex representation.
+   */
+  async digest(s) {
+    const data = new TextEncoder().encode(s);
+    const hashBuffer = await subtle.digest("SHA-1", data);
+    const hashArray = [...new Uint8Array(hashBuffer)];
+    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+};
+var ScriptRO = class {
+  script;
+  /**
+   * @deprecated This property is initialized to an empty string and will be set in the init method
+   * asynchronously. Do not use this property immidiately after the constructor.
+   *
+   * This property is only exposed for backwards compatibility and will be removed in the
+   * future major release.
+   */
+  sha1;
+  initPromise;
+  redis;
+  constructor(redis, script) {
+    this.redis = redis;
+    this.sha1 = "";
+    this.script = script;
+    void this.init(script);
+  }
+  init(script) {
+    if (!this.initPromise) {
+      this.initPromise = this.digest(script).then((sha1) => {
+        this.sha1 = sha1;
+      });
+    }
+    return this.initPromise;
+  }
+  /**
+   * Send an `EVAL_RO` command to redis.
+   */
+  async evalRo(keys, args) {
+    await this.init(this.script);
+    return await this.redis.evalRo(this.script, keys, args);
+  }
+  /**
+   * Calculates the sha1 hash of the script and then calls `EVALSHA_RO`.
+   */
+  async evalshaRo(keys, args) {
+    await this.init(this.script);
+    return await this.redis.evalshaRo(this.sha1, keys, args);
+  }
+  /**
+   * Optimistically try to run `EVALSHA_RO` first.
+   * If the script is not loaded in redis, it will fall back and try again with `EVAL_RO`.
+   *
+   * Following calls will be able to use the cached script
+   */
+  async exec(keys, args) {
+    await this.init(this.script);
+    const res = await this.redis.evalshaRo(this.sha1, keys, args).catch(async (error) => {
+      if (error instanceof Error && error.message.toLowerCase().includes("noscript")) {
+        return await this.redis.evalRo(this.script, keys, args);
+      }
+      throw error;
+    });
+    return res;
+  }
+  /**
+   * Compute the sha1 hash of the script and return its hex representation.
+   */
+  async digest(s) {
+    const data = new TextEncoder().encode(s);
+    const hashBuffer = await subtle.digest("SHA-1", data);
+    const hashArray = [...new Uint8Array(hashBuffer)];
+    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+};
+var Redis = class {
+  client;
+  opts;
+  enableTelemetry;
+  enableAutoPipelining;
+  /**
+   * Create a new redis client
+   *
+   * @example
+   * ```typescript
+   * const redis = new Redis({
+   *  url: "<UPSTASH_REDIS_REST_URL>",
+   *  token: "<UPSTASH_REDIS_REST_TOKEN>",
+   * });
+   * ```
+   */
+  constructor(client, opts) {
+    this.client = client;
+    this.opts = opts;
+    this.enableTelemetry = opts?.enableTelemetry ?? true;
+    if (opts?.readYourWrites === false) {
+      this.client.readYourWrites = false;
+    }
+    this.enableAutoPipelining = opts?.enableAutoPipelining ?? true;
+  }
+  get readYourWritesSyncToken() {
+    return this.client.upstashSyncToken;
+  }
+  set readYourWritesSyncToken(session) {
+    this.client.upstashSyncToken = session;
+  }
+  get json() {
+    return {
+      /**
+       * @see https://redis.io/commands/json.arrappend
+       */
+      arrappend: (...args) => new JsonArrAppendCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.arrindex
+       */
+      arrindex: (...args) => new JsonArrIndexCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.arrinsert
+       */
+      arrinsert: (...args) => new JsonArrInsertCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.arrlen
+       */
+      arrlen: (...args) => new JsonArrLenCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.arrpop
+       */
+      arrpop: (...args) => new JsonArrPopCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.arrtrim
+       */
+      arrtrim: (...args) => new JsonArrTrimCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.clear
+       */
+      clear: (...args) => new JsonClearCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.del
+       */
+      del: (...args) => new JsonDelCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.forget
+       */
+      forget: (...args) => new JsonForgetCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.get
+       */
+      get: (...args) => new JsonGetCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.merge
+       */
+      merge: (...args) => new JsonMergeCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.mget
+       */
+      mget: (...args) => new JsonMGetCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.mset
+       */
+      mset: (...args) => new JsonMSetCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.numincrby
+       */
+      numincrby: (...args) => new JsonNumIncrByCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.nummultby
+       */
+      nummultby: (...args) => new JsonNumMultByCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.objkeys
+       */
+      objkeys: (...args) => new JsonObjKeysCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.objlen
+       */
+      objlen: (...args) => new JsonObjLenCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.resp
+       */
+      resp: (...args) => new JsonRespCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.set
+       */
+      set: (...args) => new JsonSetCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.strappend
+       */
+      strappend: (...args) => new JsonStrAppendCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.strlen
+       */
+      strlen: (...args) => new JsonStrLenCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.toggle
+       */
+      toggle: (...args) => new JsonToggleCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/commands/json.type
+       */
+      type: (...args) => new JsonTypeCommand(args, this.opts).exec(this.client)
+    };
+  }
+  get functions() {
+    return {
+      /**
+       * @see https://redis.io/docs/latest/commands/function-load/
+       */
+      load: (...args) => new FunctionLoadCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-list/
+       */
+      list: (...args) => new FunctionListCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-delete/
+       */
+      delete: (...args) => new FunctionDeleteCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-flush/
+       */
+      flush: () => new FunctionFlushCommand(this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/function-stats/
+       *
+       * Note: `running_script` field is not supported and therefore not included in the type.
+       */
+      stats: () => new FunctionStatsCommand(this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/fcall/
+       */
+      call: (...args) => new FCallCommand(args, this.opts).exec(this.client),
+      /**
+       * @see https://redis.io/docs/latest/commands/fcall_ro/
+       */
+      callRo: (...args) => new FCallRoCommand(args, this.opts).exec(this.client)
+    };
+  }
+  /**
+   * Wrap a new middleware around the HTTP client.
+   */
+  use = (middleware) => {
+    const makeRequest = this.client.request.bind(this.client);
+    this.client.request = (req) => middleware(req, makeRequest);
+  };
+  /**
+   * Technically this is not private, we can hide it from intellisense by doing this
+   */
+  addTelemetry = (telemetry) => {
+    if (!this.enableTelemetry) {
+      return;
+    }
+    try {
+      this.client.mergeTelemetry(telemetry);
+    } catch {
+    }
+  };
+  /**
+   * Creates a new script.
+   *
+   * Scripts offer the ability to optimistically try to execute a script without having to send the
+   * entire script to the server. If the script is loaded on the server, it tries again by sending
+   * the entire script. Afterwards, the script is cached on the server.
+   *
+   * @param script - The script to create
+   * @param opts - Optional options to pass to the script `{ readonly?: boolean }`
+   * @returns A new script
+   *
+   * @example
+   * ```ts
+   * const redis = new Redis({...})
+   *
+   * const script = redis.createScript<string>("return ARGV[1];")
+   * const arg1 = await script.eval([], ["Hello World"])
+   * expect(arg1, "Hello World")
+   * ```
+   * @example
+   * ```ts
+   * const redis = new Redis({...})
+   *
+   * const script = redis.createScript<string>("return ARGV[1];", { readonly: true })
+   * const arg1 = await script.evalRo([], ["Hello World"])
+   * expect(arg1, "Hello World")
+   * ```
+   */
+  createScript(script, opts) {
+    return opts?.readonly ? new ScriptRO(this, script) : new Script(this, script);
+  }
+  get search() {
+    return {
+      createIndex: (params) => {
+        return createIndex(this.client, params);
+      },
+      index: (params) => {
+        return initIndex(this.client, params);
+      },
+      alias: {
+        list: () => {
+          return listAliases(this.client);
+        },
+        add: ({ indexName, alias }) => {
+          return addAlias(this.client, { indexName, alias });
+        },
+        delete: ({ alias }) => {
+          return delAlias(this.client, { alias });
+        }
+      }
+    };
+  }
+  /**
+   * Create a new pipeline that allows you to send requests in bulk.
+   *
+   * @see {@link Pipeline}
+   */
+  pipeline = () => new Pipeline({
+    client: this.client,
+    commandOptions: this.opts,
+    multiExec: false
+  });
+  autoPipeline = () => {
+    return createAutoPipelineProxy(this);
+  };
+  /**
+   * Create a new transaction to allow executing multiple steps atomically.
+   *
+   * All the commands in a transaction are serialized and executed sequentially. A request sent by
+   * another client will never be served in the middle of the execution of a Redis Transaction. This
+   * guarantees that the commands are executed as a single isolated operation.
+   *
+   * @see {@link Pipeline}
+   */
+  multi = () => new Pipeline({
+    client: this.client,
+    commandOptions: this.opts,
+    multiExec: true
+  });
+  /**
+   * Returns an instance that can be used to execute `BITFIELD` commands on one key.
+   *
+   * @example
+   * ```typescript
+   * redis.set("mykey", 0);
+   * const result = await redis.bitfield("mykey")
+   *   .set("u4", 0, 16)
+   *   .incr("u4", "#1", 1)
+   *   .exec();
+   * console.log(result); // [0, 1]
+   * ```
+   *
+   * @see https://redis.io/commands/bitfield
+   */
+  bitfield = (...args) => new BitFieldCommand(args, this.client, this.opts);
+  /**
+   * @see https://redis.io/commands/append
+   */
+  append = (...args) => new AppendCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/bitcount
+   */
+  bitcount = (...args) => new BitCountCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/bitop
+   */
+  bitop = (op, destinationKey, sourceKey, ...sourceKeys) => new BitOpCommand([op, destinationKey, sourceKey, ...sourceKeys], this.opts).exec(
+    this.client
+  );
+  /**
+   * @see https://redis.io/commands/bitpos
+   */
+  bitpos = (...args) => new BitPosCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/client-setinfo
+   */
+  clientSetinfo = (...args) => new ClientSetInfoCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/copy
+   */
+  copy = (...args) => new CopyCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/dbsize
+   */
+  dbsize = () => new DBSizeCommand(this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/decr
+   */
+  decr = (...args) => new DecrCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/decrby
+   */
+  decrby = (...args) => new DecrByCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/del
+   */
+  del = (...args) => new DelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/echo
+   */
+  echo = (...args) => new EchoCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/eval_ro
+   */
+  evalRo = (...args) => new EvalROCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/eval
+   */
+  eval = (...args) => new EvalCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/evalsha_ro
+   */
+  evalshaRo = (...args) => new EvalshaROCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/evalsha
+   */
+  evalsha = (...args) => new EvalshaCommand(args, this.opts).exec(this.client);
+  /**
+   * Generic method to execute any Redis command.
+   */
+  exec = (args) => new ExecCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/exists
+   */
+  exists = (...args) => new ExistsCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/expire
+   */
+  expire = (...args) => new ExpireCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/expireat
+   */
+  expireat = (...args) => new ExpireAtCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/flushall
+   */
+  flushall = (args) => new FlushAllCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/flushdb
+   */
+  flushdb = (...args) => new FlushDBCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geoadd
+   */
+  geoadd = (...args) => new GeoAddCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geopos
+   */
+  geopos = (...args) => new GeoPosCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geodist
+   */
+  geodist = (...args) => new GeoDistCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geohash
+   */
+  geohash = (...args) => new GeoHashCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geosearch
+   */
+  geosearch = (...args) => new GeoSearchCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/geosearchstore
+   */
+  geosearchstore = (...args) => new GeoSearchStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/get
+   */
+  get = (...args) => new GetCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/getbit
+   */
+  getbit = (...args) => new GetBitCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/getdel
+   */
+  getdel = (...args) => new GetDelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/getex
+   */
+  getex = (...args) => new GetExCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/getrange
+   */
+  getrange = (...args) => new GetRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/getset
+   */
+  getset = (key, value) => new GetSetCommand([key, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hdel
+   */
+  hdel = (...args) => new HDelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hexists
+   */
+  hexists = (...args) => new HExistsCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hexpire
+   */
+  hexpire = (...args) => new HExpireCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hexpireat
+   */
+  hexpireat = (...args) => new HExpireAtCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hexpiretime
+   */
+  hexpiretime = (...args) => new HExpireTimeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/httl
+   */
+  httl = (...args) => new HTtlCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hpexpire
+   */
+  hpexpire = (...args) => new HPExpireCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hpexpireat
+   */
+  hpexpireat = (...args) => new HPExpireAtCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hpexpiretime
+   */
+  hpexpiretime = (...args) => new HPExpireTimeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hpttl
+   */
+  hpttl = (...args) => new HPTtlCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hpersist
+   */
+  hpersist = (...args) => new HPersistCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hget
+   */
+  hget = (...args) => new HGetCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hgetall
+   */
+  hgetall = (...args) => new HGetAllCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hgetdel
+   */
+  hgetdel = (...args) => new HGetDelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hgetex
+   */
+  hgetex = (...args) => new HGetExCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hincrby
+   */
+  hincrby = (...args) => new HIncrByCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hincrbyfloat
+   */
+  hincrbyfloat = (...args) => new HIncrByFloatCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hkeys
+   */
+  hkeys = (...args) => new HKeysCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hlen
+   */
+  hlen = (...args) => new HLenCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hmget
+   */
+  hmget = (...args) => new HMGetCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hmset
+   */
+  hmset = (key, kv) => new HMSetCommand([key, kv], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hrandfield
+   */
+  hrandfield = (key, count, withValues) => new HRandFieldCommand([key, count, withValues], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hscan
+   */
+  hscan = (...args) => new HScanCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hset
+   */
+  hset = (key, kv) => new HSetCommand([key, kv], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hsetex
+   */
+  hsetex = (...args) => new HSetExCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hsetnx
+   */
+  hsetnx = (key, field, value) => new HSetNXCommand([key, field, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hstrlen
+   */
+  hstrlen = (...args) => new HStrLenCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/hvals
+   */
+  hvals = (...args) => new HValsCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/incr
+   */
+  incr = (...args) => new IncrCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/incrby
+   */
+  incrby = (...args) => new IncrByCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/incrbyfloat
+   */
+  incrbyfloat = (...args) => new IncrByFloatCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/keys
+   */
+  keys = (...args) => new KeysCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lindex
+   */
+  lindex = (...args) => new LIndexCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/linsert
+   */
+  linsert = (key, direction, pivot, value) => new LInsertCommand([key, direction, pivot, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/llen
+   */
+  llen = (...args) => new LLenCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lmove
+   */
+  lmove = (...args) => new LMoveCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lpop
+   */
+  lpop = (...args) => new LPopCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lmpop
+   */
+  lmpop = (...args) => new LmPopCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lpos
+   */
+  lpos = (...args) => new LPosCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lpush
+   */
+  lpush = (key, ...elements) => new LPushCommand([key, ...elements], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lpushx
+   */
+  lpushx = (key, ...elements) => new LPushXCommand([key, ...elements], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lrange
+   */
+  lrange = (...args) => new LRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lrem
+   */
+  lrem = (key, count, value) => new LRemCommand([key, count, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/lset
+   */
+  lset = (key, index, value) => new LSetCommand([key, index, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/ltrim
+   */
+  ltrim = (...args) => new LTrimCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/mget
+   */
+  mget = (...args) => new MGetCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/mset
+   */
+  mset = (kv) => new MSetCommand([kv], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/msetnx
+   */
+  msetnx = (kv) => new MSetNXCommand([kv], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/persist
+   */
+  persist = (...args) => new PersistCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/pexpire
+   */
+  pexpire = (...args) => new PExpireCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/pexpireat
+   */
+  pexpireat = (...args) => new PExpireAtCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/pfadd
+   */
+  pfadd = (...args) => new PfAddCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/pfcount
+   */
+  pfcount = (...args) => new PfCountCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/pfmerge
+   */
+  pfmerge = (...args) => new PfMergeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/ping
+   */
+  ping = (args) => new PingCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/psetex
+   */
+  psetex = (key, ttl, value) => new PSetEXCommand([key, ttl, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/psubscribe
+   */
+  psubscribe = (patterns) => {
+    const patternArray = Array.isArray(patterns) ? patterns : [patterns];
+    return new Subscriber(this.client, patternArray, true, this.opts);
+  };
+  /**
+   * @see https://redis.io/commands/pttl
+   */
+  pttl = (...args) => new PTtlCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/publish
+   */
+  publish = (...args) => new PublishCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/randomkey
+   */
+  randomkey = () => new RandomKeyCommand().exec(this.client);
+  /**
+   * @see https://redis.io/commands/rename
+   */
+  rename = (...args) => new RenameCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/renamenx
+   */
+  renamenx = (...args) => new RenameNXCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/rpop
+   */
+  rpop = (...args) => new RPopCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/rpush
+   */
+  rpush = (key, ...elements) => new RPushCommand([key, ...elements], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/rpushx
+   */
+  rpushx = (key, ...elements) => new RPushXCommand([key, ...elements], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sadd
+   */
+  sadd = (key, member, ...members) => new SAddCommand([key, member, ...members], this.opts).exec(this.client);
+  scan(cursor, opts) {
+    return new ScanCommand([cursor, opts], this.opts).exec(this.client);
+  }
+  /**
+   * @see https://redis.io/commands/scard
+   */
+  scard = (...args) => new SCardCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/script-exists
+   */
+  scriptExists = (...args) => new ScriptExistsCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/script-flush
+   */
+  scriptFlush = (...args) => new ScriptFlushCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/script-load
+   */
+  scriptLoad = (...args) => new ScriptLoadCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sdiff
+   */
+  sdiff = (...args) => new SDiffCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sdiffstore
+   */
+  sdiffstore = (...args) => new SDiffStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/set
+   */
+  set = (key, value, opts) => new SetCommand([key, value, opts], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/setbit
+   */
+  setbit = (...args) => new SetBitCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/setex
+   */
+  setex = (key, ttl, value) => new SetExCommand([key, ttl, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/setnx
+   */
+  setnx = (key, value) => new SetNxCommand([key, value], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/setrange
+   */
+  setrange = (...args) => new SetRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sinter
+   */
+  sinter = (...args) => new SInterCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sintercard
+   */
+  sintercard = (...args) => new SInterCardCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sinterstore
+   */
+  sinterstore = (...args) => new SInterStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sismember
+   */
+  sismember = (key, member) => new SIsMemberCommand([key, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/smismember
+   */
+  smismember = (key, members) => new SMIsMemberCommand([key, members], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/smembers
+   */
+  smembers = (...args) => new SMembersCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/smove
+   */
+  smove = (source, destination, member) => new SMoveCommand([source, destination, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/spop
+   */
+  spop = (...args) => new SPopCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/srandmember
+   */
+  srandmember = (...args) => new SRandMemberCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/srem
+   */
+  srem = (key, ...members) => new SRemCommand([key, ...members], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sscan
+   */
+  sscan = (...args) => new SScanCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/strlen
+   */
+  strlen = (...args) => new StrLenCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/subscribe
+   */
+  subscribe = (channels) => {
+    const channelArray = Array.isArray(channels) ? channels : [channels];
+    return new Subscriber(this.client, channelArray, false, this.opts);
+  };
+  /**
+   * @see https://redis.io/commands/sunion
+   */
+  sunion = (...args) => new SUnionCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/sunionstore
+   */
+  sunionstore = (...args) => new SUnionStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/time
+   */
+  time = () => new TimeCommand().exec(this.client);
+  /**
+   * @see https://redis.io/commands/touch
+   */
+  touch = (...args) => new TouchCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/ttl
+   */
+  ttl = (...args) => new TtlCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/type
+   */
+  type = (...args) => new TypeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/unlink
+   */
+  unlink = (...args) => new UnlinkCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xadd
+   */
+  xadd = (...args) => new XAddCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xack
+   */
+  xack = (...args) => new XAckCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xackdel
+   */
+  xackdel = (...args) => new XAckDelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xdel
+   */
+  xdel = (...args) => new XDelCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xdelex
+   */
+  xdelex = (...args) => new XDelExCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xgroup
+   */
+  xgroup = (...args) => new XGroupCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xread
+   */
+  xread = (...args) => new XReadCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xreadgroup
+   */
+  xreadgroup = (...args) => new XReadGroupCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xinfo
+   */
+  xinfo = (...args) => new XInfoCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xlen
+   */
+  xlen = (...args) => new XLenCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xpending
+   */
+  xpending = (...args) => new XPendingCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xclaim
+   */
+  xclaim = (...args) => new XClaimCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xautoclaim
+   */
+  xautoclaim = (...args) => new XAutoClaim(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xtrim
+   */
+  xtrim = (...args) => new XTrimCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xrange
+   */
+  xrange = (...args) => new XRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/xrevrange
+   */
+  xrevrange = (...args) => new XRevRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zadd
+   */
+  zadd = (...args) => {
+    if ("score" in args[1]) {
+      return new ZAddCommand([args[0], args[1], ...args.slice(2)], this.opts).exec(
+        this.client
+      );
+    }
+    return new ZAddCommand(
+      [args[0], args[1], ...args.slice(2)],
+      this.opts
+    ).exec(this.client);
+  };
+  /**
+   * @see https://redis.io/commands/zcard
+   */
+  zcard = (...args) => new ZCardCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zcount
+   */
+  zcount = (...args) => new ZCountCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zdiffstore
+   */
+  zdiffstore = (...args) => new ZDiffStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zincrby
+   */
+  zincrby = (key, increment, member) => new ZIncrByCommand([key, increment, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zinterstore
+   */
+  zinterstore = (...args) => new ZInterStoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zlexcount
+   */
+  zlexcount = (...args) => new ZLexCountCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zmscore
+   */
+  zmscore = (...args) => new ZMScoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zpopmax
+   */
+  zpopmax = (...args) => new ZPopMaxCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zpopmin
+   */
+  zpopmin = (...args) => new ZPopMinCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zrange
+   */
+  zrange = (...args) => new ZRangeCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zrank
+   */
+  zrank = (key, member) => new ZRankCommand([key, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zrem
+   */
+  zrem = (key, ...members) => new ZRemCommand([key, ...members], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zremrangebylex
+   */
+  zremrangebylex = (...args) => new ZRemRangeByLexCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zremrangebyrank
+   */
+  zremrangebyrank = (...args) => new ZRemRangeByRankCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zremrangebyscore
+   */
+  zremrangebyscore = (...args) => new ZRemRangeByScoreCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zrevrank
+   */
+  zrevrank = (key, member) => new ZRevRankCommand([key, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zscan
+   */
+  zscan = (...args) => new ZScanCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zscore
+   */
+  zscore = (key, member) => new ZScoreCommand([key, member], this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zunion
+   */
+  zunion = (...args) => new ZUnionCommand(args, this.opts).exec(this.client);
+  /**
+   * @see https://redis.io/commands/zunionstore
+   */
+  zunionstore = (...args) => new ZUnionStoreCommand(args, this.opts).exec(this.client);
+};
+var VERSION = "v1.30.2";
+
+// node_modules/@upstash/redis/nodejs.mjs
+var BUILD = /* @__PURE__ */ Symbol("build");
+var TextFieldBuilder = class _TextFieldBuilder {
+  _noTokenize;
+  _noStem;
+  _from;
+  constructor(noTokenize = { noTokenize: false }, noStem = { noStem: false }, from = { from: null }) {
+    this._noTokenize = noTokenize;
+    this._noStem = noStem;
+    this._from = from;
+  }
+  noTokenize() {
+    return new _TextFieldBuilder({ noTokenize: true }, this._noStem, this._from);
+  }
+  noStem() {
+    return new _TextFieldBuilder(this._noTokenize, { noStem: true }, this._from);
+  }
+  from(field) {
+    return new _TextFieldBuilder(this._noTokenize, this._noStem, { from: field });
+  }
+  [BUILD]() {
+    return {
+      type: "TEXT",
+      ...this._noTokenize.noTokenize ? { noTokenize: true } : {},
+      ...this._noStem.noStem ? { noStem: true } : {},
+      ...this._from.from ? { from: this._from.from } : {}
+    };
+  }
+};
+var NumericFieldBuilder = class _NumericFieldBuilder {
+  type;
+  _from;
+  constructor(type, from = { from: null }) {
+    this.type = type;
+    this._from = from;
+  }
+  from(field) {
+    return new _NumericFieldBuilder(this.type, { from: field });
+  }
+  [BUILD]() {
+    return this._from.from ? {
+      type: this.type,
+      fast: true,
+      from: this._from.from
+    } : {
+      type: this.type,
+      fast: true
+    };
+  }
+};
+var BoolFieldBuilder = class _BoolFieldBuilder {
+  _fast;
+  _from;
+  constructor(fast = { fast: false }, from = { from: null }) {
+    this._fast = fast;
+    this._from = from;
+  }
+  fast() {
+    return new _BoolFieldBuilder({ fast: true }, this._from);
+  }
+  from(field) {
+    return new _BoolFieldBuilder(this._fast, { from: field });
+  }
+  [BUILD]() {
+    const hasFast = this._fast.fast;
+    const hasFrom = Boolean(this._from.from);
+    if (hasFast && hasFrom) {
+      return {
+        type: "BOOL",
+        fast: true,
+        from: this._from.from
+      };
+    }
+    if (hasFast) {
+      return {
+        type: "BOOL",
+        fast: true
+      };
+    }
+    if (hasFrom) {
+      return {
+        type: "BOOL",
+        from: this._from.from
+      };
+    }
+    return { type: "BOOL" };
+  }
+};
+var DateFieldBuilder = class _DateFieldBuilder {
+  _fast;
+  _from;
+  constructor(fast = { fast: false }, from = { from: null }) {
+    this._fast = fast;
+    this._from = from;
+  }
+  fast() {
+    return new _DateFieldBuilder({ fast: true }, this._from);
+  }
+  from(field) {
+    return new _DateFieldBuilder(this._fast, { from: field });
+  }
+  [BUILD]() {
+    const hasFast = this._fast.fast;
+    const hasFrom = Boolean(this._from.from);
+    if (hasFast && hasFrom) {
+      return {
+        type: "DATE",
+        fast: true,
+        from: this._from.from
+      };
+    }
+    if (hasFast) {
+      return {
+        type: "DATE",
+        fast: true
+      };
+    }
+    if (hasFrom) {
+      return {
+        type: "DATE",
+        from: this._from.from
+      };
+    }
+    return { type: "DATE" };
+  }
+};
+var KeywordFieldBuilder = class {
+  [BUILD]() {
+    return { type: "KEYWORD" };
+  }
+};
+var FacetFieldBuilder = class {
+  [BUILD]() {
+    return { type: "FACET" };
+  }
+};
+if (typeof atob === "undefined") {
+  globalThis.atob = (b64) => Buffer.from(b64, "base64").toString("utf8");
 }
+var Redis2 = class _Redis extends Redis {
+  /**
+   * Create a new redis client by providing a custom `Requester` implementation
+   *
+   * @example
+   * ```ts
+   *
+   * import { UpstashRequest, Requester, UpstashResponse, Redis } from "@upstash/redis"
+   *
+   *  const requester: Requester = {
+   *    request: <TResult>(req: UpstashRequest): Promise<UpstashResponse<TResult>> => {
+   *      // ...
+   *    }
+   *  }
+   *
+   * const redis = new Redis(requester)
+   * ```
+   */
+  constructor(configOrRequester) {
+    if ("request" in configOrRequester) {
+      super(configOrRequester);
+      return;
+    }
+    if (!configOrRequester.url) {
+      console.warn(
+        `[Upstash Redis] The 'url' property is missing or undefined in your Redis config.`
+      );
+    } else if (configOrRequester.url.startsWith(" ") || configOrRequester.url.endsWith(" ") || /\r|\n/.test(configOrRequester.url)) {
+      console.warn(
+        "[Upstash Redis] The redis url contains whitespace or newline, which can cause errors!"
+      );
+    }
+    if (!configOrRequester.token) {
+      console.warn(
+        `[Upstash Redis] The 'token' property is missing or undefined in your Redis config.`
+      );
+    } else if (configOrRequester.token.startsWith(" ") || configOrRequester.token.endsWith(" ") || /\r|\n/.test(configOrRequester.token)) {
+      console.warn(
+        "[Upstash Redis] The redis token contains whitespace or newline, which can cause errors!"
+      );
+    }
+    const client = new HttpClient({
+      baseUrl: configOrRequester.url,
+      retry: configOrRequester.retry,
+      headers: { authorization: `Bearer ${configOrRequester.token}` },
+      agent: configOrRequester.agent,
+      responseEncoding: configOrRequester.responseEncoding,
+      cache: configOrRequester.cache ?? "no-store",
+      signal: configOrRequester.signal,
+      keepAlive: configOrRequester.keepAlive,
+      readYourWrites: configOrRequester.readYourWrites
+    });
+    const safeEnv = typeof process === "object" && process && typeof process.env === "object" && process.env ? process.env : {};
+    super(client, {
+      automaticDeserialization: configOrRequester.automaticDeserialization,
+      enableTelemetry: configOrRequester.enableTelemetry ?? !safeEnv.UPSTASH_DISABLE_TELEMETRY,
+      latencyLogging: configOrRequester.latencyLogging,
+      enableAutoPipelining: configOrRequester.enableAutoPipelining
+    });
+    const nodeVersion = typeof process === "object" && process ? process.version : void 0;
+    this.addTelemetry({
+      runtime: (
+        // @ts-expect-error to silence compiler
+        typeof EdgeRuntime === "string" ? "edge-light" : nodeVersion ? `node@${nodeVersion}` : "unknown"
+      ),
+      platform: safeEnv.UPSTASH_CONSOLE ? "console" : safeEnv.VERCEL ? "vercel" : safeEnv.AWS_REGION ? "aws" : "unknown",
+      sdk: `@upstash/redis@${VERSION}`
+    });
+    if (this.enableAutoPipelining) {
+      return this.autoPipeline();
+    }
+  }
+  /**
+   * Create a new Upstash Redis instance from environment variables.
+   *
+   * Use this to automatically load connection secrets from your environment
+   * variables. For instance when using the Vercel integration.
+   *
+   * This tries to load connection details from your environment using `process.env`:
+   * - URL: `UPSTASH_REDIS_REST_URL` or fallback to `KV_REST_API_URL`
+   * - Token: `UPSTASH_REDIS_REST_TOKEN` or fallback to `KV_REST_API_TOKEN`
+   *
+   * The fallback variables provide compatibility with Vercel KV and other platforms
+   * that may use different naming conventions.
+   */
+  static fromEnv(config) {
+    if (typeof process !== "object" || !process || typeof process.env !== "object" || !process.env) {
+      throw new TypeError(
+        '[Upstash Redis] Unable to get environment variables, `process.env` is undefined. If you are deploying to cloudflare, please import from "@upstash/redis/cloudflare" instead'
+      );
+    }
+    const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+    if (!url) {
+      console.warn("[Upstash Redis] Unable to find environment variable: `UPSTASH_REDIS_REST_URL`");
+    }
+    const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+    if (!token) {
+      console.warn(
+        "[Upstash Redis] Unable to find environment variable: `UPSTASH_REDIS_REST_TOKEN`"
+      );
+    }
+    return new _Redis({ ...config, url, token });
+  }
+};
+
+// node_modules/jose/dist/webapi/lib/buffer_utils.js
+var encoder = new TextEncoder();
+var decoder = new TextDecoder();
+var MAX_INT32 = 2 ** 32;
+function concat(...buffers) {
+  const size = buffers.reduce((acc, { length }) => acc + length, 0);
+  const buf = new Uint8Array(size);
+  let i = 0;
+  for (const buffer of buffers) {
+    buf.set(buffer, i);
+    i += buffer.length;
+  }
+  return buf;
+}
+function encode(string) {
+  const bytes = new Uint8Array(string.length);
+  for (let i = 0; i < string.length; i++) {
+    const code = string.charCodeAt(i);
+    if (code > 127) {
+      throw new TypeError("non-ASCII string encountered in encode()");
+    }
+    bytes[i] = code;
+  }
+  return bytes;
+}
+
+// node_modules/jose/dist/webapi/lib/base64.js
+function encodeBase64(input) {
+  if (Uint8Array.prototype.toBase64) {
+    return input.toBase64();
+  }
+  const CHUNK_SIZE = 32768;
+  const arr = [];
+  for (let i = 0; i < input.length; i += CHUNK_SIZE) {
+    arr.push(String.fromCharCode.apply(null, input.subarray(i, i + CHUNK_SIZE)));
+  }
+  return btoa(arr.join(""));
+}
+function decodeBase64(encoded) {
+  if (Uint8Array.fromBase64) {
+    return Uint8Array.fromBase64(encoded);
+  }
+  const binary = atob(encoded);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
+// node_modules/jose/dist/webapi/util/base64url.js
+function decode2(input) {
+  if (Uint8Array.fromBase64) {
+    return Uint8Array.fromBase64(typeof input === "string" ? input : decoder.decode(input), {
+      alphabet: "base64url"
+    });
+  }
+  let encoded = input;
+  if (encoded instanceof Uint8Array) {
+    encoded = decoder.decode(encoded);
+  }
+  encoded = encoded.replace(/-/g, "+").replace(/_/g, "/");
+  try {
+    return decodeBase64(encoded);
+  } catch {
+    throw new TypeError("The input to be decoded is not correctly encoded.");
+  }
+}
+function encode2(input) {
+  let unencoded = input;
+  if (typeof unencoded === "string") {
+    unencoded = encoder.encode(unencoded);
+  }
+  if (Uint8Array.prototype.toBase64) {
+    return unencoded.toBase64({ alphabet: "base64url", omitPadding: true });
+  }
+  return encodeBase64(unencoded).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+}
+
+// node_modules/jose/dist/webapi/lib/crypto_key.js
+var unusable = (name, prop = "algorithm.name") => new TypeError(`CryptoKey does not support this operation, its ${prop} must be ${name}`);
+var isAlgorithm = (algorithm, name) => algorithm.name === name;
+function getHashLength(hash) {
+  return parseInt(hash.name.slice(4), 10);
+}
+function checkHashLength(algorithm, expected) {
+  const actual = getHashLength(algorithm.hash);
+  if (actual !== expected)
+    throw unusable(`SHA-${expected}`, "algorithm.hash");
+}
+function getNamedCurve(alg) {
+  switch (alg) {
+    case "ES256":
+      return "P-256";
+    case "ES384":
+      return "P-384";
+    case "ES512":
+      return "P-521";
+    default:
+      throw new Error("unreachable");
+  }
+}
+function checkUsage(key, usage) {
+  if (usage && !key.usages.includes(usage)) {
+    throw new TypeError(`CryptoKey does not support this operation, its usages must include ${usage}.`);
+  }
+}
+function checkSigCryptoKey(key, alg, usage) {
+  switch (alg) {
+    case "HS256":
+    case "HS384":
+    case "HS512": {
+      if (!isAlgorithm(key.algorithm, "HMAC"))
+        throw unusable("HMAC");
+      checkHashLength(key.algorithm, parseInt(alg.slice(2), 10));
+      break;
+    }
+    case "RS256":
+    case "RS384":
+    case "RS512": {
+      if (!isAlgorithm(key.algorithm, "RSASSA-PKCS1-v1_5"))
+        throw unusable("RSASSA-PKCS1-v1_5");
+      checkHashLength(key.algorithm, parseInt(alg.slice(2), 10));
+      break;
+    }
+    case "PS256":
+    case "PS384":
+    case "PS512": {
+      if (!isAlgorithm(key.algorithm, "RSA-PSS"))
+        throw unusable("RSA-PSS");
+      checkHashLength(key.algorithm, parseInt(alg.slice(2), 10));
+      break;
+    }
+    case "Ed25519":
+    case "EdDSA": {
+      if (!isAlgorithm(key.algorithm, "Ed25519"))
+        throw unusable("Ed25519");
+      break;
+    }
+    case "ML-DSA-44":
+    case "ML-DSA-65":
+    case "ML-DSA-87": {
+      if (!isAlgorithm(key.algorithm, alg))
+        throw unusable(alg);
+      break;
+    }
+    case "ES256":
+    case "ES384":
+    case "ES512": {
+      if (!isAlgorithm(key.algorithm, "ECDSA"))
+        throw unusable("ECDSA");
+      const expected = getNamedCurve(alg);
+      const actual = key.algorithm.namedCurve;
+      if (actual !== expected)
+        throw unusable(expected, "algorithm.namedCurve");
+      break;
+    }
+    default:
+      throw new TypeError("CryptoKey does not support this operation");
+  }
+  checkUsage(key, usage);
+}
+
+// node_modules/jose/dist/webapi/lib/invalid_key_input.js
+function message(msg, actual, ...types) {
+  types = types.filter(Boolean);
+  if (types.length > 2) {
+    const last = types.pop();
+    msg += `one of type ${types.join(", ")}, or ${last}.`;
+  } else if (types.length === 2) {
+    msg += `one of type ${types[0]} or ${types[1]}.`;
+  } else {
+    msg += `of type ${types[0]}.`;
+  }
+  if (actual == null) {
+    msg += ` Received ${actual}`;
+  } else if (typeof actual === "function" && actual.name) {
+    msg += ` Received function ${actual.name}`;
+  } else if (typeof actual === "object" && actual != null) {
+    if (actual.constructor?.name) {
+      msg += ` Received an instance of ${actual.constructor.name}`;
+    }
+  }
+  return msg;
+}
+var invalidKeyInput = (actual, ...types) => message("Key must be ", actual, ...types);
+var withAlg = (alg, actual, ...types) => message(`Key for the ${alg} algorithm must be `, actual, ...types);
+
+// node_modules/jose/dist/webapi/util/errors.js
+var JOSEError = class extends Error {
+  static code = "ERR_JOSE_GENERIC";
+  code = "ERR_JOSE_GENERIC";
+  constructor(message2, options) {
+    super(message2, options);
+    this.name = this.constructor.name;
+    Error.captureStackTrace?.(this, this.constructor);
+  }
+};
+var JWTClaimValidationFailed = class extends JOSEError {
+  static code = "ERR_JWT_CLAIM_VALIDATION_FAILED";
+  code = "ERR_JWT_CLAIM_VALIDATION_FAILED";
+  claim;
+  reason;
+  payload;
+  constructor(message2, payload, claim = "unspecified", reason = "unspecified") {
+    super(message2, { cause: { claim, reason, payload } });
+    this.claim = claim;
+    this.reason = reason;
+    this.payload = payload;
+  }
+};
+var JWTExpired = class extends JOSEError {
+  static code = "ERR_JWT_EXPIRED";
+  code = "ERR_JWT_EXPIRED";
+  claim;
+  reason;
+  payload;
+  constructor(message2, payload, claim = "unspecified", reason = "unspecified") {
+    super(message2, { cause: { claim, reason, payload } });
+    this.claim = claim;
+    this.reason = reason;
+    this.payload = payload;
+  }
+};
+var JOSEAlgNotAllowed = class extends JOSEError {
+  static code = "ERR_JOSE_ALG_NOT_ALLOWED";
+  code = "ERR_JOSE_ALG_NOT_ALLOWED";
+};
+var JOSENotSupported = class extends JOSEError {
+  static code = "ERR_JOSE_NOT_SUPPORTED";
+  code = "ERR_JOSE_NOT_SUPPORTED";
+};
+var JWSInvalid = class extends JOSEError {
+  static code = "ERR_JWS_INVALID";
+  code = "ERR_JWS_INVALID";
+};
+var JWTInvalid = class extends JOSEError {
+  static code = "ERR_JWT_INVALID";
+  code = "ERR_JWT_INVALID";
+};
+var JWSSignatureVerificationFailed = class extends JOSEError {
+  static code = "ERR_JWS_SIGNATURE_VERIFICATION_FAILED";
+  code = "ERR_JWS_SIGNATURE_VERIFICATION_FAILED";
+  constructor(message2 = "signature verification failed", options) {
+    super(message2, options);
+  }
+};
+
+// node_modules/jose/dist/webapi/lib/is_key_like.js
+var isCryptoKey = (key) => {
+  if (key?.[Symbol.toStringTag] === "CryptoKey")
+    return true;
+  try {
+    return key instanceof CryptoKey;
+  } catch {
+    return false;
+  }
+};
+var isKeyObject = (key) => key?.[Symbol.toStringTag] === "KeyObject";
+var isKeyLike = (key) => isCryptoKey(key) || isKeyObject(key);
+
+// node_modules/jose/dist/webapi/lib/helpers.js
+function assertNotSet(value, name) {
+  if (value) {
+    throw new TypeError(`${name} can only be called once`);
+  }
+}
+function decodeBase64url(value, label, ErrorClass) {
+  try {
+    return decode2(value);
+  } catch {
+    throw new ErrorClass(`Failed to base64url decode the ${label}`);
+  }
+}
+
+// node_modules/jose/dist/webapi/lib/type_checks.js
+var isObjectLike = (value) => typeof value === "object" && value !== null;
+function isObject(input) {
+  if (!isObjectLike(input) || Object.prototype.toString.call(input) !== "[object Object]") {
+    return false;
+  }
+  if (Object.getPrototypeOf(input) === null) {
+    return true;
+  }
+  let proto = input;
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+  return Object.getPrototypeOf(input) === proto;
+}
+function isDisjoint(...headers) {
+  const sources = headers.filter(Boolean);
+  if (sources.length === 0 || sources.length === 1) {
+    return true;
+  }
+  let acc;
+  for (const header of sources) {
+    const parameters = Object.keys(header);
+    if (!acc || acc.size === 0) {
+      acc = new Set(parameters);
+      continue;
+    }
+    for (const parameter of parameters) {
+      if (acc.has(parameter)) {
+        return false;
+      }
+      acc.add(parameter);
+    }
+  }
+  return true;
+}
+var isJWK = (key) => isObject(key) && typeof key.kty === "string";
+var isPrivateJWK = (key) => key.kty !== "oct" && (key.kty === "AKP" && typeof key.priv === "string" || typeof key.d === "string");
+var isPublicJWK = (key) => key.kty !== "oct" && key.d === void 0 && key.priv === void 0;
+var isSecretJWK = (key) => key.kty === "oct" && typeof key.k === "string";
+
+// node_modules/jose/dist/webapi/lib/signing.js
+function checkKeyLength(alg, key) {
+  if (alg.startsWith("RS") || alg.startsWith("PS")) {
+    const { modulusLength } = key.algorithm;
+    if (typeof modulusLength !== "number" || modulusLength < 2048) {
+      throw new TypeError(`${alg} requires key modulusLength to be 2048 bits or larger`);
+    }
+  }
+}
+function subtleAlgorithm(alg, algorithm) {
+  const hash = `SHA-${alg.slice(-3)}`;
+  switch (alg) {
+    case "HS256":
+    case "HS384":
+    case "HS512":
+      return { hash, name: "HMAC" };
+    case "PS256":
+    case "PS384":
+    case "PS512":
+      return { hash, name: "RSA-PSS", saltLength: parseInt(alg.slice(-3), 10) >> 3 };
+    case "RS256":
+    case "RS384":
+    case "RS512":
+      return { hash, name: "RSASSA-PKCS1-v1_5" };
+    case "ES256":
+    case "ES384":
+    case "ES512":
+      return { hash, name: "ECDSA", namedCurve: algorithm.namedCurve };
+    case "Ed25519":
+    case "EdDSA":
+      return { name: "Ed25519" };
+    case "ML-DSA-44":
+    case "ML-DSA-65":
+    case "ML-DSA-87":
+      return { name: alg };
+    default:
+      throw new JOSENotSupported(`alg ${alg} is not supported either by JOSE or your javascript runtime`);
+  }
+}
+async function getSigKey(alg, key, usage) {
+  if (key instanceof Uint8Array) {
+    if (!alg.startsWith("HS")) {
+      throw new TypeError(invalidKeyInput(key, "CryptoKey", "KeyObject", "JSON Web Key"));
+    }
+    return crypto.subtle.importKey("raw", key, { hash: `SHA-${alg.slice(-3)}`, name: "HMAC" }, false, [usage]);
+  }
+  checkSigCryptoKey(key, alg, usage);
+  return key;
+}
+async function sign(alg, key, data) {
+  const cryptoKey = await getSigKey(alg, key, "sign");
+  checkKeyLength(alg, cryptoKey);
+  const signature = await crypto.subtle.sign(subtleAlgorithm(alg, cryptoKey.algorithm), cryptoKey, data);
+  return new Uint8Array(signature);
+}
+async function verify(alg, key, signature, data) {
+  const cryptoKey = await getSigKey(alg, key, "verify");
+  checkKeyLength(alg, cryptoKey);
+  const algorithm = subtleAlgorithm(alg, cryptoKey.algorithm);
+  try {
+    return await crypto.subtle.verify(algorithm, cryptoKey, signature, data);
+  } catch {
+    return false;
+  }
+}
+
+// node_modules/jose/dist/webapi/lib/jwk_to_key.js
+var unsupportedAlg = 'Invalid or unsupported JWK "alg" (Algorithm) Parameter value';
+function subtleMapping(jwk) {
+  let algorithm;
+  let keyUsages;
+  switch (jwk.kty) {
+    case "AKP": {
+      switch (jwk.alg) {
+        case "ML-DSA-44":
+        case "ML-DSA-65":
+        case "ML-DSA-87":
+          algorithm = { name: jwk.alg };
+          keyUsages = jwk.priv ? ["sign"] : ["verify"];
+          break;
+        default:
+          throw new JOSENotSupported(unsupportedAlg);
+      }
+      break;
+    }
+    case "RSA": {
+      switch (jwk.alg) {
+        case "PS256":
+        case "PS384":
+        case "PS512":
+          algorithm = { name: "RSA-PSS", hash: `SHA-${jwk.alg.slice(-3)}` };
+          keyUsages = jwk.d ? ["sign"] : ["verify"];
+          break;
+        case "RS256":
+        case "RS384":
+        case "RS512":
+          algorithm = { name: "RSASSA-PKCS1-v1_5", hash: `SHA-${jwk.alg.slice(-3)}` };
+          keyUsages = jwk.d ? ["sign"] : ["verify"];
+          break;
+        case "RSA-OAEP":
+        case "RSA-OAEP-256":
+        case "RSA-OAEP-384":
+        case "RSA-OAEP-512":
+          algorithm = {
+            name: "RSA-OAEP",
+            hash: `SHA-${parseInt(jwk.alg.slice(-3), 10) || 1}`
+          };
+          keyUsages = jwk.d ? ["decrypt", "unwrapKey"] : ["encrypt", "wrapKey"];
+          break;
+        default:
+          throw new JOSENotSupported(unsupportedAlg);
+      }
+      break;
+    }
+    case "EC": {
+      switch (jwk.alg) {
+        case "ES256":
+        case "ES384":
+        case "ES512":
+          algorithm = {
+            name: "ECDSA",
+            namedCurve: { ES256: "P-256", ES384: "P-384", ES512: "P-521" }[jwk.alg]
+          };
+          keyUsages = jwk.d ? ["sign"] : ["verify"];
+          break;
+        case "ECDH-ES":
+        case "ECDH-ES+A128KW":
+        case "ECDH-ES+A192KW":
+        case "ECDH-ES+A256KW":
+          algorithm = { name: "ECDH", namedCurve: jwk.crv };
+          keyUsages = jwk.d ? ["deriveBits"] : [];
+          break;
+        default:
+          throw new JOSENotSupported(unsupportedAlg);
+      }
+      break;
+    }
+    case "OKP": {
+      switch (jwk.alg) {
+        case "Ed25519":
+        case "EdDSA":
+          algorithm = { name: "Ed25519" };
+          keyUsages = jwk.d ? ["sign"] : ["verify"];
+          break;
+        case "ECDH-ES":
+        case "ECDH-ES+A128KW":
+        case "ECDH-ES+A192KW":
+        case "ECDH-ES+A256KW":
+          algorithm = { name: jwk.crv };
+          keyUsages = jwk.d ? ["deriveBits"] : [];
+          break;
+        default:
+          throw new JOSENotSupported(unsupportedAlg);
+      }
+      break;
+    }
+    default:
+      throw new JOSENotSupported('Invalid or unsupported JWK "kty" (Key Type) Parameter value');
+  }
+  return { algorithm, keyUsages };
+}
+async function jwkToKey(jwk) {
+  if (!jwk.alg) {
+    throw new TypeError('"alg" argument is required when "jwk.alg" is not present');
+  }
+  const { algorithm, keyUsages } = subtleMapping(jwk);
+  const keyData = { ...jwk };
+  if (keyData.kty !== "AKP") {
+    delete keyData.alg;
+  }
+  delete keyData.use;
+  return crypto.subtle.importKey("jwk", keyData, algorithm, jwk.ext ?? (jwk.d || jwk.priv ? false : true), jwk.key_ops ?? keyUsages);
+}
+
+// node_modules/jose/dist/webapi/lib/normalize_key.js
+var unusableForAlg = "given KeyObject instance cannot be used for this algorithm";
+var cache;
+var handleJWK = async (key, jwk, alg, freeze = false) => {
+  cache ||= /* @__PURE__ */ new WeakMap();
+  let cached = cache.get(key);
+  if (cached?.[alg]) {
+    return cached[alg];
+  }
+  const cryptoKey = await jwkToKey({ ...jwk, alg });
+  if (freeze)
+    Object.freeze(key);
+  if (!cached) {
+    cache.set(key, { [alg]: cryptoKey });
+  } else {
+    cached[alg] = cryptoKey;
+  }
+  return cryptoKey;
+};
+var handleKeyObject = (keyObject, alg) => {
+  cache ||= /* @__PURE__ */ new WeakMap();
+  let cached = cache.get(keyObject);
+  if (cached?.[alg]) {
+    return cached[alg];
+  }
+  const isPublic = keyObject.type === "public";
+  const extractable = isPublic ? true : false;
+  let cryptoKey;
+  if (keyObject.asymmetricKeyType === "x25519") {
+    switch (alg) {
+      case "ECDH-ES":
+      case "ECDH-ES+A128KW":
+      case "ECDH-ES+A192KW":
+      case "ECDH-ES+A256KW":
+        break;
+      default:
+        throw new TypeError(unusableForAlg);
+    }
+    cryptoKey = keyObject.toCryptoKey(keyObject.asymmetricKeyType, extractable, isPublic ? [] : ["deriveBits"]);
+  }
+  if (keyObject.asymmetricKeyType === "ed25519") {
+    if (alg !== "EdDSA" && alg !== "Ed25519") {
+      throw new TypeError(unusableForAlg);
+    }
+    cryptoKey = keyObject.toCryptoKey(keyObject.asymmetricKeyType, extractable, [
+      isPublic ? "verify" : "sign"
+    ]);
+  }
+  switch (keyObject.asymmetricKeyType) {
+    case "ml-dsa-44":
+    case "ml-dsa-65":
+    case "ml-dsa-87": {
+      if (alg !== keyObject.asymmetricKeyType.toUpperCase()) {
+        throw new TypeError(unusableForAlg);
+      }
+      cryptoKey = keyObject.toCryptoKey(keyObject.asymmetricKeyType, extractable, [
+        isPublic ? "verify" : "sign"
+      ]);
+    }
+  }
+  if (keyObject.asymmetricKeyType === "rsa") {
+    let hash;
+    switch (alg) {
+      case "RSA-OAEP":
+        hash = "SHA-1";
+        break;
+      case "RS256":
+      case "PS256":
+      case "RSA-OAEP-256":
+        hash = "SHA-256";
+        break;
+      case "RS384":
+      case "PS384":
+      case "RSA-OAEP-384":
+        hash = "SHA-384";
+        break;
+      case "RS512":
+      case "PS512":
+      case "RSA-OAEP-512":
+        hash = "SHA-512";
+        break;
+      default:
+        throw new TypeError(unusableForAlg);
+    }
+    if (alg.startsWith("RSA-OAEP")) {
+      return keyObject.toCryptoKey({
+        name: "RSA-OAEP",
+        hash
+      }, extractable, isPublic ? ["encrypt"] : ["decrypt"]);
+    }
+    cryptoKey = keyObject.toCryptoKey({
+      name: alg.startsWith("PS") ? "RSA-PSS" : "RSASSA-PKCS1-v1_5",
+      hash
+    }, extractable, [isPublic ? "verify" : "sign"]);
+  }
+  if (keyObject.asymmetricKeyType === "ec") {
+    const nist = /* @__PURE__ */ new Map([
+      ["prime256v1", "P-256"],
+      ["secp384r1", "P-384"],
+      ["secp521r1", "P-521"]
+    ]);
+    const namedCurve = nist.get(keyObject.asymmetricKeyDetails?.namedCurve);
+    if (!namedCurve) {
+      throw new TypeError(unusableForAlg);
+    }
+    const expectedCurve = { ES256: "P-256", ES384: "P-384", ES512: "P-521" };
+    if (expectedCurve[alg] && namedCurve === expectedCurve[alg]) {
+      cryptoKey = keyObject.toCryptoKey({
+        name: "ECDSA",
+        namedCurve
+      }, extractable, [isPublic ? "verify" : "sign"]);
+    }
+    if (alg.startsWith("ECDH-ES")) {
+      cryptoKey = keyObject.toCryptoKey({
+        name: "ECDH",
+        namedCurve
+      }, extractable, isPublic ? [] : ["deriveBits"]);
+    }
+  }
+  if (!cryptoKey) {
+    throw new TypeError(unusableForAlg);
+  }
+  if (!cached) {
+    cache.set(keyObject, { [alg]: cryptoKey });
+  } else {
+    cached[alg] = cryptoKey;
+  }
+  return cryptoKey;
+};
+async function normalizeKey(key, alg) {
+  if (key instanceof Uint8Array) {
+    return key;
+  }
+  if (isCryptoKey(key)) {
+    return key;
+  }
+  if (isKeyObject(key)) {
+    if (key.type === "secret") {
+      return key.export();
+    }
+    if ("toCryptoKey" in key && typeof key.toCryptoKey === "function") {
+      try {
+        return handleKeyObject(key, alg);
+      } catch (err) {
+        if (err instanceof TypeError) {
+          throw err;
+        }
+      }
+    }
+    let jwk = key.export({ format: "jwk" });
+    return handleJWK(key, jwk, alg);
+  }
+  if (isJWK(key)) {
+    if (key.k) {
+      return decode2(key.k);
+    }
+    return handleJWK(key, key, alg, true);
+  }
+  throw new Error("unreachable");
+}
+
+// node_modules/jose/dist/webapi/lib/validate_crit.js
+function validateCrit(Err, recognizedDefault, recognizedOption, protectedHeader, joseHeader) {
+  if (joseHeader.crit !== void 0 && protectedHeader?.crit === void 0) {
+    throw new Err('"crit" (Critical) Header Parameter MUST be integrity protected');
+  }
+  if (!protectedHeader || protectedHeader.crit === void 0) {
+    return /* @__PURE__ */ new Set();
+  }
+  if (!Array.isArray(protectedHeader.crit) || protectedHeader.crit.length === 0 || protectedHeader.crit.some((input) => typeof input !== "string" || input.length === 0)) {
+    throw new Err('"crit" (Critical) Header Parameter MUST be an array of non-empty strings when present');
+  }
+  let recognized;
+  if (recognizedOption !== void 0) {
+    recognized = new Map([...Object.entries(recognizedOption), ...recognizedDefault.entries()]);
+  } else {
+    recognized = recognizedDefault;
+  }
+  for (const parameter of protectedHeader.crit) {
+    if (!recognized.has(parameter)) {
+      throw new JOSENotSupported(`Extension Header Parameter "${parameter}" is not recognized`);
+    }
+    if (joseHeader[parameter] === void 0) {
+      throw new Err(`Extension Header Parameter "${parameter}" is missing`);
+    }
+    if (recognized.get(parameter) && protectedHeader[parameter] === void 0) {
+      throw new Err(`Extension Header Parameter "${parameter}" MUST be integrity protected`);
+    }
+  }
+  return new Set(protectedHeader.crit);
+}
+
+// node_modules/jose/dist/webapi/lib/validate_algorithms.js
+function validateAlgorithms(option, algorithms) {
+  if (algorithms !== void 0 && (!Array.isArray(algorithms) || algorithms.some((s) => typeof s !== "string"))) {
+    throw new TypeError(`"${option}" option must be an array of strings`);
+  }
+  if (!algorithms) {
+    return void 0;
+  }
+  return new Set(algorithms);
+}
+
+// node_modules/jose/dist/webapi/lib/check_key_type.js
+var tag = (key) => key?.[Symbol.toStringTag];
+var jwkMatchesOp = (alg, key, usage) => {
+  if (key.use !== void 0) {
+    let expected;
+    switch (usage) {
+      case "sign":
+      case "verify":
+        expected = "sig";
+        break;
+      case "encrypt":
+      case "decrypt":
+        expected = "enc";
+        break;
+    }
+    if (key.use !== expected) {
+      throw new TypeError(`Invalid key for this operation, its "use" must be "${expected}" when present`);
+    }
+  }
+  if (key.alg !== void 0 && key.alg !== alg) {
+    throw new TypeError(`Invalid key for this operation, its "alg" must be "${alg}" when present`);
+  }
+  if (Array.isArray(key.key_ops)) {
+    let expectedKeyOp;
+    switch (true) {
+      case (usage === "sign" || usage === "verify"):
+      case alg === "dir":
+      case alg.includes("CBC-HS"):
+        expectedKeyOp = usage;
+        break;
+      case alg.startsWith("PBES2"):
+        expectedKeyOp = "deriveBits";
+        break;
+      case /^A\d{3}(?:GCM)?(?:KW)?$/.test(alg):
+        if (!alg.includes("GCM") && alg.endsWith("KW")) {
+          expectedKeyOp = usage === "encrypt" ? "wrapKey" : "unwrapKey";
+        } else {
+          expectedKeyOp = usage;
+        }
+        break;
+      case (usage === "encrypt" && alg.startsWith("RSA")):
+        expectedKeyOp = "wrapKey";
+        break;
+      case usage === "decrypt":
+        expectedKeyOp = alg.startsWith("RSA") ? "unwrapKey" : "deriveBits";
+        break;
+    }
+    if (expectedKeyOp && key.key_ops?.includes?.(expectedKeyOp) === false) {
+      throw new TypeError(`Invalid key for this operation, its "key_ops" must include "${expectedKeyOp}" when present`);
+    }
+  }
+  return true;
+};
+var symmetricTypeCheck = (alg, key, usage) => {
+  if (key instanceof Uint8Array)
+    return;
+  if (isJWK(key)) {
+    if (isSecretJWK(key) && jwkMatchesOp(alg, key, usage))
+      return;
+    throw new TypeError(`JSON Web Key for symmetric algorithms must have JWK "kty" (Key Type) equal to "oct" and the JWK "k" (Key Value) present`);
+  }
+  if (!isKeyLike(key)) {
+    throw new TypeError(withAlg(alg, key, "CryptoKey", "KeyObject", "JSON Web Key", "Uint8Array"));
+  }
+  if (key.type !== "secret") {
+    throw new TypeError(`${tag(key)} instances for symmetric algorithms must be of type "secret"`);
+  }
+};
+var asymmetricTypeCheck = (alg, key, usage) => {
+  if (isJWK(key)) {
+    switch (usage) {
+      case "decrypt":
+      case "sign":
+        if (isPrivateJWK(key) && jwkMatchesOp(alg, key, usage))
+          return;
+        throw new TypeError(`JSON Web Key for this operation must be a private JWK`);
+      case "encrypt":
+      case "verify":
+        if (isPublicJWK(key) && jwkMatchesOp(alg, key, usage))
+          return;
+        throw new TypeError(`JSON Web Key for this operation must be a public JWK`);
+    }
+  }
+  if (!isKeyLike(key)) {
+    throw new TypeError(withAlg(alg, key, "CryptoKey", "KeyObject", "JSON Web Key"));
+  }
+  if (key.type === "secret") {
+    throw new TypeError(`${tag(key)} instances for asymmetric algorithms must not be of type "secret"`);
+  }
+  if (key.type === "public") {
+    switch (usage) {
+      case "sign":
+        throw new TypeError(`${tag(key)} instances for asymmetric algorithm signing must be of type "private"`);
+      case "decrypt":
+        throw new TypeError(`${tag(key)} instances for asymmetric algorithm decryption must be of type "private"`);
+    }
+  }
+  if (key.type === "private") {
+    switch (usage) {
+      case "verify":
+        throw new TypeError(`${tag(key)} instances for asymmetric algorithm verifying must be of type "public"`);
+      case "encrypt":
+        throw new TypeError(`${tag(key)} instances for asymmetric algorithm encryption must be of type "public"`);
+    }
+  }
+};
+function checkKeyType(alg, key, usage) {
+  switch (alg.substring(0, 2)) {
+    case "A1":
+    case "A2":
+    case "di":
+    case "HS":
+    case "PB":
+      symmetricTypeCheck(alg, key, usage);
+      break;
+    default:
+      asymmetricTypeCheck(alg, key, usage);
+  }
+}
+
+// node_modules/jose/dist/webapi/jws/flattened/verify.js
+async function flattenedVerify(jws, key, options) {
+  if (!isObject(jws)) {
+    throw new JWSInvalid("Flattened JWS must be an object");
+  }
+  if (jws.protected === void 0 && jws.header === void 0) {
+    throw new JWSInvalid('Flattened JWS must have either of the "protected" or "header" members');
+  }
+  if (jws.protected !== void 0 && typeof jws.protected !== "string") {
+    throw new JWSInvalid("JWS Protected Header incorrect type");
+  }
+  if (jws.payload === void 0) {
+    throw new JWSInvalid("JWS Payload missing");
+  }
+  if (typeof jws.signature !== "string") {
+    throw new JWSInvalid("JWS Signature missing or incorrect type");
+  }
+  if (jws.header !== void 0 && !isObject(jws.header)) {
+    throw new JWSInvalid("JWS Unprotected Header incorrect type");
+  }
+  let parsedProt = {};
+  if (jws.protected) {
+    try {
+      const protectedHeader = decode2(jws.protected);
+      parsedProt = JSON.parse(decoder.decode(protectedHeader));
+    } catch {
+      throw new JWSInvalid("JWS Protected Header is invalid");
+    }
+  }
+  if (!isDisjoint(parsedProt, jws.header)) {
+    throw new JWSInvalid("JWS Protected and JWS Unprotected Header Parameter names must be disjoint");
+  }
+  const joseHeader = {
+    ...parsedProt,
+    ...jws.header
+  };
+  const extensions = validateCrit(JWSInvalid, /* @__PURE__ */ new Map([["b64", true]]), options?.crit, parsedProt, joseHeader);
+  let b64 = true;
+  if (extensions.has("b64")) {
+    b64 = parsedProt.b64;
+    if (typeof b64 !== "boolean") {
+      throw new JWSInvalid('The "b64" (base64url-encode payload) Header Parameter must be a boolean');
+    }
+  }
+  const { alg } = joseHeader;
+  if (typeof alg !== "string" || !alg) {
+    throw new JWSInvalid('JWS "alg" (Algorithm) Header Parameter missing or invalid');
+  }
+  const algorithms = options && validateAlgorithms("algorithms", options.algorithms);
+  if (algorithms && !algorithms.has(alg)) {
+    throw new JOSEAlgNotAllowed('"alg" (Algorithm) Header Parameter value not allowed');
+  }
+  if (b64) {
+    if (typeof jws.payload !== "string") {
+      throw new JWSInvalid("JWS Payload must be a string");
+    }
+  } else if (typeof jws.payload !== "string" && !(jws.payload instanceof Uint8Array)) {
+    throw new JWSInvalid("JWS Payload must be a string or an Uint8Array instance");
+  }
+  let resolvedKey = false;
+  if (typeof key === "function") {
+    key = await key(parsedProt, jws);
+    resolvedKey = true;
+  }
+  checkKeyType(alg, key, "verify");
+  const data = concat(jws.protected !== void 0 ? encode(jws.protected) : new Uint8Array(), encode("."), typeof jws.payload === "string" ? b64 ? encode(jws.payload) : encoder.encode(jws.payload) : jws.payload);
+  const signature = decodeBase64url(jws.signature, "signature", JWSInvalid);
+  const k = await normalizeKey(key, alg);
+  const verified = await verify(alg, k, signature, data);
+  if (!verified) {
+    throw new JWSSignatureVerificationFailed();
+  }
+  let payload;
+  if (b64) {
+    payload = decodeBase64url(jws.payload, "payload", JWSInvalid);
+  } else if (typeof jws.payload === "string") {
+    payload = encoder.encode(jws.payload);
+  } else {
+    payload = jws.payload;
+  }
+  const result = { payload };
+  if (jws.protected !== void 0) {
+    result.protectedHeader = parsedProt;
+  }
+  if (jws.header !== void 0) {
+    result.unprotectedHeader = jws.header;
+  }
+  if (resolvedKey) {
+    return { ...result, key: k };
+  }
+  return result;
+}
+
+// node_modules/jose/dist/webapi/jws/compact/verify.js
+async function compactVerify(jws, key, options) {
+  if (jws instanceof Uint8Array) {
+    jws = decoder.decode(jws);
+  }
+  if (typeof jws !== "string") {
+    throw new JWSInvalid("Compact JWS must be a string or Uint8Array");
+  }
+  const { 0: protectedHeader, 1: payload, 2: signature, length } = jws.split(".");
+  if (length !== 3) {
+    throw new JWSInvalid("Invalid Compact JWS");
+  }
+  const verified = await flattenedVerify({ payload, protected: protectedHeader, signature }, key, options);
+  const result = { payload: verified.payload, protectedHeader: verified.protectedHeader };
+  if (typeof key === "function") {
+    return { ...result, key: verified.key };
+  }
+  return result;
+}
+
+// node_modules/jose/dist/webapi/lib/jwt_claims_set.js
+var epoch = (date) => Math.floor(date.getTime() / 1e3);
+var minute = 60;
+var hour = minute * 60;
+var day = hour * 24;
+var week = day * 7;
+var year = day * 365.25;
+var REGEX = /^(\+|\-)? ?(\d+|\d+\.\d+) ?(seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)(?: (ago|from now))?$/i;
+function secs(str) {
+  const matched = REGEX.exec(str);
+  if (!matched || matched[4] && matched[1]) {
+    throw new TypeError("Invalid time period format");
+  }
+  const value = parseFloat(matched[2]);
+  const unit = matched[3].toLowerCase();
+  let numericDate;
+  switch (unit) {
+    case "sec":
+    case "secs":
+    case "second":
+    case "seconds":
+    case "s":
+      numericDate = Math.round(value);
+      break;
+    case "minute":
+    case "minutes":
+    case "min":
+    case "mins":
+    case "m":
+      numericDate = Math.round(value * minute);
+      break;
+    case "hour":
+    case "hours":
+    case "hr":
+    case "hrs":
+    case "h":
+      numericDate = Math.round(value * hour);
+      break;
+    case "day":
+    case "days":
+    case "d":
+      numericDate = Math.round(value * day);
+      break;
+    case "week":
+    case "weeks":
+    case "w":
+      numericDate = Math.round(value * week);
+      break;
+    default:
+      numericDate = Math.round(value * year);
+      break;
+  }
+  if (matched[1] === "-" || matched[4] === "ago") {
+    return -numericDate;
+  }
+  return numericDate;
+}
+function validateInput(label, input) {
+  if (!Number.isFinite(input)) {
+    throw new TypeError(`Invalid ${label} input`);
+  }
+  return input;
+}
+var normalizeTyp = (value) => {
+  if (value.includes("/")) {
+    return value.toLowerCase();
+  }
+  return `application/${value.toLowerCase()}`;
+};
+var checkAudiencePresence = (audPayload, audOption) => {
+  if (typeof audPayload === "string") {
+    return audOption.includes(audPayload);
+  }
+  if (Array.isArray(audPayload)) {
+    return audOption.some(Set.prototype.has.bind(new Set(audPayload)));
+  }
+  return false;
+};
+function validateClaimsSet(protectedHeader, encodedPayload, options = {}) {
+  let payload;
+  try {
+    payload = JSON.parse(decoder.decode(encodedPayload));
+  } catch {
+  }
+  if (!isObject(payload)) {
+    throw new JWTInvalid("JWT Claims Set must be a top-level JSON object");
+  }
+  const { typ } = options;
+  if (typ && (typeof protectedHeader.typ !== "string" || normalizeTyp(protectedHeader.typ) !== normalizeTyp(typ))) {
+    throw new JWTClaimValidationFailed('unexpected "typ" JWT header value', payload, "typ", "check_failed");
+  }
+  const { requiredClaims = [], issuer, subject, audience, maxTokenAge } = options;
+  const presenceCheck = [...requiredClaims];
+  if (maxTokenAge !== void 0)
+    presenceCheck.push("iat");
+  if (audience !== void 0)
+    presenceCheck.push("aud");
+  if (subject !== void 0)
+    presenceCheck.push("sub");
+  if (issuer !== void 0)
+    presenceCheck.push("iss");
+  for (const claim of new Set(presenceCheck.reverse())) {
+    if (!(claim in payload)) {
+      throw new JWTClaimValidationFailed(`missing required "${claim}" claim`, payload, claim, "missing");
+    }
+  }
+  if (issuer && !(Array.isArray(issuer) ? issuer : [issuer]).includes(payload.iss)) {
+    throw new JWTClaimValidationFailed('unexpected "iss" claim value', payload, "iss", "check_failed");
+  }
+  if (subject && payload.sub !== subject) {
+    throw new JWTClaimValidationFailed('unexpected "sub" claim value', payload, "sub", "check_failed");
+  }
+  if (audience && !checkAudiencePresence(payload.aud, typeof audience === "string" ? [audience] : audience)) {
+    throw new JWTClaimValidationFailed('unexpected "aud" claim value', payload, "aud", "check_failed");
+  }
+  let tolerance;
+  switch (typeof options.clockTolerance) {
+    case "string":
+      tolerance = secs(options.clockTolerance);
+      break;
+    case "number":
+      tolerance = options.clockTolerance;
+      break;
+    case "undefined":
+      tolerance = 0;
+      break;
+    default:
+      throw new TypeError("Invalid clockTolerance option type");
+  }
+  const { currentDate } = options;
+  const now = epoch(currentDate || /* @__PURE__ */ new Date());
+  if ((payload.iat !== void 0 || maxTokenAge) && typeof payload.iat !== "number") {
+    throw new JWTClaimValidationFailed('"iat" claim must be a number', payload, "iat", "invalid");
+  }
+  if (payload.nbf !== void 0) {
+    if (typeof payload.nbf !== "number") {
+      throw new JWTClaimValidationFailed('"nbf" claim must be a number', payload, "nbf", "invalid");
+    }
+    if (payload.nbf > now + tolerance) {
+      throw new JWTClaimValidationFailed('"nbf" claim timestamp check failed', payload, "nbf", "check_failed");
+    }
+  }
+  if (payload.exp !== void 0) {
+    if (typeof payload.exp !== "number") {
+      throw new JWTClaimValidationFailed('"exp" claim must be a number', payload, "exp", "invalid");
+    }
+    if (payload.exp <= now - tolerance) {
+      throw new JWTExpired('"exp" claim timestamp check failed', payload, "exp", "check_failed");
+    }
+  }
+  if (maxTokenAge) {
+    const age = now - payload.iat;
+    const max = typeof maxTokenAge === "number" ? maxTokenAge : secs(maxTokenAge);
+    if (age - tolerance > max) {
+      throw new JWTExpired('"iat" claim timestamp check failed (too far in the past)', payload, "iat", "check_failed");
+    }
+    if (age < 0 - tolerance) {
+      throw new JWTClaimValidationFailed('"iat" claim timestamp check failed (it should be in the past)', payload, "iat", "check_failed");
+    }
+  }
+  return payload;
+}
+var JWTClaimsBuilder = class {
+  #payload;
+  constructor(payload) {
+    if (!isObject(payload)) {
+      throw new TypeError("JWT Claims Set MUST be an object");
+    }
+    this.#payload = structuredClone(payload);
+  }
+  data() {
+    return encoder.encode(JSON.stringify(this.#payload));
+  }
+  get iss() {
+    return this.#payload.iss;
+  }
+  set iss(value) {
+    this.#payload.iss = value;
+  }
+  get sub() {
+    return this.#payload.sub;
+  }
+  set sub(value) {
+    this.#payload.sub = value;
+  }
+  get aud() {
+    return this.#payload.aud;
+  }
+  set aud(value) {
+    this.#payload.aud = value;
+  }
+  set jti(value) {
+    this.#payload.jti = value;
+  }
+  set nbf(value) {
+    if (typeof value === "number") {
+      this.#payload.nbf = validateInput("setNotBefore", value);
+    } else if (value instanceof Date) {
+      this.#payload.nbf = validateInput("setNotBefore", epoch(value));
+    } else {
+      this.#payload.nbf = epoch(/* @__PURE__ */ new Date()) + secs(value);
+    }
+  }
+  set exp(value) {
+    if (typeof value === "number") {
+      this.#payload.exp = validateInput("setExpirationTime", value);
+    } else if (value instanceof Date) {
+      this.#payload.exp = validateInput("setExpirationTime", epoch(value));
+    } else {
+      this.#payload.exp = epoch(/* @__PURE__ */ new Date()) + secs(value);
+    }
+  }
+  set iat(value) {
+    if (value === void 0) {
+      this.#payload.iat = epoch(/* @__PURE__ */ new Date());
+    } else if (value instanceof Date) {
+      this.#payload.iat = validateInput("setIssuedAt", epoch(value));
+    } else if (typeof value === "string") {
+      this.#payload.iat = validateInput("setIssuedAt", epoch(/* @__PURE__ */ new Date()) + secs(value));
+    } else {
+      this.#payload.iat = validateInput("setIssuedAt", value);
+    }
+  }
+};
+
+// node_modules/jose/dist/webapi/jwt/verify.js
+async function jwtVerify(jwt, key, options) {
+  const verified = await compactVerify(jwt, key, options);
+  if (verified.protectedHeader.crit?.includes("b64") && verified.protectedHeader.b64 === false) {
+    throw new JWTInvalid("JWTs MUST NOT use unencoded payload");
+  }
+  const payload = validateClaimsSet(verified.protectedHeader, verified.payload, options);
+  const result = { payload, protectedHeader: verified.protectedHeader };
+  if (typeof key === "function") {
+    return { ...result, key: verified.key };
+  }
+  return result;
+}
+
+// node_modules/jose/dist/webapi/jws/flattened/sign.js
+var FlattenedSign = class {
+  #payload;
+  #protectedHeader;
+  #unprotectedHeader;
+  constructor(payload) {
+    if (!(payload instanceof Uint8Array)) {
+      throw new TypeError("payload must be an instance of Uint8Array");
+    }
+    this.#payload = payload;
+  }
+  setProtectedHeader(protectedHeader) {
+    assertNotSet(this.#protectedHeader, "setProtectedHeader");
+    this.#protectedHeader = protectedHeader;
+    return this;
+  }
+  setUnprotectedHeader(unprotectedHeader) {
+    assertNotSet(this.#unprotectedHeader, "setUnprotectedHeader");
+    this.#unprotectedHeader = unprotectedHeader;
+    return this;
+  }
+  async sign(key, options) {
+    if (!this.#protectedHeader && !this.#unprotectedHeader) {
+      throw new JWSInvalid("either setProtectedHeader or setUnprotectedHeader must be called before #sign()");
+    }
+    if (!isDisjoint(this.#protectedHeader, this.#unprotectedHeader)) {
+      throw new JWSInvalid("JWS Protected and JWS Unprotected Header Parameter names must be disjoint");
+    }
+    const joseHeader = {
+      ...this.#protectedHeader,
+      ...this.#unprotectedHeader
+    };
+    const extensions = validateCrit(JWSInvalid, /* @__PURE__ */ new Map([["b64", true]]), options?.crit, this.#protectedHeader, joseHeader);
+    let b64 = true;
+    if (extensions.has("b64")) {
+      b64 = this.#protectedHeader.b64;
+      if (typeof b64 !== "boolean") {
+        throw new JWSInvalid('The "b64" (base64url-encode payload) Header Parameter must be a boolean');
+      }
+    }
+    const { alg } = joseHeader;
+    if (typeof alg !== "string" || !alg) {
+      throw new JWSInvalid('JWS "alg" (Algorithm) Header Parameter missing or invalid');
+    }
+    checkKeyType(alg, key, "sign");
+    let payloadS;
+    let payloadB;
+    if (b64) {
+      payloadS = encode2(this.#payload);
+      payloadB = encode(payloadS);
+    } else {
+      payloadB = this.#payload;
+      payloadS = "";
+    }
+    let protectedHeaderString;
+    let protectedHeaderBytes;
+    if (this.#protectedHeader) {
+      protectedHeaderString = encode2(JSON.stringify(this.#protectedHeader));
+      protectedHeaderBytes = encode(protectedHeaderString);
+    } else {
+      protectedHeaderString = "";
+      protectedHeaderBytes = new Uint8Array();
+    }
+    const data = concat(protectedHeaderBytes, encode("."), payloadB);
+    const k = await normalizeKey(key, alg);
+    const signature = await sign(alg, k, data);
+    const jws = {
+      signature: encode2(signature),
+      payload: payloadS
+    };
+    if (this.#unprotectedHeader) {
+      jws.header = this.#unprotectedHeader;
+    }
+    if (this.#protectedHeader) {
+      jws.protected = protectedHeaderString;
+    }
+    return jws;
+  }
+};
+
+// node_modules/jose/dist/webapi/jws/compact/sign.js
+var CompactSign = class {
+  #flattened;
+  constructor(payload) {
+    this.#flattened = new FlattenedSign(payload);
+  }
+  setProtectedHeader(protectedHeader) {
+    this.#flattened.setProtectedHeader(protectedHeader);
+    return this;
+  }
+  async sign(key, options) {
+    const jws = await this.#flattened.sign(key, options);
+    if (jws.payload === void 0) {
+      throw new TypeError("use the flattened module for creating JWS with b64: false");
+    }
+    return `${jws.protected}.${jws.payload}.${jws.signature}`;
+  }
+};
+
+// node_modules/jose/dist/webapi/jwt/sign.js
+var SignJWT = class {
+  #protectedHeader;
+  #jwt;
+  constructor(payload = {}) {
+    this.#jwt = new JWTClaimsBuilder(payload);
+  }
+  setIssuer(issuer) {
+    this.#jwt.iss = issuer;
+    return this;
+  }
+  setSubject(subject) {
+    this.#jwt.sub = subject;
+    return this;
+  }
+  setAudience(audience) {
+    this.#jwt.aud = audience;
+    return this;
+  }
+  setJti(jwtId) {
+    this.#jwt.jti = jwtId;
+    return this;
+  }
+  setNotBefore(input) {
+    this.#jwt.nbf = input;
+    return this;
+  }
+  setExpirationTime(input) {
+    this.#jwt.exp = input;
+    return this;
+  }
+  setIssuedAt(input) {
+    this.#jwt.iat = input;
+    return this;
+  }
+  setProtectedHeader(protectedHeader) {
+    this.#protectedHeader = protectedHeader;
+    return this;
+  }
+  async sign(key, options) {
+    const sig = new CompactSign(this.#jwt.data());
+    sig.setProtectedHeader(this.#protectedHeader);
+    if (Array.isArray(this.#protectedHeader?.crit) && this.#protectedHeader.crit.includes("b64") && this.#protectedHeader.b64 === false) {
+      throw new JWTInvalid("JWTs MUST NOT use unencoded payload");
+    }
+    return sig.sign(key, options);
+  }
+};
 
 // .blink-cf-build/index.ts
 var app = new Hono2();
 app.use("*", cors());
-var getBlink = (env) => createClient({
-  projectId: env.BLINK_PROJECT_ID,
-  secretKey: env.BLINK_SECRET_KEY
+var _prisma = null;
+var getPrisma = (env) => {
+  if (!_prisma) {
+    _prisma = new import_edge.PrismaClient({
+      datasourceUrl: env.DATABASE_URL
+    });
+  }
+  return _prisma;
+};
+var _redis = null;
+var getRedis = (env) => {
+  if (!_redis) {
+    _redis = new Redis2({
+      url: env.UPSTASH_REDIS_REST_URL,
+      token: env.UPSTASH_REDIS_REST_TOKEN
+    });
+  }
+  return _redis;
+};
+var signToken = async (payload, secret) => {
+  const secretKey = new TextEncoder().encode(secret);
+  return await new SignJWT(payload).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime("7d").sign(secretKey);
+};
+var verifyToken = async (token, secret) => {
+  try {
+    const secretKey = new TextEncoder().encode(secret);
+    const { payload } = await jwtVerify(token, secretKey);
+    return payload;
+  } catch (e) {
+    return null;
+  }
+};
+app.get("/api/auth/github", (c) => {
+  const env = c.env;
+  const redirectUri = `https://${env.BLINK_PROJECT_ID}.backend.blink.new/api/auth/callback`;
+  const url = `https://github.com/login/oauth/authorize?client_id=${env.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user,repo,write:repo_hook`;
+  return c.redirect(url);
 });
-app.get("/health", (c) => c.json({ ok: true }));
+app.get("/api/auth/callback", async (c) => {
+  const env = c.env;
+  const code = c.req.query("code");
+  if (!code) return c.json({ error: "Missing code" }, 400);
+  const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      client_id: env.GITHUB_CLIENT_ID,
+      client_secret: env.GITHUB_CLIENT_SECRET,
+      code
+    })
+  });
+  const tokenData = await tokenRes.json();
+  if (tokenData.error) return c.json(tokenData, 400);
+  const accessToken = tokenData.access_token;
+  const userRes = await fetch("https://api.github.com/user", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "User-Agent": "DevPulse-Blink"
+    }
+  });
+  const userData = await userRes.json();
+  const prisma = getPrisma(env);
+  const user = await prisma.user.upsert({
+    where: { githubId: String(userData.id) },
+    update: {
+      githubAccessToken: accessToken,
+      displayName: userData.name || userData.login,
+      email: userData.email
+    },
+    create: {
+      githubId: String(userData.id),
+      githubAccessToken: accessToken,
+      displayName: userData.name || userData.login,
+      email: userData.email
+    }
+  });
+  const sessionToken = await signToken({ userId: user.id }, env.BLINK_SECRET_KEY);
+  const frontendUrl = c.req.header("Referer") || `https://${env.BLINK_PROJECT_ID}.blink.new`;
+  const redirectUrl = new URL(frontendUrl);
+  redirectUrl.searchParams.set("token", sessionToken);
+  return c.redirect(redirectUrl.toString());
+});
+app.get("/api/auth/me", async (c) => {
+  const authHeader = c.req.header("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) return c.json({ error: "Unauthorized" }, 401);
+  const token = authHeader.split(" ")[1];
+  const payload = await verifyToken(token, c.env.BLINK_SECRET_KEY);
+  if (!payload || !payload.userId) return c.json({ error: "Invalid token" }, 401);
+  const prisma = getPrisma(c.env);
+  const user = await prisma.user.findUnique({
+    where: { id: payload.userId }
+  });
+  if (!user) return c.json({ error: "User not found" }, 404);
+  return c.json(user);
+});
 app.post("/webhooks/github", async (c) => {
   const env = c.env;
-  const blink = getBlink(env);
-  const body = await c.req.json();
+  const signature = c.req.header("X-Hub-Signature-256");
   const eventType = c.req.header("X-GitHub-Event");
-  await blink.db.webhookEvents.create({
-    userId: "system",
-    // or extract from secret if mapped
-    type: eventType || "unknown",
-    payload: JSON.stringify(body),
-    processedAt: (/* @__PURE__ */ new Date()).toISOString()
+  const bodyText = await c.req.text();
+  if (!signature) return c.json({ error: "Missing signature" }, 401);
+  const encoder2 = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder2.encode(env.GITHUB_WEBHOOK_SECRET),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["verify"]
+  );
+  const sigHex = signature.replace("sha256=", "");
+  const sigBytes = new Uint8Array(sigHex.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));
+  const isValid = await crypto.subtle.verify(
+    "HMAC",
+    key,
+    sigBytes,
+    encoder2.encode(bodyText)
+  );
+  if (!isValid) return c.json({ error: "Invalid signature" }, 401);
+  const payload = JSON.parse(bodyText);
+  const prisma = getPrisma(env);
+  const repoGithubId = payload.repository?.id ? String(payload.repository.id) : null;
+  let repoId = null;
+  if (repoGithubId) {
+    const repo = await prisma.repository.findUnique({
+      where: { githubId: repoGithubId }
+    });
+    repoId = repo?.id || null;
+  }
+  const webhookEvent = await prisma.webhookEvent.create({
+    data: {
+      repoId,
+      eventType: eventType || "unknown",
+      payload
+    }
   });
+  c.executionCtx.waitUntil(aggregateData(env, eventType, payload, repoId));
   return c.json({ success: true });
 });
+async function aggregateData(env, eventType, payload, repoId) {
+  if (!repoId) return;
+  const prisma = getPrisma(env);
+  const today = /* @__PURE__ */ new Date();
+  today.setHours(0, 0, 0, 0);
+  if (eventType === "pull_request") {
+    const pr = payload.pull_request;
+    const action = payload.action;
+    if (action === "closed" || action === "opened" || action === "merged") {
+      const openedAt = new Date(pr.created_at);
+      const mergedAt = pr.merged_at ? new Date(pr.merged_at) : null;
+      const closedAt = pr.closed_at ? new Date(pr.closed_at) : null;
+      let cycleTimeMs = null;
+      if (mergedAt) {
+        cycleTimeMs = BigInt(mergedAt.getTime() - openedAt.getTime());
+      }
+      await prisma.pullRequest.upsert({
+        where: { githubPrId: String(pr.id) },
+        update: {
+          title: pr.title,
+          mergedAt,
+          closedAt,
+          cycleTimeMs
+        },
+        create: {
+          githubPrId: String(pr.id),
+          repoId,
+          title: pr.title,
+          authorLogin: pr.user.login,
+          openedAt,
+          mergedAt,
+          closedAt,
+          cycleTimeMs
+        }
+      });
+      if (mergedAt) {
+        const prs = await prisma.pullRequest.findMany({
+          where: {
+            repoId,
+            mergedAt: { gte: today }
+          }
+        });
+        const mergedPrs = prs.filter((p) => p.cycleTimeMs !== null);
+        const totalCycleTime = mergedPrs.reduce((acc, p) => acc + Number(p.cycleTimeMs), 0);
+        const avgCycleTime = mergedPrs.length > 0 ? totalCycleTime / mergedPrs.length : 0;
+        await prisma.metric.upsert({
+          where: { repoId_date: { repoId, date: today } },
+          update: {
+            prCount: prs.length,
+            avgCycleTimeMs: avgCycleTime
+          },
+          create: {
+            repoId,
+            date: today,
+            prCount: prs.length,
+            avgCycleTimeMs: avgCycleTime
+          }
+        });
+      }
+    }
+  } else if (eventType === "push") {
+    const commitsCount = payload.commits?.length || 0;
+    if (commitsCount > 0) {
+      await prisma.metric.upsert({
+        where: { repoId_date: { repoId, date: today } },
+        update: {
+          commitCount: { increment: commitsCount }
+        },
+        create: {
+          repoId,
+          date: today,
+          commitCount: commitsCount
+        }
+      });
+      for (const commit of payload.commits) {
+        await prisma.commit.upsert({
+          where: { sha: commit.id },
+          update: {},
+          create: {
+            repoId,
+            sha: commit.id,
+            author: commit.author.name,
+            message: commit.message,
+            committedAt: new Date(commit.timestamp)
+          }
+        });
+      }
+    }
+  }
+}
 app.get("/api/repos", async (c) => {
-  const env = c.env;
-  const blink = getBlink(env);
-  const auth = await blink.auth.verifyToken(c.req.header("Authorization"));
-  if (!auth.valid) return c.json({ error: "Unauthorized" }, 401);
-  const repos = await blink.db.repositories.list({
-    where: { userId: auth.userId }
+  const authHeader = c.req.header("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) return c.json({ error: "Unauthorized" }, 401);
+  const token = authHeader.split(" ")[1];
+  const payload = await verifyToken(token, c.env.BLINK_SECRET_KEY);
+  if (!payload || !payload.userId) return c.json({ error: "Invalid token" }, 401);
+  const prisma = getPrisma(c.env);
+  const user = await prisma.user.findUnique({
+    where: { id: payload.userId }
   });
-  return c.json(repos);
+  if (!user || !user.githubAccessToken) return c.json({ error: "User or token not found" }, 404);
+  const res = await fetch("https://api.github.com/user/repos?sort=updated&per_page=100", {
+    headers: {
+      Authorization: `Bearer ${user.githubAccessToken}`,
+      "User-Agent": "DevPulse-Blink"
+    }
+  });
+  const repos = await res.json();
+  const syncRepos = await Promise.all(repos.map(async (r) => {
+    return prisma.repository.upsert({
+      where: { githubId: String(r.id) },
+      update: { name: r.name, owner: r.owner.login },
+      create: {
+        userId: user.id,
+        githubId: String(r.id),
+        name: r.name,
+        owner: r.owner.login
+      }
+    });
+  }));
+  return c.json(syncRepos);
 });
 app.get("/api/metrics/:repoId", async (c) => {
-  const env = c.env;
-  const blink = getBlink(env);
-  const auth = await blink.auth.verifyToken(c.req.header("Authorization"));
-  if (!auth.valid) return c.json({ error: "Unauthorized" }, 401);
+  const authHeader = c.req.header("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) return c.json({ error: "Unauthorized" }, 401);
+  const token = authHeader.split(" ")[1];
+  const payload = await verifyToken(token, c.env.BLINK_SECRET_KEY);
+  if (!payload || !payload.userId) return c.json({ error: "Invalid token" }, 401);
   const repoId = c.req.param("repoId");
-  const metrics = await blink.db.metrics.list({
-    where: { repositoryId: repoId, userId: auth.userId }
-  });
-  return c.json(metrics);
-});
-app.get("/api/team", async (c) => {
   const env = c.env;
-  const blink = getBlink(env);
-  const auth = await blink.auth.verifyToken(c.req.header("Authorization"));
-  if (!auth.valid) return c.json({ error: "Unauthorized" }, 401);
-  const team = await blink.db.teamMembers.list({
-    where: { userId: auth.userId }
+  const redis = getRedis(env);
+  const cacheKey = `metrics:${repoId}`;
+  const cached = await redis.get(cacheKey);
+  if (cached) return c.json(cached);
+  const prisma = getPrisma(env);
+  const thirtyDaysAgo = /* @__PURE__ */ new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const metrics = await prisma.metric.findMany({
+    where: {
+      repoId,
+      date: { gte: thirtyDaysAgo }
+    },
+    orderBy: { date: "asc" }
   });
-  return c.json(team);
+  await redis.set(cacheKey, JSON.stringify(metrics), { ex: 300 });
+  return c.json(metrics);
 });
 var index_default = app;
 
@@ -8848,6 +15043,7 @@ var blink_worker_default = {
     const __url = new URL(request.url);
     let __response;
     let __error;
+    const __reqClone = request.clone();
     try {
       __response = await index_default.fetch(request, env, ctx);
     } catch (__err) {
@@ -8857,12 +15053,27 @@ var blink_worker_default = {
         headers: { "content-type": "application/json" }
       });
     }
+    const __resClone = __response.clone();
     const __routeMap = JSON.parse(env.BLINK_ROUTE_MAP || "{}");
     const __parts = __url.pathname.split("/").filter(Boolean);
     const __seg = __parts[0] === "api" ? __parts[1] : __parts[0];
     const __slug = __seg && __routeMap[__seg] || env.BLINK_ENTRY_SLUG || "index";
-    ctx.waitUntil(
-      fetch(`${env.BLINK_APP_URL || "https://core.blink.new"}/api/analytics/fn-log`, {
+    const __logUrl = `${env.BLINK_APP_URL || "https://core.blink.new"}/api/analytics/fn-log`;
+    ctx.waitUntil((async () => {
+      const __REDACT_KEYS = ["authorization", "cookie", "set-cookie", "x-api-key", "x-secret-key", "blink-secret-key"];
+      const __redactHeaders = (h) => {
+        const obj = {};
+        h.forEach((v, k) => {
+          obj[k] = __REDACT_KEYS.includes(k.toLowerCase()) ? "[REDACTED]" : v;
+        });
+        return obj;
+      };
+      const __resContentType = __response.headers.get("content-type") || "";
+      const __isStreaming = __response.headers.get("transfer-encoding") === "chunked" || __resContentType.includes("text/event-stream");
+      const __isTextual = __resContentType.startsWith("text/") || __resContentType.includes("application/json") || __resContentType.includes("application/xml") || __resContentType === "";
+      const __reqBody = await __reqClone.text().catch(() => null);
+      const __resBody = __isStreaming ? "[streaming]" : !__isTextual ? "[binary]" : await __resClone.text().catch(() => null);
+      await fetch(__logUrl, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -8876,11 +15087,15 @@ var blink_worker_default = {
           status_code: __response.status,
           latency_ms: Date.now() - __start,
           error: __error || null,
-          timestamp: (/* @__PURE__ */ new Date()).toISOString()
+          timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+          request_headers: JSON.stringify(__redactHeaders(request.headers)).slice(0, 4096),
+          request_body: (__reqBody || "").slice(0, 4096),
+          response_headers: JSON.stringify(__redactHeaders(__response.headers)).slice(0, 4096),
+          response_body: (__resBody || "").slice(0, 4096)
         })
       }).catch(() => {
-      })
-    );
+      });
+    })());
     return __response;
   }
 };

@@ -19,6 +19,7 @@ export default {
     const __url = new URL(request.url)
     let __response: Response
     let __error: string | undefined
+    const __reqClone = request.clone()
 
     try {
       __response = await __USER_APP__.fetch(request, env, ctx)
@@ -30,14 +31,31 @@ export default {
       })
     }
 
+    const __resClone = __response.clone()
+
     // Resolve function_slug from route map (path segment → slug) for per-route attribution
     const __routeMap: Record<string, string> = JSON.parse(env.BLINK_ROUTE_MAP || '{}')
     const __parts = __url.pathname.split('/').filter(Boolean)
     const __seg = __parts[0] === 'api' ? __parts[1] : __parts[0]
     const __slug = (__seg && __routeMap[__seg]) || env.BLINK_ENTRY_SLUG || 'index'
 
-    ctx.waitUntil(
-      fetch(`${env.BLINK_APP_URL || 'https://core.blink.new'}/api/analytics/fn-log`, {
+    const __logUrl = `${env.BLINK_APP_URL || 'https://core.blink.new'}/api/analytics/fn-log`
+    ctx.waitUntil((async () => {
+      const __REDACT_KEYS = ['authorization','cookie','set-cookie','x-api-key','x-secret-key','blink-secret-key']
+      const __redactHeaders = (h: Headers) => {
+        const obj: Record<string, string> = {}
+        h.forEach((v, k) => { obj[k] = __REDACT_KEYS.includes(k.toLowerCase()) ? '[REDACTED]' : v })
+        return obj
+      }
+
+      const __resContentType = __response.headers.get('content-type') || ''
+      const __isStreaming = __response.headers.get('transfer-encoding') === 'chunked' || __resContentType.includes('text/event-stream')
+      const __isTextual = __resContentType.startsWith('text/') || __resContentType.includes('application/json') || __resContentType.includes('application/xml') || __resContentType === ''
+
+      const __reqBody = await __reqClone.text().catch(() => null)
+      const __resBody = __isStreaming ? '[streaming]' : !__isTextual ? '[binary]' : await __resClone.text().catch(() => null)
+
+      await fetch(__logUrl, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -52,9 +70,13 @@ export default {
           latency_ms: Date.now() - __start,
           error: __error || null,
           timestamp: new Date().toISOString(),
+          request_headers: JSON.stringify(__redactHeaders(request.headers)).slice(0, 4096),
+          request_body: (__reqBody || '').slice(0, 4096),
+          response_headers: JSON.stringify(__redactHeaders(__response.headers)).slice(0, 4096),
+          response_body: (__resBody || '').slice(0, 4096),
         }),
       }).catch(() => {})
-    )
+    })())
 
     return __response
   },

@@ -35,7 +35,7 @@ import { blink } from '../blink/client'
 import { useAuth } from '../hooks/useAuth'
 
 export function DashboardLayout() {
-  const { user, isLoading } = useAuth()
+  const { user, isLoading, logout } = useAuth()
   const navigate = useNavigate()
 
   if (isLoading) {
@@ -120,9 +120,9 @@ export function DashboardLayout() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem className="text-muted-foreground text-xs">
-                  {user.email}
+                  {user.email || 'No email'}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => blink.auth.logout()}>
+                <DropdownMenuItem onClick={() => logout()}>
                   <LogOut size={16} className="mr-2" />
                   Sign Out
                 </DropdownMenuItem>

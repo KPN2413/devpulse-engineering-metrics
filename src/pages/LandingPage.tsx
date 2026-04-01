@@ -29,7 +29,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { useAuth } from '../hooks/useAuth'
 
 export function LandingPage() {
-  const { user, isLoading } = useAuth()
+  const { user, isLoading, login } = useAuth()
   const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -39,7 +39,7 @@ export function LandingPage() {
   }, [user, isLoading, navigate])
 
   const handleLogin = () => {
-    blink.auth.login(window.location.origin + '/dashboard')
+    login()
   }
 
   if (isLoading) {

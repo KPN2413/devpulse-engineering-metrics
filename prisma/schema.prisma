@@ -8,14 +8,13 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  user_id       String    @unique
-  email         String?   @unique
-  displayName   String?
-  githubId      String?   @unique
-  repositories  Repository[]
-  teamMembers   TeamMember[]
-  createdAt     DateTime  @default(now())
+  id                String    @id @default(cuid())
+  email             String?   @unique
+  displayName       String?
+  githubId          String    @unique
+  githubAccessToken String?
+  repositories      Repository[]
+  createdAt         DateTime  @default(now())
 }
 
 model Organization {
@@ -29,7 +28,7 @@ model Organization {
 model Repository {
   id            String    @id @default(cuid())
   userId        String
-  user          User      @relation(fields: [userId], references: [user_id])
+  user          User      @relation(fields: [userId], references: [id])
   orgId         String?
   org           Organization? @relation(fields: [orgId], references: [id])
   name          String
@@ -37,29 +36,26 @@ model Repository {
   githubId      String    @unique
   webhookId     String?
   pullRequests  PullRequest[]
-  commits       Commit[]
   metrics       Metric[]
   createdAt     DateTime  @default(now())
 }
 
 model PullRequest {
   id            String    @id @default(cuid())
-  userId        String
-  repositoryId  String
-  repository    Repository @relation(fields: [repositoryId], references: [id])
-  number        Int
+  githubPrId    String    @unique
+  repoId        String
+  repository    Repository @relation(fields: [repoId], references: [id])
   title         String
-  state         String
-  author        String
+  authorLogin   String
+  openedAt      DateTime
   mergedAt      DateTime?
-  createdAt     DateTime  @default(now())
+  closedAt      DateTime?
+  cycleTimeMs   BigInt?
 }
 
 model Commit {
   id            String    @id @default(cuid())
-  userId        String
-  repositoryId  String
-  repository    Repository @relation(fields: [repositoryId], references: [id])
+  repoId        String
   sha           String    @unique
   author        String
   message       String?
@@ -68,29 +64,22 @@ model Commit {
 
 model WebhookEvent {
   id            String    @id @default(cuid())
-  userId        String
-  type          String
+  repoId        String?
+  eventType     String
   payload       Json
   processedAt   DateTime?
   createdAt     DateTime  @default(now())
 }
 
 model Metric {
-  id            String    @id @default(cuid())
-  userId        String
-  repositoryId  String
-  repository    Repository @relation(fields: [repositoryId], references: [id])
-  type          String
-  value         Float
-  date          DateTime
-}
+  id                String    @id @default(cuid())
+  repoId            String
+  repository        Repository @relation(fields: [repoId], references: [id])
+  date              DateTime  // Day-truncated
+  prCount           Int       @default(0)
+  commitCount       Int       @default(0)
+  avgCycleTimeMs    Float     @default(0)
+  avgReviewTimeMs   Float     @default(0)
 
-model TeamMember {
-  id            String    @id @default(cuid())
-  userId        String
-  user          User      @relation(fields: [userId], references: [user_id])
-  name          String
-  role          String?
-  avatarUrl     String?
-  createdAt     DateTime  @default(now())
+  @@unique([repoId, date])
 }

@@ -29,6 +29,8 @@ import {
   TrendingDown,
   Minus
 } from 'lucide-react'
+import { useAuth } from '../hooks/useAuth'
+import { useRepos, useMetrics } from '../hooks/useMetrics'
 
 // Placeholder data
 const metricsData = [
@@ -56,18 +58,72 @@ const recentPRs = [
 ]
 
 export function DashboardPage() {
+  const { user } = useAuth()
+  const { data: repos, isLoading: isLoadingRepos } = useRepos()
+  const [selectedRepoId, setSelectedRepoId] = React.useState<string | null>(null)
+  
+  const { data: metrics, isLoading: isLoadingMetrics } = useMetrics(selectedRepoId)
+
+  React.useEffect(() => {
+    if (repos && repos.length > 0 && !selectedRepoId) {
+      setSelectedRepoId(repos[0].id)
+    }
+  }, [repos, selectedRepoId])
+
+  // Transform metrics for charts
+  const chartData = React.useMemo(() => {
+    if (!metrics) return []
+    return metrics.map((m: any) => ({
+      date: new Date(m.date).toLocaleDateString(),
+      cycleTime: m.avgCycleTimeMs / (1000 * 60 * 60 * 24), // to days
+      prs: m.prCount,
+      commits: m.commitCount
+    }))
+  }, [metrics])
+
+  const latestMetrics = chartData[chartData.length - 1] || { prs: 0, cycleTime: 0, commits: 0 }
+
+  const metricsStats = [
+    { label: 'Total PRs', value: latestMetrics.prs, trend: 0, trendLabel: 'today', icon: <GitPullRequest className="text-primary" /> },
+    { label: 'Avg PR Cycle Time', value: `${latestMetrics.cycleTime.toFixed(1)} days`, trend: 0, trendLabel: 'today', icon: <Clock className="text-accent" /> },
+    { label: 'Commit Count', value: latestMetrics.commits, trend: 0, trendLabel: 'today', icon: <Activity className="text-primary" /> },
+    { label: 'Repos Connected', value: repos?.length || 0, trend: 0, trendLabel: 'total', icon: <CheckCircle2 className="text-accent" /> },
+  ]
+
+  if (isLoadingRepos) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+      </div>
+    )
+  }
+
   return (
     <Page>
-      <PageHeader className="mb-8">
-        <PageTitle className="text-3xl font-bold tracking-tight">Engineering Dashboard</PageTitle>
-        <PageDescription className="text-muted-foreground text-lg leading-relaxed">
-          Overview of your team s velocity and review metrics for the last 30 days.
-        </PageDescription>
+      <PageHeader className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <PageTitle className="text-3xl font-bold tracking-tight">Engineering Dashboard</PageTitle>
+          <PageDescription className="text-muted-foreground text-lg leading-relaxed">
+            Overview of {selectedRepoId ? 'repository' : 'your'} velocity and review metrics.
+          </PageDescription>
+        </div>
+        
+        {repos && repos.length > 0 && (
+          <select 
+            className="bg-secondary border border-border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
+            value={selectedRepoId || ''}
+            onChange={(e) => setSelectedRepoId(e.target.value)}
+          >
+            {repos.map((repo: any) => (
+              <option key={repo.id} value={repo.id}>{repo.owner}/{repo.name}</option>
+            ))}
+          </select>
+        )}
       </PageHeader>
 
       <PageBody>
         <StatGroup className="mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {metricsData.map((stat, i) => (
+          {metricsStats.map((stat, i) => (
             <Stat 
               key={i}
               label={stat.label}
