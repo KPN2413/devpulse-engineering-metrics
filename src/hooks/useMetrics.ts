@@ -31,3 +31,33 @@ export function useMetrics(repoId: string | null) {
     enabled: !!token && !!repoId
   })
 }
+
+export function useTeam() {
+  const token = localStorage.getItem('devpulse_token')
+  return useQuery({
+    queryKey: ['team'],
+    queryFn: async () => {
+      const res = await fetch(`${BACKEND_URL}/api/team`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      if (!res.ok) throw new Error('Failed to fetch team')
+      return res.json()
+    },
+    enabled: !!token
+  })
+}
+
+export function useActivity(repoId: string | null) {
+  const token = localStorage.getItem('devpulse_token')
+  return useQuery({
+    queryKey: ['activity', repoId],
+    queryFn: async () => {
+      const res = await fetch(`${BACKEND_URL}/api/activity/${repoId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      if (!res.ok) throw new Error('Failed to fetch activity')
+      return res.json()
+    },
+    enabled: !!token && !!repoId
+  })
+}

@@ -33,9 +33,11 @@ import {
 import { Outlet, useNavigate, Link } from '@tanstack/react-router'
 import { blink } from '../blink/client'
 import { useAuth } from '../hooks/useAuth'
+import { useRepos } from '../hooks/useMetrics'
 
 export function DashboardLayout() {
   const { user, isLoading, logout } = useAuth()
+  const { data: repos } = useRepos()
   const navigate = useNavigate()
 
   if (isLoading) {
@@ -97,14 +99,16 @@ export function DashboardLayout() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2">
                   <GitBranch size={18} />
-                  <span>all-repositories</span>
+                  <span>{repos && repos.length > 0 ? 'repositories' : 'no-repositories'}</span>
                   <ChevronDown size={14} className="opacity-50" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
-                <DropdownMenuItem>devpulse-frontend</DropdownMenuItem>
-                <DropdownMenuItem>devpulse-backend</DropdownMenuItem>
-                <DropdownMenuItem>devpulse-shared</DropdownMenuItem>
+                {repos?.map((repo: any) => (
+                  <DropdownMenuItem key={repo.id} onClick={() => navigate({ to: '/dashboard', search: { repoId: repo.id } as any })}>
+                    {repo.owner}/{repo.name}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </NavbarContent>

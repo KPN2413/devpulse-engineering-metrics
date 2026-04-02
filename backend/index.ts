@@ -61,6 +61,15 @@ const verifyToken = async (token: string, secret: string) => {
   }
 };
 
+// JSON Helper for BigInt
+const json = (data: any) => {
+  return JSON.parse(
+    JSON.stringify(data, (key, value) =>
+      typeof value === 'bigint' ? value.toString() : value
+    )
+  );
+};
+
 // --- Auth Routes ---
 
 app.get('/api/auth/github', (c) => {
@@ -382,9 +391,61 @@ app.get('/api/metrics/:repoId', async (c) => {
   });
 
   // Store in cache for 5 minutes
-  await redis.set(cacheKey, JSON.stringify(metrics), { ex: 300 });
+  await redis.set(cacheKey, JSON.stringify(json(metrics)), { ex: 300 });
 
-  return c.json(metrics);
+  return c.json(json(metrics));
+});
+
+app.get('/api/team', async (c) => {
+  const authHeader = c.req.header('Authorization');
+  if (!authHeader?.startsWith('Bearer ')) return c.json({ error: 'Unauthorized' }, 401);
+
+  const token = authHeader.split(' ')[1];
+  const payload = await verifyToken(token, c.env.BLINK_SECRET_KEY);
+  if (!payload || !payload.userId) return c.json({ error: 'Invalid token' }, 401);
+
+  const prisma = getPrisma(c.env);
+  
+  // Aggregate team members from PullRequest table
+  const authors = await prisma.pullRequest.groupBy({
+    by: ['authorLogin'],
+    _count: {
+      id: true
+    },
+    where: {
+      repository: {
+        userId: payload.userId as string
+      }
+    }
+  });
+
+  const team = authors.map(a => ({
+    name: a.authorLogin,
+    prs: a._count.id,
+    role: 'Contributor'
+  }));
+
+  return c.json(team);
+});
+
+app.get('/api/activity/:repoId', async (c) => {
+  const authHeader = c.req.header('Authorization');
+  if (!authHeader?.startsWith('Bearer ')) return c.json({ error: 'Unauthorized' }, 401);
+
+  const token = authHeader.split(' ')[1];
+  const payload = await verifyToken(token, c.env.BLINK_SECRET_KEY);
+  if (!payload || !payload.userId) return c.json({ error: 'Invalid token' }, 401);
+
+  const repoId = c.req.param('repoId');
+  const prisma = getPrisma(c.env);
+
+  const prs = await prisma.pullRequest.findMany({
+    where: { repoId },
+    orderBy: { openedAt: 'desc' },
+    take: 10 // Corrected from limit to take for Hono/Prisma
+  });
+
+  return c.json(json(prs));
 });
 
 export default app;

@@ -25,22 +25,28 @@ import {
   Clock 
 } from 'lucide-react'
 import type { ColumnDef } from '@tanstack/react-table'
+import { useTeam } from '../hooks/useMetrics'
+import { Avatar, AvatarFallback, AvatarImage } from '@blinkdotnew/ui'
 
 type TeamMember = {
-  id: string
   name: string
-  email: string
   role: string
-  activity: string
   prs: number
-  reviews: number
 }
 
 const columns: ColumnDef<TeamMember>[] = [
   { 
     accessorKey: 'name', 
     header: 'Member',
-    cell: ({ row }) => <Persona name={row.original.name} subtitle={row.original.email} src={`https://avatar.vercel.sh/${row.original.name}`} />
+    cell: ({ row }) => (
+      <div className="flex items-center gap-3">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src={`https://github.com/${row.original.name}.png`} />
+          <AvatarFallback>{row.original.name[0].toUpperCase()}</AvatarFallback>
+        </Avatar>
+        <span className="font-medium">{row.original.name}</span>
+      </div>
+    )
   },
   { 
     accessorKey: 'role', 
@@ -57,31 +63,19 @@ const columns: ColumnDef<TeamMember>[] = [
       </div>
     )
   },
-  { 
-    accessorKey: 'reviews', 
-    header: 'Reviews Done',
-    cell: ({ row }) => (
-      <div className="flex items-center gap-2 font-bold text-foreground">
-        <MessageSquare size={14} className="text-accent" />
-        {row.original.reviews}
-      </div>
-    )
-  },
-  { 
-    accessorKey: 'activity', 
-    header: 'Recent Activity',
-    cell: ({ row }) => <span className="text-sm text-muted-foreground">{row.original.activity}</span>
-  },
-]
-
-const teamData: TeamMember[] = [
-  { id: '1', name: 'Kai Chen', email: 'kai@devpulse.com', role: 'Engineering Lead', activity: 'Merged feat: metrics dashboard', prs: 124, reviews: 342 },
-  { id: '2', name: 'Sarah Smith', email: 'sarah@devpulse.com', role: 'Frontend Engineer', activity: 'Commented on database PR', prs: 89, reviews: 156 },
-  { id: '3', name: 'Mike Ross', email: 'mike@devpulse.com', role: 'Backend Engineer', activity: 'Created fix: connection leak', prs: 67, reviews: 231 },
-  { id: '4', name: 'Jessica Pearson', email: 'jessica@devpulse.com', role: 'Product Manager', activity: 'Reviewed docs PR', prs: 12, reviews: 450 },
 ]
 
 export function TeamPage() {
+  const { data: team, isLoading } = useTeam()
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+      </div>
+    )
+  }
+
   return (
     <Page>
       <PageHeader className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -102,7 +96,7 @@ export function TeamPage() {
           <CardContent className="p-0">
             <DataTable 
               columns={columns} 
-              data={teamData} 
+              data={team || []} 
               searchable 
               searchColumn="name"
               className="border-none"
@@ -115,27 +109,29 @@ export function TeamPage() {
             <CardHeader className="p-8 pb-0">
               <CardTitle className="text-xl font-bold flex items-center gap-2">
                 <Users size={20} className="text-primary" />
-                Team Composition
+                Pull Request Distribution
               </CardTitle>
-              <CardDescription className="text-muted-foreground leading-relaxed">Role distribution across your engineering organization.</CardDescription>
+              <CardDescription className="text-muted-foreground leading-relaxed">Total pull requests merged per team member.</CardDescription>
             </CardHeader>
             <CardContent className="p-8">
               <div className="space-y-4">
-                {[
-                  { label: 'Engineering', count: 12, color: 'bg-primary' },
-                  { label: 'Product', count: 4, color: 'bg-accent' },
-                  { label: 'Design', count: 3, color: 'bg-foreground' },
-                ].map((item, i) => (
+                {team?.map((member: any, i: number) => (
                   <div key={i} className="space-y-2">
                     <div className="flex justify-between text-sm font-medium">
-                      <span>{item.label}</span>
-                      <span>{Math.round((item.count / 19) * 100)}%</span>
+                      <span>{member.name}</span>
+                      <span>{member.prs} PRs</span>
                     </div>
                     <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div className={`h-full ${item.color}`} style={{ width: `${(item.count / 19) * 100}%` }} />
+                      <div 
+                        className="h-full bg-primary" 
+                        style={{ width: `${Math.min(100, (member.prs / (team.reduce((acc: number, m: any) => acc + m.prs, 0) || 1)) * 100)}%` }} 
+                      />
                     </div>
                   </div>
                 ))}
+                {(!team || team.length === 0) && (
+                  <div className="text-center py-4 text-muted-foreground">No data available</div>
+                )}
               </div>
             </CardContent>
           </Card>

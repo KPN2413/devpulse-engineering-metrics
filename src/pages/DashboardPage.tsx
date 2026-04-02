@@ -17,7 +17,10 @@ import {
   DataTable,
   Persona,
   Badge,
-  EmptyState
+  EmptyState,
+  Avatar,
+  AvatarImage,
+  AvatarFallback
 } from '@blinkdotnew/ui'
 import { 
   GitPullRequest, 
@@ -30,7 +33,9 @@ import {
   Minus
 } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
-import { useRepos, useMetrics } from '../hooks/useMetrics'
+import { useRepos, useMetrics, useActivity } from '../hooks/useMetrics'
+import { formatDistanceToNow } from 'date-fns'
+import { useSearch } from '@tanstack/react-router'
 
 // Placeholder data
 const metricsData = [
@@ -59,14 +64,19 @@ const recentPRs = [
 
 export function DashboardPage() {
   const { user } = useAuth()
+  const search = useSearch({ from: '/dashboard' }) as any
   const { data: repos, isLoading: isLoadingRepos } = useRepos()
-  const [selectedRepoId, setSelectedRepoId] = React.useState<string | null>(null)
+  
+  const selectedRepoId = search.repoId || (repos && repos.length > 0 ? repos[0].id : null)
   
   const { data: metrics, isLoading: isLoadingMetrics } = useMetrics(selectedRepoId)
+  const { data: activity, isLoading: isLoadingActivity } = useActivity(selectedRepoId)
 
   React.useEffect(() => {
     if (repos && repos.length > 0 && !selectedRepoId) {
-      setSelectedRepoId(repos[0].id)
+      // This useEffect is now redundant as selectedRepoId is derived from search params or initial repos
+      // If search.repoId is not present, it will default to the first repo if available.
+      // If you need to *set* the search param initially, that would be handled elsewhere (e.g., router config).
     }
   }, [repos, selectedRepoId])
 
@@ -104,21 +114,9 @@ export function DashboardPage() {
         <div>
           <PageTitle className="text-3xl font-bold tracking-tight">Engineering Dashboard</PageTitle>
           <PageDescription className="text-muted-foreground text-lg leading-relaxed">
-            Overview of {selectedRepoId ? 'repository' : 'your'} velocity and review metrics.
+            Overview of {selectedRepoId ? repos?.find((r: any) => r.id === selectedRepoId)?.name || 'repository' : 'your'} velocity and review metrics.
           </PageDescription>
         </div>
-        
-        {repos && repos.length > 0 && (
-          <select 
-            className="bg-secondary border border-border rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
-            value={selectedRepoId || ''}
-            onChange={(e) => setSelectedRepoId(e.target.value)}
-          >
-            {repos.map((repo: any) => (
-              <option key={repo.id} value={repo.id}>{repo.owner}/{repo.name}</option>
-            ))}
-          </select>
-        )}
       </PageHeader>
 
       <PageBody>
@@ -160,24 +158,32 @@ export function DashboardPage() {
             </CardHeader>
             <CardContent className="p-8">
               <div className="space-y-6">
-                {recentPRs.map((pr) => (
-                  <div key={pr.id} className="flex items-start justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-foreground truncate mb-1 leading-tight">{pr.title}</p>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <Persona name={pr.author} className="h-4 w-4" />
-                        <span>•</span>
-                        <span>{pr.time}</span>
+                {activity && activity.length > 0 ? (
+                  activity.map((pr: any) => (
+                    <div key={pr.id} className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-foreground truncate mb-1 leading-tight">{pr.title}</p>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Avatar className="h-4 w-4">
+                            <AvatarImage src={`https://github.com/${pr.authorLogin}.png`} />
+                            <AvatarFallback>{pr.authorLogin[0]}</AvatarFallback>
+                          </Avatar>
+                          <span>{pr.authorLogin}</span>
+                          <span>•</span>
+                          <span>{formatDistanceToNow(new Date(pr.openedAt), { addSuffix: true })}</span>
+                        </div>
                       </div>
+                      <Badge 
+                        variant={pr.mergedAt ? 'secondary' : pr.closedAt ? 'outline' : 'default'}
+                        className="rounded-full text-[10px] h-5 px-2 font-bold uppercase tracking-wider"
+                      >
+                        {pr.mergedAt ? 'merged' : pr.closedAt ? 'closed' : 'open'}
+                      </Badge>
                     </div>
-                    <Badge 
-                      variant={pr.status === 'merged' ? 'secondary' : pr.status === 'open' ? 'default' : 'outline'}
-                      className="rounded-full text-[10px] h-5 px-2 font-bold uppercase tracking-wider"
-                    >
-                      {pr.status}
-                    </Badge>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <div className="text-center py-10 text-muted-foreground">No recent activity</div>
+                )}
               </div>
             </CardContent>
           </Card>

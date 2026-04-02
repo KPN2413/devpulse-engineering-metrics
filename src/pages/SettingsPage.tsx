@@ -36,7 +36,7 @@ import { toast } from '@blinkdotnew/ui'
 
 export function SettingsPage() {
   const [copied, setCopied] = React.useState(false)
-  const webhookUrl = `${window.location.origin}/webhooks/github`
+  const webhookUrl = `https://${import.meta.env.VITE_BLINK_PROJECT_ID}.backend.blink.new/webhooks/github`
 
   const handleCopy = () => {
     navigator.clipboard.writeText(webhookUrl)
