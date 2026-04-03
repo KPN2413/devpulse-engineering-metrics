@@ -1,155 +1,163 @@
-import React from 'react'
-import { 
-  Page, 
-  PageHeader, 
-  PageTitle, 
-  PageDescription, 
-  PageBody,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  Button,
-  Input,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  Banner,
-  Code,
-  Divider,
-  Stack,
-  HStack
-} from '@blinkdotnew/ui'
-import { 
-  Settings, 
-  Webhook, 
-  Bell, 
-  Shield, 
-  Copy, 
-  Check, 
-  Zap,
-  LayoutDashboard
-} from 'lucide-react'
-import { toast } from '@blinkdotnew/ui'
+import { useState, useEffect } from 'react'
+import { Page, PageHeader, PageTitle, PageDescription, PageBody, Card, CardHeader, CardTitle, CardContent, Button, Input, Field, FieldLabel, FieldDescription, Banner, Badge, Tabs, TabsList, TabsTrigger, TabsContent, toast } from '@blinkdotnew/ui'
+import { Settings, Shield, Bell, Github, Link as LinkIcon, Copy, CheckCircle2, AlertCircle } from 'lucide-react'
+import { blink } from '../blink/client'
+import { useAuth } from '../hooks/useAuth'
 
 export function SettingsPage() {
-  const [copied, setCopied] = React.useState(false)
-  const webhookUrl = `https://${import.meta.env.VITE_BLINK_PROJECT_ID}.backend.blink.new/webhooks/github`
+  const { user } = useAuth()
+  const [webhookUrl, setWebhookUrl] = useState('')
+  const [secret, setSecret] = useState('devpulse_wh_secret_****************')
+  const [copied, setCopied] = useState(false)
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(webhookUrl)
+  useEffect(() => {
+    // Determine the webhook URL based on the project ID
+    const projectId = import.meta.env.VITE_BLINK_PROJECT_ID || 'devpulse-dashboard-f6b05h7q'
+    setWebhookUrl(`https://${projectId}.backend.blink.new/webhooks/github`)
+  }, [])
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
     setCopied(true)
-    toast.success('Webhook URL copied to clipboard')
+    toast.success('Copied to clipboard!')
     setTimeout(() => setCopied(false), 2000)
   }
 
   return (
-    <Page>
-      <PageHeader className="mb-8">
-        <PageTitle className="text-3xl font-bold tracking-tight">Settings</PageTitle>
-        <PageDescription className="text-muted-foreground text-lg leading-relaxed">
-          Manage your GitHub integration, team alerts, and security preferences.
-        </PageDescription>
+    <Page className="p-8 animate-fade-in">
+      <PageHeader>
+        <PageTitle>Settings</PageTitle>
+        <PageDescription>Manage your workspace configuration and repository integrations.</PageDescription>
       </PageHeader>
 
       <PageBody>
-        <Tabs defaultValue="github" className="space-y-10">
-          <TabsList className="bg-secondary/30 border-border/50 p-1 rounded-xl h-12">
-            <TabsTrigger value="github" className="px-6 rounded-lg font-bold data-[state=active]:bg-background">
-              <Settings size={16} className="mr-2" />
-              GitHub
-            </TabsTrigger>
-            <TabsTrigger value="notifications" className="px-6 rounded-lg font-bold data-[state=active]:bg-background">
-              <Bell size={16} className="mr-2" />
-              Notifications
-            </TabsTrigger>
-            <TabsTrigger value="security" className="px-6 rounded-lg font-bold data-[state=active]:bg-background">
-              <Shield size={16} className="mr-2" />
-              Security
-            </TabsTrigger>
+        <Tabs defaultValue="integrations" className="space-y-8">
+          <TabsList className="glass border-border/50">
+            <TabsTrigger value="integrations"><Github className="w-4 h-4 mr-2" /> Integrations</TabsTrigger>
+            <TabsTrigger value="notifications"><Bell className="w-4 h-4 mr-2" /> Notifications</TabsTrigger>
+            <TabsTrigger value="security"><Shield className="w-4 h-4 mr-2" /> Security</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="github" className="space-y-10 outline-none">
-            <Card className="bg-secondary/30 border-border/50 rounded-2xl overflow-hidden shadow-none">
-              <CardHeader className="p-8">
-                <CardTitle className="text-xl font-bold flex items-center gap-2">
-                  <Webhook size={20} className="text-primary" />
-                  Webhook Configuration
-                </CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">
-                  Configure GitHub webhooks to start receiving PR and commit data in real-time.
-                </CardDescription>
+          <TabsContent value="integrations" className="space-y-8">
+            {/* GitHub Webhook Setup */}
+            <Card className="glass">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <Github className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle>GitHub Webhook Setup</CardTitle>
+                    <CardDescription>Connect your repository to DevPulse for real-time monitoring.</CardDescription>
+                  </div>
+                </div>
+                <Badge variant="success" className="px-3 py-1">Active</Badge>
               </CardHeader>
-              <CardContent className="p-8 pt-0 space-y-8">
-                <Banner 
-                  variant="info" 
-                  className="rounded-xl border-primary/20 bg-primary/5"
-                  title="GitHub Permissions"
-                >
-                  Make sure to select "Pull Requests", "Pushes", and "Issue Comments" when creating your webhook.
+              <CardContent className="space-y-6 pt-6">
+                <Banner variant="info" className="border-primary/20 bg-primary/5">
+                  Follow these steps in your GitHub repository settings to start collecting metrics.
                 </Banner>
 
                 <div className="space-y-4">
-                  <label className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Webhook URL</label>
-                  <div className="flex gap-2">
-                    <Input 
-                      readOnly 
-                      value={webhookUrl} 
-                      className="bg-background border-border/50 h-12 rounded-xl flex-1 font-mono text-sm"
-                    />
-                    <Button 
-                      variant="secondary" 
-                      className="h-12 px-6 rounded-xl font-bold flex items-center gap-2"
-                      onClick={handleCopy}
-                    >
-                      {copied ? <Check size={18} /> : <Copy size={18} />}
-                      {copied ? 'Copied' : 'Copy'}
-                    </Button>
+                  <div className="flex flex-col gap-2">
+                    <FieldLabel>Webhook URL</FieldLabel>
+                    <div className="flex gap-2">
+                      <Input value={webhookUrl} readOnly className="font-mono text-sm bg-muted/50" />
+                      <Button variant="outline" size="icon" onClick={() => copyToClipboard(webhookUrl)}>
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <FieldDescription>Use this as your Payload URL in GitHub.</FieldDescription>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <FieldLabel>Secret Key</FieldLabel>
+                    <div className="flex gap-2">
+                      <Input value={secret} readOnly className="font-mono text-sm bg-muted/50" />
+                      <Button variant="outline" size="icon" onClick={() => copyToClipboard('devpulse_wh_secret_demo')}>
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <FieldDescription>The secret used to sign webhook requests.</FieldDescription>
                   </div>
                 </div>
 
-                <div className="pt-4 space-y-6">
-                  <h4 className="font-bold text-lg">Step-by-step Setup</h4>
-                  <ol className="space-y-6 text-muted-foreground">
-                    <li className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center font-bold text-foreground shrink-0 border border-border/50">1</div>
-                      <p className="pt-1.5 leading-relaxed">Go to your <span className="text-foreground font-medium">GitHub Repository</span> and navigate to <span className="text-foreground font-medium">Settings → Webhooks</span>.</p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center font-bold text-foreground shrink-0 border border-border/50">2</div>
-                      <p className="pt-1.5 leading-relaxed">Click <span className="text-foreground font-medium">Add Webhook</span> and paste the Payload URL above.</p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center font-bold text-foreground shrink-0 border border-border/50">3</div>
-                      <p className="pt-1.5 leading-relaxed">Set Content type to <span className="text-foreground font-medium">application/json</span>.</p>
-                    </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center font-bold text-foreground shrink-0 border border-border/50">4</div>
-                      <p className="pt-1.5 leading-relaxed">Select <span className="text-foreground font-medium">Let me select individual events</span> and choose Pull requests, Pushes, and Pull request reviews.</p>
-                    </li>
-                  </ol>
+                <div className="space-y-4 border-t border-border pt-6">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Event Subscriptions</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { event: 'Pull Requests', desc: 'Required for cycle time and review speed.' },
+                      { event: 'Pull Request Reviews', desc: 'Required for review turnaround metrics.' },
+                      { event: 'Pushes', desc: 'Required for commit frequency tracking.' },
+                      { event: 'Deployment Status', desc: 'Required for deployment frequency.' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-border/50 bg-background/50">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5" />
+                        <div>
+                          <p className="text-sm font-bold">{item.event}</p>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-secondary/30 border-border/50 rounded-2xl overflow-hidden shadow-none">
-              <CardHeader className="p-8">
-                <CardTitle className="text-xl font-bold flex items-center gap-2 text-destructive">
-                  <Zap size={20} />
-                  Danger Zone
-                </CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">Irreversible actions for your GitHub integration.</CardDescription>
+            {/* Connected Repositories */}
+            <Card className="glass">
+              <CardHeader>
+                <CardTitle>Connected Repositories</CardTitle>
+                <CardDescription>Manage the repositories connected to this workspace.</CardDescription>
               </CardHeader>
-              <CardContent className="p-8 pt-0">
-                <div className="flex items-center justify-between gap-8 p-6 bg-destructive/5 border border-destructive/20 rounded-2xl">
-                  <div>
-                    <h5 className="font-bold text-foreground mb-1">Disconnect GitHub</h5>
-                    <p className="text-sm text-muted-foreground">Stop all data sync and remove your organization connection.</p>
+              <CardContent className="space-y-4">
+                {[
+                  { name: 'platform-api', status: 'connected', owner: 'devpulse' },
+                  { name: 'frontend-core', status: 'not_connected', owner: 'devpulse' },
+                ].map((repo, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-background/50 hover:border-primary/50 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                        <Github className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-sm">{repo.owner}/{repo.name}</p>
+                        <p className="text-xs text-muted-foreground">Updated 2 days ago</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {repo.status === 'connected' ? (
+                        <Badge variant="success" className="px-2 py-0.5">Connected</Badge>
+                      ) : (
+                        <Button variant="outline" size="sm" className="text-xs font-bold">Connect Repo</Button>
+                      )}
+                      <Button variant="ghost" size="icon" className="h-8 w-8"><Settings className="w-4 h-4" /></Button>
+                    </div>
                   </div>
-                  <Button variant="destructive" className="font-bold rounded-xl h-11 px-6">Disconnect</Button>
-                </div>
+                ))}
+                <Button variant="outline" className="w-full py-6 rounded-xl border-dashed hover:border-primary transition-colors">
+                  <Github className="w-4 h-4 mr-2" /> Connect Another Repository
+                </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="notifications">
+            <Card className="glass">
+              <CardHeader><CardTitle>Notification Preferences</CardTitle></CardHeader>
+              <CardContent className="p-12 text-center">
+                <Bell className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                <p className="text-muted-foreground font-medium">Notification settings coming soon.</p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="security">
+            <Card className="glass">
+              <CardHeader><CardTitle>Security & Access</CardTitle></CardHeader>
+              <CardContent className="p-12 text-center">
+                <Shield className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                <p className="text-muted-foreground font-medium">Security settings coming soon.</p>
               </CardContent>
             </Card>
           </TabsContent>

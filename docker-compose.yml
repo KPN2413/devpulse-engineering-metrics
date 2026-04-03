@@ -1,25 +1,37 @@
 version: '3.8'
 
 services:
+  # PostgreSQL (for local development)
   db:
     image: postgres:15-alpine
-    restart: always
+    container_name: devpulse-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: devpulse
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-password}
+      POSTGRES_DB: ${DATABASE_NAME:-devpulse}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+  # Redis (for caching and background workers)
   redis:
     image: redis:7-alpine
-    restart: always
+    container_name: devpulse-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    healthcheck:
+      test: ["CMD-EXEC", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:

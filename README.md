@@ -1,59 +1,62 @@
-# Enhanced Vite React TypeScript Template
+# DevPulse — GitHub Engineering Metrics Dashboard
 
-This template includes built-in detection for missing CSS variables between your Tailwind config and CSS files.
+DevPulse is a comprehensive engineering analytics dashboard that helps software teams measure delivery health using GitHub activity.
 
 ## Features
+- **Real-time Webhook Processing**: Automatically track PRs, commits, and deployments.
+- **Cycle Time Analysis**: Measure the speed of your delivery pipeline from commit to deploy.
+- **Review Speed Tracking**: Identify bottlenecks in your code review process and improve throughput.
+- **Team Insights**: Understand individual and team contributions with role-aware metrics.
+- **Modern Dashboard**: Built with Next.js, Recharts, and shadcn/ui.
 
-- **CSS Variable Detection**: Automatically detects if CSS variables referenced in `tailwind.config.cjs` are defined in `src/index.css`
-- **Enhanced Linting**: Includes ESLint, Stylelint, and custom CSS variable validation
-- **Shadcn/ui**: Pre-configured with all Shadcn components
-- **Modern Stack**: Vite + React + TypeScript + Tailwind CSS
+## Tech Stack
+- **Frontend**: Vite + React (Dashboard), Tailwind CSS, shadcn/ui, TanStack Query, Recharts.
+- **Backend**: Hono (Edge Functions) on Blink Backend.
+- **Database**: SQLite (Blink DB).
+- **Auth**: Blink SDK managed authentication.
 
-## Available Scripts
+## Getting Started
 
+### Prerequisites
+- Node.js (LTS)
+- A GitHub account and repository to monitor.
+
+### Setup Instructions
+1. **Sign In**: Open the DevPulse app and sign in with GitHub via Blink Auth.
+2. **Configure Webhooks**:
+   - Go to your GitHub repository settings.
+   - Add a new webhook with your unique Payload URL (found in Settings).
+   - Set the content type to `application/json`.
+   - Subscribe to: `Pull Requests`, `Pull Request Reviews`, `Pushes`, `Deployment Status`.
+3. **Data Collection**: As activity happens in your repo, DevPulse will automatically update your metrics.
+
+### Local Development
+To run the database and local stack:
 ```bash
-# Run all linting (includes CSS variable check)
-npm run lint
-
-# Check only CSS variables
-npm run check:css-vars
-
-# Individual linting
-npm run lint:js    # ESLint
-npm run lint:css   # Stylelint
+docker-compose up -d
+npm install
+npm run dev
 ```
 
-## CSS Variable Detection
+## Dashboard Metrics
+- **Total PRs**: Total count of pull requests opened and merged.
+- **Avg PR Cycle Time**: Time from first commit to PR merge.
+- **Commit Frequency**: Average commits per day across the team.
+- **Review Turnaround**: Time from PR open to first approved review.
+- **Deployment Frequency**: How often you ship to production.
 
-The template includes a custom script that:
-
-1. **Parses `tailwind.config.cjs`** to find all `var(--variable)` references
-2. **Parses `src/index.css`** to find all defined CSS variables (`--variable:`)
-3. **Cross-references** them to find missing definitions
-4. **Reports undefined variables** with clear error messages
-
-### Example Output
-
-When CSS variables are missing:
+## Project Structure
 ```
-❌ Undefined CSS variables found in tailwind.config.cjs:
-   --sidebar-background
-   --sidebar-foreground
-   --sidebar-primary
-
-Add these variables to src/index.css
-```
-
-When all variables are defined:
-```
-✅ All CSS variables in tailwind.config.cjs are defined
+devpulse/
+  backend/            # Hono Edge Functions
+    index.ts          # Webhook and API logic
+  src/                # Frontend React code
+    components/       # UI and Layout components
+    pages/            # Dashboard, Team, Settings pages
+    hooks/            # Auth and Data hooks
+    blink/            # SDK client initialization
+    lib/              # Utils and Seed logic
+  public/             # Static assets
 ```
 
-## How It Works
-
-The detection happens during the `npm run lint` command, which will:
-- Exit with error code 1 if undefined variables are found
-- Show exactly which variables need to be added to your CSS file
-- Integrate seamlessly with your development workflow
-
-This prevents runtime CSS issues where Tailwind classes reference undefined CSS variables.
+Built with ❤️ by Blink.

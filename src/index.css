@@ -13,53 +13,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 222 47% 7%;
-    --foreground: 214 32% 91%;
-    --card: 222 47% 11%;
-    --card-foreground: 214 32% 91%;
-    --popover: 222 47% 7%;
-    --popover-foreground: 214 32% 91%;
-    --primary: 212 100% 67%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 214 32% 91%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 142 69% 33%;
-    --accent-foreground: 214 32% 91%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 214 32% 91%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 212 100% 67%;
-    --radius: 0.5rem;
-  }
-}
-
-.dark {
-  --background: 222 47% 7%;
-  --foreground: 214 32% 91%;
-  --card: 222 47% 11%;
-  --card-foreground: 214 32% 91%;
-  --popover: 222 47% 7%;
-  --popover-foreground: 214 32% 91%;
-  --primary: 212 100% 67%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 214 32% 91%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 142 69% 33%;
-  --accent-foreground: 214 32% 91%;
-  --destructive: 0 63% 31%;
-  --destructive-foreground: 214 32% 91%;
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 212 100% 67%;
-}
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -104,46 +57,43 @@
    * --accent: 24 95% 63%;          (Lighter orange #FB923C)
    */
 
-  /* Colors - REPLACE ALL VALUES BELOW with your custom palette */
-  --background: 208 100% 97.0588%;
-  --foreground: 216.9231 19.1176% 26.6667%;
+  /* Colors - GitHub Dark Refined Palette */
+  --background: 210 12% 98%;
+  --foreground: 210 12% 7%;
   --card: 0 0% 100%;
-  --card-foreground: 216.9231 19.1176% 26.6667%;
+  --card-foreground: 210 12% 7%;
   --popover: 0 0% 100%;
-  --popover-foreground: 216.9231 19.1176% 26.6667%;
-  /* ⚠️ PLACEHOLDER: Replace with your custom primary color (NOT generic teal, NOT blue) */
-  --primary: 330 81% 50%;
+  --popover-foreground: 210 12% 7%;
+  --primary: 212 92% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 204 93.75% 93.7255%;
-  --secondary-foreground: 215 13.7931% 34.1176%;
-  --muted: 220 14.2857% 95.8824%;
-  --muted-foreground: 220 8.9362% 46.0784%;
-  /* ⚠️ PLACEHOLDER: Replace with your custom accent color */
-  --accent: 330 81% 65%;
-  --accent-foreground: 216.9231 19.1176% 26.6667%;
-  --destructive: 0 84.2365% 60.1961%;
+  --secondary: 210 12% 96%;
+  --secondary-foreground: 210 12% 7%;
+  --muted: 210 12% 96%;
+  --muted-foreground: 210 12% 45%;
+  --accent: 212 92% 45%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 220 13.0435% 90.9804%;
-  --input: 220 13.0435% 90.9804%;
-  /* ⚠️ PLACEHOLDER: Replace with your custom ring color (usually matches primary) */
-  --ring: 330 81% 50%;
+  --border: 210 12% 90%;
+  --input: 210 12% 90%;
+  --ring: 212 92% 45%;
 
-  /* Charts - ⚠️ PLACEHOLDER: Replace with your custom chart colors */
-  --chart-1: 348 83% 47%;
-  --chart-2: 24 95% 53%;
-  --chart-3: 47 96% 53%;
-  --chart-4: 151 55% 35%;
+  /* Charts */
+  --chart-1: 212 92% 45%;
+  --chart-2: 151 55% 45%;
+  --chart-3: 348 83% 47%;
+  --chart-4: 47 96% 53%;
   --chart-5: 262 52% 47%;
 
-  /* Sidebar - ⚠️ PLACEHOLDER: Replace with your custom sidebar colors */
-  --sidebar: 204 93.75% 93.7255%;
-  --sidebar-foreground: 216.9231 19.1176% 26.6667%;
-  --sidebar-primary: 330 81% 50%;
+  /* Sidebar */
+  --sidebar: 210 12% 98%;
+  --sidebar-foreground: 210 12% 7%;
+  --sidebar-primary: 212 92% 45%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 330 81% 65%;
-  --sidebar-accent-foreground: 216.9231 19.1176% 26.6667%;
-  --sidebar-border: 220 13.0435% 90.9804%;
-  --sidebar-ring: 330 81% 50%;
+  --sidebar-accent: 210 12% 94%;
+  --sidebar-accent-foreground: 210 12% 7%;
+  --sidebar-border: 210 12% 90%;
+  --sidebar-ring: 212 92% 45%;
 
   /* Fonts */
   --font-sans: DM Sans, sans-serif;
@@ -171,44 +121,43 @@
 .theme-glass.dark,
 .theme-midnight.dark,
 .theme-minimal.dark {
-  /* ⚠️ AGENT MUST REPLACE: Dark mode colors - replace with your custom dark palette */
-  --background: 222.2222 47.3684% 11.1765%;
-  --foreground: 216 12.1951% 83.9216%;
-  --card: 217.2414 32.5843% 17.451%;
-  --card-foreground: 216 12.1951% 83.9216%;
-  --popover: 217.2414 32.5843% 17.451%;
-  --popover-foreground: 216 12.1951% 83.9216%;
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode primary color */
-  --primary: 330 81% 75%;
-  --primary-foreground: 222.2222 47.3684% 11.1765%;
-  --secondary: 217.7778 23.0769% 22.9412%;
-  --secondary-foreground: 240 5.0279% 64.902%;
-  --muted: 217.2414 32.5843% 17.451%;
-  --muted-foreground: 220 8.9362% 46.0784%;
-  --accent: 216.9231 19.1176% 26.6667%;
-  --accent-foreground: 240 5.0279% 64.902%;
-  --destructive: 0 84.2365% 60.1961%;
-  --destructive-foreground: 222.2222 47.3684% 11.1765%;
-  --border: 215 13.7931% 34.1176%;
-  --input: 215 13.7931% 34.1176%;
-  --ring: 330 81% 75%;
+  /* Dark Mode Palette - GitHub Dark */
+  --background: 210 12% 7%;
+  --foreground: 210 12% 90%;
+  --card: 210 12% 9%;
+  --card-foreground: 210 12% 90%;
+  --popover: 210 12% 9%;
+  --popover-foreground: 210 12% 90%;
+  --primary: 212 92% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 12% 14%;
+  --secondary-foreground: 210 12% 90%;
+  --muted: 210 12% 14%;
+  --muted-foreground: 210 12% 50%;
+  --accent: 212 92% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 12% 16%;
+  --input: 210 12% 16%;
+  --ring: 212 92% 50%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode chart colors */
-  --chart-1: 348 83% 65%;
-  --chart-2: 24 95% 63%;
-  --chart-3: 47 96% 65%;
-  --chart-4: 151 55% 55%;
-  --chart-5: 262 52% 65%;
+  /* Charts */
+  --chart-1: 212 92% 50%;
+  --chart-2: 151 55% 50%;
+  --chart-3: 348 83% 55%;
+  --chart-4: 47 96% 60%;
+  --chart-5: 262 52% 60%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode sidebar colors */
-  --sidebar: 217.2414 32.5843% 17.451%;
-  --sidebar-foreground: 216 12.1951% 83.9216%;
-  --sidebar-primary: 330 81% 75%;
-  --sidebar-primary-foreground: 222.2222 47.3684% 11.1765%;
-  --sidebar-accent: 216.9231 19.1176% 26.6667%;
-  --sidebar-accent-foreground: 240 5.0279% 64.902%;
-  --sidebar-border: 215 13.7931% 34.1176%;
-  --sidebar-ring: 330 81% 75%;
+  /* Sidebar */
+  --sidebar: 210 12% 9%;
+  --sidebar-foreground: 210 12% 90%;
+  --sidebar-primary: 212 92% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 12% 16%;
+  --sidebar-accent-foreground: 210 12% 90%;
+  --sidebar-border: 210 12% 16%;
+  --sidebar-ring: 212 92% 50%;
 }
 
 .animate-fade-in {

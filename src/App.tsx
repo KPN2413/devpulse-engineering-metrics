@@ -1,18 +1,14 @@
-import { 
-  createRouter, 
-  createRoute, 
-  createRootRoute, 
-  RouterProvider, 
-  Outlet, 
-} from '@tanstack/react-router'
+import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react'
 import { Toaster } from '@blinkdotnew/ui'
 import { LandingPage } from './pages/LandingPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { TeamPage } from './pages/TeamPage'
 import { SettingsPage } from './pages/SettingsPage'
-import { DashboardLayout } from './layouts/DashboardLayout'
+import { DashboardLayout } from './components/layout/DashboardLayout'
+import { useAuth } from './hooks/useAuth'
+import { LoadingOverlay } from '@blinkdotnew/ui'
 
-// Root Route
 const rootRoute = createRootRoute({
   component: () => (
     <>
@@ -22,45 +18,57 @@ const rootRoute = createRootRoute({
   ),
 })
 
-// Public Routes
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
   component: LandingPage,
 })
 
-// Protected Routes (Nested under DashboardLayout)
-const dashboardRootRoute = createRoute({
+const dashboardLayoutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  id: 'dashboard-root',
-  component: DashboardLayout,
+  id: 'dashboard-layout',
+  component: () => {
+    const { user, isLoading } = useAuth()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      if (!isLoading && !user) {
+        navigate({ to: '/' })
+      }
+    }, [isLoading, user, navigate])
+
+    if (isLoading) return <LoadingOverlay />
+    if (!user) return null
+
+    return (
+      <DashboardLayout>
+        <Outlet />
+      </DashboardLayout>
+    )
+  },
 })
 
 const dashboardRoute = createRoute({
-  getParentRoute: () => dashboardRootRoute,
+  getParentRoute: () => dashboardLayoutRoute,
   path: '/dashboard',
   component: DashboardPage,
 })
 
 const teamRoute = createRoute({
-  getParentRoute: () => dashboardRootRoute,
+  getParentRoute: () => dashboardLayoutRoute,
   path: '/team',
   component: TeamPage,
 })
 
 const settingsRoute = createRoute({
-  getParentRoute: () => dashboardRootRoute,
+  getParentRoute: () => dashboardLayoutRoute,
   path: '/settings',
   component: SettingsPage,
 })
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  dashboardRootRoute.addChildren([
-    dashboardRoute,
-    teamRoute,
-    settingsRoute,
-  ]),
+  dashboardLayoutRoute.addChildren([dashboardRoute, teamRoute, settingsRoute]),
 ])
 
 const router = createRouter({ routeTree })

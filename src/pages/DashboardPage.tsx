@@ -1,209 +1,301 @@
-import React from 'react'
-import { 
-  Page, 
-  PageHeader, 
-  PageTitle, 
-  PageDescription, 
-  PageBody,
-  StatGroup,
-  Stat,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  AreaChart,
-  BarChart,
-  DataTable,
-  Persona,
-  Badge,
-  EmptyState,
-  Avatar,
-  AvatarImage,
-  AvatarFallback
-} from '@blinkdotnew/ui'
-import { 
-  GitPullRequest, 
-  Clock, 
-  Activity, 
-  CheckCircle2, 
-  AlertCircle,
-  TrendingUp,
-  TrendingDown,
-  Minus
-} from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Page, PageHeader, PageTitle, PageDescription, PageActions, PageBody, StatGroup, Stat, Card, CardHeader, CardTitle, CardContent, DataTable, AreaChart, BarChart, Button, Select, SelectTrigger, SelectValue, SelectContent, SelectItem, Skeleton, Badge, Persona } from '@blinkdotnew/ui'
+import { Calendar, Filter, RefreshCcw, Download, GitPullRequest, Clock, Zap, MessageSquare, Rocket } from 'lucide-react'
+import { blink } from '../blink/client'
 import { useAuth } from '../hooks/useAuth'
-import { useRepos, useMetrics, useActivity } from '../hooks/useMetrics'
-import { formatDistanceToNow } from 'date-fns'
-import { useSearch } from '@tanstack/react-router'
-
-// Placeholder data
-const metricsData = [
-  { label: 'Total PRs', value: '1,284', trend: 12.5, trendLabel: 'vs last month', icon: <GitPullRequest className="text-primary" /> },
-  { label: 'Avg PR Cycle Time', value: '2.4 days', trend: -8.3, trendLabel: 'vs last month', icon: <Clock className="text-accent" /> },
-  { label: 'Commit Frequency', value: '45.2/day', trend: 4.2, trendLabel: 'vs last month', icon: <Activity className="text-primary" /> },
-  { label: 'Review Turnaround', value: '4.8 hours', trend: -12.4, trendLabel: 'vs last month', icon: <CheckCircle2 className="text-accent" /> },
-]
-
-const chartData = [
-  { date: '2024-01-01', cycleTime: 3.2, prs: 120 },
-  { date: '2024-01-08', cycleTime: 2.8, prs: 145 },
-  { date: '2024-01-15', cycleTime: 3.5, prs: 110 },
-  { date: '2024-01-22', cycleTime: 2.4, prs: 160 },
-  { date: '2024-01-29', cycleTime: 2.1, prs: 185 },
-  { date: '2024-02-05', cycleTime: 2.3, prs: 170 },
-  { date: '2024-02-12', cycleTime: 1.9, prs: 205 },
-]
-
-const recentPRs = [
-  { id: '1', title: 'feat: add metrics dashboard', author: 'Kai Chen', status: 'merged', time: '2h ago' },
-  { id: '2', title: 'fix: database connection leak', author: 'Sarah Smith', status: 'open', time: '4h ago' },
-  { id: '3', title: 'docs: update webhook setup', author: 'Mike Ross', status: 'closed', time: '1d ago' },
-  { id: '4', title: 'refactor: use hono for edge functions', author: 'Kai Chen', status: 'merged', time: '2d ago' },
-]
+import { seedDemoData } from '../lib/seed'
+import { format, subDays, startOfDay } from 'date-fns'
+import type { ColumnDef } from '@tanstack/react-table'
 
 export function DashboardPage() {
   const { user } = useAuth()
-  const search = useSearch({ from: '/dashboard' }) as any
-  const { data: repos, isLoading: isLoadingRepos } = useRepos()
-  
-  const selectedRepoId = search.repoId || (repos && repos.length > 0 ? repos[0].id : null)
-  
-  const { data: metrics, isLoading: isLoadingMetrics } = useMetrics(selectedRepoId)
-  const { data: activity, isLoading: isLoadingActivity } = useActivity(selectedRepoId)
+  const [repos, setRepos] = useState<any[]>([])
+  const [selectedRepo, setSelectedRepo] = useState<string>('')
+  const [metrics, setMetrics] = useState<any>(null)
+  const [trends, setTrends] = useState<any[]>([])
+  const [recentPrs, setRecentPrs] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  React.useEffect(() => {
-    if (repos && repos.length > 0 && !selectedRepoId) {
-      // This useEffect is now redundant as selectedRepoId is derived from search params or initial repos
-      // If search.repoId is not present, it will default to the first repo if available.
-      // If you need to *set* the search param initially, that would be handled elsewhere (e.g., router config).
+  useEffect(() => {
+    if (user) {
+      const init = async () => {
+        setIsLoading(true)
+        await seedDemoData(user.id)
+        
+        // Fetch data
+        const repoList = await blink.db.repositories.list({ where: { userId: user.id } })
+        setRepos(repoList)
+        if (repoList.length > 0) {
+          const firstRepo = repoList[0].id
+          setSelectedRepo(firstRepo)
+          await loadRepoData(firstRepo, user.id)
+        }
+        setIsLoading(false)
+      }
+      init()
     }
-  }, [repos, selectedRepoId])
+  }, [user])
 
-  // Transform metrics for charts
-  const chartData = React.useMemo(() => {
-    if (!metrics) return []
-    return metrics.map((m: any) => ({
-      date: new Date(m.date).toLocaleDateString(),
-      cycleTime: m.avgCycleTimeMs / (1000 * 60 * 60 * 24), // to days
-      prs: m.prCount,
-      commits: m.commitCount
-    }))
-  }, [metrics])
+  const loadRepoData = async (repoId: string, userId: string) => {
+    // Recent PRs
+    const prs = await blink.db.pullRequests.list({
+      where: { repoId, userId },
+      limit: 10,
+      orderBy: { createdAtGithub: 'desc' }
+    })
+    setRecentPrs(prs)
 
-  const latestMetrics = chartData[chartData.length - 1] || { prs: 0, cycleTime: 0, commits: 0 }
+    // Trends (Metric Snapshots)
+    const snapshots = await blink.db.metricSnapshots.list({
+      where: { repoId, userId },
+      limit: 14,
+      orderBy: { date: 'asc' }
+    })
+    setTrends(snapshots.map(s => ({
+      date: format(new Date(s.date), 'MMM dd'),
+      prs: s.totalPrs,
+      cycleTime: s.avgCycleTimeHours,
+      commits: s.commitCount,
+      turnaround: s.avgReviewTurnaroundHours,
+      deploys: s.deploymentCount
+    })))
 
-  const metricsStats = [
-    { label: 'Total PRs', value: latestMetrics.prs, trend: 0, trendLabel: 'today', icon: <GitPullRequest className="text-primary" /> },
-    { label: 'Avg PR Cycle Time', value: `${latestMetrics.cycleTime.toFixed(1)} days`, trend: 0, trendLabel: 'today', icon: <Clock className="text-accent" /> },
-    { label: 'Commit Count', value: latestMetrics.commits, trend: 0, trendLabel: 'today', icon: <Activity className="text-primary" /> },
-    { label: 'Repos Connected', value: repos?.length || 0, trend: 0, trendLabel: 'total', icon: <CheckCircle2 className="text-accent" /> },
+    // Summary Metrics
+    const totalPrs = prs.length
+    const mergedPrs = prs.filter(p => p.state === 'merged')
+    const avgCycleTime = mergedPrs.reduce((acc, p) => acc + (p.cycleTimeMinutes || 0), 0) / (mergedPrs.length || 1)
+    
+    const commits = await blink.db.commits.count({ where: { repoId, userId } })
+    const deploys = await blink.db.deployments.count({ where: { repoId, userId } })
+
+    setMetrics({
+      totalPrs,
+      avgCycleTime: (avgCycleTime / 60).toFixed(1),
+      commitFreq: (commits / 30).toFixed(1),
+      reviewTurnaround: (Math.random() * 4 + 2).toFixed(1), // Mocked for demo
+      deployFreq: (deploys / 15).toFixed(1)
+    })
+  }
+
+  const columns: ColumnDef<any>[] = [
+    {
+      accessorKey: 'number',
+      header: '#',
+      cell: ({ row }) => <span className="font-mono text-muted-foreground">#{row.original.number}</span>,
+    },
+    {
+      accessorKey: 'title',
+      header: 'Title',
+      cell: ({ row }) => (
+        <div className="flex flex-col gap-1 max-w-[400px]">
+          <span className="font-bold truncate">{row.original.title}</span>
+          <span className="text-xs text-muted-foreground">
+            {format(new Date(row.original.createdAtGithub), 'MMM dd, yyyy')}
+          </span>
+        </div>
+      ),
+    },
+    {
+      accessorKey: 'state',
+      header: 'Status',
+      cell: ({ row }) => (
+        <Badge
+          variant={
+            row.original.state === 'merged'
+              ? 'success'
+              : row.original.state === 'closed'
+              ? 'destructive'
+              : 'default'
+          }
+          className="capitalize"
+        >
+          {row.original.state}
+        </Badge>
+      ),
+    },
+    {
+      accessorKey: 'cycleTimeMinutes',
+      header: 'Cycle Time',
+      cell: ({ row }) => (
+        <span className="font-mono text-sm">
+          {row.original.cycleTimeMinutes ? `${(row.original.cycleTimeMinutes / 60).toFixed(1)}h` : '--'}
+        </span>
+      ),
+    },
   ]
 
-  if (isLoadingRepos) {
+  if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
-      </div>
+      <Page className="p-8">
+        <PageHeader>
+          <Skeleton className="h-10 w-48" />
+          <Skeleton className="h-4 w-64 mt-2" />
+        </PageHeader>
+        <PageBody className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <Skeleton className="h-24 rounded-xl" />
+            <Skeleton className="h-24 rounded-xl" />
+            <Skeleton className="h-24 rounded-xl" />
+            <Skeleton className="h-24 rounded-xl" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Skeleton className="h-[300px] rounded-xl" />
+            <Skeleton className="h-[300px] rounded-xl" />
+          </div>
+        </PageBody>
+      </Page>
     )
   }
 
   return (
-    <Page>
-      <PageHeader className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <PageTitle className="text-3xl font-bold tracking-tight">Engineering Dashboard</PageTitle>
-          <PageDescription className="text-muted-foreground text-lg leading-relaxed">
-            Overview of {selectedRepoId ? repos?.find((r: any) => r.id === selectedRepoId)?.name || 'repository' : 'your'} velocity and review metrics.
-          </PageDescription>
+    <Page className="p-8 animate-fade-in">
+      <PageHeader>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 w-full">
+          <div>
+            <PageTitle>Engineering Dashboard</PageTitle>
+            <PageDescription>Track velocity, quality, and throughput for your repositories.</PageDescription>
+          </div>
+          <PageActions className="flex items-center gap-3">
+            <Select value={selectedRepo} onValueChange={(val) => {
+              setSelectedRepo(val)
+              if (user) loadRepoData(val, user.id)
+            }}>
+              <SelectTrigger className="w-[240px] bg-background">
+                <SelectValue placeholder="Select repository" />
+              </SelectTrigger>
+              <SelectContent>
+                {repos.map(repo => (
+                  <SelectItem key={repo.id} value={repo.id}>{repo.fullName}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button variant="outline" size="icon"><RefreshCcw className="w-4 h-4" /></Button>
+            <Button variant="outline" size="icon"><Calendar className="w-4 h-4" /></Button>
+          </PageActions>
         </div>
       </PageHeader>
 
-      <PageBody>
-        <StatGroup className="mb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {metricsStats.map((stat, i) => (
-            <Stat 
-              key={i}
-              label={stat.label}
-              value={stat.value}
-              trend={stat.trend}
-              trendLabel={stat.trendLabel}
-              icon={stat.icon}
-              className="bg-secondary/30 border-border/50 rounded-2xl p-6"
-            />
-          ))}
+      <PageBody className="space-y-8">
+        {/* Top Metrics */}
+        <StatGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Stat
+            label="Total Pull Requests"
+            value={metrics?.totalPrs || 0}
+            trend={15}
+            trendLabel="vs last month"
+            icon={<GitPullRequest className="text-primary" size={20} />}
+            className="glass"
+          />
+          <Stat
+            label="Avg Cycle Time"
+            value={`${metrics?.avgCycleTime || 0}h`}
+            trend={-8}
+            trendLabel="lower is better"
+            icon={<Clock className="text-primary" size={20} />}
+            className="glass"
+          />
+          <Stat
+            label="Commits / Day"
+            value={metrics?.commitFreq || 0}
+            trend={22}
+            trendLabel="increased activity"
+            icon={<Zap className="text-primary" size={20} />}
+            className="glass"
+          />
+          <Stat
+            label="Review Turnaround"
+            value={`${metrics?.reviewTurnaround || 0}h`}
+            trend={-12}
+            trendLabel="faster reviews"
+            icon={<MessageSquare className="text-primary" size={20} />}
+            className="glass"
+          />
         </StatGroup>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
-          <Card className="lg:col-span-2 bg-secondary/30 border-border/50 rounded-2xl overflow-hidden shadow-none">
-            <CardHeader className="p-8 pb-0">
-              <CardTitle className="text-xl font-bold">Velocity Trends</CardTitle>
-              <CardDescription className="text-muted-foreground">Cycle time and PR volume over time</CardDescription>
+        {/* Deployment Frequency (Secondary Stat) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <Card className="lg:col-span-1 glass">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Deployment Frequency</CardTitle>
+              <Rocket className="text-muted-foreground w-4 h-4" />
             </CardHeader>
-            <CardContent className="p-8">
-              <AreaChart 
-                data={chartData} 
-                dataKey="cycleTime" 
-                xAxisKey="date" 
-                height={300}
-                className="text-primary"
+            <CardContent>
+              <div className="text-2xl font-bold">{metrics?.deployFreq || 0} / day</div>
+              <p className="text-xs text-muted-foreground mt-1">+5% from last week</p>
+              <div className="mt-6">
+                <BarChart
+                  data={trends.slice(-7)}
+                  dataKey="deploys"
+                  xAxisKey="date"
+                  height={120}
+                  className="mt-4"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="lg:col-span-2 glass">
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">Delivery Velocity Trend</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <AreaChart
+                data={trends}
+                dataKey={['prs', 'cycleTime']}
+                xAxisKey="date"
+                height={220}
+                showLegend
+              />
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Bottom Section: PRs Table & Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <Card className="lg:col-span-2 glass">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle>Recent Pull Requests</CardTitle>
+              <Button variant="ghost" size="sm" className="text-xs">View All</Button>
+            </CardHeader>
+            <CardContent>
+              <DataTable
+                columns={columns}
+                data={recentPrs}
+                pageSize={5}
+                className="border-none"
               />
             </CardContent>
           </Card>
 
-          <Card className="bg-secondary/30 border-border/50 rounded-2xl overflow-hidden shadow-none">
-            <CardHeader className="p-8 pb-0">
-              <CardTitle className="text-xl font-bold">Recent Pull Requests</CardTitle>
-              <CardDescription className="text-muted-foreground">Latest activity from your team</CardDescription>
+          <Card className="glass">
+            <CardHeader>
+              <CardTitle>Contributor Velocity</CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                {activity && activity.length > 0 ? (
-                  activity.map((pr: any) => (
-                    <div key={pr.id} className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-foreground truncate mb-1 leading-tight">{pr.title}</p>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Avatar className="h-4 w-4">
-                            <AvatarImage src={`https://github.com/${pr.authorLogin}.png`} />
-                            <AvatarFallback>{pr.authorLogin[0]}</AvatarFallback>
-                          </Avatar>
-                          <span>{pr.authorLogin}</span>
-                          <span>•</span>
-                          <span>{formatDistanceToNow(new Date(pr.openedAt), { addSuffix: true })}</span>
-                        </div>
-                      </div>
-                      <Badge 
-                        variant={pr.mergedAt ? 'secondary' : pr.closedAt ? 'outline' : 'default'}
-                        className="rounded-full text-[10px] h-5 px-2 font-bold uppercase tracking-wider"
-                      >
-                        {pr.mergedAt ? 'merged' : pr.closedAt ? 'closed' : 'open'}
-                      </Badge>
+            <CardContent>
+              <BarChart
+                data={trends.slice(-10)}
+                dataKey="commits"
+                xAxisKey="date"
+                height={200}
+              />
+              <div className="mt-6 space-y-4">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Top Contributors</h4>
+                {[
+                  { name: "Sarah Chen", commits: 45, prs: 12 },
+                  { name: "Alex Rivera", commits: 38, prs: 8 },
+                  { name: "Jordan Smith", commits: 32, prs: 9 },
+                ].map((c, i) => (
+                  <div key={i} className="flex items-center justify-between group">
+                    <Persona name={c.name} subtitle={`${c.commits} commits`} />
+                    <div className="text-xs font-bold bg-muted px-2 py-1 rounded group-hover:bg-primary group-hover:text-white transition-colors">
+                      {c.prs} PRs
                     </div>
-                  ))
-                ) : (
-                  <div className="text-center py-10 text-muted-foreground">No recent activity</div>
-                )}
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         </div>
-
-        <Card className="bg-secondary/30 border-border/50 rounded-2xl overflow-hidden shadow-none">
-          <CardHeader className="p-8 pb-0">
-            <CardTitle className="text-xl font-bold">Metric Insights</CardTitle>
-            <CardDescription className="text-muted-foreground">Deep dive into key performance indicators</CardDescription>
-          </CardHeader>
-          <CardContent className="p-8">
-             <BarChart 
-                data={chartData} 
-                dataKey="prs" 
-                xAxisKey="date" 
-                height={300}
-                className="text-accent"
-              />
-          </CardContent>
-        </Card>
       </PageBody>
     </Page>
   )
